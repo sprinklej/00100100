@@ -4,6 +4,7 @@
 #
 #-------------------------------------------------
 
+QT       += sql
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -18,6 +19,7 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h \
     User.h \
     Team.h \
-    Project.h
+    Project.h \
+    Storage.h
 
 FORMS    += mainwindow.ui
