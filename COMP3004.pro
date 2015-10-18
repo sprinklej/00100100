@@ -16,6 +16,8 @@ SOURCES += main.cpp\
         mainwindow.cpp
 
 HEADERS  += mainwindow.h \
-    User.h
+    User.h \
+    Team.h \
+    Project.h
 
 FORMS    += mainwindow.ui
