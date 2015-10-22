@@ -14,12 +14,15 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    Team.cpp \
+    Project.cpp \
+    User.cpp
 
 HEADERS  += mainwindow.h \
+    Storage.h \
     User.h \
     Team.h \
-    Project.h \
-    Storage.h
+    Project.h
 
 FORMS    += mainwindow.ui
