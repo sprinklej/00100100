@@ -11,6 +11,10 @@ LoginWindow::LoginWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->status->setText("");
+
+    // display logo
+    QPixmap logo ("../00100100/images/logo.png");
+    ui->label_logo->setPixmap(logo);
 }
 
 LoginWindow::~LoginWindow()
@@ -20,11 +24,13 @@ LoginWindow::~LoginWindow()
 
 void LoginWindow::on_pushButton_login_clicked()
 {
+     // get username from text box
      QString userName;
      userName = ui->lineEdit_username->text();
 
-     // check against  Database here
+     // check login against Database
 
+     // logged in window
      if (userName != "test") // replace with a better condition, once DB is connected
      {
         this->hide();
