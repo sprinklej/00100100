@@ -30,11 +30,50 @@
      <attribute name="title">
       <string>Projects</string>
      </attribute>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>240</y>
+        <width>99</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>New Project</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>240</y>
+        <width>99</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Edit Project</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_CreateTeams">
      <attribute name="title">
       <string>Create Teams</string>
      </attribute>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="geometry">
+       <rect>
+        <x>338</x>
+        <y>250</y>
+        <width>131</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Generate Teams</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
