@@ -1,18 +1,29 @@
 #ifndef TEAM_H
 #define TEAM_H
 
-#include <string.h>
+#include <string>
+using namespace std;
+
 
 class Team
 {
 protected:
     int projectID;
     int teamID;
-    //list of students
+    // how do we want to store the teams
 
 public:
-    Team(); // default constructor
-    ~Team(); // destructor
+    // constructor/destructor
+    Team(int project_ID, int team_ID);
+    ~Team();
+
+    // setters
+    void setProjectID(int project_ID);
+    void setTeamID(int teamID);
+
+    // getters
+    int getProjectID();
+    int getTeamID();
 };
 
 #endif // TEAM_H

@@ -1,7 +1,9 @@
 #ifndef USER_H
 #define USER_H
 
-#include <string.h>
+#include <string>
+using namespace std;
+
 
 class User
 {
@@ -11,32 +13,47 @@ protected:
     string lastName;
 
 public:
-    User(); // default constructor
-    ~User(); // destructor
+    // constructor/destructor
+    User();
+    ~User();
+
+    // setters
+
+    // getters
 };
 
 
 
 class Student : public User
 {
-private:
+protected:
     //list of attribues
     //list of projects
 
 public:
+    // constructor/destructor
     Student();
     ~Student();
+
+    // setters
+
+    // getters
 };
 
 
 
 class Admin : public User
 {
-private:
+protected:
     //list of projects
 
 public:
+    // constructor/destructor
     Admin();
     ~Admin();
+
+    // setters
+
+    // getters
 };
 #endif // USER_H

@@ -2,15 +2,12 @@
 #define STORAGE_H
 
 #include "Project.h"
-
 #include "User.h"
 #include <QList>
 #include <QSqlDatabase>
 #include <QSqlError>
-
-#endif // STORAGE_H
-
 using namespace std;
+
 
 class Storage{
 
@@ -33,5 +30,6 @@ private:
     QSqlDatabase database;
     Storage();
     static Storage* db;
-
 };
+
+#endif // STORAGE_H
