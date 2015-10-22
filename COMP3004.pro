@@ -17,12 +17,15 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     Team.cpp \
     Project.cpp \
-    User.cpp
+    User.cpp \
+    loginwindow.cpp
 
 HEADERS  += mainwindow.h \
     Storage.h \
     User.h \
     Team.h \
-    Project.h
+    Project.h \
+    loginwindow.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    loginwindow.ui
