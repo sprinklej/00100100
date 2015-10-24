@@ -1,7 +1,6 @@
 #ifndef USER_H
 #define USER_H
 
-#include <string>
 #include <QString>
 using namespace std;
 
@@ -10,6 +9,7 @@ class User
 {
 protected:
     QString IDNum;          //students start with "1", Admins start with "A"
+    QString userName;
     QString firstName;
     QString lastName;
 
@@ -33,12 +33,10 @@ protected:
 
 public:
     // constructor/destructor
-
     Student(QString, QString, QString, int);
-    Student();
     ~Student();
 
-    //string toString();
+    //QString toString();
     // setters
 
     // getters
@@ -53,11 +51,10 @@ protected:
 
 public:
     // constructor/destructor
-    Admin();    
     Admin(QString, QString, QString, int);
     ~Admin();
 
-    //string toString();
+    //QString toString();
     // setters
 
     // getters

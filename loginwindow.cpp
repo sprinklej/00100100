@@ -1,11 +1,12 @@
 #include <QString>
+#include <QDir>
 #include <iostream>
 #include "loginwindow.h"
 #include "ui_loginwindow.h"
 #include "User.h"
 #include "Storage.h"
-
 using namespace std;
+
 
 LoginWindow::LoginWindow(QWidget *parent) :
     QDialog(parent),
@@ -14,8 +15,16 @@ LoginWindow::LoginWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->status->setText("");
 
+    // set working directory
+    QDir curr = QDir::current();
+    curr.cdUp();
+    QString logoPath = curr.path() + "/00100100/images/logo.png";
+    //ui->status->setText(logoPath);
+    //QDir::setCurrent(QCoreApplication::applicationDirPath());
+    //ui->status->setText(QDir::currentPath());
+
     // display logo
-    QPixmap logo ("../00100100/images/logo.png");
+    QPixmap logo (logoPath);
     ui->label_logo->setPixmap(logo);
 }
 
@@ -33,7 +42,7 @@ void LoginWindow::on_pushButton_login_clicked()
      // check login against Database
      User* currentUser = 0;
      Storage::getDB().getUser(userName, currentUser);
-     cout << currentUser->toString();
+     //cout << currentUser->toString();
 
      // logged in window
      if (userName != "test") // replace with a better condition, once DB is connected

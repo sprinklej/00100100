@@ -17,10 +17,6 @@ QString User::toString(){
     return ret;
 }
 
-Student::Student()
-{
-;
-}
 
 Student::Student(QString fn, QString ln, QString id, int a1){
     firstName = fn;
@@ -29,10 +25,6 @@ Student::Student(QString fn, QString ln, QString id, int a1){
 }
 
 
-Admin::Admin()
-{
-;
-}
 
 Admin::Admin(QString fn, QString ln, QString id, int a1){
     firstName = fn;
