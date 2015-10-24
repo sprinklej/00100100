@@ -20,6 +20,8 @@ public:
     // setters
 
     QString toString();
+
+
     // getters
 };
 
@@ -28,6 +30,7 @@ public:
 class Student : public User
 {
 protected:
+    int att1;
     //list of attribues
     //list of projects
 
@@ -40,6 +43,11 @@ public:
     // setters
 
     // getters
+    QString getIDNum();          //students start with "1", Admins start with "A"
+    QString getUserName();
+    QString getFirstName();
+    QString getLastName();
+    int getAtt1();
 };
 
 
@@ -58,5 +66,9 @@ public:
     // setters
 
     // getters
+    QString getIDNum();          //students start with "1", Admins start with "A"
+    QString getUserName();
+    QString getFirstName();
+    QString getLastName();
 };
 #endif // USER_H

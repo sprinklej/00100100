@@ -1,5 +1,6 @@
 #include <QString>
 #include <QDir>
+#include <QDebug>
 #include <iostream>
 #include "loginwindow.h"
 #include "ui_loginwindow.h"
@@ -40,9 +41,9 @@ void LoginWindow::on_pushButton_login_clicked()
      userName = ui->lineEdit_username->text();
 
      // check login against Database
-     User* currentUser = 0;
+     User currentUser = User();
      Storage::getDB().getUser(userName, currentUser);
-     //cout << currentUser->toString();
+     qDebug() << currentUser.toString();
 
      // logged in window
      if (userName != "test") // replace with a better condition, once DB is connected

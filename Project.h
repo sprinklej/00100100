@@ -20,14 +20,15 @@ protected:
 
 public:
     // constructor/destructor
-    Project(int project_ID, int course_Num, QString p_Title, QString course_Name, QString p_Description, QList<Student> * stdnts);
+    //Project(int project_ID, int course_Num, QString p_Title, QString course_Name, QString p_Description, QList<Student> * stdnts);
+    Project(int project_ID, int course_Num, QString p_Title, QString course_Name, QString p_Description);
     ~Project();
 
     // setters
     void setCourseNum(int course_Num);
     void setPTitle(QString p_Title);
     void setPDescription(QString p_Description);
-    void addStudent(Student * stdnt);
+    void addStudent(Student& stdnt);
 
     // getters
     int getProjectID();
