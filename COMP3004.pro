@@ -14,19 +14,24 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     Team.cpp \
     Project.cpp \
     User.cpp \
     loginwindow.cpp \
-    Storage.cpp
+    Storage.cpp \
+    studentwindow.cpp \
+    adminwindow.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     Storage.h \
     User.h \
     Team.h \
     Project.h \
-    loginwindow.h
+    loginwindow.h \
+    studentwindow.h \
+    adminwindow.h
 
-FORMS    += mainwindow.ui \
-    loginwindow.ui
+FORMS    += \
+    loginwindow.ui \
+    studentwindow.ui \
+    adminwindow.ui

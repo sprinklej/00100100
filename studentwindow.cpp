@@ -1,17 +1,14 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-
-#include <QStyle>
-#include <QDesktopWidget>
+#include "studentwindow.h"
+#include "ui_studentwindow.h"
 
 
-
-MainWindow::MainWindow(QWidget *parent) :
+StudentWindow::StudentWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::StudentWindow)
 {
     ui->setupUi(this);
 
+    // open window in middle of screen
     this->setGeometry(
             QStyle::alignedRect(
                 Qt::LeftToRight,
@@ -20,10 +17,9 @@ MainWindow::MainWindow(QWidget *parent) :
                 qApp->desktop()->availableGeometry()
                 )
             );
-
 }
 
-MainWindow::~MainWindow()
+StudentWindow::~StudentWindow()
 {
     delete ui;
 }

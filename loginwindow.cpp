@@ -46,7 +46,21 @@ void LoginWindow::on_pushButton_login_clicked()
      qDebug() << currentUser.toString();
 
      // logged in window
-     if (userName != "test") // replace with a better condition, once DB is connected
+     // replace with a better condition, once DB is connected
+     if (userName == "student") {
+         this->hide();
+         StudentWindow *studWin = new StudentWindow;
+         studWin->show();
+     } else if (userName == "admin") {
+         this->hide();
+         AdminWindow *adminWin = new AdminWindow;
+         adminWin->show();
+     } else {
+        ui->status->setText("Username does not exist.");
+     }
+
+     /*
+     if (userName != "test")
      {
         this->hide();
         MainWindow *w = new MainWindow;
@@ -54,6 +68,7 @@ void LoginWindow::on_pushButton_login_clicked()
      } else {
          ui->status->setText("Username does not exist.");
      }
+     */
 }
 
 void LoginWindow::on_pushButton_signup_clicked()
