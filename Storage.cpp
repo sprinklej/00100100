@@ -112,11 +112,37 @@ void Storage::getUser(QString s, User& user){
 
 }
 
-void Storage::addProject(Project&, Admin&){} //adds the project to Storage, with the Admin as owner
+void Storage::addProject(Project& pr, Admin& own){
+    QString query = QString("INSERT INTO projects(projectID, owner, courseName, courseNum, description) VALUES(");
+    query.append(pr.getProjectID());
+    query.append(",'");
+    query.append(own.getIDNum());
+    query.append("','");
+    query.append(pr.getCourseNum());
+    query.append("','");
+    query.append(pr.getPDescription());
+    query.append("');");
+    qDebug() << query.toUtf8().constData();
+
+    QSqlQuery result;
+    bool res = result.exec(query);
+
+} //adds the project to Storage, with the Admin as owner
 
 void Storage::updateProject(Project&){} //overwrites an existing Project in Storage
 
-void Storage::joinProject(Project&, Student&){} // establishes the Project-Student relationship
+ // establishes the Project-Student relationship
+void Storage::joinProject(Project& pr, Student& st){
+    QString query = QString("INSERT INTO projectsStudents(userID, projectID) VALUES('");
+    query.append(pr.getProjectID());
+    query.append("','");
+    query.append(st.getIDNum());
+    query.append("');");
+    qDebug() << query.toUtf8().constData();
+
+    QSqlQuery result;
+    bool res = result.exec(query);
+}
 
 void Storage::getProjects(Admin&, QList<Project>&){} // Constructs all Projects owned by the Admin and adds to the QList
 

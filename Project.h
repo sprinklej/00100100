@@ -32,7 +32,7 @@ public:
 
     // getters
     int getProjectID();
-    int getcourseNUm();
+    int getCourseNum();
     QString getPTitle();
     QString getCourseName();
     QString getPDescription();
