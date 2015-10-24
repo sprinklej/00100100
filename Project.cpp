@@ -10,6 +10,14 @@ Project::Project(int project_ID, int course_Num, QString p_Title, QString course
 
 }
 
-Project::addStudent(Student& stdnt){
+void Project::addStudent(Student& stdnt){
     students.push_front(stdnt);
 }
+
+
+/////////////// GETTERS
+int Project::getProjectID(){return projectID;}
+int Project::getCourseNum(){return courseNum;}
+QString Project::getPTitle(){return pTitle;}
+QString Project::getCourseName(){return courseName;}
+QString Project::getPDescription(){return pDescription;}

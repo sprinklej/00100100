@@ -12,7 +12,7 @@ Storage::Storage(){
 
     //Define and open the cupid file
     QString dbLocation(QDir::home().path());
-    dbLocation.append(QDir::separator()).append("cupid");
+    dbLocation.append(QDir::separator()).append("COMP3004").append(QDir::separator()).append("cupid");
     dbLocation = QDir::toNativeSeparators(dbLocation);
     database.setDatabaseName(dbLocation);
     database.open();

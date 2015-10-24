@@ -28,7 +28,7 @@ public:
     void setCourseNum(int course_Num);
     void setPTitle(QString p_Title);
     void setPDescription(QString p_Description);
-    void addStudent(Student& stdnt);
+    void addStudent(Student&);
 
     // getters
     int getProjectID();
