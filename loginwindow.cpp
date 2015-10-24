@@ -1,7 +1,9 @@
 #include <QString>
+#include <iostream>
 #include "loginwindow.h"
 #include "ui_loginwindow.h"
-
+#include "User.h"
+#include "Storage.h"
 
 using namespace std;
 
@@ -29,6 +31,9 @@ void LoginWindow::on_pushButton_login_clicked()
      userName = ui->lineEdit_username->text();
 
      // check login against Database
+     User* currentUser = 0;
+     Storage::getDB().getUser(userName, currentUser);
+     cout << currentUser->toString();
 
      // logged in window
      if (userName != "test") // replace with a better condition, once DB is connected

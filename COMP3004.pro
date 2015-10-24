@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     Team.cpp \
     Project.cpp \
     User.cpp \
-    loginwindow.cpp
+    loginwindow.cpp \
+    Storage.cpp
 
 HEADERS  += mainwindow.h \
     Storage.h \
