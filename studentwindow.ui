@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>cuPID</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
@@ -52,7 +52,7 @@
       <property name="geometry">
        <rect>
         <x>690</x>
-        <y>440</y>
+        <y>450</y>
         <width>99</width>
         <height>27</height>
        </rect>
