@@ -15,7 +15,7 @@ protected:
     QString pTitle;
     QString courseName;
     QString pDescription;
-    QList<Student> students;
+    QList<Student*> students;
     //teams - not sure if we need this one or if the Team object will only exist after the PPID has run
 
 public:
@@ -28,7 +28,7 @@ public:
     void setCourseNum(QString course_Num);
     void setPTitle(QString p_Title);
     void setPDescription(QString p_Description);
-    void addStudent(Student&);
+    void addStudent(Student*);
 
     // getters
     QString getProjectID();
@@ -36,7 +36,7 @@ public:
     QString getPTitle();
     QString getCourseName();
     QString getPDescription();
-    QList<Student>& getStudentList();  //is this right - return a pointer to the Qlist?
+    QList<Student*>& getStudentList();  //is this right - return a pointer to the Qlist?
 };
 
 

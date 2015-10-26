@@ -40,30 +40,34 @@ void LoginWindow::on_pushButton_login_clicked()
      QString userName;
      userName = ui->lineEdit_username->text();
 
-     User currentUser;
+     User* currentUser = 0;
+
      // check login against Database
+     bool found = Storage::getDB().getUser(userName, &currentUser);
 
-     bool found = Storage::getDB().getUser(userName, currentUser);
-     qDebug() << currentUser.toString();
-
-     // logged in window
-     // replace with a better condition, once DB is connected
-
-     if(found) {
-        if (userName.at(0) == '1') {
-            this->hide();
-            StudentWindow *studWin = new StudentWindow;
-            studWin->show();
-        } else /*(userName.at(0) != '1')*/ {
-            this->hide();
-            AdminWindow *adminWin = new AdminWindow;
-            adminWin->show();
-        }
+     if(!found){
+         ui->status->setText("Username does not exist.");
      } else {
-        ui->status->setText("Username does not exist.");
+         if (userName.at(0) == '1') {
+            login((Student*)currentUser);
+         } else{
+            login((Admin*)currentUser);
+         }
      }
 
 
+}
+
+void LoginWindow::login(Admin*){
+    this->hide();
+    AdminWindow *adminWin = new AdminWindow;
+    adminWin->show();
+}
+
+void LoginWindow::login(Student*){
+    this->hide();
+    StudentWindow *studWin = new StudentWindow;
+    studWin->show();
 }
 
 void LoginWindow::on_pushButton_signup_clicked()

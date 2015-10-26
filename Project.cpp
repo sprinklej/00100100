@@ -12,15 +12,18 @@ Project::Project(QString project_ID, QString course_Num, QString p_Title, QStrin
     courseName = course_Name;
     pDescription = p_Description;
 
-    students = QList<Student>();
+    students = QList<Student*>();
 
 }
 
 Project::~Project(){
     //nothing yet
+    foreach(Student* s, students){
+        delete s;
+    }
 }
 
-void Project::addStudent(Student& stdnt){
+void Project::addStudent(Student* stdnt){
     students.push_front(stdnt);
 }
 
@@ -31,4 +34,4 @@ QString Project::getCourseNum(){return courseNum;}
 QString Project::getPTitle(){return pTitle;}
 QString Project::getCourseName(){return courseName;}
 QString Project::getPDescription(){return pDescription;}
-QList<Student>& Project::getStudentList(){return students;}
+QList<Student*>& Project::getStudentList(){return students;}

@@ -81,7 +81,7 @@ void Storage::updateStudent(Student& st){
 //if the ID is found in Storage, constructs a user and assigns it to the reference
 //Return values: 0 = failure
 //              -1 = success
-bool Storage::getUser(QString s, User& user){
+bool Storage::getUser(QString s, User** user){
     QString query = QString("SELECT * FROM users WHERE id ='");
     query.append(s);
     query.append("';");
@@ -105,10 +105,10 @@ bool Storage::getUser(QString s, User& user){
         qDebug() << "lname: " << lname;
 
         if(id.at(0) == '1'){
-            user = Student(id, fname, lname, att1);
+            *user = new Student(id, fname, lname, att1);
 
         } else {
-            user = Admin(id, fname, lname, 0);
+            *user = new Admin(id, fname, lname, 0);
         }
     } else return 0;
     return -1;
@@ -163,7 +163,7 @@ void Storage::joinProject(Project& pr, Student& st){
 }
 
 // Constructs all Projects owned by the Admin and adds to the QList
-void Storage::getProjects(Admin& ad, QList<Project>& pl){
+void Storage::getProjects(Admin& ad, QList<Project*>& pl){
     QString query = QString("SELECT * FROM projects WHERE owner ='");
     query.append(ad.getIDNum());
     query.append("';");
@@ -178,19 +178,19 @@ void Storage::getProjects(Admin& ad, QList<Project>& pl){
         QString courseNum = result.value(3).toString();
         QString description = result.value(4).toString();
 
-        Project newProj = Project(projectID, ad.getIDNum(), courseName, courseNum, description);
+        Project* newProj = new Project(projectID, ad.getIDNum(), courseName, courseNum, description);
         pl.push_back(newProj);
     }
 
-    foreach(Project p, pl){
-        getRegisteredStudents(p, p.getStudentList());
+    foreach(Project* p, pl){
+        getRegisteredStudents(*p, p->getStudentList());
     }
 
 
 }
 
 // Constructs all Students who have registered with the Project and adds to the QList
-void Storage::getRegisteredStudents(Project& pr, QList<Student>& sl){
+void Storage::getRegisteredStudents(Project& pr, QList<Student*>& sl){
     QString query = QString("SELECT * FROM projectsStudents JOIN users WHERE projectID ='");
     query.append(pr.getProjectID());
     query.append("';");
@@ -214,7 +214,7 @@ void Storage::getRegisteredStudents(Project& pr, QList<Student>& sl){
         QString lname = result.value(4).toString();
         int att1 = result.value(5).toInt();
 
-        Student newUser = Student(id, fname, lname, att1);
+        Student* newUser = new Student(id, fname, lname, att1);
         sl.push_back(newUser);
     }
 

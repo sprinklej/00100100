@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "studentwindow.h"
 #include "adminwindow.h"
+#include "User.h"
 
 namespace Ui {
 class LoginWindow;
@@ -16,6 +17,9 @@ class LoginWindow : public QDialog
 public:
     explicit LoginWindow(QWidget *parent = 0);
     ~LoginWindow();
+
+    void login(Admin*);
+    void login(Student*);
 
 private slots:
     void on_pushButton_login_clicked();
