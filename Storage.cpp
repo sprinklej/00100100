@@ -11,9 +11,13 @@ Storage::Storage(){
     database = QSqlDatabase::addDatabase("QSQLITE");
 
     //Define and open the cupid file
-    QString dbLocation(QDir::home().path());
+    /*QString dbLocation(QDir::home().path());
     dbLocation.append(QDir::separator()).append("COMP3004").append(QDir::separator()).append("cupid");
     dbLocation = QDir::toNativeSeparators(dbLocation);
+*/
+    QDir curr = QDir::current();
+    curr.cdUp();
+    QString dbLocation = curr.path() + "/00100100/cupid";
     database.setDatabaseName(dbLocation);
     database.open();
 
