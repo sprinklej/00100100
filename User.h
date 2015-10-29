@@ -84,7 +84,7 @@ public:
                      int, int, bool, int, int, int, int,
                      int, int, int,  int, int, int, int,
                      int, int, int,  int, int, int,
-                     int, int){
+                     int, int);
     ~Student();
 
 
