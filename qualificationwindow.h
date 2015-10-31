@@ -17,9 +17,18 @@ public:
     ~QualificationWindow();
     void setStudent(Student*);
 
+private slots:
+    //void on_buttonBox_clicked(QAbstractButton *button);
+
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_clicked();
+
 private:
     Ui::QualificationWindow *ui;
     Student* student;
-};
+    //void on_pushButton_ok_clicked();
+    //void on_pushButton_cancel_clicked();
 
+};
 #endif // QUALIFICATIONWINDOW_H

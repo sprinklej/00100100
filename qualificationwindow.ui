@@ -425,7 +425,7 @@
     <string>What is your grade in COMP2404?</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton">
+  <widget class="QRadioButton" name="rb2404_0">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -441,7 +441,7 @@
     <string notr="true">buttonGroup</string>
    </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_2">
+  <widget class="QRadioButton" name="rb2404_1">
    <property name="geometry">
     <rect>
      <x>110</x>
@@ -457,7 +457,7 @@
     <string notr="true">buttonGroup</string>
    </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_3">
+  <widget class="QRadioButton" name="rb2404_2">
    <property name="geometry">
     <rect>
      <x>200</x>
@@ -473,7 +473,7 @@
     <string notr="true">buttonGroup</string>
    </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_4">
+  <widget class="QRadioButton" name="rb2404_3">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -489,7 +489,7 @@
     <string notr="true">buttonGroup</string>
    </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_5">
+  <widget class="QRadioButton" name="rb2404_4">
    <property name="geometry">
     <rect>
      <x>370</x>
@@ -518,7 +518,7 @@
     <string>What is your experience with C++?</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_6">
+  <widget class="QRadioButton" name="rbcoding_0">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -534,7 +534,7 @@
     <string notr="true">buttonGroup_2</string>
    </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_7">
+  <widget class="QRadioButton" name="rbcoding_1">
    <property name="geometry">
     <rect>
      <x>110</x>
@@ -550,7 +550,7 @@
     <string notr="true">buttonGroup_2</string>
    </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_8">
+  <widget class="QRadioButton" name="rbcoding_2">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -566,7 +566,7 @@
     <string notr="true">buttonGroup_2</string>
    </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_9">
+  <widget class="QRadioButton" name="rbcoding_3">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -582,7 +582,7 @@
     <string notr="true">buttonGroup_2</string>
    </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_10">
+  <widget class="QRadioButton" name="rbcoding_4">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -598,7 +598,7 @@
     <string notr="true">buttonGroup_2</string>
    </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_11">
+  <widget class="QRadioButton" name="rb3005_1">
    <property name="geometry">
     <rect>
      <x>110</x>
@@ -614,7 +614,7 @@
     <string notr="true">buttonGroup_3</string>
    </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_12">
+  <widget class="QRadioButton" name="rb3005_3">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -643,7 +643,7 @@
     <string>What is your grade in COMP3005?</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_13">
+  <widget class="QRadioButton" name="rb3005_4">
    <property name="geometry">
     <rect>
      <x>370</x>
@@ -659,7 +659,7 @@
     <string notr="true">buttonGroup_3</string>
    </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_14">
+  <widget class="QRadioButton" name="rb3005_2">
    <property name="geometry">
     <rect>
      <x>200</x>
@@ -675,7 +675,7 @@
     <string notr="true">buttonGroup_3</string>
    </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_15">
+  <widget class="QRadioButton" name="rb3005_0">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -691,7 +691,7 @@
     <string notr="true">buttonGroup_3</string>
    </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_16">
+  <widget class="QRadioButton" name="rbdbase_4">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -707,7 +707,7 @@
     <string notr="true">buttonGroup_4</string>
    </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_17">
+  <widget class="QRadioButton" name="rbdbase_0">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -736,7 +736,7 @@
     <string>What is your experience with database design?</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_18">
+  <widget class="QRadioButton" name="rbdbase_3">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -752,7 +752,7 @@
     <string notr="true">buttonGroup_4</string>
    </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_19">
+  <widget class="QRadioButton" name="rbdbase_1">
    <property name="geometry">
     <rect>
      <x>110</x>
@@ -768,7 +768,7 @@
     <string notr="true">buttonGroup_4</string>
    </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_20">
+  <widget class="QRadioButton" name="rbdbase_2">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -784,7 +784,7 @@
     <string notr="true">buttonGroup_4</string>
    </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_21">
+  <widget class="QRadioButton" name="rbwriting_4">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -796,8 +796,11 @@
    <property name="text">
     <string>Professional</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_17</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_22">
+  <widget class="QRadioButton" name="rbwriting_0">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -809,6 +812,9 @@
    <property name="text">
     <string>None</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_17</string>
+   </attribute>
   </widget>
   <widget class="QLabel" name="label_14">
    <property name="geometry">
@@ -823,7 +829,7 @@
     <string>What is your experience with technical writing?</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_23">
+  <widget class="QRadioButton" name="rbwriting_3">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -835,8 +841,11 @@
    <property name="text">
     <string>Co-op or summer employment</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_17</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_24">
+  <widget class="QRadioButton" name="rbwriting_1">
    <property name="geometry">
     <rect>
      <x>110</x>
@@ -848,8 +857,11 @@
    <property name="text">
     <string>Academic only</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_17</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_25">
+  <widget class="QRadioButton" name="rbwriting_2">
    <property name="geometry">
     <rect>
      <x>280</x>
@@ -861,6 +873,9 @@
    <property name="text">
     <string>Academic and Personal Projects</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_17</string>
+   </attribute>
   </widget>
   <widget class="QLabel" name="label_15">
    <property name="geometry">
@@ -875,7 +890,7 @@
     <string>Do you consider yourself self-directed?</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_26">
+  <widget class="QRadioButton" name="rbsd_0">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -887,8 +902,11 @@
    <property name="text">
     <string>Strongly disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_18</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_27">
+  <widget class="QRadioButton" name="rbsd_1">
    <property name="geometry">
     <rect>
      <x>160</x>
@@ -900,8 +918,11 @@
    <property name="text">
     <string>Disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_18</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_28">
+  <widget class="QRadioButton" name="rbsd_2">
    <property name="geometry">
     <rect>
      <x>250</x>
@@ -913,8 +934,11 @@
    <property name="text">
     <string>Neutral</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_18</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_29">
+  <widget class="QRadioButton" name="rbsd_3">
    <property name="geometry">
     <rect>
      <x>340</x>
@@ -926,8 +950,11 @@
    <property name="text">
     <string>Agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_18</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_30">
+  <widget class="QRadioButton" name="rbsd_4">
    <property name="geometry">
     <rect>
      <x>420</x>
@@ -939,6 +966,9 @@
    <property name="text">
     <string>Strongly agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_18</string>
+   </attribute>
   </widget>
   <widget class="Line" name="line">
    <property name="geometry">
@@ -966,7 +996,7 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_42">
+  <widget class="QRadioButton" name="rbreq_0">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -978,8 +1008,11 @@
    <property name="text">
     <string>Strongly disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_10</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_52">
+  <widget class="QRadioButton" name="rbcomm_0">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -991,8 +1024,11 @@
    <property name="text">
     <string>Strongly disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_8</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_41">
+  <widget class="QRadioButton" name="rbreq_2">
    <property name="geometry">
     <rect>
      <x>800</x>
@@ -1004,6 +1040,9 @@
    <property name="text">
     <string>Neutral</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_10</string>
+   </attribute>
   </widget>
   <widget class="QLabel" name="label_16">
    <property name="geometry">
@@ -1018,7 +1057,7 @@
     <string>Do you consider yourself to be creative?</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_32">
+  <widget class="QRadioButton" name="rbpres_4">
    <property name="geometry">
     <rect>
      <x>950</x>
@@ -1030,8 +1069,11 @@
    <property name="text">
     <string>Strongly agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_15</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_38">
+  <widget class="QRadioButton" name="rbuml_1">
    <property name="geometry">
     <rect>
      <x>710</x>
@@ -1043,8 +1085,11 @@
    <property name="text">
     <string>Disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_11</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_33">
+  <widget class="QRadioButton" name="rbpres_1">
    <property name="geometry">
     <rect>
      <x>710</x>
@@ -1056,8 +1101,11 @@
    <property name="text">
     <string>Disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_15</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_65">
+  <widget class="QRadioButton" name="rbcre_4">
    <property name="geometry">
     <rect>
      <x>950</x>
@@ -1069,8 +1117,11 @@
    <property name="text">
     <string>Strongly agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_6</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_66">
+  <widget class="QRadioButton" name="rbcri_2">
    <property name="geometry">
     <rect>
      <x>790</x>
@@ -1082,6 +1133,9 @@
    <property name="text">
     <string>Neutral</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_5</string>
+   </attribute>
   </widget>
   <widget class="QLabel" name="label_17">
    <property name="geometry">
@@ -1096,7 +1150,7 @@
     <string>Do you consider yourself to have stong software test skills?</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_53">
+  <widget class="QRadioButton" name="rbcomm_1">
    <property name="geometry">
     <rect>
      <x>710</x>
@@ -1108,8 +1162,11 @@
    <property name="text">
     <string>Disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_8</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_35">
+  <widget class="QRadioButton" name="rbalg_3">
    <property name="geometry">
     <rect>
      <x>880</x>
@@ -1121,6 +1178,9 @@
    <property name="text">
     <string>Agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_16</string>
+   </attribute>
   </widget>
   <widget class="QLabel" name="label_18">
    <property name="geometry">
@@ -1135,7 +1195,7 @@
     <string>Do you consider yourself to have good communication skills?</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_36">
+  <widget class="QRadioButton" name="rbteam_4">
    <property name="geometry">
     <rect>
      <x>950</x>
@@ -1147,6 +1207,9 @@
    <property name="text">
     <string>Strongly agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_14</string>
+   </attribute>
   </widget>
   <widget class="QLabel" name="label_19">
    <property name="geometry">
@@ -1161,7 +1224,7 @@
     <string>Do you consider yourself to have good verbal presentation skills?</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_37">
+  <widget class="QRadioButton" name="rbtest_1">
    <property name="geometry">
     <rect>
      <x>710</x>
@@ -1173,8 +1236,11 @@
    <property name="text">
     <string>Disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_12</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_68">
+  <widget class="QRadioButton" name="rbcri_1">
    <property name="geometry">
     <rect>
      <x>700</x>
@@ -1186,8 +1252,11 @@
    <property name="text">
     <string>Disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_5</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_39">
+  <widget class="QRadioButton" name="rbalg_1">
    <property name="geometry">
     <rect>
      <x>710</x>
@@ -1199,8 +1268,11 @@
    <property name="text">
     <string>Disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_16</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_40">
+  <widget class="QRadioButton" name="rbuml_4">
    <property name="geometry">
     <rect>
      <x>950</x>
@@ -1212,8 +1284,11 @@
    <property name="text">
     <string>Strongly agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_11</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_43">
+  <widget class="QRadioButton" name="rbtest_4">
    <property name="geometry">
     <rect>
      <x>950</x>
@@ -1225,8 +1300,11 @@
    <property name="text">
     <string>Strongly agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_12</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_44">
+  <widget class="QRadioButton" name="rbteam_2">
    <property name="geometry">
     <rect>
      <x>800</x>
@@ -1238,8 +1316,11 @@
    <property name="text">
     <string>Neutral</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_14</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_70">
+  <widget class="QRadioButton" name="rbcri_4">
    <property name="geometry">
     <rect>
      <x>940</x>
@@ -1251,8 +1332,11 @@
    <property name="text">
     <string>Strongly agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_5</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_49">
+  <widget class="QRadioButton" name="rbrel_3">
    <property name="geometry">
     <rect>
      <x>880</x>
@@ -1264,8 +1348,11 @@
    <property name="text">
     <string>Agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_9</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_46">
+  <widget class="QRadioButton" name="rbxp_0">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -1277,6 +1364,9 @@
    <property name="text">
     <string>None</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_13</string>
+   </attribute>
   </widget>
   <widget class="QLabel" name="label_21">
    <property name="geometry">
@@ -1304,7 +1394,7 @@
     <string>Do you consider yourself to have good algorithm design skills?</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_57">
+  <widget class="QRadioButton" name="rbres_0">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -1316,8 +1406,11 @@
    <property name="text">
     <string>Strongly disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_7</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_47">
+  <widget class="QRadioButton" name="rbpres_2">
    <property name="geometry">
     <rect>
      <x>800</x>
@@ -1329,8 +1422,11 @@
    <property name="text">
     <string>Neutral</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_15</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_48">
+  <widget class="QRadioButton" name="rbalg_0">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -1342,8 +1438,11 @@
    <property name="text">
     <string>Strongly disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_16</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_50">
+  <widget class="QRadioButton" name="rbtest_0">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -1355,8 +1454,11 @@
    <property name="text">
     <string>Strongly disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_12</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_51">
+  <widget class="QRadioButton" name="rbxp_1">
    <property name="geometry">
     <rect>
      <x>640</x>
@@ -1368,8 +1470,11 @@
    <property name="text">
     <string>Summer</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_13</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_54">
+  <widget class="QRadioButton" name="rbuml_2">
    <property name="geometry">
     <rect>
      <x>800</x>
@@ -1381,8 +1486,11 @@
    <property name="text">
     <string>Neutral</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_11</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_55">
+  <widget class="QRadioButton" name="rbalg_2">
    <property name="geometry">
     <rect>
      <x>800</x>
@@ -1394,8 +1502,11 @@
    <property name="text">
     <string>Neutral</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_16</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_56">
+  <widget class="QRadioButton" name="rbtest_2">
    <property name="geometry">
     <rect>
      <x>800</x>
@@ -1407,8 +1518,11 @@
    <property name="text">
     <string>Neutral</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_12</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_58">
+  <widget class="QRadioButton" name="rbreq_1">
    <property name="geometry">
     <rect>
      <x>710</x>
@@ -1420,6 +1534,9 @@
    <property name="text">
     <string>Disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_10</string>
+   </attribute>
   </widget>
   <widget class="QLabel" name="label_24">
    <property name="geometry">
@@ -1447,7 +1564,7 @@
     <string>Do you consider yourself to be reliable?</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_59">
+  <widget class="QRadioButton" name="rbres_2">
    <property name="geometry">
     <rect>
      <x>800</x>
@@ -1459,8 +1576,11 @@
    <property name="text">
     <string>Neutral</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_7</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_60">
+  <widget class="QRadioButton" name="rbres_4">
    <property name="geometry">
     <rect>
      <x>950</x>
@@ -1472,6 +1592,9 @@
    <property name="text">
     <string>Strongly agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_7</string>
+   </attribute>
   </widget>
   <widget class="QLabel" name="label_26">
    <property name="geometry">
@@ -1486,7 +1609,7 @@
     <string>Do you consider yourself to be respectful of others' feelings?</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_69">
+  <widget class="QRadioButton" name="rbcri_3">
    <property name="geometry">
     <rect>
      <x>870</x>
@@ -1498,8 +1621,11 @@
    <property name="text">
     <string>Agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_5</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_63">
+  <widget class="QRadioButton" name="rbpres_3">
    <property name="geometry">
     <rect>
      <x>880</x>
@@ -1511,8 +1637,11 @@
    <property name="text">
     <string>Agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_15</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_64">
+  <widget class="QRadioButton" name="rbpres_0">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -1524,8 +1653,11 @@
    <property name="text">
     <string>Strongly disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_15</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_67">
+  <widget class="QRadioButton" name="rbcre_2">
    <property name="geometry">
     <rect>
      <x>800</x>
@@ -1537,8 +1669,11 @@
    <property name="text">
     <string>Neutral</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_6</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_71">
+  <widget class="QRadioButton" name="rbteam_3">
    <property name="geometry">
     <rect>
      <x>880</x>
@@ -1550,8 +1685,11 @@
    <property name="text">
     <string>Agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_14</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_72">
+  <widget class="QRadioButton" name="rbcomm_2">
    <property name="geometry">
     <rect>
      <x>800</x>
@@ -1563,8 +1701,11 @@
    <property name="text">
     <string>Neutral</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_8</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_73">
+  <widget class="QRadioButton" name="rbreq_3">
    <property name="geometry">
     <rect>
      <x>880</x>
@@ -1576,8 +1717,11 @@
    <property name="text">
     <string>Agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_10</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_74">
+  <widget class="QRadioButton" name="rbteam_0">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -1589,8 +1733,11 @@
    <property name="text">
     <string>Strongly disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_14</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_75">
+  <widget class="QRadioButton" name="rbreq_4">
    <property name="geometry">
     <rect>
      <x>950</x>
@@ -1602,6 +1749,9 @@
    <property name="text">
     <string>Strongly agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_10</string>
+   </attribute>
   </widget>
   <widget class="QLabel" name="label_27">
    <property name="geometry">
@@ -1616,7 +1766,7 @@
     <string>Do you consider yourself to be open to constructive criticism?</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_76">
+  <widget class="QRadioButton" name="rbteam_1">
    <property name="geometry">
     <rect>
      <x>710</x>
@@ -1628,8 +1778,11 @@
    <property name="text">
     <string>Disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_14</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_77">
+  <widget class="QRadioButton" name="rbcre_0">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -1641,8 +1794,11 @@
    <property name="text">
     <string>Strongly disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_6</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_78">
+  <widget class="QRadioButton" name="rbuml_3">
    <property name="geometry">
     <rect>
      <x>880</x>
@@ -1654,8 +1810,11 @@
    <property name="text">
     <string>Agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_11</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_79">
+  <widget class="QRadioButton" name="rbrel_2">
    <property name="geometry">
     <rect>
      <x>800</x>
@@ -1667,8 +1826,11 @@
    <property name="text">
     <string>Neutral</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_9</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_80">
+  <widget class="QRadioButton" name="rbuml_0">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -1680,8 +1842,11 @@
    <property name="text">
     <string>Strongly disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_11</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_81">
+  <widget class="QRadioButton" name="rbres_1">
    <property name="geometry">
     <rect>
      <x>710</x>
@@ -1693,8 +1858,11 @@
    <property name="text">
     <string>Disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_7</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_82">
+  <widget class="QRadioButton" name="rbcre_3">
    <property name="geometry">
     <rect>
      <x>880</x>
@@ -1706,8 +1874,11 @@
    <property name="text">
     <string>Agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_6</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_83">
+  <widget class="QRadioButton" name="rbcomm_3">
    <property name="geometry">
     <rect>
      <x>880</x>
@@ -1719,8 +1890,11 @@
    <property name="text">
     <string>Agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_8</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_84">
+  <widget class="QRadioButton" name="rbcri_0">
    <property name="geometry">
     <rect>
      <x>550</x>
@@ -1732,6 +1906,9 @@
    <property name="text">
     <string>Strongly disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_5</string>
+   </attribute>
   </widget>
   <widget class="QLabel" name="label_28">
    <property name="geometry">
@@ -1746,7 +1923,7 @@
     <string>Do you consider yourself to have strong UML design skills?</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_85">
+  <widget class="QRadioButton" name="rbxp_2">
    <property name="geometry">
     <rect>
      <x>750</x>
@@ -1758,8 +1935,11 @@
    <property name="text">
     <string>Co-op</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_13</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_86">
+  <widget class="QRadioButton" name="rbrel_4">
    <property name="geometry">
     <rect>
      <x>950</x>
@@ -1771,8 +1951,11 @@
    <property name="text">
     <string>Strongly agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_9</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_87">
+  <widget class="QRadioButton" name="rbalg_4">
    <property name="geometry">
     <rect>
      <x>950</x>
@@ -1784,8 +1967,11 @@
    <property name="text">
     <string>Strongly agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_16</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_88">
+  <widget class="QRadioButton" name="rbcre_1">
    <property name="geometry">
     <rect>
      <x>710</x>
@@ -1797,8 +1983,11 @@
    <property name="text">
     <string>Disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_6</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_91">
+  <widget class="QRadioButton" name="rbtest_3">
    <property name="geometry">
     <rect>
      <x>880</x>
@@ -1810,8 +1999,11 @@
    <property name="text">
     <string>Agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_12</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_92">
+  <widget class="QRadioButton" name="rbrel_1">
    <property name="geometry">
     <rect>
      <x>710</x>
@@ -1823,8 +2015,11 @@
    <property name="text">
     <string>Disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_9</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_93">
+  <widget class="QRadioButton" name="rbrel_0">
    <property name="geometry">
     <rect>
      <x>560</x>
@@ -1836,8 +2031,11 @@
    <property name="text">
     <string>Strongly disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_9</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_95">
+  <widget class="QRadioButton" name="rbxp_4">
    <property name="geometry">
     <rect>
      <x>940</x>
@@ -1849,8 +2047,11 @@
    <property name="text">
     <string>Full time</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_13</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_97">
+  <widget class="QRadioButton" name="rbxp_3">
    <property name="geometry">
     <rect>
      <x>830</x>
@@ -1862,8 +2063,11 @@
    <property name="text">
     <string>Part time</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_13</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_98">
+  <widget class="QRadioButton" name="rbcomm_4">
    <property name="geometry">
     <rect>
      <x>950</x>
@@ -1875,6 +2079,9 @@
    <property name="text">
     <string>Strongly agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_8</string>
+   </attribute>
   </widget>
   <widget class="QLabel" name="label_29">
    <property name="geometry">
@@ -1889,7 +2096,7 @@
     <string>What is your maximum work experience?</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_99">
+  <widget class="QRadioButton" name="rbres_3">
    <property name="geometry">
     <rect>
      <x>880</x>
@@ -1901,8 +2108,11 @@
    <property name="text">
     <string>Agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_7</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_62">
+  <widget class="QRadioButton" name="rbui_2">
    <property name="geometry">
     <rect>
      <x>260</x>
@@ -1914,8 +2124,11 @@
    <property name="text">
     <string>Neutral</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_20</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_89">
+  <widget class="QRadioButton" name="rbwg_1">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -1927,8 +2140,11 @@
    <property name="text">
     <string>Disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_19</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_96">
+  <widget class="QRadioButton" name="rbrg_3">
    <property name="geometry">
     <rect>
      <x>340</x>
@@ -1940,8 +2156,11 @@
    <property name="text">
     <string>Agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_19</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_31">
+  <widget class="QRadioButton" name="rbwg_2">
    <property name="geometry">
     <rect>
      <x>260</x>
@@ -1953,6 +2172,9 @@
    <property name="text">
     <string>Neutral</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_19</string>
+   </attribute>
   </widget>
   <widget class="QLabel" name="label_20">
    <property name="geometry">
@@ -1967,7 +2189,7 @@
     <string>Do you consider yourself to have good technical writing and grammar skills?</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_34">
+  <widget class="QRadioButton" name="rbui_0">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -1979,6 +2201,9 @@
    <property name="text">
     <string>Strongly disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_20</string>
+   </attribute>
   </widget>
   <widget class="QLabel" name="label_23">
    <property name="geometry">
@@ -1993,7 +2218,7 @@
     <string>Do you consider yourself to have good UI design skills?</string>
    </property>
   </widget>
-  <widget class="QRadioButton" name="radioButton_61">
+  <widget class="QRadioButton" name="rbui_3">
    <property name="geometry">
     <rect>
      <x>340</x>
@@ -2005,8 +2230,11 @@
    <property name="text">
     <string>Agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_20</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_100">
+  <widget class="QRadioButton" name="rbwg_4">
    <property name="geometry">
     <rect>
      <x>410</x>
@@ -2018,8 +2246,11 @@
    <property name="text">
     <string>Strongly agree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_19</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_90">
+  <widget class="QRadioButton" name="rbui_1">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -2031,8 +2262,11 @@
    <property name="text">
     <string>Disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_20</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_94">
+  <widget class="QRadioButton" name="rbwg_0">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -2044,8 +2278,11 @@
    <property name="text">
     <string>Strongly disagree</string>
    </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_19</string>
+   </attribute>
   </widget>
-  <widget class="QRadioButton" name="radioButton_45">
+  <widget class="QRadioButton" name="rbui_4">
    <property name="geometry">
     <rect>
      <x>410</x>
@@ -2057,22 +2294,9 @@
    <property name="text">
     <string>Strongly agree</string>
    </property>
-  </widget>
-  <widget class="QDialogButtonBox" name="buttonBox">
-   <property name="geometry">
-    <rect>
-     <x>880</x>
-     <y>610</y>
-     <width>176</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_20</string>
+   </attribute>
   </widget>
   <widget class="QLabel" name="label_30">
    <property name="geometry">
@@ -2100,7 +2324,7 @@
     <string>(assign up to 15 points)</string>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider">
+  <widget class="QSlider" name="sli2404">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2129,7 +2353,7 @@
     <string>2404  Grade</string>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_2">
+  <widget class="QSlider" name="slicpp">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2158,7 +2382,7 @@
     <string>C++ Skill</string>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_3">
+  <widget class="QSlider" name="sli3005">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2187,7 +2411,7 @@
     <string>3005 Grade</string>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_4">
+  <widget class="QSlider" name="slidb">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2203,7 +2427,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_5">
+  <widget class="QSlider" name="slisd">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2219,7 +2443,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_6">
+  <widget class="QSlider" name="slitw">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2235,7 +2459,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_7">
+  <widget class="QSlider" name="sliui">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2251,7 +2475,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_8">
+  <widget class="QSlider" name="slialg">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2267,7 +2491,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_9">
+  <widget class="QSlider" name="slipres">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2283,7 +2507,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_10">
+  <widget class="QSlider" name="slitw_2">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2299,7 +2523,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_11">
+  <widget class="QSlider" name="slixp">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2315,7 +2539,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_12">
+  <widget class="QSlider" name="slitest">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2331,7 +2555,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_13">
+  <widget class="QSlider" name="sliuml">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2347,7 +2571,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_14">
+  <widget class="QSlider" name="slireq">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2363,7 +2587,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_15">
+  <widget class="QSlider" name="slirel">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2379,7 +2603,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_16">
+  <widget class="QSlider" name="slicomm">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2395,7 +2619,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_17">
+  <widget class="QSlider" name="sliresp">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2580,7 +2804,7 @@
     <string>Communicator</string>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_18">
+  <widget class="QSlider" name="slicre">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2596,7 +2820,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_19">
+  <widget class="QSlider" name="slicri">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2651,6 +2875,32 @@
     <string>Open to Cricicism</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>970</x>
+     <y>610</y>
+     <width>99</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>860</x>
+     <y>610</y>
+     <width>99</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>OK</string>
+   </property>
+  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
@@ -2672,5 +2922,21 @@
   <buttongroup name="buttonGroup_2"/>
   <buttongroup name="buttonGroup_3"/>
   <buttongroup name="buttonGroup_4"/>
+  <buttongroup name="buttonGroup_5"/>
+  <buttongroup name="buttonGroup_6"/>
+  <buttongroup name="buttonGroup_7"/>
+  <buttongroup name="buttonGroup_8"/>
+  <buttongroup name="buttonGroup_9"/>
+  <buttongroup name="buttonGroup_10"/>
+  <buttongroup name="buttonGroup_11"/>
+  <buttongroup name="buttonGroup_12"/>
+  <buttongroup name="buttonGroup_13"/>
+  <buttongroup name="buttonGroup_14"/>
+  <buttongroup name="buttonGroup_15"/>
+  <buttongroup name="buttonGroup_16"/>
+  <buttongroup name="buttonGroup_17"/>
+  <buttongroup name="buttonGroup_18"/>
+  <buttongroup name="buttonGroup_19"/>
+  <buttongroup name="buttonGroup_20"/>
  </buttongroups>
 </ui>

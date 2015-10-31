@@ -1,7 +1,6 @@
 #include "signupwindow.h"
 #include "ui_signupwindow.h"
 #include "qualificationwindow.h"
-#include "qual2window.h"
 
 SignupWindow::SignupWindow(QWidget *parent) :
     QDialog(parent),
@@ -59,7 +58,4 @@ void SignupWindow::getQualifications(Student* st){
     QualificationWindow* qualWin = new QualificationWindow();
     qualWin->setStudent(st);
     qualWin->show();
-    //Qual2Window* qual2Win = new Qual2Window();
-    //qual2Win->setStudent(st);
-    //qual2Win->show();
 }

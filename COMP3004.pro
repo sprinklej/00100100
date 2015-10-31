@@ -33,8 +33,7 @@ HEADERS  += \
     studentwindow.h \
     adminwindow.h \
     signupwindow.h \
-    qualificationwindow.h \
-    qual2window.h
+    qualificationwindow.h
 
 FORMS    += \
     loginwindow.ui \
