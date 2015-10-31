@@ -32,15 +32,15 @@ Storage& Storage::getDB(){
 //adds the user's data to Storage
 void Storage::addUser(Student* st){
     QSqlQuery query;
-    query.prepare("INSERT INTO users(id, fname, lname, att_leader, att_avail, att_2404, att_3005,
-                  "att_coding, att_dbase, att_selfDir, att_writing, att_UI, att_algorithm,
-                  "att_present, att_teamwork, att_experience, att_testing, att_UML,
-                  "att_req, att_reliable, att_comm, att_respect, att_creative, att_critic,
-                  "req_leader, req_2404, req_3005, req_coding, req_dbase, req_selfDir,
-                  "req_writing, req_UI, req_algorithm, req_present, req_teamwork,
-                  "req_experience, req_testing, req_UML, req_req, req_reliable,
-                  "req_comm, req_respect, req_creative, req_critic
-                  ") VALUES
+    query.prepare("INSERT INTO users(id, fname, lname, att_leader, att_avail, att_2404, att_3005,"
+                  "att_coding, att_dbase, att_selfDir, att_writing, att_UI, att_algorithm,"
+                  "att_present, att_teamwork, att_experience, att_testing, att_UML,"
+                  "att_req, att_reliable, att_comm, att_respect, att_creative, att_critic,"
+                  "req_leader, req_2404, req_3005, req_coding, req_dbase, req_selfDir,"
+                  "req_writing, req_UI, req_algorithm, req_present, req_teamwork,"
+                  "req_experience, req_testing, req_UML, req_req, req_reliable,"
+                  "req_comm, req_respect, req_creative, req_critic"
+                  ") VALUES"
                   "(:id, :fname, :lname, :att_leader, :att_avail, :att_2404, :att_3005, "
                   ":att_coding, :att_dbase, :att_selfDir, :att_writing, :att_UI, :att_algorithm,"
                    ":att_present, :att_teamwork, :att_experience, :att_testing, :att_UML,"

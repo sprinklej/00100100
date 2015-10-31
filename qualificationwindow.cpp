@@ -262,16 +262,16 @@ void QualificationWindow::on_pushButton_2_clicked()
 /**************************
  * TBD: check for errors
  **************************/
-    //Storage::getDB().addUser(student);
+    Storage::getDB().addUser(student);
 
-    Student* testStudent = new Student("z", "z", "100111111", 0, "FFF", 1,
+    /*Student* testStudent = new Student("z", "z", "100111111", 0, "FFF", 1,
                                                 1, 1,1,1,1,1,1,1,
                                                 1,1,1,1,1,1,1,1,
                                                 1,1,1,1,1,1,1,
                                                 1,1,1,1,1,1,1,
                                                 1,1,1,1,1,1,
                                                 1,1);
-    Storage::getDB().addUser(testStudent);
+    Storage::getDB().addUser(testStudent);*/
 
     //close window
     delete student;
