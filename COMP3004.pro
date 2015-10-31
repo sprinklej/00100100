@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     loginwindow.cpp \
     Storage.cpp \
     studentwindow.cpp \
-    adminwindow.cpp
+    adminwindow.cpp \
+    signupwindow.cpp
 
 HEADERS  += \
     Storage.h \
@@ -29,9 +30,11 @@ HEADERS  += \
     Project.h \
     loginwindow.h \
     studentwindow.h \
-    adminwindow.h
+    adminwindow.h \
+    signupwindow.h
 
 FORMS    += \
     loginwindow.ui \
     studentwindow.ui \
-    adminwindow.ui
+    adminwindow.ui \
+    signupwindow.ui
