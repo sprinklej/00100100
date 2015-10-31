@@ -175,6 +175,9 @@ int Student::getReq_critic() {return req_critic  ;}
 
 /////////// SETTERS ////////
 
+void Student::setFirstName(QString s){firstName = s;}
+void Student::setLastName(QString s){lastName = s;}
+
 void Student::setAtt_leader(bool a){att_leader = a;}
 void Student::setAtt_avail(QString a){att_avail = a;}
 void Student::setAtt_2404(int a){att_2404 = a;}

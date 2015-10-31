@@ -22,3 +22,7 @@ AdminWindow::~AdminWindow()
 {
     delete ui;
 }
+
+void AdminWindow::setUser(Admin* s){
+    user = s;
+}

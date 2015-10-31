@@ -135,6 +135,8 @@ public:
     int getReq_creative();
     int getReq_critic();
 
+    void setFirstName(QString);
+    void setLastName(QString);
     void setAtt_leader(bool);
     void setAtt_avail(QString);
     void setAtt_2404(int);

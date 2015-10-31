@@ -5,6 +5,7 @@
 #include <QStyle>
 #include <QWidget>
 #include <QDesktopWidget>
+#include"User.h"
 
 
 
@@ -19,9 +20,11 @@ class AdminWindow : public QMainWindow
 public:
     explicit AdminWindow(QWidget *parent = 0);
     ~AdminWindow();
+    void setUser(Admin*);
 
 private:
     Ui::AdminWindow *ui;
+    Admin* user;
 };
 
 #endif // ADMINWINDOW_H

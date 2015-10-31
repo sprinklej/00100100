@@ -40,7 +40,9 @@ void SignupWindow::on_pushButton_ok_clicked()
         getQualifications(st);
 
     } else if(ui->radioButton_admin->isChecked()) {
-        Admin(firstName, lastName, ID, 1); // why extra argument?
+        //Admin(firstName, lastName, ID, 1); // why extra argument?
+        Admin* ad = new Admin(firstName, lastName, ID, 1);
+        Storage::getDB().addUser(ad);
         // create admin account
     }
 

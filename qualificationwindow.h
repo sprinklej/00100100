@@ -16,6 +16,7 @@ public:
     explicit QualificationWindow(QWidget *parent = 0);
     ~QualificationWindow();
     void setStudent(Student*);
+    void setupdate(bool);
 
 private slots:
     //void on_buttonBox_clicked(QAbstractButton *button);
@@ -27,6 +28,7 @@ private slots:
 private:
     Ui::QualificationWindow *ui;
     Student* student;
+    bool update;
     //void on_pushButton_ok_clicked();
     //void on_pushButton_cancel_clicked();
 

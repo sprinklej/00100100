@@ -114,10 +114,9 @@ void Storage::updateStudent(Student* st){
 
     QSqlQuery query;
     query.prepare("UPDATE users SET "
-                  "id =:id,"
                   "fname = :fname,"
-                  "lname =:lname,"
-                  "att_leader = :att_leader,"
+                  "lname = :lname,"
+                  "att_leader = :att_leader"
                   "att_avail = :att_avail,"
                   "att_2404 = :att_2404,"
                   "att_3005 = :att_3005,"
@@ -157,8 +156,8 @@ void Storage::updateStudent(Student* st){
                   "req_comm = :req_comm,"
                   "req_respect = :req_respect,"
                   "req_creative = :req_creative,"
-                  "req_critic = :req_critic"
-                  "WHERE getIDNum = :iid");
+                  "req_critic = :req_critic "
+                  "WHERE id = :iid");
 
     query.bindValue(":fname", st->getFirstName());
     query.bindValue(":lname", st->getLastName());
@@ -204,7 +203,10 @@ void Storage::updateStudent(Student* st){
     query.bindValue(":req_creative", st->getReq_creative());
     query.bindValue(":req_critic",st->getReq_critic());
     query.bindValue(":iid", st->getIDNum());
+
     bool res = query.exec();
+    qDebug() << query.lastError();
+
 
 }
 
@@ -277,7 +279,7 @@ bool Storage::getUser(QString s, User** user){
 
         if(id.at(0) == '1'){
             //*user = new Student(id, fname, lname, att1);
-            *user = new Student(id, fname, lname, att_leader, att_avail, att_2404, att_3005,
+            *user = new Student(fname, lname, id, att_leader, att_avail, att_2404, att_3005,
                                 att_coding, att_dbase, att_selfDir, att_writing, att_UI, att_algorithm,
                                 att_present, att_teamwork, att_experience, att_testing, att_UML,
                                 att_req, att_reliable, att_comm, att_respect, att_creative, att_critic,

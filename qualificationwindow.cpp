@@ -8,6 +8,7 @@ QualificationWindow::QualificationWindow(QWidget *parent) :
     ui(new Ui::QualificationWindow)
 {
     ui->setupUi(this);
+    update = false;
 }
 
 QualificationWindow::~QualificationWindow()
@@ -17,6 +18,10 @@ QualificationWindow::~QualificationWindow()
 
 void QualificationWindow::setStudent(Student* st){
     student = st;
+}
+
+void QualificationWindow::setupdate(bool u){
+    update = u;
 }
 
 /*
@@ -262,7 +267,8 @@ void QualificationWindow::on_pushButton_2_clicked()
 /**************************
  * TBD: check for errors
  **************************/
-    Storage::getDB().addUser(student);
+    if(update) Storage::getDB().updateStudent(student);
+    else Storage::getDB().addUser(student);
 
     /*Student* testStudent = new Student("z", "z", "100111111", 0, "FFF", 1,
                                                 1, 1,1,1,1,1,1,1,

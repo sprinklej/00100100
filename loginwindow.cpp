@@ -58,15 +58,17 @@ void LoginWindow::on_pushButton_login_clicked()
 
 }
 
-void LoginWindow::login(Admin*){
+void LoginWindow::login(Admin* ad){
     this->hide();
-    AdminWindow *adminWin = new AdminWindow;
+    AdminWindow *adminWin = new AdminWindow();
+    adminWin->setUser(ad);
     adminWin->show();
 }
 
-void LoginWindow::login(Student*){
+void LoginWindow::login(Student* st){
     this->hide();
-    StudentWindow *studWin = new StudentWindow;
+    StudentWindow *studWin = new StudentWindow();
+    studWin -> setUser(st);
     studWin->show();
 }
 
