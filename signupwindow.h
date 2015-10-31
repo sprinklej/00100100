@@ -26,6 +26,8 @@ private slots:
 
     void on_pushButton_ok_clicked();
 
+    void getQualifications(Student*);
+
 private:
     Ui::SignupWindow *ui;
 };

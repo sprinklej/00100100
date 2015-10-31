@@ -1,5 +1,7 @@
 #include "signupwindow.h"
 #include "ui_signupwindow.h"
+#include "qualificationwindow.h"
+#include "qual2window.h"
 
 SignupWindow::SignupWindow(QWidget *parent) :
     QDialog(parent),
@@ -35,8 +37,8 @@ void SignupWindow::on_pushButton_ok_clicked()
 
     // add user info to database
     if(ui->radioButton_student->isChecked()){
-        Student(firstName, lastName, ID, 1);
-        // create student account
+        Student* st = new Student(firstName, lastName, ID, 1);
+        getQualifications(st);
 
     } else if(ui->radioButton_admin->isChecked()) {
         Admin(firstName, lastName, ID, 1); // why extra argument?
@@ -52,4 +54,12 @@ void SignupWindow::on_pushButton_cancel_clicked()
     this->~SignupWindow();
 }
 
-
+void SignupWindow::getQualifications(Student* st){
+    this->hide();
+    QualificationWindow* qualWin = new QualificationWindow();
+    qualWin->setStudent(st);
+    qualWin->show();
+    //Qual2Window* qual2Win = new Qual2Window();
+    //qual2Win->setStudent(st);
+    //qual2Win->show();
+}
