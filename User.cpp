@@ -18,7 +18,7 @@ QString User::toString(){
 }
 
 
-Student::Student(QString fn, QString ln, QString id, int a1 ){
+Student::Student(QString fn, QString ln, QString id, int a1 ){ // what is int a1 for?
     firstName = fn;
     lastName = ln;
     IDNum = id;
@@ -126,7 +126,7 @@ Student::~Student(){}
 
 //////////// GETTERS /////////////////////
 QString Student::getIDNum(){return IDNum;}          //students start with "1", Admins start with "A"
-QString Student::getUserName(){return userName;}
+//QString Student::getUserName(){return userName;}
 QString Student::getFirstName(){return firstName;}
 QString Student::getLastName(){return lastName;}
 //int Student::getAtt1(){return att1;}
@@ -228,6 +228,6 @@ Admin::~Admin(){}
 
 /////////// GETTERS ////////////
 QString Admin::getIDNum(){return IDNum;}          //students start with "1", Admins start with "A"
-QString Admin::getUserName(){return userName;}
+//QString Admin::getUserName(){return userName;}
 QString Admin::getFirstName(){return firstName;}
 QString Admin::getLastName(){return lastName;}

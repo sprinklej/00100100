@@ -72,5 +72,8 @@ void LoginWindow::login(Student*){
 
 void LoginWindow::on_pushButton_signup_clicked()
 {
-    ;
+    // show signup window and disables login window
+    SignupWindow *signupWin = new SignupWindow;
+    signupWin->setModal(true);
+    signupWin->exec();
 }

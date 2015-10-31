@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "studentwindow.h"
 #include "adminwindow.h"
+#include "signupwindow.h"
 #include "User.h"
 
 namespace Ui {

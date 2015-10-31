@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>314</width>
-    <height>275</height>
+    <width>334</width>
+    <height>261</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,8 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>30</y>
-     <width>261</width>
+     <y>20</y>
+     <width>291</width>
      <height>151</height>
     </rect>
    </property>
@@ -29,14 +29,17 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>20</y>
-      <width>239</width>
+      <y>21</y>
+      <width>271</width>
       <height>123</height>
      </rect>
     </property>
-    <layout class="QFormLayout" name="formLayout">
+    <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0">
       <widget class="QRadioButton" name="radioButton_student">
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
        <property name="text">
         <string>Student</string>
        </property>
@@ -45,42 +48,51 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
+     <item row="3" column="0" colspan="2">
+      <widget class="QLabel" name="label_ID">
+       <property name="text">
+        <string>Student ID # </string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2">
+      <widget class="QLineEdit" name="lineEdit_ID"/>
+     </item>
+     <item row="2" column="2">
+      <widget class="QLineEdit" name="lineEdit_lastname"/>
+     </item>
+     <item row="1" column="2">
+      <widget class="QLineEdit" name="lineEdit_firstname"/>
+     </item>
+     <item row="0" column="1" colspan="2">
       <widget class="QRadioButton" name="radioButton_admin">
+       <property name="maximumSize">
+        <size>
+         <width>16777000</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
        <property name="text">
         <string>Administrator</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
+     <item row="1" column="0" colspan="2">
       <widget class="QLabel" name="label_">
        <property name="text">
         <string>First Name</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="1">
-      <widget class="QLineEdit" name="lineEdit_firstname"/>
-     </item>
-     <item row="2" column="0">
+     <item row="2" column="0" colspan="2">
       <widget class="QLabel" name="label_2">
        <property name="text">
         <string>Last Name</string>
        </property>
       </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLineEdit" name="lineEdit_lastname"/>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_ID">
-       <property name="text">
-        <string>Student ID#</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLineEdit" name="lineEdit"/>
      </item>
     </layout>
    </widget>
@@ -88,7 +100,7 @@
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>110</x>
      <y>200</y>
      <width>178</width>
      <height>29</height>
@@ -96,14 +108,14 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="pushButton_ok">
       <property name="text">
        <string>Ok</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="pushButton_cancel">
       <property name="text">
        <string>Cancel</string>
       </property>

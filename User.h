@@ -9,7 +9,7 @@ class User
 {
 protected:
     QString IDNum;          //students start with "1", Admins start with "A-Z or a-z"
-    QString userName;
+//    QString userName;
     QString firstName;
     QString lastName;
 
@@ -90,7 +90,7 @@ public:
 
     // getters
     QString getIDNum();          //students start with "1", Admins start with "A"
-    QString getUserName();
+//    QString getUserName();
     QString getFirstName();
     QString getLastName();
     bool getAtt_leader(); // : int        -- want to be a leader? yes/no
@@ -196,7 +196,7 @@ public:
 
     // getters
     QString getIDNum();          //students start with "1", Admins start with "A"
-    QString getUserName();
+ //   QString getUserName();
     QString getFirstName();
     QString getLastName();
 };
