@@ -327,12 +327,12 @@ void Storage::updateProject(Project* pr){
 }
 
  // establishes the Project-Student relationship
-void Storage::joinProject(Project& pr, Student& st){
+void Storage::joinProject(Project* pr, Student* st){
 
     QSqlQuery query;
     query.prepare("INSERT INTO projectsStudents(userID, projectID) VALUES(:iu, :ip)");
-    query.bindValue(":iu", st.getIDNum());
-    query.bindValue(":ip", pr.getProjectID());
+    query.bindValue(":iu", st->getIDNum());
+    query.bindValue(":ip", pr->getProjectID());
     bool res = query.exec();
 
 }
@@ -356,14 +356,14 @@ void Storage::getProjects(Admin& ad, QList<Project*>& pl){
 
         Project* newProj = new Project(projectID, ad.getIDNum(), courseName, courseNum, description, teamSize);
 
-        qDebug() << "create project " << newProj->getProjectID();
+
         pl.push_back(newProj);
-        qDebug() << "pushed ";
+
     }
 
-    /*foreach(Project* p, pl){
+    foreach(Project* p, pl){
         getRegisteredStudents(*p, p->getStudentList());
-    }*/
+    }
 
 
 }
@@ -433,6 +433,34 @@ void Storage::getRegisteredStudents(Project& pr, QList<Student*>& sl){
 
         sl.push_back(newUser);
     }
+
+}
+
+//get all projects
+void Storage::getAllProjects(QList<Project*>& pl){
+
+    QSqlQuery query;
+    query.prepare("SELECT * FROM projects");
+    bool res = query.exec();
+
+    while(query.next()){
+        QString projectID = query.value(0).toString();
+        QString ad = query.value(1).toString();
+        QString courseName = query.value(2).toString();
+        QString courseNum = query.value(3).toString();
+        QString description = query.value(4).toString();
+        int teamSize = query.value(5).toInt();
+
+        Project* newProj = new Project(projectID, ad, courseName, courseNum, description, teamSize);
+
+        pl.push_back(newProj);
+
+    }
+
+    foreach(Project* p, pl){
+        getRegisteredStudents(*p, p->getStudentList());
+    }
+
 
 }
 

@@ -20,7 +20,6 @@ StudentWindow::StudentWindow(QWidget *parent) :
                 qApp->desktop()->availableGeometry()
                 )
             );
-
 }
 
 StudentWindow::~StudentWindow()
@@ -28,11 +27,58 @@ StudentWindow::~StudentWindow()
     delete ui;
 }
 
+
+
 void StudentWindow::setUser(Student* s){
     user = s;
     ui->lineEdit->setText(user->getFirstName());
     ui->lineEdit_2->setText(user->getLastName());
+
+    allProjects = QList<Project*>();
+    joinedProjects = QList<Project*>();
+
+    refresh();
 }
+
+void StudentWindow::refresh(){
+    Storage::getDB().getAllProjects(allProjects);
+
+    foreach(Project* p, allProjects){
+        ui->allProjlistWidget->addItem(p->getProjectID());
+        ui->cbAllProjects->addItem(p->getProjectID());
+        foreach(Student* s, p->getStudentList()){
+            if(s->getIDNum() == user->getIDNum()){
+                joinedProjects.push_back(p);
+                ui->joinedProjlistWidget->addItem(p->getProjectID());
+
+            }
+        }
+    }
+}
+
+//join project
+void StudentWindow::on_pushButton_4_clicked(){
+    if(ui->cbAllProjects->currentText() != ""){
+        foreach(Project* p, allProjects){
+            if(p->getProjectID() == ui->cbAllProjects->currentText()){
+                if(!joinedProjects.contains(p)){
+                    joinedProjects.push_back(p);
+                    ui->joinedProjlistWidget->addItem(p->getProjectID());
+                    Storage::getDB().joinProject(p, user);
+                } else{
+                    ui->status2->setText("You have already joined this project!");
+                }
+            }
+        }
+    }
+}
+
+
+void StudentWindow::on_pushButton_3_clicked()
+{
+
+}
+
 
 //cancel button clicked
 void StudentWindow::on_pushButton_5_clicked()
@@ -124,4 +170,10 @@ void StudentWindow::on_pushButton_clicked()
     }
 
 
+}
+
+
+void StudentWindow::on_pushButton_2_clicked()
+{
+    this->~StudentWindow()
 }

@@ -13,7 +13,6 @@ Project::Project(QString project_ID, QString own, QString course_Name, QString c
 }
 
 Project::~Project(){
-    //nothing yet
     foreach(Student* s, students){
         delete s;
     }
