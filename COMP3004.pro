@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     studentwindow.cpp \
     adminwindow.cpp \
     signupwindow.cpp \
-    qualificationwindow.cpp
+    qualificationwindow.cpp \
+    projectwindow.cpp
 
 HEADERS  += \
     Storage.h \
@@ -33,11 +34,13 @@ HEADERS  += \
     studentwindow.h \
     adminwindow.h \
     signupwindow.h \
-    qualificationwindow.h
+    qualificationwindow.h \
+    projectwindow.h
 
 FORMS    += \
     loginwindow.ui \
     studentwindow.ui \
     adminwindow.ui \
     signupwindow.ui \
-    qualificationwindow.ui
+    qualificationwindow.ui \
+    projectwindow.ui

@@ -12,16 +12,19 @@ class Project
 protected:
     QString projectID;
     QString courseNum;
-    QString pTitle;
+    //QString pTitle;
+    QString ownerID;
     QString courseName;
     QString pDescription;
+    int teamSize;
     QList<Student*> students;
     //teams - not sure if we need this one or if the Team object will only exist after the PPID has run
 
 public:
     // constructor/destructor
     //Project(int project_ID, int course_Num, QString p_Title, QString course_Name, QString p_Description, QList<Student> * stdnts);
-    Project(QString project_ID, QString course_Num, QString p_Title, QString course_Name, QString p_Description);
+    //     Project* newProj = new Project(projectID, ad.getIDNum(), courseName, courseNum, description, teamSize);
+    Project(QString project_ID, QString own, QString course_Name, QString course_Num, QString p_Description, int ts);
     ~Project();
 
     // setters
@@ -33,9 +36,10 @@ public:
     // getters
     QString getProjectID();
     QString getCourseNum();
-    QString getPTitle();
+    //QString getPTitle();
     QString getCourseName();
     QString getPDescription();
+    int getTeamSize();
     QList<Student*>& getStudentList();  //is this right - return a pointer to the Qlist?
 };
 

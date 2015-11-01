@@ -288,40 +288,41 @@ bool Storage::getUser(QString s, User** user){
                                 req_experience, req_testing, req_UML,req_req, req_reliable,
                                 req_comm, req_respect, req_creative, req_critic);
         } else {
-            *user = new Admin(id, fname, lname, 0);
+            *user = new Admin(fname, lname, id, 0);
         }
     } else return 0;
     return -1;
 }
 
 //adds the project to Storage, with the Admin as owner
-void Storage::addProject(Project& pr, Admin& own){
+void Storage::addProject(Project* pr, Admin* own){
 
     QSqlQuery query;
     query.prepare("INSERT INTO projects(projectID, owner, courseName, courseNum, description)"
                   "VALUES (:ipr, :iow, :icn, :icnm, :ides)");
-    query.bindValue(":ipr", pr.getProjectID());
-    query.bindValue(":iow", own.getIDNum());
-    query.bindValue(":icn", pr.getCourseName());
-    query.bindValue(":icnm", pr.getCourseNum());
-    query.bindValue(":ides", pr.getPDescription());
+    query.bindValue(":ipr", pr->getProjectID());
+    query.bindValue(":iow", own->getIDNum());
+    query.bindValue(":icn", pr->getCourseName());
+    query.bindValue(":icnm", pr->getCourseNum());
+    query.bindValue(":ides", pr->getPDescription());
     bool res = query.exec();
 
 }
 
 //overwrites an existing Project in Storage
-void Storage::updateProject(Project& pr){
+void Storage::updateProject(Project* pr){
 
     QSqlQuery query;
     query.prepare("UPDATE projects SET "
-                  "courseName = :icn, courseNum :icnm, description = :ides "
+                  "courseName = :icn, courseNum = :icnm, description = :ides "
                   "WHERE projectID = :ipr");
     //query.bindValue(":iow", own.getIDNum());
-    query.bindValue(":icn", pr.getCourseName());
-    query.bindValue(":icnm", pr.getCourseNum());
-    query.bindValue(":ides", pr.getPDescription());
-    query.bindValue(":ipr", pr.getProjectID());
+    query.bindValue(":icn", pr->getCourseName());
+    query.bindValue(":icnm", pr->getCourseNum());
+    query.bindValue(":ides", pr->getPDescription());
+    query.bindValue(":ipr", pr->getProjectID());
     bool res = query.exec();
+    qDebug() << query.lastError();
 
 }
 
@@ -344,19 +345,25 @@ void Storage::getProjects(Admin& ad, QList<Project*>& pl){
     query.bindValue(":io", ad.getIDNum());
     bool res = query.exec();
 
+    qDebug() << "query executed";
+
     while(query.next()){
         QString projectID = query.value(0).toString();
         QString courseName = query.value(2).toString();
         QString courseNum = query.value(3).toString();
         QString description = query.value(4).toString();
+        int teamSize = query.value(5).toInt();
 
-        Project* newProj = new Project(projectID, ad.getIDNum(), courseName, courseNum, description);
+        Project* newProj = new Project(projectID, ad.getIDNum(), courseName, courseNum, description, teamSize);
+
+        qDebug() << "create project " << newProj->getProjectID();
         pl.push_back(newProj);
+        qDebug() << "pushed ";
     }
 
-    foreach(Project* p, pl){
+    /*foreach(Project* p, pl){
         getRegisteredStudents(*p, p->getStudentList());
-    }
+    }*/
 
 
 }

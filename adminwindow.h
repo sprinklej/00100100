@@ -6,6 +6,7 @@
 #include <QWidget>
 #include <QDesktopWidget>
 #include"User.h"
+#include "Project.h"
 
 
 
@@ -21,10 +22,22 @@ public:
     explicit AdminWindow(QWidget *parent = 0);
     ~AdminWindow();
     void setUser(Admin*);
+    void refresh();
+
+private slots:
+    void on_pushButton_clicked();
+
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_5_clicked();
 
 private:
     Ui::AdminWindow *ui;
     Admin* user;
+    QList<Project*> projectsOwned;
+
 };
 
 #endif // ADMINWINDOW_H
