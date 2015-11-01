@@ -175,5 +175,5 @@ void StudentWindow::on_pushButton_clicked()
 
 void StudentWindow::on_pushButton_2_clicked()
 {
-    this->~StudentWindow()
+    this->~StudentWindow();
 }
