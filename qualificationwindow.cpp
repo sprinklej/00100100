@@ -3,6 +3,8 @@
 #include "Storage.h"
 #include <QDebug>
 
+#include "studentwindow.h"
+
 QualificationWindow::QualificationWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::QualificationWindow)
@@ -16,6 +18,7 @@ QualificationWindow::~QualificationWindow()
     delete ui;
 }
 
+//setters
 void QualificationWindow::setStudent(Student* st){
     student = st;
 }
@@ -24,28 +27,14 @@ void QualificationWindow::setupdate(bool u){
     update = u;
 }
 
-/*
+void QualificationWindow::setStudWind(StudentWindow* stWin)
+{
+    studWin = stWin;
+}
+
+
+// OK BUTTON
 void QualificationWindow::on_pushButton_ok_clicked()
-{
-    // get info
-
-    //if no errors write to storage
-
-    //close window
-    delete student;
-    this->~QualificationWindow();
-}
-
-void QualificationWindow::on_pushButton_cancel_clicked()
-{
-    delete student;
-    this->~QualificationWindow();
-}
-*/
-
-
-//OK
-void QualificationWindow::on_pushButton_2_clicked()
 {
     // get info
 
@@ -226,6 +215,7 @@ void QualificationWindow::on_pushButton_2_clicked()
     student->setAtt_coding(att_coding);
     student->setAtt_dbase(att_dbase);
     student->setAtt_selfDir(att_sd);
+//    student->setAtt_wg(att_wg);   //not sure if in database guessing its writing and grammar
     student->setAtt_writing(att_writing);
     student->setAtt_UI(att_ui);
     student->setAtt_algorithm(att_alg);
@@ -280,13 +270,15 @@ void QualificationWindow::on_pushButton_2_clicked()
     Storage::getDB().addUser(testStudent);*/
 
     //close window
-    delete student;
+    //delete student;  -dont delete student, we are still using this pointer
+    studWin->showUserInfo();
     this->~QualificationWindow();
 }
 
-//CANCEL
-void QualificationWindow::on_pushButton_clicked()
+//CANCEL BUTTON
+void QualificationWindow::on_pushButton_cancel_clicked()
 {
-    delete student;
+    //delete student;  -dont delete student, we are still using this pointer
     this->~QualificationWindow();
 }
+

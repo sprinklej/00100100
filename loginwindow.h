@@ -2,10 +2,16 @@
 #define LOGINWINDOW_H
 
 #include <QDialog>
+#include <QString>
+#include <QDir>
+#include <QDebug>
+#include <iostream>
+
 #include "studentwindow.h"
 #include "adminwindow.h"
 #include "signupwindow.h"
 #include "User.h"
+#include "Storage.h"
 
 namespace Ui {
 class LoginWindow;

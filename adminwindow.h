@@ -5,10 +5,9 @@
 #include <QStyle>
 #include <QWidget>
 #include <QDesktopWidget>
-#include"User.h"
+#include <QDebug>
+#include "User.h"
 #include "Project.h"
-
-
 
 namespace Ui {
 class AdminWindow;
@@ -21,8 +20,8 @@ class AdminWindow : public QMainWindow
 public:
     explicit AdminWindow(QWidget *parent = 0);
     ~AdminWindow();
-    void setUser(Admin*);
     void refresh();
+    void setAdmin(Admin* s);
 
 private slots:
     void on_pushButton_clicked();

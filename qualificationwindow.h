@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "User.h"
+#include "studentwindow.h"
 
 namespace Ui {
 class QualificationWindow;
@@ -17,18 +18,20 @@ public:
     ~QualificationWindow();
     void setStudent(Student*);
     void setupdate(bool);
+    void setStudWind(StudentWindow*);
 
 private slots:
     //void on_buttonBox_clicked(QAbstractButton *button);
 
-    void on_pushButton_2_clicked();
+    void on_pushButton_ok_clicked();
 
-    void on_pushButton_clicked();
+    void on_pushButton_cancel_clicked();
 
 private:
     Ui::QualificationWindow *ui;
     Student* student;
     bool update;
+    StudentWindow* studWin;
     //void on_pushButton_ok_clicked();
     //void on_pushButton_cancel_clicked();
 

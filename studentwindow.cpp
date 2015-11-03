@@ -1,8 +1,8 @@
 #include "studentwindow.h"
 #include "ui_studentwindow.h"
-#include"Storage.h"
-#include"qualificationwindow.h"
-#include<QDebug>
+#include "Storage.h"
+#include "qualificationwindow.h"
+#include <QDebug>
 
 
 // create and setup window
@@ -38,7 +38,6 @@ StudentWindow::~StudentWindow()
 void StudentWindow::setStudent(Student* s)
 {
     user = s;
-    //qDebug() << user;
 }
 
 
@@ -112,23 +111,140 @@ void StudentWindow::on_pushButton_5_clicked()
 
 
 //manage qualifications clicked
-void StudentWindow::on_pushButton_6_clicked()
+void StudentWindow::on_pushButton_manQual_clicked()
 {
     QString fn = ui->lineEdit->text();
     QString ln = ui->lineEdit_2->text();
+
+    qDebug() << user->getFirstName();
+
+
     if(fn != "" && ln != ""){
         user->setFirstName(fn);
         user->setLastName(ln);
-        this->hide();
+
+       // this->hide();
         QualificationWindow* qualWin = new QualificationWindow();
         qualWin->setStudent(user);
         qualWin->setupdate(true);
-        qualWin->show();
-
-        this->~StudentWindow();
-    } else{
+        qualWin->setStudWind(this);
+        // opens new window and disables current window
+        qualWin->setModal(true);
+        qualWin->exec();
+    } else {
         ui->status->setText("Cannot set names to blank.");
     }
+
+}
+
+
+void StudentWindow::showUserInfo()
+{
+    ui->firstName->setText(user->getFirstName());
+    ui->lastName->setText(user->getLastName());
+
+    if (user->getAtt_leader() == false) {
+        ui->leader->setText("False");
+    } else {
+        ui->leader->setText("True");
+    }
+
+    // coding strings
+    ui->grade2404->setText(codingString(user->getAtt_2404()));
+    ui->grade3005->setText(codingString(user->getAtt_3005()));
+
+    // experience strings
+    ui->cplusplus->setText(experienceString(user->getAtt_coding()));
+    ui->dbDesign->setText(experienceString(user->getAtt_dbase()));
+
+    //agree strings
+    ui->selfDirected->setText(agreeString(user->getAtt_selfDir()));
+    ui->uiDesign->setText(agreeString(user->getAtt_UI()));
+    ui->algorithmDesign->setText(agreeString(user->getAtt_algorithm()));
+    ui->presentationSkills->setText(agreeString(user->getAtt_present()));
+    ui->teamwork->setText(agreeString(user->getAtt_teamwork()));
+    ui->softWareTest->setText(agreeString(user->getAtt_testing()));
+    ui->umlDesign->setText(agreeString(user->getAtt_UML()));
+    ui->reqAnalysis->setText(agreeString(user->getAtt_req()));
+    ui->reliable->setText(agreeString(user->getAtt_reliable()));
+
+    ui->commSkills->setText(agreeString(user->getAtt_comm()));
+    ui->respectful->setText(agreeString(user->getAtt_respect()));
+    ui->creative->setText(agreeString(user->getAtt_creative()));
+    ui->constructCrit->setText(agreeString(user->getAtt_critic()));
+
+    // work experience
+    QString expString;
+    if (user->getAtt_experience() == 0) {
+        expString = "None";
+    } else if(user->getAtt_experience() == 1) {
+        expString = "Summer";
+    } else if(user->getAtt_experience() == 2) {
+        expString = "Co-op";
+    } else if(user->getAtt_experience() == 3) {
+        expString = "Part time";
+    } else if(user->getAtt_experience() == 4) {
+        expString = "full time";
+    }
+    ui->workExper->setText(expString);
+}
+
+    // ui->techWriting->setText(user->getAtt_);   ??
+    // ui->techAndGramm->setText(user->getAtt_);   ??
+    // which one does the one below belong to???????
+    //int getAtt_writing(); //: int -- self-assessed technical writing skill and grammar (can be made objective)
+
+
+
+QString StudentWindow::codingString(int num)
+{
+    QString text;
+    if (num == 0) {
+        text = "F or N/A";
+    } else if(num == 1) {
+        text = "D- to D+";
+    } else if(num == 2) {
+        text = "C- to C+";
+    } else if(num == 3) {
+        text = "B- to B+";
+    } else if(num == 4) {
+        text = "A- to A+";
+    }
+    return text;
+}
+
+QString StudentWindow::experienceString(int num)
+{
+    QString text;
+    if (num == 0) {
+        text = "None";
+    } else if(num == 1) {
+        text = "Academic only";
+    } else if(num == 2) {
+        text = "Academic and personal projects";
+    } else if(num == 3) {
+        text = "Co-op or summer employment";
+    } else if(num == 4) {
+        text = "Professional";
+    }
+    return text;
+}
+
+QString StudentWindow::agreeString(int num)
+{
+    QString text;
+    if (num == 0) {
+        text = "Strongly Disagree";
+    } else if(num == 1) {
+        text = "Disagree";
+    } else if(num == 2) {
+        text = "Neutral";
+    } else if(num == 3) {
+        text = "Agree";
+    } else if(num == 4) {
+        text = "Strongly Agree";
+    }
+    return text;
 }
 
 
@@ -190,7 +306,7 @@ void StudentWindow::on_pushButton_clicked()
         qDebug() <<":req_critic" << user->getReq_critic();
         qDebug() <<":iid" << user->getIDNum();
 
-        this->~StudentWindow();
+        //this->~StudentWindow();
     } else{
         ui->status->setText("Cannot set names to blank.");
     }

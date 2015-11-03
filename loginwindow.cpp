@@ -1,11 +1,5 @@
-#include <QString>
-#include <QDir>
-#include <QDebug>
-#include <iostream>
 #include "loginwindow.h"
 #include "ui_loginwindow.h"
-#include "User.h"
-#include "Storage.h"
 using namespace std;
 
 
@@ -34,6 +28,8 @@ LoginWindow::~LoginWindow()
     delete ui;
 }
 
+
+// login to system
 void LoginWindow::on_pushButton_login_clicked()
 {
      // get username from text box
@@ -61,8 +57,9 @@ void LoginWindow::on_pushButton_login_clicked()
 void LoginWindow::login(Admin* ad){
     this->hide();
     AdminWindow *adminWin = new AdminWindow();
-    adminWin->setUser(ad);
     adminWin->show();
+    adminWin->setAdmin(ad);
+    adminWin->refresh();
 }
 
 void LoginWindow::login(Student* st){
@@ -72,9 +69,12 @@ void LoginWindow::login(Student* st){
     studWin->show();
     studWin->setStudent(st);
     studWin->setUser();
+    studWin->showUserInfo();
     studWin->refresh();
 }
 
+
+// sign up new student or admin user
 void LoginWindow::on_pushButton_signup_clicked()
 {
     // show signup window and disables login window

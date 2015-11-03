@@ -23,6 +23,10 @@ public:
     //void setUser(Student*);
     void setUser();
     void refresh();
+    void showUserInfo();
+    QString codingString(int num);
+    QString experienceString(int num);
+    QString agreeString(int num);
 
     // set student
     void setStudent(Student*);
@@ -30,7 +34,7 @@ public:
 private slots:
     void on_pushButton_5_clicked();
 
-    void on_pushButton_6_clicked();
+    void on_pushButton_manQual_clicked();
 
     void on_pushButton_clicked();
 

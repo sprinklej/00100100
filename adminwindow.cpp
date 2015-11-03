@@ -1,8 +1,10 @@
 #include "adminwindow.h"
 #include "ui_adminwindow.h"
 #include "projectwindow.h"
-#include"Storage.h"
-#include<QDebug>
+#include "Storage.h"
+#include <QDebug>
+
+
 AdminWindow::AdminWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::AdminWindow)
@@ -26,10 +28,11 @@ AdminWindow::~AdminWindow()
     delete ui;
 }
 
-void AdminWindow::setUser(Admin* s){
+// setter
+void AdminWindow::setAdmin(Admin* s)
+{
     user = s;
     ui->title->setText("Projects available for admin " + s->getIDNum());
-    refresh();
 }
 
 
@@ -38,20 +41,22 @@ void AdminWindow::setUser(Admin* s){
  * *****************/
 void AdminWindow::refresh(){
 
+    // clear list of projects
     ui->projectsBox->clear();
-
     foreach(Project* p, projectsOwned){
         delete p;
     }
     projectsOwned.empty();
 
+    // add projects
     Storage::getDB().getProjects(*user, projectsOwned);
-
     foreach(Project* p, projectsOwned){
         ui->projectsBox->addItem(p->getProjectID());
     }
-
+ui->title->setText("test");
 }
+
+
 
 //create a new project
 void AdminWindow::on_pushButton_clicked(){
@@ -98,5 +103,5 @@ void AdminWindow::on_pushButton_2_clicked()
 
 void AdminWindow::on_pushButton_5_clicked()
 {
-    //refresh();
+   //refresh();
 }
