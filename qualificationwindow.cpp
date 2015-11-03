@@ -16,6 +16,7 @@ QualificationWindow::QualificationWindow(QWidget *parent) :
     SV2404 = SVcplusplus = SV3005 = SVDBDesign = SVSelfDir = SVTechWrite = SVUIDeign = SVAlgDesign = 0;
     SVPresSkill = SVTeamwork = SVExper = SVSWTest = SVUML = SVReqAn = SVReliable = SVComm = 0;
     SVRespect = SVCreative = SVCrit = 0;
+    studWin = NULL;
 }
 
 QualificationWindow::~QualificationWindow()
@@ -276,7 +277,10 @@ void QualificationWindow::on_pushButton_ok_clicked()
 
     //close window
     //delete student;  -dont delete student, we are still using this pointer
-    studWin->showUserInfo();
+    if (studWin != NULL)
+    {
+        studWin->showUserInfo();
+    }
     this->~QualificationWindow();
 }
 
