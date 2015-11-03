@@ -11,12 +11,9 @@ LoginWindow::LoginWindow(QWidget *parent) :
     ui->status->setText("");
 
     // set working directory
-    QDir curr = QDir::current();
-    curr.cdUp();
-    QString logoPath = curr.path() + "/00100100/images/logo.png";
-    //ui->status->setText(logoPath);
-    //QDir::setCurrent(QCoreApplication::applicationDirPath());
-    //ui->status->setText(QDir::currentPath());
+    QDir curr = QDir::current(); //get current dir
+    curr.cdUp();                 //go up one dir
+    QString logoPath = curr.path() + "/00100100/images/logo.png"; //set dir
 
     // display logo
     QPixmap logo (logoPath);
