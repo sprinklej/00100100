@@ -298,13 +298,14 @@ bool Storage::getUser(QString s, User** user){
 void Storage::addProject(Project* pr, Admin* own){
 
     QSqlQuery query;
-    query.prepare("INSERT INTO projects(projectID, owner, courseName, courseNum, description)"
-                  "VALUES (:ipr, :iow, :icn, :icnm, :ides)");
+    query.prepare("INSERT INTO projects(projectID, owner, courseName, courseNum, description, teamSize)"
+                  "VALUES (:ipr, :iow, :icn, :icnm, :ides, :its)");
     query.bindValue(":ipr", pr->getProjectID());
     query.bindValue(":iow", own->getIDNum());
     query.bindValue(":icn", pr->getCourseName());
     query.bindValue(":icnm", pr->getCourseNum());
     query.bindValue(":ides", pr->getPDescription());
+    query.bindValue(":ides", pr->getTeamSize());
     bool res = query.exec();
 
 }
@@ -314,13 +315,14 @@ void Storage::updateProject(Project* pr){
 
     QSqlQuery query;
     query.prepare("UPDATE projects SET "
-                  "courseName = :icn, courseNum = :icnm, description = :ides "
+                  "courseName = :icn, courseNum = :icnm, description = :ides, teamSize = :its "
                   "WHERE projectID = :ipr");
     //query.bindValue(":iow", own.getIDNum());
     query.bindValue(":icn", pr->getCourseName());
     query.bindValue(":icnm", pr->getCourseNum());
     query.bindValue(":ides", pr->getPDescription());
     query.bindValue(":ipr", pr->getProjectID());
+    query.bindValue(":its", pr->getTeamSize());
     bool res = query.exec();
     qDebug() << query.lastError();
 
