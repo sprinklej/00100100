@@ -65,12 +65,12 @@ void ProjectWindow::on_saveButton_clicked()
         if(edit){
             Storage::getDB().updateProject(project);
             delete project;
-            //parentWindow->refresh();
+            parentWindow->refresh();
             this->~ProjectWindow();
         } else{
             Storage::getDB().addProject(project, owner);
             delete project;
-            //parentWindow->refresh();
+            parentWindow->refresh();
             this->~ProjectWindow();
         }
     }

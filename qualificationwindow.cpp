@@ -298,6 +298,7 @@ void QualificationWindow::setTotalSliderVal(int val)
 }
 
 
+//--------------------------------- Track Sliders ----------------------------
 void QualificationWindow::trackSlidersTotalVal(int incomingVal, QSlider * curSlider)
 {
     QSlider * slider = curSlider;
@@ -320,7 +321,7 @@ void QualificationWindow::trackSlidersTotalVal(int incomingVal, QSlider * curSli
     setTotalSliderVal(totalVal);
 }
 
-//----- Sliders-----
+//------------------------------- Sliders--------------------------------------
 void QualificationWindow::on_sli2404_valueChanged(int value)
 {
     int dif = value - SV2404;

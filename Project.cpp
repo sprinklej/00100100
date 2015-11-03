@@ -9,7 +9,6 @@ Project::Project(QString project_ID, QString own, QString course_Name, QString c
     pDescription = p_Description;
     teamSize = ts;
     students = QList<Student*>();
-
 }
 
 Project::~Project(){

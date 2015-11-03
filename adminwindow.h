@@ -5,6 +5,7 @@
 #include <QStyle>
 #include <QWidget>
 #include <QDesktopWidget>
+#include <QList>
 #include <QDebug>
 #include "User.h"
 #include "Project.h"
@@ -26,16 +27,12 @@ public:
 private slots:
     void on_pushButton_clicked();
 
-    void on_pushButton_4_clicked();
-
     void on_pushButton_2_clicked();
-
-    void on_pushButton_5_clicked();
 
 private:
     Ui::AdminWindow *ui;
     Admin* user;
-    QList<Project*> projectsOwned;
+    QList<Project *> projectsOwned;
 
 };
 

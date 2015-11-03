@@ -20,15 +20,16 @@ AdminWindow::AdminWindow(QWidget *parent) :
                 qApp->desktop()->availableGeometry()
                 )
             );
-    projectsOwned = QList<Project*>();
 }
+
 
 AdminWindow::~AdminWindow()
 {
     delete ui;
 }
 
-// setter
+
+// setup the admin window with some info
 void AdminWindow::setAdmin(Admin* s)
 {
     user = s;
@@ -36,26 +37,22 @@ void AdminWindow::setAdmin(Admin* s)
 }
 
 
-/********************
- * TBD: this crashes from all triggers other than class constructor
- * *****************/
+// refreshes the list of projects
 void AdminWindow::refresh(){
 
     // clear list of projects
     ui->projectsBox->clear();
-    foreach(Project* p, projectsOwned){
-        delete p;
+    int num = projectsOwned.size();
+    for (int i =0; i < num; i++) {
+        delete(projectsOwned.takeAt(0));
     }
-    projectsOwned.empty();
 
     // add projects
     Storage::getDB().getProjects(*user, projectsOwned);
     foreach(Project* p, projectsOwned){
         ui->projectsBox->addItem(p->getProjectID());
     }
-ui->title->setText("test");
 }
-
 
 
 //create a new project
@@ -67,32 +64,31 @@ void AdminWindow::on_pushButton_clicked(){
     pWin->show();
 }
 
-//cancel
-void AdminWindow::on_pushButton_4_clicked()
-{
-    delete this;
-}
 
 //edit project
 void AdminWindow::on_pushButton_2_clicked()
 {
+    // no projects to edit
     if(ui->projectsBox->currentText() == ""){
         ui->title->setText("No project selected");
         return;
     }
 
+    // create a project object and put the project in it from the QList
     Project* projectBeingEdited = 0;
     foreach(Project* p, projectsOwned){
-        if(p->getPDescription() == ui->projectsBox->currentText()){
+        if(p->getProjectID() == ui->projectsBox->currentText()){
             projectBeingEdited = p;
         }
     }
 
+    // no project found (probaly error then)
     if(projectBeingEdited == 0){
         ui->title->setText("Unable to find project");
         return;
     }
 
+    // open edit project window
     ProjectWindow *pWin = new ProjectWindow();
     pWin->setParentWindow(this);
     pWin->setOwner(user);
@@ -101,7 +97,3 @@ void AdminWindow::on_pushButton_2_clicked()
     pWin->show();
 }
 
-void AdminWindow::on_pushButton_5_clicked()
-{
-   //refresh();
-}
