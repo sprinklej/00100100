@@ -94,8 +94,8 @@ void StudentWindow::on_pushButton_joinProject_clicked()
 // set the student info
 void StudentWindow::setUser(){
 
-    ui->lineEdit->setText(user->getFirstName());
-    ui->lineEdit_2->setText(user->getLastName());
+    //ui->lineEdit->setText(user->getFirstName());
+    //ui->lineEdit_2->setText(user->getLastName());
 
     allProjects = QList<Project*>();
     joinedProjects = QList<Project*>();
@@ -103,22 +103,23 @@ void StudentWindow::setUser(){
 }
 
 
-//cancel button clicked
-void StudentWindow::on_pushButton_5_clicked()
-{
-    this->~StudentWindow();
-}
-
-
 //manage qualifications clicked
 void StudentWindow::on_pushButton_manQual_clicked()
 {
-    QString fn = ui->lineEdit->text();
-    QString ln = ui->lineEdit_2->text();
+    // create qual window
+    QualificationWindow* qualWin = new QualificationWindow();
+    qualWin->setStudent(user);
+    qualWin->setupdate(true);
+    qualWin->setStudWind(this);
+    // opens new window and disables current window
+    qualWin->setModal(true);
+    qualWin->exec();
 
-    qDebug() << user->getFirstName();
+    //QString fn = ui->lineEdit->text();
+    //QString ln = ui->lineEdit_2->text();
+    //qDebug() << user->getFirstName();
 
-
+/*
     if(fn != "" && ln != ""){
         user->setFirstName(fn);
         user->setLastName(ln);
@@ -134,7 +135,7 @@ void StudentWindow::on_pushButton_manQual_clicked()
     } else {
         ui->status->setText("Cannot set names to blank.");
     }
-
+*/
 }
 
 
@@ -247,7 +248,7 @@ QString StudentWindow::agreeString(int num)
     return text;
 }
 
-
+/*
 //save button clicked
 void StudentWindow::on_pushButton_clicked()
 {
@@ -311,6 +312,13 @@ void StudentWindow::on_pushButton_clicked()
         ui->status->setText("Cannot set names to blank.");
     }
 }
+*/
 
+/*
+//cancel button clicked
+void StudentWindow::on_pushButton_5_clicked()
+{
+    this->~StudentWindow();
+}
 
-
+*/

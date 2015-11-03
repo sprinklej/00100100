@@ -22,19 +22,6 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QCheckBox" name="checkBox">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>10</y>
-     <width>111</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Check if yes</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
@@ -1124,8 +1111,8 @@
   <widget class="QRadioButton" name="rbcri_2">
    <property name="geometry">
     <rect>
-     <x>790</x>
-     <y>580</y>
+     <x>800</x>
+     <y>570</y>
      <width>91</width>
      <height>22</height>
     </rect>
@@ -1211,19 +1198,6 @@
     <string notr="true">buttonGroup_14</string>
    </attribute>
   </widget>
-  <widget class="QLabel" name="label_19">
-   <property name="geometry">
-    <rect>
-     <x>560</x>
-     <y>60</y>
-     <width>531</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Do you consider yourself to have good verbal presentation skills?</string>
-   </property>
-  </widget>
   <widget class="QRadioButton" name="rbtest_1">
    <property name="geometry">
     <rect>
@@ -1243,8 +1217,8 @@
   <widget class="QRadioButton" name="rbcri_1">
    <property name="geometry">
     <rect>
-     <x>700</x>
-     <y>580</y>
+     <x>710</x>
+     <y>570</y>
      <width>91</width>
      <height>22</height>
     </rect>
@@ -1323,8 +1297,8 @@
   <widget class="QRadioButton" name="rbcri_4">
    <property name="geometry">
     <rect>
-     <x>940</x>
-     <y>580</y>
+     <x>950</x>
+     <y>570</y>
      <width>131</width>
      <height>22</height>
     </rect>
@@ -1612,8 +1586,8 @@
   <widget class="QRadioButton" name="rbcri_3">
    <property name="geometry">
     <rect>
-     <x>870</x>
-     <y>580</y>
+     <x>880</x>
+     <y>570</y>
      <width>91</width>
      <height>22</height>
     </rect>
@@ -1756,9 +1730,9 @@
   <widget class="QLabel" name="label_27">
    <property name="geometry">
     <rect>
-     <x>550</x>
-     <y>560</y>
-     <width>531</width>
+     <x>560</x>
+     <y>550</y>
+     <width>481</width>
      <height>17</height>
     </rect>
    </property>
@@ -1897,8 +1871,8 @@
   <widget class="QRadioButton" name="rbcri_0">
    <property name="geometry">
     <rect>
-     <x>550</x>
-     <y>580</y>
+     <x>560</x>
+     <y>570</y>
      <width>151</width>
      <height>22</height>
     </rect>
@@ -2115,7 +2089,7 @@
   <widget class="QRadioButton" name="rbui_2">
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>250</x>
      <y>610</y>
      <width>91</width>
      <height>22</height>
@@ -2131,7 +2105,7 @@
   <widget class="QRadioButton" name="rbwg_1">
    <property name="geometry">
     <rect>
-     <x>170</x>
+     <x>160</x>
      <y>560</y>
      <width>91</width>
      <height>22</height>
@@ -2144,26 +2118,10 @@
     <string notr="true">buttonGroup_19</string>
    </attribute>
   </widget>
-  <widget class="QRadioButton" name="rbrg_3">
-   <property name="geometry">
-    <rect>
-     <x>340</x>
-     <y>560</y>
-     <width>91</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Agree</string>
-   </property>
-   <attribute name="buttonGroup">
-    <string notr="true">buttonGroup_19</string>
-   </attribute>
-  </widget>
   <widget class="QRadioButton" name="rbwg_2">
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>250</x>
      <y>560</y>
      <width>91</width>
      <height>22</height>
@@ -2176,23 +2134,10 @@
     <string notr="true">buttonGroup_19</string>
    </attribute>
   </widget>
-  <widget class="QLabel" name="label_20">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>540</y>
-     <width>531</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Do you consider yourself to have good technical writing and grammar skills?</string>
-   </property>
-  </widget>
   <widget class="QRadioButton" name="rbui_0">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>610</y>
      <width>151</width>
      <height>22</height>
@@ -2208,7 +2153,7 @@
   <widget class="QLabel" name="label_23">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>590</y>
      <width>531</width>
      <height>17</height>
@@ -2237,7 +2182,7 @@
   <widget class="QRadioButton" name="rbwg_4">
    <property name="geometry">
     <rect>
-     <x>410</x>
+     <x>420</x>
      <y>560</y>
      <width>131</width>
      <height>22</height>
@@ -2253,7 +2198,7 @@
   <widget class="QRadioButton" name="rbui_1">
    <property name="geometry">
     <rect>
-     <x>170</x>
+     <x>160</x>
      <y>610</y>
      <width>91</width>
      <height>22</height>
@@ -2269,7 +2214,7 @@
   <widget class="QRadioButton" name="rbwg_0">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>10</x>
      <y>560</y>
      <width>151</width>
      <height>22</height>
@@ -2302,58 +2247,29 @@
    <property name="geometry">
     <rect>
      <x>1080</x>
-     <y>0</y>
+     <y>10</y>
      <width>211</width>
      <height>17</height>
     </rect>
    </property>
    <property name="text">
-    <string>Priority partner qualifications:</string>
+    <string>Priority Partner qualifications</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_31">
    <property name="geometry">
     <rect>
      <x>1080</x>
-     <y>20</y>
+     <y>30</y>
      <width>171</width>
      <height>17</height>
     </rect>
    </property>
    <property name="text">
-    <string>(assign up to 15 points)</string>
+    <string>(assign up to 40 points)</string>
    </property>
   </widget>
   <widget class="QSlider" name="sli2404">
-   <property name="geometry">
-    <rect>
-     <x>1080</x>
-     <y>30</y>
-     <width>71</width>
-     <height>29</height>
-    </rect>
-   </property>
-   <property name="maximum">
-    <number>4</number>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_32">
-   <property name="geometry">
-    <rect>
-     <x>1160</x>
-     <y>40</y>
-     <width>111</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>2404  Grade</string>
-   </property>
-  </widget>
-  <widget class="QSlider" name="slicpp">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2369,7 +2285,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="label_33">
+  <widget class="QLabel" name="label_32">
    <property name="geometry">
     <rect>
      <x>1160</x>
@@ -2379,10 +2295,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>C++ Skill</string>
+    <string>2404  Grade</string>
    </property>
   </widget>
-  <widget class="QSlider" name="sli3005">
+  <widget class="QSlider" name="slicpp">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2398,7 +2314,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLabel" name="label_34">
+  <widget class="QLabel" name="label_33">
    <property name="geometry">
     <rect>
      <x>1160</x>
@@ -2408,10 +2324,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>3005 Grade</string>
+    <string>C++ Skill</string>
    </property>
   </widget>
-  <widget class="QSlider" name="slidb">
+  <widget class="QSlider" name="sli3005">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2427,7 +2343,20 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="slisd">
+  <widget class="QLabel" name="label_34">
+   <property name="geometry">
+    <rect>
+     <x>1160</x>
+     <y>130</y>
+     <width>111</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>3005 Grade</string>
+   </property>
+  </widget>
+  <widget class="QSlider" name="slidb">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2443,7 +2372,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="slitw">
+  <widget class="QSlider" name="slisd">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2459,7 +2388,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="sliui">
+  <widget class="QSlider" name="slitw">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2475,7 +2404,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="slialg">
+  <widget class="QSlider" name="sliui">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2491,7 +2420,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="slipres">
+  <widget class="QSlider" name="slialg">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2507,7 +2436,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="slitw_2">
+  <widget class="QSlider" name="slipres">
    <property name="geometry">
     <rect>
      <x>1080</x>
@@ -2523,11 +2452,27 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
+  <widget class="QSlider" name="slitw_2">
+   <property name="geometry">
+    <rect>
+     <x>1080</x>
+     <y>330</y>
+     <width>71</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <number>4</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
   <widget class="QSlider" name="slixp">
    <property name="geometry">
     <rect>
      <x>1080</x>
-     <y>340</y>
+     <y>360</y>
      <width>71</width>
      <height>29</height>
     </rect>
@@ -2543,7 +2488,7 @@
    <property name="geometry">
     <rect>
      <x>1080</x>
-     <y>370</y>
+     <y>390</y>
      <width>71</width>
      <height>29</height>
     </rect>
@@ -2559,7 +2504,7 @@
    <property name="geometry">
     <rect>
      <x>1080</x>
-     <y>400</y>
+     <y>420</y>
      <width>71</width>
      <height>29</height>
     </rect>
@@ -2575,7 +2520,7 @@
    <property name="geometry">
     <rect>
      <x>1080</x>
-     <y>430</y>
+     <y>450</y>
      <width>71</width>
      <height>29</height>
     </rect>
@@ -2591,7 +2536,7 @@
    <property name="geometry">
     <rect>
      <x>1080</x>
-     <y>470</y>
+     <y>480</y>
      <width>71</width>
      <height>29</height>
     </rect>
@@ -2607,7 +2552,7 @@
    <property name="geometry">
     <rect>
      <x>1080</x>
-     <y>500</y>
+     <y>510</y>
      <width>71</width>
      <height>29</height>
     </rect>
@@ -2639,7 +2584,7 @@
    <property name="geometry">
     <rect>
      <x>1160</x>
-     <y>130</y>
+     <y>160</y>
      <width>111</width>
      <height>17</height>
     </rect>
@@ -2652,7 +2597,7 @@
    <property name="geometry">
     <rect>
      <x>1160</x>
-     <y>160</y>
+     <y>190</y>
      <width>111</width>
      <height>17</height>
     </rect>
@@ -2665,9 +2610,9 @@
    <property name="geometry">
     <rect>
      <x>1160</x>
-     <y>190</y>
+     <y>216</y>
      <width>111</width>
-     <height>17</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
@@ -2678,9 +2623,9 @@
    <property name="geometry">
     <rect>
      <x>1160</x>
-     <y>220</y>
+     <y>246</y>
      <width>111</width>
-     <height>17</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
@@ -2691,7 +2636,7 @@
    <property name="geometry">
     <rect>
      <x>1160</x>
-     <y>250</y>
+     <y>280</y>
      <width>121</width>
      <height>17</height>
     </rect>
@@ -2704,7 +2649,7 @@
    <property name="geometry">
     <rect>
      <x>1160</x>
-     <y>280</y>
+     <y>310</y>
      <width>111</width>
      <height>17</height>
     </rect>
@@ -2717,9 +2662,9 @@
    <property name="geometry">
     <rect>
      <x>1160</x>
-     <y>300</y>
+     <y>336</y>
      <width>111</width>
-     <height>17</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
@@ -2730,7 +2675,7 @@
    <property name="geometry">
     <rect>
      <x>1160</x>
-     <y>340</y>
+     <y>360</y>
      <width>111</width>
      <height>17</height>
     </rect>
@@ -2743,7 +2688,7 @@
    <property name="geometry">
     <rect>
      <x>1160</x>
-     <y>370</y>
+     <y>390</y>
      <width>111</width>
      <height>17</height>
     </rect>
@@ -2756,7 +2701,7 @@
    <property name="geometry">
     <rect>
      <x>1160</x>
-     <y>400</y>
+     <y>420</y>
      <width>111</width>
      <height>17</height>
     </rect>
@@ -2769,7 +2714,7 @@
    <property name="geometry">
     <rect>
      <x>1160</x>
-     <y>430</y>
+     <y>450</y>
      <width>111</width>
      <height>17</height>
     </rect>
@@ -2782,7 +2727,7 @@
    <property name="geometry">
     <rect>
      <x>1160</x>
-     <y>470</y>
+     <y>480</y>
      <width>111</width>
      <height>17</height>
     </rect>
@@ -2795,7 +2740,7 @@
    <property name="geometry">
     <rect>
      <x>1160</x>
-     <y>500</y>
+     <y>510</y>
      <width>111</width>
      <height>17</height>
     </rect>
@@ -2872,7 +2817,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Open to Cricicism</string>
+    <string>Open to crit.</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_cancel">
@@ -2901,23 +2846,307 @@
     <string>OK</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="label_51">
+   <property name="geometry">
+    <rect>
+     <x>1080</x>
+     <y>620</y>
+     <width>81</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>1  -  3   -   5</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_52">
+   <property name="geometry">
+    <rect>
+     <x>1080</x>
+     <y>50</y>
+     <width>81</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>1  -  3   -   5</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>241</width>
+     <width>346</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>Do you want to be a team leader?</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="checkBox">
+      <property name="text">
+       <string>Check if yes</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label_19">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>60</y>
+     <width>531</width>
      <height>17</height>
     </rect>
    </property>
    <property name="text">
-    <string>Do you want to be a team leader?</string>
+    <string>Do you consider yourself to have good verbal presentation skills?</string>
    </property>
   </widget>
+  <widget class="QRadioButton" name="rbrg_3">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>560</y>
+     <width>91</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Agree</string>
+   </property>
+   <attribute name="buttonGroup">
+    <string notr="true">buttonGroup_19</string>
+   </attribute>
+  </widget>
+  <widget class="QLabel" name="label_20">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>540</y>
+     <width>531</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Do you consider yourself to have good technical writing and grammar skills?</string>
+   </property>
+  </widget>
+  <zorder>checkBox</zorder>
+  <zorder>label_2</zorder>
+  <zorder>label_3</zorder>
+  <zorder>label_4</zorder>
+  <zorder>label_5</zorder>
+  <zorder>label_6</zorder>
+  <zorder>label_7</zorder>
+  <zorder>label_8</zorder>
+  <zorder>label_9</zorder>
+  <zorder>checkBox_2</zorder>
+  <zorder>checkBox_3</zorder>
+  <zorder>checkBox_4</zorder>
+  <zorder>checkBox_5</zorder>
+  <zorder>checkBox_6</zorder>
+  <zorder>checkBox_7</zorder>
+  <zorder>checkBox_8</zorder>
+  <zorder>checkBox_9</zorder>
+  <zorder>checkBox_10</zorder>
+  <zorder>checkBox_11</zorder>
+  <zorder>checkBox_12</zorder>
+  <zorder>checkBox_13</zorder>
+  <zorder>checkBox_14</zorder>
+  <zorder>checkBox_15</zorder>
+  <zorder>checkBox_16</zorder>
+  <zorder>checkBox_17</zorder>
+  <zorder>checkBox_18</zorder>
+  <zorder>checkBox_19</zorder>
+  <zorder>checkBox_20</zorder>
+  <zorder>checkBox_21</zorder>
+  <zorder>checkBox_22</zorder>
+  <zorder>label_10</zorder>
+  <zorder>rb2404_0</zorder>
+  <zorder>rb2404_1</zorder>
+  <zorder>rb2404_2</zorder>
+  <zorder>rb2404_3</zorder>
+  <zorder>rb2404_4</zorder>
+  <zorder>label_11</zorder>
+  <zorder>rbcoding_0</zorder>
+  <zorder>rbcoding_1</zorder>
+  <zorder>rbcoding_2</zorder>
+  <zorder>rbcoding_3</zorder>
+  <zorder>rbcoding_4</zorder>
+  <zorder>rb3005_1</zorder>
+  <zorder>rb3005_3</zorder>
+  <zorder>label_12</zorder>
+  <zorder>rb3005_4</zorder>
+  <zorder>rb3005_2</zorder>
+  <zorder>rb3005_0</zorder>
+  <zorder>rbdbase_4</zorder>
+  <zorder>rbdbase_0</zorder>
+  <zorder>label_13</zorder>
+  <zorder>rbdbase_3</zorder>
+  <zorder>rbdbase_1</zorder>
+  <zorder>rbdbase_2</zorder>
+  <zorder>rbwriting_4</zorder>
+  <zorder>rbwriting_0</zorder>
+  <zorder>label_14</zorder>
+  <zorder>rbwriting_3</zorder>
+  <zorder>rbwriting_1</zorder>
+  <zorder>rbwriting_2</zorder>
+  <zorder>label_15</zorder>
+  <zorder>rbsd_0</zorder>
+  <zorder>rbsd_1</zorder>
+  <zorder>rbsd_2</zorder>
+  <zorder>rbsd_3</zorder>
+  <zorder>rbsd_4</zorder>
+  <zorder>line</zorder>
+  <zorder>line_2</zorder>
+  <zorder>rbreq_0</zorder>
+  <zorder>rbcomm_0</zorder>
+  <zorder>rbreq_2</zorder>
+  <zorder>label_16</zorder>
+  <zorder>rbpres_4</zorder>
+  <zorder>rbuml_1</zorder>
+  <zorder>rbpres_1</zorder>
+  <zorder>rbcre_4</zorder>
+  <zorder>rbcri_2</zorder>
+  <zorder>label_17</zorder>
+  <zorder>rbcomm_1</zorder>
+  <zorder>rbalg_3</zorder>
+  <zorder>label_18</zorder>
+  <zorder>rbteam_4</zorder>
+  <zorder>label_19</zorder>
+  <zorder>rbtest_1</zorder>
+  <zorder>rbcri_1</zorder>
+  <zorder>rbalg_1</zorder>
+  <zorder>rbuml_4</zorder>
+  <zorder>rbtest_4</zorder>
+  <zorder>rbteam_2</zorder>
+  <zorder>rbcri_4</zorder>
+  <zorder>rbrel_3</zorder>
+  <zorder>rbxp_0</zorder>
+  <zorder>label_21</zorder>
+  <zorder>label_22</zorder>
+  <zorder>rbres_0</zorder>
+  <zorder>rbpres_2</zorder>
+  <zorder>rbalg_0</zorder>
+  <zorder>rbtest_0</zorder>
+  <zorder>rbxp_1</zorder>
+  <zorder>rbuml_2</zorder>
+  <zorder>rbalg_2</zorder>
+  <zorder>rbtest_2</zorder>
+  <zorder>rbreq_1</zorder>
+  <zorder>label_24</zorder>
+  <zorder>label_25</zorder>
+  <zorder>rbres_2</zorder>
+  <zorder>rbres_4</zorder>
+  <zorder>label_26</zorder>
+  <zorder>rbcri_3</zorder>
+  <zorder>rbpres_3</zorder>
+  <zorder>rbpres_0</zorder>
+  <zorder>rbcre_2</zorder>
+  <zorder>rbteam_3</zorder>
+  <zorder>rbcomm_2</zorder>
+  <zorder>rbreq_3</zorder>
+  <zorder>rbteam_0</zorder>
+  <zorder>rbreq_4</zorder>
+  <zorder>label_27</zorder>
+  <zorder>rbteam_1</zorder>
+  <zorder>rbcre_0</zorder>
+  <zorder>rbuml_3</zorder>
+  <zorder>rbrel_2</zorder>
+  <zorder>rbuml_0</zorder>
+  <zorder>rbres_1</zorder>
+  <zorder>rbcre_3</zorder>
+  <zorder>rbcomm_3</zorder>
+  <zorder>rbcri_0</zorder>
+  <zorder>label_28</zorder>
+  <zorder>rbxp_2</zorder>
+  <zorder>rbrel_4</zorder>
+  <zorder>rbalg_4</zorder>
+  <zorder>rbcre_1</zorder>
+  <zorder>rbtest_3</zorder>
+  <zorder>rbrel_1</zorder>
+  <zorder>rbrel_0</zorder>
+  <zorder>rbxp_4</zorder>
+  <zorder>rbxp_3</zorder>
+  <zorder>rbcomm_4</zorder>
+  <zorder>label_29</zorder>
+  <zorder>rbres_3</zorder>
+  <zorder>rbui_2</zorder>
+  <zorder>rbwg_1</zorder>
+  <zorder>rbrg_3</zorder>
+  <zorder>rbwg_2</zorder>
+  <zorder>label_20</zorder>
+  <zorder>rbui_0</zorder>
+  <zorder>label_23</zorder>
+  <zorder>rbui_3</zorder>
+  <zorder>rbwg_4</zorder>
+  <zorder>rbui_1</zorder>
+  <zorder>rbwg_0</zorder>
+  <zorder>rbui_4</zorder>
+  <zorder>label_30</zorder>
+  <zorder>label_31</zorder>
+  <zorder>sli2404</zorder>
+  <zorder>label_32</zorder>
+  <zorder>slicpp</zorder>
+  <zorder>label_33</zorder>
+  <zorder>sli3005</zorder>
+  <zorder>label_34</zorder>
+  <zorder>slidb</zorder>
+  <zorder>slisd</zorder>
+  <zorder>slitw</zorder>
+  <zorder>sliui</zorder>
+  <zorder>slialg</zorder>
+  <zorder>slipres</zorder>
+  <zorder>slitw_2</zorder>
+  <zorder>slixp</zorder>
+  <zorder>slitest</zorder>
+  <zorder>sliuml</zorder>
+  <zorder>slireq</zorder>
+  <zorder>slirel</zorder>
+  <zorder>slicomm</zorder>
+  <zorder>sliresp</zorder>
+  <zorder>label_35</zorder>
+  <zorder>label_36</zorder>
+  <zorder>label_37</zorder>
+  <zorder>label_38</zorder>
+  <zorder>label_39</zorder>
+  <zorder>label_40</zorder>
+  <zorder>label_41</zorder>
+  <zorder>label_42</zorder>
+  <zorder>label_43</zorder>
+  <zorder>label_44</zorder>
+  <zorder>label_45</zorder>
+  <zorder>label_46</zorder>
+  <zorder>label_47</zorder>
+  <zorder>slicre</zorder>
+  <zorder>slicri</zorder>
+  <zorder>label_48</zorder>
+  <zorder>label_49</zorder>
+  <zorder>label_50</zorder>
+  <zorder>pushButton_cancel</zorder>
+  <zorder>pushButton_ok</zorder>
+  <zorder>label</zorder>
+  <zorder>rbrg_3</zorder>
+  <zorder>label_20</zorder>
+  <zorder>label_19</zorder>
+  <zorder>label_51</zorder>
+  <zorder>label_52</zorder>
  </widget>
  <resources/>
  <connections/>
  <buttongroups>
+  <buttongroup name="buttonGroup_10"/>
+  <buttongroup name="buttonGroup_11"/>
+  <buttongroup name="buttonGroup_12"/>
   <buttongroup name="buttonGroup_13"/>
   <buttongroup name="buttonGroup_14"/>
   <buttongroup name="buttonGroup_15"/>
@@ -2925,18 +3154,15 @@
   <buttongroup name="buttonGroup_17"/>
   <buttongroup name="buttonGroup_18"/>
   <buttongroup name="buttonGroup_19"/>
+  <buttongroup name="buttonGroup"/>
   <buttongroup name="buttonGroup_2"/>
   <buttongroup name="buttonGroup_3"/>
   <buttongroup name="buttonGroup_4"/>
   <buttongroup name="buttonGroup_5"/>
   <buttongroup name="buttonGroup_6"/>
-  <buttongroup name="buttonGroup"/>
   <buttongroup name="buttonGroup_7"/>
   <buttongroup name="buttonGroup_8"/>
   <buttongroup name="buttonGroup_9"/>
   <buttongroup name="buttonGroup_20"/>
-  <buttongroup name="buttonGroup_10"/>
-  <buttongroup name="buttonGroup_11"/>
-  <buttongroup name="buttonGroup_12"/>
  </buttongroups>
 </ui>

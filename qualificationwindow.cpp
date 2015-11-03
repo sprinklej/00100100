@@ -11,6 +11,11 @@ QualificationWindow::QualificationWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     update = false;
+
+    setTotalSliderVal(0);
+    SV2404 = SVcplusplus = SV3005 = SVDBDesign = SVSelfDir = SVTechWrite = SVUIDeign = SVAlgDesign = 0;
+    SVPresSkill = SVTeamwork = SVExper = SVSWTest = SVUML = SVReqAn = SVReliable = SVComm = 0;
+    SVRespect = SVCreative = SVCrit = 0;
 }
 
 QualificationWindow::~QualificationWindow()
@@ -282,3 +287,170 @@ void QualificationWindow::on_pushButton_cancel_clicked()
     this->~QualificationWindow();
 }
 
+int QualificationWindow::getTotalSliderVal()
+{
+    return totalSliderVal;
+}
+
+void QualificationWindow::setTotalSliderVal(int val)
+{
+    totalSliderVal = val;
+}
+
+
+void QualificationWindow::trackSlidersTotalVal(int incomingVal, QSlider * curSlider)
+{
+    QSlider * slider = curSlider;
+    int totalAllowedVal = 40;
+    int totalVal = getTotalSliderVal();
+
+    totalVal += incomingVal;
+//qDebug() << "incomingval = " << incomingVal;
+//qDebug() << "totalval = " << totalVal;
+
+    if (totalVal > totalAllowedVal) {
+        int dif = totalVal - totalAllowedVal;
+//qDebug() << (dif);
+        slider->setSliderPosition(slider->sliderPosition() - dif);
+        totalVal -= dif;
+
+
+    }
+
+    setTotalSliderVal(totalVal);
+}
+
+//----- Sliders-----
+void QualificationWindow::on_sli2404_valueChanged(int value)
+{
+    int dif = value - SV2404;
+    SV2404 = value;
+    trackSlidersTotalVal(dif, ui->sli2404);
+}
+
+
+void QualificationWindow::on_slicpp_valueChanged(int value)
+{
+    int dif = value - SVcplusplus;
+    SVcplusplus = value;
+    trackSlidersTotalVal(dif, ui->slicpp);
+}
+
+void QualificationWindow::on_sli3005_valueChanged(int value)
+{
+    int dif = value - SV3005;
+    SV3005 = value;
+    trackSlidersTotalVal(dif, ui->sli3005);
+}
+
+void QualificationWindow::on_slidb_valueChanged(int value)
+{
+    int dif = value - SVDBDesign;
+    SVDBDesign = value;
+    trackSlidersTotalVal(dif, ui->slidb);
+}
+
+void QualificationWindow::on_slisd_valueChanged(int value)
+{
+    int dif = value - SVSelfDir;
+    SVSelfDir = value;
+    trackSlidersTotalVal(dif, ui->slisd);
+}
+
+void QualificationWindow::on_slitw_valueChanged(int value)
+{
+    int dif = value - SVTechWrite;
+    SVTechWrite = value;
+    trackSlidersTotalVal(dif, ui->slitw);
+}
+
+void QualificationWindow::on_sliui_valueChanged(int value)
+{
+    int dif = value - SVUIDeign;
+    SVUIDeign = value;
+    trackSlidersTotalVal(dif, ui->sliui);
+}
+
+void QualificationWindow::on_slialg_valueChanged(int value)
+{
+    int dif = value - SVAlgDesign;
+    SVAlgDesign = value;
+    trackSlidersTotalVal(dif, ui->slialg);
+}
+
+void QualificationWindow::on_slipres_valueChanged(int value)
+{
+    int dif = value - SVPresSkill;
+    SVPresSkill = value;
+    trackSlidersTotalVal(dif, ui->slipres);
+}
+
+void QualificationWindow::on_slitw_2_valueChanged(int value)
+{
+    int dif = value - SVTeamwork;
+    SVTeamwork = value;
+    trackSlidersTotalVal(dif, ui->slitw_2);
+}
+
+void QualificationWindow::on_slixp_valueChanged(int value)
+{
+    int dif = value - SVExper;
+    SVExper = value;
+    trackSlidersTotalVal(dif, ui->slixp);
+}
+
+void QualificationWindow::on_slitest_valueChanged(int value)
+{
+    int dif = value - SVSWTest;
+    SVSWTest = value;
+    trackSlidersTotalVal(dif, ui->slitest);
+}
+
+void QualificationWindow::on_sliuml_valueChanged(int value)
+{
+    int dif = value - SVUML;
+    SVUML = value;
+    trackSlidersTotalVal(dif, ui->sliuml);
+}
+
+void QualificationWindow::on_slireq_valueChanged(int value)
+{
+    int dif = value - SVReqAn;
+    SVReqAn = value;
+    trackSlidersTotalVal(dif, ui->slireq);
+}
+
+void QualificationWindow::on_slirel_valueChanged(int value)
+{
+    int dif = value - SVReliable;
+    SVReliable = value;
+    trackSlidersTotalVal(dif, ui->slirel);
+}
+
+void QualificationWindow::on_slicomm_valueChanged(int value)
+{
+    int dif = value - SVComm;
+    SVComm = value;
+    trackSlidersTotalVal(dif, ui->slicomm);
+}
+
+void QualificationWindow::on_sliresp_valueChanged(int value)
+{
+    int dif = value - SVRespect;
+    SVRespect = value;
+    trackSlidersTotalVal(dif, ui->sliresp);
+}
+
+void QualificationWindow::on_slicre_valueChanged(int value)
+{
+    int dif = value - SVCreative;
+    SVCreative = value;
+    trackSlidersTotalVal(dif, ui->slicre);
+}
+
+void QualificationWindow::on_slicri_valueChanged(int value)
+{
+    int dif = value - SVCrit;
+    SVCrit = value;
+    trackSlidersTotalVal(dif, ui->slicri);
+}
