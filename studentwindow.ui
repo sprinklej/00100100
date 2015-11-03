@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Tab_Profile">
      <attribute name="title">
@@ -128,29 +128,156 @@
        <string/>
       </property>
      </widget>
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>80</y>
+        <width>761</width>
+        <height>331</height>
+       </rect>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>759</width>
+         <height>329</height>
+        </rect>
+       </property>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>91</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>First Name</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>91</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Last Name</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_5">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>50</y>
+          <width>91</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>2404 Grade</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_6">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>70</y>
+          <width>91</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>3005 Grade</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_7">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>90</y>
+          <width>121</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>C++ Experience</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_8">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>110</y>
+          <width>121</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Database Design</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_9">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>130</y>
+          <width>121</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Technical Writing</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_10">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>150</y>
+          <width>121</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Self Directed</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_11">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>170</y>
+          <width>121</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Tech &amp; Grammar</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_Projects">
      <attribute name="title">
       <string>Projects</string>
      </attribute>
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="geometry">
-       <rect>
-        <x>680</x>
-        <y>410</y>
-        <width>99</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Quit</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="pushButton_joinProject">
       <property name="geometry">
        <rect>
         <x>370</x>
-        <y>70</y>
+        <y>180</y>
         <width>51</width>
         <height>41</height>
        </rect>
@@ -159,27 +286,41 @@
        <string>&gt;</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="text_allProj">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>10</y>
-        <width>111</width>
-        <height>17</height>
+        <x>60</x>
+        <y>20</y>
+        <width>131</width>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string>All Projects</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="text_joinedProj">
       <property name="geometry">
        <rect>
         <x>480</x>
-        <y>10</y>
-        <width>141</width>
-        <height>17</height>
+        <y>20</y>
+        <width>161</width>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>16</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
       </property>
       <property name="text">
        <string>Joined Projects</string>
@@ -189,9 +330,9 @@
       <property name="geometry">
        <rect>
         <x>50</x>
-        <y>30</y>
+        <y>50</y>
         <width>256</width>
-        <height>192</height>
+        <height>321</height>
        </rect>
       </property>
      </widget>
@@ -199,46 +340,30 @@
       <property name="geometry">
        <rect>
         <x>470</x>
-        <y>30</y>
+        <y>50</y>
         <width>256</width>
-        <height>192</height>
+        <height>321</height>
        </rect>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="cbAllProjects">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>240</y>
-        <width>201</width>
-        <height>27</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_4">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>280</y>
-        <width>99</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Join Project</string>
       </property>
      </widget>
      <widget class="QLabel" name="status2">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>340</y>
+        <x>50</x>
+        <y>416</y>
         <width>361</width>
-        <height>17</height>
+        <height>21</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
-       <string/>
+       <string>...</string>
       </property>
      </widget>
     </widget>

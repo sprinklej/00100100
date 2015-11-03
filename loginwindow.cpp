@@ -69,8 +69,10 @@ void LoginWindow::login(Student* st){
     this->hide();
     StudentWindow *studWin = new StudentWindow();
     //studWin->setUser(st);
-    studWin->setStudent(st);
     studWin->show();
+    studWin->setStudent(st);
+    studWin->setUser();
+    studWin->refresh();
 }
 
 void LoginWindow::on_pushButton_signup_clicked()

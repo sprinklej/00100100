@@ -372,7 +372,7 @@ void Storage::getProjects(Admin& ad, QList<Project*>& pl){
 void Storage::getRegisteredStudents(Project& pr, QList<Student*>& sl){
 
     QSqlQuery query;
-    query.prepare("SELECT * FROM projectsStudents JOIN users WHERE projectID = :pid");
+    query.prepare("SELECT * FROM projectsStudents JOIN users on projectsStudents.userID = users.id WHERE projectID = :pid");
     query.bindValue(":pid", pr.getProjectID());
     bool res = query.exec();
 

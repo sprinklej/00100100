@@ -22,9 +22,8 @@ StudentWindow::StudentWindow(QWidget *parent) :
                 )
             );
 
-    // setup the DB text
-    //this->refresh();
-   this->setUser();
+    // clear text
+    ui->status2->setText("");
 }
 
 
@@ -34,31 +33,19 @@ StudentWindow::~StudentWindow()
     delete ui;
 }
 
+
 // setter
 void StudentWindow::setStudent(Student* s)
 {
     user = s;
-    qDebug() << user;
+    //qDebug() << user;
 }
 
-//on profile tab
-//void StudentWindow::setUser(Student* s){
-void StudentWindow::setUser(){
 
-    //user = s;
-    qDebug() << user;
-    //ui->lineEdit->setText(user->getFirstName());
-    //ui->lineEdit_2->setText(user->getLastName());1
 
-    //allProjects = QList<Project*>();
-    //joinedProjects = QList<Project*>();
-
-    //this->refresh();
-}
-
+/* --------------------------- Project Tab ------------------------*/
 // refresh projects
 void StudentWindow::refresh(){
-    //user = s;
     Storage::getDB().getAllProjects(allProjects);
 
     foreach(Project* p, allProjects){
@@ -67,56 +54,35 @@ void StudentWindow::refresh(){
 
         // add to list of already joined projects
         foreach(Student* s, p->getStudentList()){
-                ui->status2->setText(user->getIDNum());
-        }
-    }
-
-    /*foreach(Project* p, allProjects){
-        ui->allProjlistWidget->addItem(p->getProjectID());
-        ui->cbAllProjects->addItem(p->getProjectID());
-        foreach(Student* s, p->getStudentList()){
             if(s->getIDNum() == user->getIDNum()){
                 joinedProjects.push_back(p);
                 ui->joinedProjlistWidget->addItem(p->getProjectID());
             }
         }
-    }*/
+    }
+
 }
 
-//join project -OLD***************************
-void StudentWindow::on_pushButton_4_clicked(){
-    if(ui->cbAllProjects->currentText() != ""){
-        foreach(Project* p, allProjects){
-            if(p->getProjectID() == ui->cbAllProjects->currentText()){
-                if(!joinedProjects.contains(p)){
-                    joinedProjects.push_back(p);
-                    ui->joinedProjlistWidget->addItem(p->getProjectID());
-                    Storage::getDB().joinProject(p, user);
-                } else{
-                    ui->status2->setText("You have already joined this project!");
-                }
-            }
-        }
-    }
-}
-//*******************************************
 
 //join project
 void StudentWindow::on_pushButton_joinProject_clicked()
 {
+    //clear any status text
+    ui->status2->setText("");
+
     // get project from list
-    QString project;
-    project =  ui->allProjlistWidget->currentItem()->text();
-    //ui->status2->setText(project);
+    QString currentProj;
+    currentProj =  ui->allProjlistWidget->currentItem()->text();
 
     // join project
     foreach(Project* p, allProjects){
-        if(p->getProjectID() == project){
+        if(p->getProjectID() == currentProj){
             if(!joinedProjects.contains(p)){
                 joinedProjects.push_back(p);
                 ui->joinedProjlistWidget->addItem(p->getProjectID());
                 Storage::getDB().joinProject(p, user);
-            } else{
+                ui->status2->setText("Project joined!");
+            } else {
                 ui->status2->setText("You have already joined this project!");
             }
         }
@@ -125,12 +91,25 @@ void StudentWindow::on_pushButton_joinProject_clicked()
 
 
 
+/* --------------------------- Profile Tab ------------------------*/
+// set the student info
+void StudentWindow::setUser(){
+
+    ui->lineEdit->setText(user->getFirstName());
+    ui->lineEdit_2->setText(user->getLastName());
+
+    allProjects = QList<Project*>();
+    joinedProjects = QList<Project*>();
+
+}
+
 
 //cancel button clicked
 void StudentWindow::on_pushButton_5_clicked()
 {
     this->~StudentWindow();
 }
+
 
 //manage qualifications clicked
 void StudentWindow::on_pushButton_6_clicked()
@@ -151,6 +130,7 @@ void StudentWindow::on_pushButton_6_clicked()
         ui->status->setText("Cannot set names to blank.");
     }
 }
+
 
 //save button clicked
 void StudentWindow::on_pushButton_clicked()
@@ -214,14 +194,6 @@ void StudentWindow::on_pushButton_clicked()
     } else{
         ui->status->setText("Cannot set names to blank.");
     }
-
-
-}
-
-
-void StudentWindow::on_pushButton_2_clicked()
-{
-    this->~StudentWindow();
 }
 
 
