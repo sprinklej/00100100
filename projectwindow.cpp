@@ -61,7 +61,6 @@ void ProjectWindow::on_saveButton_clicked()
          * TBD: check if the project title exists in the database
          * ******/
 
-
         if(edit){
             Storage::getDB().updateProject(project);
             delete project;
