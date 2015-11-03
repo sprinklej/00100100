@@ -146,7 +146,7 @@
        <string>Quit</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="pushButton_joinProject">
       <property name="geometry">
        <rect>
         <x>370</x>

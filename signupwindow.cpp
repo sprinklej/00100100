@@ -35,15 +35,13 @@ void SignupWindow::on_pushButton_ok_clicked()
     //validate userinput
 
     // add user info to database
-    if(ui->radioButton_student->isChecked()){
+    if(ui->radioButton_student->isChecked()){ // create student account
         Student* st = new Student(firstName, lastName, ID, 1);
         getQualifications(st);
 
-    } else if(ui->radioButton_admin->isChecked()) {
-        //Admin(firstName, lastName, ID, 1); // why extra argument?
+    } else if(ui->radioButton_admin->isChecked()) { // create admin account
         Admin* ad = new Admin(firstName, lastName, ID, 1);
         Storage::getDB().addUser(ad);
-        // create admin account
     }
 
     //if no errors close window

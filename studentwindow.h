@@ -20,8 +20,12 @@ class StudentWindow : public QMainWindow
 public:
     explicit StudentWindow(QWidget *parent = 0);
     ~StudentWindow();
-    void setUser(Student*);
+    //void setUser(Student*);
+    void setUser();
     void refresh();
+
+    // set student
+    void setStudent(Student*);
 
 private slots:
     void on_pushButton_5_clicked();
@@ -30,11 +34,13 @@ private slots:
 
     void on_pushButton_clicked();
 
-    void on_pushButton_3_clicked();
+ //   void on_pushButton_3_clicked();
 
     void on_pushButton_4_clicked();
 
     void on_pushButton_2_clicked();
+
+    void on_pushButton_joinProject_clicked();
 
 private:
     Ui::StudentWindow *ui;

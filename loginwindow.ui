@@ -47,7 +47,7 @@
    <property name="checkable">
     <bool>false</bool>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>11</x>
@@ -141,6 +141,8 @@
  <tabstops>
   <tabstop>lineEdit_username</tabstop>
   <tabstop>lineEdit_password</tabstop>
+  <tabstop>pushButton_login</tabstop>
+  <tabstop>pushButton_signup</tabstop>
  </tabstops>
  <resources/>
  <connections/>

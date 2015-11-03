@@ -19,12 +19,7 @@ public:
     // constructor/destructor
     User();
     ~User();
-    // setters
-
     QString toString();
-
-
-    // getters
 };
 
 
@@ -76,7 +71,7 @@ protected:
     int req_critic;
 
 public:
-    // constructor/destructor
+    // constructors/destructor
     Student(QString, QString, QString, int);
     Student(QString, QString, QString, bool, QString, int,
                      int, int, int,  int, int, int, int, int,
