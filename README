@@ -1,0 +1,29 @@
+##########################################################################
+cuPID - Carleton University Project Partner IDentifier
+
+Created By:
+	Darcy Bottomley
+	Ian Smith
+	Joel Sprinkle
+	Matthew Wong
+
+Tested with:
+	ubuntu 14.04 LTS
+	Qt Creator 3.0.1
+	Sqlite3
+##########################################################################
+
+
+Compile Instructions:
+-Open with Qt and build the project
+
+
+Usage Instructions:
+-Login as a student using, the students ID Number
+-Login as a admin using the admins email address
+
+Prefilled Users:
+Students:
+
+Admins:
+
