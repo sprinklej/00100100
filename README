@@ -31,12 +31,48 @@ Compile Instructions:
 
 
 Usage Instructions:
--Login as a student using, the students ID Number
--Login as a admin using the admins email address
+-Login as a student using, the students ID Number	e.g. 10054806
+	-students can view and manage there profiles
+	-as well as join projects
+-Login as a admin using the admins email address	e.g. claurend
+	-admins can create/edit projects
+	-FUTURE USE: generate teams for projects
 
 
-Prefilled Users:
-Students:
 
-Admins:
+Prefilled Students:
+First name	Last name	ID
+Abdullah	Al-Asiri	100542806
+Brooke		Bancroft	100541783
+Chenhua		Chan		100975552
+Debbie		Dixon		100162456
+Edward		Ellsworth	100757181
+Franziska	Fischer		100871364
+Giovanna	Guerra		100952703
+Henri		Hebert		100559224
+Ivan		Ilyushin	100060652
+Jinfei		Jiang		100406318
+Katya		Kasparov	100014874
+Lucius		Livius		100505284
+Mikhaila	Makarov		100311335
+Nikola		Novak		100389717
+Owen		OHiggins	100332223
+Patricia	Phillips	100279140
+Quintus		Quinticus	100983139
+Richard		Rowland		100393111
+Sigurd		Sigurdsson	100448343
+Therese		Thiessen	100300217
+Ulysses		Ulman		100238003
+Viktor		Von Essen	100172343
+Wilhelm		Wagner		100921724
+Xue		Xiao		100949648
+Yufei		Yang		100330341
+Zahir		Zaman		100946804
+
+Prefilled Admins:
+First name	Last name	ID
+Christine	Laurendeau	claurend
+Lou		Nel		ldnel
+Anil		Somayaji	soma
+Jason		Hinek		mjhinek
 
