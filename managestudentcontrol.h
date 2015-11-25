@@ -1,8 +1,9 @@
 #ifndef MANAGESTUDENTCONTROL_H
 #define MANAGESTUDENTCONTROL_H
 
-//struct StudentWindow;
+class StudentWindow;
 #include "studentwindow.h"
+
 using namespace std;
 
 class ManageStudentControl

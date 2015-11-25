@@ -9,6 +9,8 @@
 #include "Project.h"
 
 #include "managestudentcontrol.h"
+//class ManageStudentControl;
+
 
 namespace Ui {
 class StudentWindow;
