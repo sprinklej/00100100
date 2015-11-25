@@ -24,6 +24,11 @@ StudentWindow::StudentWindow(QWidget *parent) :
 
     // clear text
     ui->status2->setText("");
+
+    //ManageStudentControl* manStudCon = new ManageStudentControl();
+    //manStudCon->setStudWind(this);
+    //manStudControl = manStudCon;
+  //  manStudControl->setStudent(user);
 }
 
 
@@ -41,9 +46,28 @@ void StudentWindow::setStudent(Student* s)
     user = s;
 }
 
+void StudentWindow::setManStudContrl(ManageStudentControl* msc)
+{
+    manStudControl = msc;
+}
+
+
+/* --------------------------- change gui ------------------------*/
 void StudentWindow::setStatus2(QString string)
 {
     ui->status2->setText(string);
+    return;
+}
+
+void StudentWindow::setAllProjListWidget(QString string)
+{
+    ui->allProjlistWidget->addItem(string);
+    return;
+}
+
+void StudentWindow::setJoinedProjListWidget(QString string)
+{
+    ui->joinedProjlistWidget->addItem(string);
     return;
 }
 
@@ -51,52 +75,16 @@ void StudentWindow::setStatus2(QString string)
 /* --------------------------- Project Tab ------------------------*/
 // refresh projects
 void StudentWindow::refresh(){
-    Storage::getDB().getAllProjects(allProjects);
-
-    foreach(Project* p, allProjects){
-        // add to list of all projects
-        ui->allProjlistWidget->addItem(p->getProjectID());
-
-        // add to list of already joined projects
-        foreach(Student* s, p->getStudentList()){
-            if(s->getIDNum() == user->getIDNum()){
-                joinedProjects.push_back(p);
-                ui->joinedProjlistWidget->addItem(p->getProjectID());
-            }
-        }
-    }
-
+    manStudControl->refresh();
 }
 
 
 //join project
 void StudentWindow::on_pushButton_joinProject_clicked()
 {
-
-    //clear any status text
-    ui->status2->setText("");
-
-    // get project from list
-    QString currentProj;
-    currentProj =  ui->allProjlistWidget->currentItem()->text();
-
-    // join project
-    foreach(Project* p, allProjects){
-        if(p->getProjectID() == currentProj){
-            if(!joinedProjects.contains(p)){
-                joinedProjects.push_back(p);
-                ui->joinedProjlistWidget->addItem(p->getProjectID());
-                Storage::getDB().joinProject(p, user);
-                ui->status2->setText("Project joined!");
-            } else {
-                ui->status2->setText("You have already joined this project!");
-            }
-        }
+    if (ui->allProjlistWidget->currentItem() != NULL){ // if it is NULL then no item is selected yet
+        manStudControl->joinProject(ui->allProjlistWidget->currentItem()->text());
     }
-
-    ManageStudentControl* manStudCon = new ManageStudentControl();
-    manStudCon->setStudWind(this);
-    manStudCon->joinProject();
 }
 
 
@@ -104,9 +92,6 @@ void StudentWindow::on_pushButton_joinProject_clicked()
 /* --------------------------- Profile Tab ------------------------*/
 // set the student info
 void StudentWindow::setUser(){
-
-    //ui->lineEdit->setText(user->getFirstName());
-    //ui->lineEdit_2->setText(user->getLastName());
 
     allProjects = QList<Project*>();
     joinedProjects = QList<Project*>();

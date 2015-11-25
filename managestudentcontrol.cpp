@@ -8,22 +8,60 @@ ManageStudentControl::ManageStudentControl()
     studWin = NULL;
 }
 
+
+/* --------------------------- setters ------------------------*/
 void ManageStudentControl::setStudWind(StudentWindow* stWin)
 {
     studWin = stWin;
 }
 
-
-// Control for a student joining a project
-void ManageStudentControl::joinProject()
+void ManageStudentControl::setStudent(Student* s)
 {
-    qDebug() << "join project control!";
+    user = s;
+}
 
-    // do work here
+
+/* --------------------------- Project Tab ------------------------*/
+// refresh the list of projects/joined projects
+void ManageStudentControl::refresh()
+{
+    Storage::getDB().getAllProjects(allProjects);
+    foreach(Project* p, allProjects){
+        // add to list of all projects
+        studWin->setAllProjListWidget(p->getProjectID());
+
+        // add to list of already joined projects
+        foreach(Student* s, p->getStudentList()){
+            if(s->getIDNum() == user->getIDNum()){
+                joinedProjects.push_back(p);
+                studWin->setJoinedProjListWidget(p->getProjectID());
+            }
+        }
+    }
+
+}
 
 
-    // send update to studentWindow
-    QString st= "Manage Student Control - test";
+// join a project
+void ManageStudentControl::joinProject(QString currentProj)
+{
+    QString st= "";
+
+    //clear any status text
     studWin->setStatus2(st);
+
+    // join the project
+    foreach(Project* p, allProjects){
+        if(p->getProjectID() == currentProj){
+            if(!joinedProjects.contains(p)){
+                joinedProjects.push_back(p);
+                studWin->setJoinedProjListWidget(p->getProjectID());
+                Storage::getDB().joinProject(p, user);
+                studWin->setStatus2("Project joined!");
+            } else {
+                studWin->setStatus2("You have already joined this project!");
+            }
+        }
+    }
     return;
 }

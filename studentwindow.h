@@ -8,8 +8,9 @@
 #include "User.h"
 #include "Project.h"
 
+class ManageStudentControl;
 #include "managestudentcontrol.h"
-//class ManageStudentControl;
+
 
 
 namespace Ui {
@@ -33,9 +34,13 @@ public:
 
     // set student
     void setStudent(Student*);
+    void setManStudContrl(ManageStudentControl*);
 
-    // status at bottom of projects tab
-    void setStatus2(QString string);
+    // set statuses
+    void setStatus2(QString string); // status at bottom of projects tab
+    void setAllProjListWidget(QString string);
+    void setJoinedProjListWidget(QString string);
+
 
 private slots:
     //void on_pushButton_5_clicked();
@@ -51,6 +56,7 @@ private:
     Student* user;
     QList<Project*> allProjects;
     QList<Project*> joinedProjects;
+    ManageStudentControl *manStudControl;
 };
 
 #endif // STUDENTWINDOW_H
