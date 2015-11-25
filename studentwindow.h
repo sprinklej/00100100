@@ -8,6 +8,7 @@
 #include "User.h"
 #include "Project.h"
 
+#include "managestudentcontrol.h"
 
 namespace Ui {
 class StudentWindow;
@@ -30,6 +31,9 @@ public:
 
     // set student
     void setStudent(Student*);
+
+    // status at bottom of projects tab
+    void setStatus2(QString string);
 
 private slots:
     //void on_pushButton_5_clicked();

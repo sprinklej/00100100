@@ -34,12 +34,18 @@ StudentWindow::~StudentWindow()
 }
 
 
+
 // setter
 void StudentWindow::setStudent(Student* s)
 {
     user = s;
 }
 
+void StudentWindow::setStatus2(QString string)
+{
+    ui->status2->setText(string);
+    return;
+}
 
 
 /* --------------------------- Project Tab ------------------------*/
@@ -66,6 +72,7 @@ void StudentWindow::refresh(){
 //join project
 void StudentWindow::on_pushButton_joinProject_clicked()
 {
+
     //clear any status text
     ui->status2->setText("");
 
@@ -86,6 +93,10 @@ void StudentWindow::on_pushButton_joinProject_clicked()
             }
         }
     }
+
+    ManageStudentControl* manStudCon = new ManageStudentControl();
+    manStudCon->setStudWind(this);
+    manStudCon->joinProject();
 }
 
 
