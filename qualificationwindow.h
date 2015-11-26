@@ -17,14 +17,14 @@ class QualificationWindow : public QDialog
 public:
     explicit QualificationWindow(QWidget *parent = 0);
     ~QualificationWindow();
+    void trackSlidersTotalVal(int incomingVal, QSlider *);
+
+    //setters/getters
+    int getTotalSliderVal();
+    void setTotalSliderVal(int val);
     void setStudent(Student*);
     void setupdate(bool);
     void setStudWind(StudentWindow*);
-    void trackSlidersTotalVal(int incomingVal, QSlider *);
-
-    //setter/getter
-    int getTotalSliderVal();
-    void setTotalSliderVal(int val);
 
 private slots:
     //void on_buttonBox_clicked(QAbstractButton *button);
@@ -81,10 +81,5 @@ private:
     int SV2404, SVcplusplus, SV3005, SVDBDesign, SVSelfDir, SVTechWrite, SVUIDeign, SVAlgDesign;
     int SVPresSkill, SVTeamwork, SVExper, SVSWTest, SVUML, SVReqAn, SVReliable, SVComm;
     int SVRespect, SVCreative, SVCrit;
-
-
-    //void on_pushButton_ok_clicked();
-    //void on_pushButton_cancel_clicked();
-
 };
 #endif // QUALIFICATIONWINDOW_H

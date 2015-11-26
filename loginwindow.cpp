@@ -68,12 +68,10 @@ void LoginWindow::login(Student* st){
 
     manStudCon->setStudWind(studWin);
     manStudCon->setStudent(st);
+
+    studWin->setStudent(st);
+    studWin->showUserInfo();
     studWin->refresh();
-
-// studWin->setStudent(st);
-// studWin->setUser();
-// studWin->showUserInfo();
-
 }
 
 

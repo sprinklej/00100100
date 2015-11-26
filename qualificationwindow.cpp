@@ -24,7 +24,7 @@ QualificationWindow::~QualificationWindow()
     delete ui;
 }
 
-//setters
+//setters/getters
 void QualificationWindow::setStudent(Student* st){
     student = st;
 }
@@ -37,6 +37,17 @@ void QualificationWindow::setStudWind(StudentWindow* stWin)
 {
     studWin = stWin;
 }
+
+void QualificationWindow::setTotalSliderVal(int val)
+{
+    totalSliderVal = val;
+}
+
+int QualificationWindow::getTotalSliderVal()
+{
+    return totalSliderVal;
+}
+
 
 
 // OK BUTTON
@@ -291,15 +302,6 @@ void QualificationWindow::on_pushButton_cancel_clicked()
     this->~QualificationWindow();
 }
 
-int QualificationWindow::getTotalSliderVal()
-{
-    return totalSliderVal;
-}
-
-void QualificationWindow::setTotalSliderVal(int val)
-{
-    totalSliderVal = val;
-}
 
 
 //--------------------------------- Track Sliders ----------------------------
@@ -324,6 +326,8 @@ void QualificationWindow::trackSlidersTotalVal(int incomingVal, QSlider * curSli
 
     setTotalSliderVal(totalVal);
 }
+
+
 
 //------------------------------- Sliders--------------------------------------
 void QualificationWindow::on_sli2404_valueChanged(int value)

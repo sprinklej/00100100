@@ -5,6 +5,7 @@ class StudentWindow;
 #include "studentwindow.h"
 
 #include "Storage.h"
+#include "qualificationwindow.h"
 
 using namespace std;
 
@@ -15,6 +16,7 @@ public:
     void setStudWind(StudentWindow*);
     void refresh();
     void joinProject(QString currentProj);
+    void manageQualifications();
 
     // set student
     void setStudent(Student*);

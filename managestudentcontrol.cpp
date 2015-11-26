@@ -65,3 +65,19 @@ void ManageStudentControl::joinProject(QString currentProj)
     }
     return;
 }
+
+
+
+/* --------------------------- Profile Tab ------------------------*/
+// edit a students qualifications
+void ManageStudentControl::manageQualifications()
+{
+    // create qual window
+    QualificationWindow* qualWin = new QualificationWindow();
+    qualWin->setStudent(user);
+    qualWin->setupdate(true);
+    qualWin->setStudWind(studWin);
+    // opens new window and disables current window
+    qualWin->setModal(true);
+    qualWin->exec();
+}
