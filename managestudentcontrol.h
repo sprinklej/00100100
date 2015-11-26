@@ -6,6 +6,7 @@ class StudentWindow;
 
 #include "Storage.h"
 #include "qualificationwindow.h"
+#include "loginwindow.h"
 
 using namespace std;
 
@@ -17,6 +18,7 @@ public:
     void refresh();
     void joinProject(QString currentProj);
     void manageQualifications();
+    void logout();
 
     // set student
     void setStudent(Student*);

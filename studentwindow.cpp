@@ -210,3 +210,16 @@ void StudentWindow::on_pushButton_manQual_clicked()
 
     manStudControl->manageQualifications();
 }
+
+
+
+/* --------------------------- logout ------------------------*/
+void StudentWindow::on_pushButton_Logout1_clicked()
+{
+    manStudControl->logout();
+}
+
+void StudentWindow::on_pushButton_Logout2_clicked()
+{
+    manStudControl->logout();
+}

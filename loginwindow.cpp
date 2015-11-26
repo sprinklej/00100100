@@ -46,21 +46,22 @@ void LoginWindow::on_pushButton_login_clicked()
          } else{
             login((Admin*)currentUser);
          }
+         this->~LoginWindow();
      }
-
-
 }
 
+// login as an admin
 void LoginWindow::login(Admin* ad){
-    this->hide();
+    //this->hide();
     AdminWindow *adminWin = new AdminWindow();
     adminWin->show();
     adminWin->setAdmin(ad);
     adminWin->refresh();
 }
 
+// login as a student
 void LoginWindow::login(Student* st){
-    this->hide();
+    //this->hide();
     StudentWindow *studWin = new StudentWindow();
     ManageStudentControl* manStudCon = new ManageStudentControl();
     studWin->show();

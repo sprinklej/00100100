@@ -5,7 +5,7 @@
 #include <QStyle>
 #include <QWidget>
 #include <QDesktopWidget>
-//#include "User.h"
+#include "User.h"
 //#include "Project.h"
 
 class ManageStudentControl;
@@ -42,6 +42,10 @@ public:
 private slots:
     void on_pushButton_manQual_clicked();
     void on_pushButton_joinProject_clicked();
+
+    void on_pushButton_Logout1_clicked();
+
+    void on_pushButton_Logout2_clicked();
 
 private:
     Ui::StudentWindow *ui;

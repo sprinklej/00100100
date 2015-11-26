@@ -81,3 +81,15 @@ void ManageStudentControl::manageQualifications()
     qualWin->setModal(true);
     qualWin->exec();
 }
+
+
+
+/* --------------------------- logout ------------------------*/
+void ManageStudentControl::logout()
+{
+    studWin->~StudentWindow();
+
+    // display the login window again
+    LoginWindow* login = new LoginWindow();
+    login->show();
+}
