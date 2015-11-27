@@ -1,6 +1,7 @@
 #ifndef USER_H
 #define USER_H
 
+class Project;
 #include <QString>
 using namespace std;
 
@@ -20,6 +21,8 @@ public:
     User();
     ~User();
     QString toString();
+    virtual bool getPolicy() = 0;
+    virtual QList<Project*>* getProjects() = 0;
 };
 
 
@@ -70,6 +73,9 @@ protected:
     int req_creative;
     int req_critic;
 
+    //projects
+    QList<Project*> projects;
+
 public:
     // constructors/destructor
     Student(QString, QString, QString, int);
@@ -81,6 +87,7 @@ public:
                      int, int, int,  int, int, int,
                      int, int);
     ~Student();
+
 
 
     // getters

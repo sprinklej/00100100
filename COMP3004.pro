@@ -29,7 +29,11 @@ SOURCES += main.cpp\
     StorageFacade.cpp \
     SQLContext.cpp \
     SQLStrategy.cpp \
-    GetUsersControl.cpp
+    StoreProjectControl.cpp \
+    StoreUserControl.cpp \
+    GetUserControl.cpp \
+    GetProjectControl.cpp \
+    PPIDManager.cpp
 
 HEADERS  += \
     Storage.h \
@@ -49,7 +53,9 @@ HEADERS  += \
     SQLStrategy.h \
     StoreProjectControl.h \
     StoreUserControl.h \
-    GetProjectsControl.h
+    GetUserControl.h \
+    GetProjectControl.h \
+    PPIDManager.h
 
 FORMS    += \
     loginwindow.ui \

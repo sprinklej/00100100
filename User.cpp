@@ -23,6 +23,8 @@ Student::Student(QString fn, QString ln, QString id, int a1 ){ // what is int a1
     lastName = ln;
     IDNum = id;
 
+    projects = QList<Project*>();
+
     att_leader = false;
     att_avail = QString("FFFFFFFFFFFFFFFFFFFFF");
     att_2404 = 0;
@@ -220,6 +222,9 @@ void Student::setReq_respect(int a){ req_respect = a;}
 void Student::setReq_creative(int a){req_creative = a;}
 void Student::setReq_critic(int a){req_critic = a;}
 
+bool Student::getPolicy(){return true;}
+QList<Project*>* Student::getProjects(){return &projects;}
+
 
 Admin::Admin(QString fn, QString ln, QString id, int a1){
     firstName = fn;
@@ -234,3 +239,6 @@ QString Admin::getIDNum(){return IDNum;}          //students start with "1", Adm
 //QString Admin::getUserName(){return userName;}
 QString Admin::getFirstName(){return firstName;}
 QString Admin::getLastName(){return lastName;}
+
+bool Admin::getPolicy(){return false;}
+QList<Project*>* Admin::getProjects(){return 0;}
