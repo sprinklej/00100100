@@ -25,7 +25,11 @@ SOURCES += main.cpp\
     qualificationwindow.cpp \
     projectwindow.cpp \
     managestudentcontrol.cpp \
-    manageadmincontrol.cpp
+    manageadmincontrol.cpp \
+    StorageFacade.cpp \
+    SQLContext.cpp \
+    SQLStrategy.cpp \
+    GetUsersControl.cpp
 
 HEADERS  += \
     Storage.h \
@@ -39,7 +43,13 @@ HEADERS  += \
     qualificationwindow.h \
     projectwindow.h \
     managestudentcontrol.h \
-    manageadmincontrol.h
+    manageadmincontrol.h \
+    StorageFacade.h \
+    SQLContext.h \
+    SQLStrategy.h \
+    StoreProjectControl.h \
+    StoreUserControl.h \
+    GetProjectsControl.h
 
 FORMS    += \
     loginwindow.ui \
