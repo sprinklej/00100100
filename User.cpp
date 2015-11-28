@@ -18,6 +18,8 @@ QString User::toString(){
     return ret;
 }
 
+QString User::getID(){return IDNum;}
+
 
 Student::Student(QString fn, QString ln, QString id, int a1 ){ // what is int a1 for?
     firstName = fn;

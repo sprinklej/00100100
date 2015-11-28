@@ -3,17 +3,17 @@
 //////////
 //setpolicy = true if Student
 void SQLContext::query(bool update, User* u){
-    if(u.setPolicy()){
+    if(u->getPolicy()){
         if(update){
-            strat = UpdateStudentStrategy();
+            strat = new UpdateStudentStrategy();
         } else {
-            strat = InsertStudentStrategy();
+            strat = new InsertStudentStrategy();
         }
     } else {
         if(update){
-            strat = UpdateAdminStrategy();
+            strat = new UpdateAdminStrategy();
         } else {
-            strat = InsertAdminStrategy();
+            strat = new InsertAdminStrategy();
         }
     }
 }

@@ -3,6 +3,7 @@
 
 #include "User.h"
 #include "Project.h"
+#include "QSqlQuery"
 
 class StoreProjectControl{
 public:

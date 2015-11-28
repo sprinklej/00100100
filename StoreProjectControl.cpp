@@ -1,4 +1,5 @@
 #include "StoreProjectControl.h"
+#include "QVariant"
 
 StoreProjectControl::StoreProjectControl(QList<Project*>& plist, QList<User*>& ulist){
     allUsers = ulist;
@@ -19,10 +20,10 @@ bool StoreProjectControl::insertProject(Project* project, QString ownerID){
     QSqlQuery query;
     query.prepare("INSERT INTO projects() VALUES (:pid, :oid, (...) )");
 
-    query.bindValue(":pid", project->projectID);
+    query.bindValue(":pid", QVariant(project->getProjectID()));
     query.bindValue(":oid", ownerID);
 
-    bool ret = query.execute;
+    bool ret = query.exec();
     return ret;
 
 }
@@ -37,9 +38,9 @@ bool StoreProjectControl::updateProject(Project* project, QString studentID){
                         " "
                         "WHERE projedctID = :pid"
                     );
-        query.bindValue(":pid", project->projectID);
+        query.bindValue(":pid", project->getProjectID());
 
-        bool ret = query.execute;
+        bool ret = query.exec();
         return ret;
     }
 
@@ -47,10 +48,10 @@ bool StoreProjectControl::updateProject(Project* project, QString studentID){
     QSqlQuery query;
     query.prepare("INSERT INTO projectsStudents(projectID, studentID) VALUES(:pid, :sid); ");
 
-    query.bindValue(":pid", project->projectID);
+    query.bindValue(":pid", project->getProjectID());
     query.bindValue(":sid", studentID);
 
-    bool ret = query.execute;
+    bool ret = query.exec();
     return ret;
 
 }

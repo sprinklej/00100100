@@ -7,7 +7,7 @@
 class SQLContext{
 public:
     User* user;
-    SQLStorageStrategy strat;
+    SQLStorageStrategy* strat;
     void query(bool, User*);
 };
 

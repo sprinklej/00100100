@@ -2,6 +2,9 @@
 #define SQLSTRATEGY_H
 
 #include "User.h"
+#include "QSqlQuery"
+
+//#include "QDebug"
 
 
 class SQLStorageStrategy{
@@ -12,21 +15,25 @@ public:
 
 class InsertStudentStrategy : public SQLStorageStrategy{
 public:
+    InsertStudentStrategy();
     bool createQuery(User*);
 };
 
 class UpdateStudentStrategy : public SQLStorageStrategy{
 public:
+    UpdateStudentStrategy();
     bool createQuery(User*);
 };
 
 class InsertAdminStrategy : public SQLStorageStrategy{
 public:
+    InsertAdminStrategy();
     bool createQuery(User*);
 };
 
 class UpdateAdminStrategy : public SQLStorageStrategy{
 public:
+    UpdateAdminStrategy();
     bool createQuery(User*);
 };
 

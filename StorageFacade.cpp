@@ -69,31 +69,32 @@ void StorageFacade::handleShutdown(){
 }*/
 
 void StorageFacade::storeProject(Project* p, QString sID, QString aID, bool newProj){
-    storeProjectControl.store(p, sID, aID, newProj);
+    storeProjectControl->store(p, sID, aID, newProj);
 }
 
 void StorageFacade::writeUser(User* u){
-    storeUserControl.store(u);
+    storeUserControl->store(u);
 }
 
 //need to figure this out better
 void StorageFacade::getProjects(QList<Project*>& p){
-    return allProjects;
-    getProjectControl.getProjects(p);
+    //return allProjects;
+    getProjectControl->execute(p);
 }
 
 //need to figure this out better
 void StorageFacade::getUserIDs(QList<QString>& u){
-    return allUsers;
-    //getUsersControl.getUserIDs(u);
+    //return allUsers;
+    getUserControl->getIDs(u);
 
 }
 
 void StorageFacade::handleLogin(QString uID){
 
-    forEach(allUsers, u){
-        if(uID == u->id){
-            exists = true;
+    User* u;
+    foreach(u, allUsers){
+        if(uID == u->getID()){
+            //exists = true;
             loggedInUser = u;
         }
     }
@@ -106,15 +107,16 @@ void StorageFacade::handleLogin(QString uID){
 
 void StorageFacade::handleRegister(User* newUser){
 
-    forEach(u, allUsers){
-        if(u->id == newUser->id){
+    User* u;
+    foreach(u, allUsers){
+        if(u->getID() == newUser->getID()){
             delete newUser;
             //give the user an error dialog
             return;
         }
     }
 
-    allUsers.pushBack(newUser);
+    allUsers.push_back(newUser);
     loggedInUser = u;
 }
 

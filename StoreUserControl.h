@@ -12,6 +12,7 @@ public:
     ~StoreUserControl();
 
     /////Operations
+    void store(User*);
     void createQuery(bool, User*);
     bool run(QSqlQuery);
 

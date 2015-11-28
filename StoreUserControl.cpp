@@ -5,14 +5,18 @@ StoreUserControl::StoreUserControl(QList<Project*>& pList, QList<User*>& uList){
     allProjects = pList;
     context = SQLContext();
     //make the strategy pointer explicitly null
-    context.strategy = 0;
+    context.strat = 0;
 }
 
 StoreUserControl::~StoreUserControl(){
 
 }
 
-SqlQuery StoreUserControl::createQuery(bool exists, User* user){
+void StoreUserControl::store(User* user){
+
+}
+
+QSqlQuery StoreUserControl::createQuery(bool exists, User* user){
     bool isStudent = user->providePolicy();
 
     if(context.strategy) delete context.strategy;
@@ -30,6 +34,6 @@ SqlQuery StoreUserControl::createQuery(bool exists, User* user){
 }
 
 bool StoreUserControl::run(QSqlQuery query){
-    context.strategy->execute();
+    context.strat->createQuery();
 }
 

@@ -22,6 +22,7 @@ public:
     QString toString();
     virtual bool getPolicy() = 0;
     virtual QList<Project*>* getProjects() = 0;
+    QString getID();
 };
 
 
