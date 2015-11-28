@@ -2,6 +2,7 @@
 #define USER_H
 
 class Project;
+//#include "Project.h"
 #include <QString>
 using namespace std;
 
@@ -14,8 +15,6 @@ protected:
     QString firstName;
     QString lastName;
 
-
-
 public:
     // constructor/destructor
     User();
@@ -27,7 +26,7 @@ public:
 
 
 
-class Student : public User
+class Student: public User
 {
 protected:
     //Qualifications//
@@ -74,7 +73,7 @@ protected:
     int req_critic;
 
     //projects
-    QList<Project*> projects;
+    QList<Project*>* projects;
 
 public:
     // constructors/destructor
@@ -181,6 +180,9 @@ public:
     void setReq_creative(int);
     void setReq_critic(int);
 
+    bool getPolicy();
+    QList<Project*>* getProjects();
+
 };
 
 
@@ -203,5 +205,8 @@ public:
  //   QString getUserName();
     QString getFirstName();
     QString getLastName();
+
+    bool getPolicy();
+    QList<Project*>* getProjects();
 };
 #endif // USER_H

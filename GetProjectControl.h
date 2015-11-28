@@ -1,8 +1,9 @@
 #ifndef GETPROJECTCONTROL_H
 #define GETPROJECTCONTROL_H
 
-#include "User.h";
-#include "Project.h";
+#include "User.h"
+#include "Project.h"
+#include "QList"
 
 class GetProjectControl{
 public:
@@ -10,7 +11,7 @@ public:
     ~GetProjectControl();
 
     void prepareStatement(QString, QString);
-    void execute(Qlist<Project*>&);
+    void execute(QList<Project*>&);
     void intitializeProjects();
 
 private:

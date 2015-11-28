@@ -1,16 +1,17 @@
 #ifndef GETUSERCONTROL_H
 #define GETUSERCONTROL_H
 
-#include "User.h";
-#include "Project.h";
+#include "User.h"
+#include "Project.h"
+#include "QList"
 
 class GetUserControl{
 public:
-    GetUsersControl(Qlist<User*>&);
-    ~GetUsersControl();
+    GetUserControl(QList<User*>&);
+    ~GetUserControl();
 
     bool checkID(QString);
-    void getIDs(Qlist<QString>&);
+    void getIDs(QList<QString>&);
     void login(User*);
     void registerUser(User*);
     void initializeUsersList();

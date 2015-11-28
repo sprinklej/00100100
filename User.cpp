@@ -1,4 +1,5 @@
 #include "User.h"
+#include "Project.h"
 
 User::User()
 {
@@ -23,7 +24,7 @@ Student::Student(QString fn, QString ln, QString id, int a1 ){ // what is int a1
     lastName = ln;
     IDNum = id;
 
-    projects = QList<Project*>();
+    projects = new QList<Project*>();
 
     att_leader = false;
     att_avail = QString("FFFFFFFFFFFFFFFFFFFFF");
@@ -223,7 +224,7 @@ void Student::setReq_creative(int a){req_creative = a;}
 void Student::setReq_critic(int a){req_critic = a;}
 
 bool Student::getPolicy(){return true;}
-QList<Project*>* Student::getProjects(){return &projects;}
+QList<Project*>* Student::getProjects(){return projects;}
 
 
 Admin::Admin(QString fn, QString ln, QString id, int a1){

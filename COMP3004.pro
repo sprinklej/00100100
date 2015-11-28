@@ -33,7 +33,8 @@ SOURCES += main.cpp\
     StoreUserControl.cpp \
     GetUserControl.cpp \
     GetProjectControl.cpp \
-    PPIDManager.cpp
+    PPIDManager.cpp \
+    manageRegistrationControl.cpp
 
 HEADERS  += \
     Storage.h \
@@ -55,7 +56,8 @@ HEADERS  += \
     StoreUserControl.h \
     GetUserControl.h \
     GetProjectControl.h \
-    PPIDManager.h
+    PPIDManager.h \
+    manageRegistrationControl.h
 
 FORMS    += \
     loginwindow.ui \

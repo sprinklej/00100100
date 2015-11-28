@@ -1,15 +1,15 @@
 #ifndef SQLCONTEXT_H
 #define SQLCONTEXT_H
 
-#include "SQLStrategy.h";
+#include "SQLStrategy.h"
 #include "User.h"
 
 class SQLContext{
 public:
-    User user;
+    User* user;
     SQLStorageStrategy strat;
-    void query(bool, User);
-}
+    void query(bool, User*);
+};
 
 
 

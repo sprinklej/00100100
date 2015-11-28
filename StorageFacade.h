@@ -2,17 +2,17 @@
 #define STORAGEFACADE_H
 
 /*replace these with headers once written*/
-class AdminManager;
-class StudentManager;
-class RegistrationManager;
+#include "manageadmincontrol.h"
+#include "managestudentcontrol.h"
+#include "manageRegistrationControl.h"
 
-class StoreProjectControl;
-class GetProjectsControl;
-class StoreUserControl;
-class GetUsersControl;
+#include "StoreProjectControl.h"
+#include "GetProjectControl.h"
+#include "StoreUserControl.h"
+#include "GetUserControl.h"
 
-class Storage;
-#include "User.h";
+#include "Storage.h"
+#include "User.h"
 
 class StorageFacade{
 public:
@@ -20,11 +20,11 @@ public:
     StorageFacade();
     ~StorageFacade();
     void run();
-    void storeProject(Project*, String, String, bool);
+    void storeProject(Project*, QString, QString, bool);
     void writeUser(User*);
     void getProjects(QList<Project*>&);
     void getUserIDs(QList<QString>&);
-    void handleLogin(User*);
+    void handleLogin(QString); //User*);
     void handleRegister(User*);
     void handleLogout();
 
@@ -33,15 +33,15 @@ public:
 
 private:
     // relationships to subsystem
-    StoreProjectControl storeProjectsControl;
-    GetProjectsControl getProjectControl;
-    StoreUserControl storeUserControl;
-    GetUsersControl getUsersControl;
+    StoreProjectControl* storeProjectControl;
+    GetProjectControl* getProjectControl;
+    StoreUserControl* storeUserControl;
+    GetUserControl* getUserControl;
 
     //other subsystems
-    AdminManager* adMgr;
-    StudentManager* stMgr;
-    RegistrationManager* rgMgr;
+    ManageAdminControl* adMgr;
+    ManageStudentControl* stMgr;
+    ManageRegistrationControl* regMgr;
 
     //internal data
     User* loggedInUser;

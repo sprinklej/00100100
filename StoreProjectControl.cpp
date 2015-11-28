@@ -1,5 +1,18 @@
 #include "StoreProjectControl.h"
 
+StoreProjectControl::StoreProjectControl(QList<Project*>& plist, QList<User*>& ulist){
+    allUsers = ulist;
+    allProjects = plist;
+}
+
+StoreProjectControl::~StoreProjectControl(){
+
+}
+
+bool StoreProjectControl::store(Project* p, QString oID, QString uID, bool newProj){
+
+}
+
 //call this when a new project is created
 bool StoreProjectControl::insertProject(Project* project, QString ownerID){
 

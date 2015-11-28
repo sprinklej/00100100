@@ -1,13 +1,15 @@
 #ifndef STOREUSERCONTROL_H
 #define STOREUSERCONTROL_H
 
-#include "User.h";
-#include "Project.h";
+#include "User.h"
+#include "Project.h"
+#include "SQLContext.h"
+#include "QSqlQuery"
 
 class StoreUserControl{
 public:
     StoreUserControl(QList<Project*>&, QList<User*>&);
-    ~StoreUserControl;
+    ~StoreUserControl();
 
     /////Operations
     void createQuery(bool, User*);

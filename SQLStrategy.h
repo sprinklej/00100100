@@ -1,7 +1,7 @@
 #ifndef SQLSTRATEGY_H
 #define SQLSTRATEGY_H
 
-#include "User.h";
+#include "User.h"
 
 
 class SQLStorageStrategy{

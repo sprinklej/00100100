@@ -29,7 +29,6 @@ public:
     void getRegisteredStudents(Project&, QList<Student*>&); // Constructs all Students who have registered with the Project and adds to the QList
     void getAllProjects(QList<Project*>&); // get all the projects
 
-private:
     //Private members that are internal to the Singleton pattern.
     QSqlDatabase database;
     Storage();

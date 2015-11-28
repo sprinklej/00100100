@@ -1,7 +1,7 @@
 #include "GetUserControl.h";
 
 
-GetUserControl::GetUserControl(Qlist<User*>& uList){
+GetUserControl::GetUserControl(QList<User*>& uList){
     allUsers = uList;
 }
 

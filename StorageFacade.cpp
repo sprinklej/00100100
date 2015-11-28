@@ -1,26 +1,27 @@
-
+#include "StorageFacade.h"
 
 StorageFacade::StorageFacade(){
     //create the database connection
     storage = Storage();
 
-    //initialize the controllers
-    storeProjectsControl = StoreProjectControl(storage);
-    getProjectControl = GetProjectsControl(storage);
-    storeUserControl = StoreUserControl(storage);
-    getUsersControl = GetUsersControl(storage);
-
     //initialize the collection classes
     allUsers = QList<User*>();
-    allProjects = QList<Project*>;
+    allProjects = QList<Project*>();
+
+    //initialize the controllers
+    storeProjectControl = new StoreProjectControl(allProjects, allUsers);
+    getProjectControl = new GetProjectControl(allProjects, allUsers);
+    storeUserControl = new StoreUserControl(allProjects, allUsers);
+    getUserControl = new GetUserControl(allUsers);
+
 
     //nobody is logged in yet - make sure hte system knows
     loggedInUser = 0;
 
     //load the projects
-    getUsersControl.getUsers(allUsers);
+    getUserControl->initializeUsersList();
     //gets projects and links with users
-    getProjectsControl.getProjects(allProjects, allUsers);
+    getProjectControl->intitializeProjects();
 
     //system is now set up
 
@@ -28,8 +29,13 @@ StorageFacade::StorageFacade(){
 
 StorageFacade::~StorageFacade(){
     //free up memory used by dynamic objects
-    foreach(allUsers, u){delete u;}
-    foreach(allProjects, p){delete p;}
+    qDeleteAll(allUsers); //foreach(u, allUsers){delete u;}
+    qDeleteAll(allProjects); //foreach(p, allProjects){delete p;}
+
+    delete storeProjectControl;
+    delete getProjectControl;
+    delete storeUserControl;
+    delete getUserControl;
 
 }
 
@@ -38,17 +44,17 @@ void StorageFacade::StorageFacade::run(){
 
     while(executing){
         if(!loggedInUser){
-            regMgr = new RegistrationManager();
+            regMgr = new ManageRegistrationControl();
             //call the necessary functions
             delete regMgr;
 
         } else if(loggedInUser->getPolicy()){ //true if Student
-            stMgr = new StudentManager();
+            stMgr = new ManageStudentControl();
             //call necessary functions
             delete stMgr;
 
         } else{
-            adMgr = new AdminManager();
+            adMgr = new ManageAdminControl();
             // call necessary functions
             delete adMgr;
         }
@@ -62,8 +68,8 @@ void StorageFacade::handleShutdown(){
     executing = false;
 }*/
 
-void StorageFacade::storeProject(Project* p, String sID, String aID, bool newProj){
-    storeProjectsControl.store(p, sID, aID, newProj);
+void StorageFacade::storeProject(Project* p, QString sID, QString aID, bool newProj){
+    storeProjectControl.store(p, sID, aID, newProj);
 }
 
 void StorageFacade::writeUser(User* u){
@@ -100,7 +106,7 @@ void StorageFacade::handleLogin(QString uID){
 
 void StorageFacade::handleRegister(User* newUser){
 
-    forEach(allUsers, u){
+    forEach(u, allUsers){
         if(u->id == newUser->id){
             delete newUser;
             //give the user an error dialog
