@@ -12,7 +12,8 @@ StoreUserControl::~StoreUserControl(){
 
 }
 
-void StoreUserControl::store(User* user){
+void StoreUserControl::store(bool exists, User* user){
+    createQuery(exists, user);
 
 }
 
@@ -33,7 +34,8 @@ QSqlQuery StoreUserControl::createQuery(bool exists, User* user){
 
 }
 
+/*
 bool StoreUserControl::run(QSqlQuery query){
     context.strat->createQuery();
-}
+}*/
 

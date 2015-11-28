@@ -17,8 +17,8 @@ void GetProjectControl::intitializeProjects(){
     foreach(u, allUsers){
         if(u->getPolicy()){
             //this would be better with a getProject collection method on the User superclass - just sayin'
-            Student* s = dynamic_cast<Student*> u;
-            s->projects.empty();
+            //Student* s = dynamic_cast<Student*> u;
+            u->getProjects()->empty();
         }
     }
 
@@ -26,12 +26,20 @@ void GetProjectControl::intitializeProjects(){
     QSqlQuery query;
     query.exec("SELECT * FROM projects;");
 
-    while (query.next()) {
+    //query.exec();
+
+    qDebug() << "query executed";
+
+    while(query.next()){
         QString projectID = query.value(0).toString();
-        (...)
-        Project* p = new Project(...);
-        allProjects.pushBack(p);
-    }
+        QString courseName = query.value(2).toString();
+        QString courseNum = query.value(3).toString();
+        QString description = query.value(4).toString();
+        int teamSize = query.value(5).toInt();
+
+        Project* newProj = new Project(projectID, ad.getIDNum(), courseName, courseNum, description, teamSize);
+
+        pl.push_back(newProj);
 
     //now link the projects and students
     QSqlQuery query2;
@@ -42,11 +50,12 @@ void GetProjectControl::intitializeProjects(){
         QString sID = query2.value(1).toString();
 
         foreach(p, allProjects){
-            forEach(u, allUsers){
+            foreach(u, allUsers){
                 if(p->projectID == pID && u->id == sID) {
-                    Student* s = dynamic_cast<Student*> u; //safe because we only have Students in the projectsStudents table, but a getcollection is still better
-                    s->projects.pushback(p);
-                    p->students.pushback(s);
+                    //Student* s = dynamic_cast<Student*> u; //safe because we only have Students in the projectsStudents table, but a getcollection is still better
+                    //s->projects.pushback(p);
+                    u->getProjects()->push_back(p);
+                    p->students.pushback(dynamic_cast<Student*> u);
                 }
             }
         }
@@ -56,5 +65,5 @@ void GetProjectControl::intitializeProjects(){
 }
 
 //not sure we need these....
-void GetProjectControl::prepareStatement(QString sID, QString adminID){}
-void GetProjectControl::execute(Qlist<Project*>& pList){}
+//void GetProjectControl::prepareStatement(QString sID, QString adminID){}
+//void GetProjectControl::execute(Qlist<Project*>& pList){}

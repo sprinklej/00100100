@@ -3,6 +3,10 @@
 
 #include "User.h"
 #include "QSqlQuery"
+#include <QVariant>
+#include "QDebug"
+#include <QSqlError>
+
 
 //#include "QDebug"
 

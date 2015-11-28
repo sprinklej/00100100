@@ -24,6 +24,8 @@ Storage::~Storage(){
     database.close();
 }
 
+
+/*
 Storage& Storage::getDB(){
     static Storage instance;
     return instance;
@@ -466,4 +468,4 @@ void Storage::getAllProjects(QList<Project*>& pl){
 
 }
 
-
+*/
