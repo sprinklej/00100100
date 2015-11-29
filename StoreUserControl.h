@@ -13,7 +13,8 @@ public:
 
     /////Operations
     void store(User*);
-    void createQuery(bool, User*);
+    void store(bool, User*);
+    QSqlQuery createQuery(bool, User*); //was void
     bool run(QSqlQuery);
 
 private:

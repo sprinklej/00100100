@@ -18,20 +18,22 @@ void StoreUserControl::store(bool exists, User* user){
 }
 
 QSqlQuery StoreUserControl::createQuery(bool exists, User* user){
-    bool isStudent = user->providePolicy();
+    bool isStudent = user->getPolicy();
 
-    if(context.strategy) delete context.strategy;
+    if(context.strat) delete context.strat;
 
     if(exists && isStudent){
-        context.strategy = new updateStudentStrategy(user);
+        context.strat = new UpdateStudentStrategy();//user);
     } else if(exists && !isStudent){
-        context.strategy = new updateAdminStrategy(user);
+        context.strat = new UpdateAdminStrategy();//user);
     } else if(!exists && isStudent){
-        context.strategy = new insertStudentStrategy(user);
+        context.strat = new InsertStudentStrategy();//user);
     } else{
-        context.strategy = new insertAdminStrategy(user);
+        context.strat = new InsertAdminStrategy();//user);
     }
 
+    context.strat->createQuery(user);
+    //query.exec();
 }
 
 /*

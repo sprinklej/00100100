@@ -1,8 +1,10 @@
-#include "GetUserControl.h";
+#include "GetUserControl.h"
+#include "StorageFacade.h"
 
 
-GetUserControl::GetUserControl(QList<User*>& uList){
+GetUserControl::GetUserControl(QList<User*>& uList, StorageFacade* f){
     allUsers = uList;
+    facade = f;
 }
 
 GetUserControl::~GetUserControl(){}
@@ -22,7 +24,7 @@ bool GetUserControl::checkID(QString id){
     return false;
 }
 
-void GetUserControl::getIDs(Qlist<QString>& list){
+void GetUserControl::getIDs(QList<QString>& list){
 
     //query the database for all IDs
     QSqlQuery query;
@@ -31,24 +33,27 @@ void GetUserControl::getIDs(Qlist<QString>& list){
     //store the id
      while (query.next()) {
         QString resultID = query.value(0).toString();
-        list.pushBack(resultID);
+        list.push_back(resultID);
     }
 
 }
 
 void GetUserControl::login(User* user){
-    if (checkID(user->id)) loggedInUser = user;
-    else{
+    if (checkID(user->getID())){
+        facade->setLoggedInUser(user);
+    } else{
         delete user;
+        facade->setLoggedInUser(0);
         //give the user a failure message
     }
 
 }
 
 void GetUserControl::registerUser(User* user){
-    if(!checkID(user->id)) loggedInUser = user;
+    if(!checkID(user->getID())) facade->setLoggedInUser(user);
     else{
         delete user;
+        facade->setLoggedInUser(0);
         //give the user an error message
     }
 
@@ -57,11 +62,13 @@ void GetUserControl::registerUser(User* user){
 //need to construct the list first
 void GetUserControl::initializeUsersList(){
 
+    User* u;
     //clean out the list if it exists
-    foreach(u, allUsers){
-        delete u;
-    }
-    allUsers.empty();
+    //foreach(u, allUsers){
+    //    delete u;
+    //}
+    qDeleteAll(allUsers);
+    allUsers.clear();
 
     //get the student data
     QSqlQuery query;
@@ -144,7 +151,7 @@ void GetUserControl::initializeUsersList(){
         QString id = query2.value(0).toString();
         QString fname = query2.value(1).toString();
         QString lname = query2.value(2).toString();
-        a = new adminAdmin(fname, lname, id);
+        a = new Admin(fname, lname, id);
         allUsers.push_back(a);
     }
 

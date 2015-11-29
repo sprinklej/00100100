@@ -203,7 +203,7 @@ void StudentWindow::on_pushButton_joinProject_clicked()
 
 
 
-/* --------------------------- Profile Tab ------------------------*/
+/* --------------------------- Profile Tab ------------------------* /
 //manage qualifications clicked
 void StudentWindow::on_pushButton_manQual_clicked()
 {
@@ -213,7 +213,7 @@ void StudentWindow::on_pushButton_manQual_clicked()
 
 
 
-/* --------------------------- logout ------------------------*/
+/* --------------------------- logout ------------------------* /
 void StudentWindow::on_pushButton_Logout1_clicked()
 {
     manStudControl->logout();
@@ -223,3 +223,4 @@ void StudentWindow::on_pushButton_Logout2_clicked()
 {
     manStudControl->logout();
 }
+*/

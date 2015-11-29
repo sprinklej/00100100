@@ -8,7 +8,7 @@ class SQLContext{
 public:
     User* user;
     SQLStorageStrategy* strat;
-    void query(bool, User*);
+    bool query(bool, User*);
 };
 
 

@@ -13,7 +13,7 @@
 
 class SQLStorageStrategy{
 public:
-    virtual bool createQuery(bool, User*);
+    virtual bool createQuery(User*) = 0;
 
 };
 

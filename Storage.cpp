@@ -13,7 +13,7 @@ Storage::Storage(){
     //Define and open the cupid file
     QDir curr = QDir::current();
     curr.cdUp();
-    QString dbLocation = curr.path() + "/00100100/cupid";
+    QString dbLocation = curr.path() + "/00100100/cupidD4";
     database.setDatabaseName(dbLocation);
     database.open();
 

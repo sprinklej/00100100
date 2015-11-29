@@ -15,6 +15,7 @@ using namespace std;
 class Storage{
 
 public:
+    /*
     //singleton instance
     static Storage& getDB();
 
@@ -29,7 +30,7 @@ public:
     void getRegisteredStudents(Project&, QList<Student*>&); // Constructs all Students who have registered with the Project and adds to the QList
     void getAllProjects(QList<Project*>&); // get all the projects
 
-    //Private members that are internal to the Singleton pattern.
+    //Private members that are internal to the Singleton pattern.*/
     QSqlDatabase database;
     Storage();
     ~Storage();

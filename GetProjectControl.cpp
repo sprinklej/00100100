@@ -1,4 +1,5 @@
 #include "GetProjectControl.h";
+#include "QDebug"
 
 GetProjectControl::GetProjectControl(QList<Project*>& pList, QList<User*>& uList){
     allProjects = pList;
@@ -11,14 +12,15 @@ GetProjectControl::~GetProjectControl(){
 //Note: this function links projects and students, and must be run AFTER the users are retrieved from storage
 void GetProjectControl::intitializeProjects(){
     //clear out the existing projects
-    foreach(p, allProjects){delete p;}
-    allProjects.empty();
+    Project* p;
+    qDeleteAll(allProjects);
+    allProjects.clear();
     //also empty the students' projects
+    User* u;
     foreach(u, allUsers){
-        if(u->getPolicy()){
-            //this would be better with a getProject collection method on the User superclass - just sayin'
-            //Student* s = dynamic_cast<Student*> u;
-            u->getProjects()->empty();
+        if(u->getProjects()){
+            qDeleteAll(u->getProjects()->begin(), u->getProjects()->end());
+            u->getProjects()->clear();
         }
     }
 
@@ -30,16 +32,20 @@ void GetProjectControl::intitializeProjects(){
 
     qDebug() << "query executed";
 
+    Project* newProj;
+
     while(query.next()){
         QString projectID = query.value(0).toString();
+        QString ownerID = query.value(1).toString();
         QString courseName = query.value(2).toString();
         QString courseNum = query.value(3).toString();
         QString description = query.value(4).toString();
         int teamSize = query.value(5).toInt();
 
-        Project* newProj = new Project(projectID, ad.getIDNum(), courseName, courseNum, description, teamSize);
+        newProj = new Project(projectID, ownerID, courseName, courseNum, description, teamSize);
 
-        pl.push_back(newProj);
+        allProjects.push_back(newProj);
+    }
 
     //now link the projects and students
     QSqlQuery query2;
@@ -49,13 +55,16 @@ void GetProjectControl::intitializeProjects(){
         QString pID = query2.value(0).toString();
         QString sID = query2.value(1).toString();
 
+        Project* p;
+        User* u;
+
         foreach(p, allProjects){
             foreach(u, allUsers){
-                if(p->projectID == pID && u->id == sID) {
+                if(p->getProjectID() == pID && u->getID() == sID) {
                     //Student* s = dynamic_cast<Student*> u; //safe because we only have Students in the projectsStudents table, but a getcollection is still better
                     //s->projects.pushback(p);
                     u->getProjects()->push_back(p);
-                    p->students.pushback(dynamic_cast<Student*> u);
+                    p->getStudentList().push_back(dynamic_cast<Student*>(u));
                 }
             }
         }
@@ -66,4 +75,6 @@ void GetProjectControl::intitializeProjects(){
 
 //not sure we need these....
 //void GetProjectControl::prepareStatement(QString sID, QString adminID){}
-//void GetProjectControl::execute(Qlist<Project*>& pList){}
+void GetProjectControl::execute(QList<Project*>& pList){
+    pList = allProjects;
+}

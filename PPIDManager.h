@@ -12,7 +12,7 @@ public:
     void createTeams();
     void printSummaryReport();
     void printDetailedReport();
-    int match(Team*, Student*)
+    int match(Team*, Student*);
 
 private:
     QList<Student*> students;

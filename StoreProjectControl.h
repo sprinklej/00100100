@@ -4,6 +4,7 @@
 #include "User.h"
 #include "Project.h"
 #include "QSqlQuery"
+#include "QSqlError"
 
 class StoreProjectControl{
 public:

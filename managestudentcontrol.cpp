@@ -1,11 +1,13 @@
 #include "managestudentcontrol.h"
 #include <iostream>
 #include <QDebug>
+#include "StorageFacade.h"
 using namespace std;
 
-ManageStudentControl::ManageStudentControl()
+ManageStudentControl::ManageStudentControl(StorageFacade* f)
 {
     studWin = NULL;
+    facade = f;
 }
 
 
@@ -25,8 +27,12 @@ void ManageStudentControl::setStudent(Student* s)
 // refresh the list of projects/joined projects
 void ManageStudentControl::refresh()
 {
-    Storage::getDB().getAllProjects(allProjects);
+    /*
+    Storage::getDB().getAllProjects(allProjects);*/
+    facade->getProjects(allProjects);
+
     foreach(Project* p, allProjects){
+
         // add to list of all projects
         studWin->setAllProjListWidget(p->getProjectID());
 
@@ -56,7 +62,8 @@ void ManageStudentControl::joinProject(QString currentProj)
             if(!joinedProjects.contains(p)){
                 joinedProjects.push_back(p);
                 studWin->setJoinedProjListWidget(p->getProjectID());
-                Storage::getDB().joinProject(p, user);
+                //Storage::getDB().joinProject(p, user);
+                facade->storeProject(p, "", user->getID(), false);
                 studWin->setStatus2("Project joined!");
             } else {
                 studWin->setStatus2("You have already joined this project!");
@@ -66,9 +73,10 @@ void ManageStudentControl::joinProject(QString currentProj)
     return;
 }
 
+Student* ManageStudentControl::getCurrentUser(){return user;}
 
 
-/* --------------------------- Profile Tab ------------------------*/
+/* --------------------------- Profile Tab ------------------------* /
 // edit a students qualifications
 void ManageStudentControl::manageQualifications()
 {
@@ -84,7 +92,7 @@ void ManageStudentControl::manageQualifications()
 
 
 
-/* --------------------------- logout ------------------------*/
+/* --------------------------- logout ------------------------* /
 void ManageStudentControl::logout()
 {
     studWin->~StudentWindow();
@@ -93,3 +101,4 @@ void ManageStudentControl::logout()
     LoginWindow* login = new LoginWindow();
     login->show();
 }
+*/

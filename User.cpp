@@ -235,6 +235,13 @@ Admin::Admin(QString fn, QString ln, QString id, int a1){
     IDNum = id;
 }
 
+Admin::Admin(QString fn, QString ln, QString id){
+    firstName = fn;
+    lastName = ln;
+    IDNum = id;
+}
+
+
 Admin::~Admin(){}
 
 /////////// GETTERS ////////////

@@ -27,6 +27,7 @@ public:
     void handleLogin(QString); //User*);
     void handleRegister(User*);
     void handleLogout();
+    void setLoggedInUser(User*);
 
     // attributes and relationships
 
@@ -49,7 +50,7 @@ private:
     QList<Project*> allProjects;
     bool executing;
 
-    static Storage storage;
+    Storage storage;
 
 };
 

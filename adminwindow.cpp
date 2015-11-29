@@ -4,6 +4,7 @@
 #include "Storage.h"
 #include <QDebug>
 
+/*
 
 AdminWindow::AdminWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -97,3 +98,4 @@ void AdminWindow::on_pushButton_2_clicked()
     pWin->show();
 }
 
+*/

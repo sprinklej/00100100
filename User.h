@@ -196,6 +196,7 @@ protected:
 public:
     // constructor/destructor
     Admin(QString, QString, QString, int);
+    Admin(QString, QString, QString);
     ~Admin();
 
     //QString toString();

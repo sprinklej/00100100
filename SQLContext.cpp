@@ -2,7 +2,7 @@
 
 //////////
 //setpolicy = true if Student
-void SQLContext::query(bool update, User* u){
+bool SQLContext::query(bool update, User* u){
     if(u->getPolicy()){
         if(update){
             strat = new UpdateStudentStrategy();
@@ -16,5 +16,6 @@ void SQLContext::query(bool update, User* u){
             strat = new InsertAdminStrategy();
         }
     }
+    return strat->createQuery(u);
 }
 

@@ -4,10 +4,14 @@
 #include "User.h"
 #include "Project.h"
 #include "QList"
+#include "QSqlQuery"
+#include "QVariant"
+
+class StorageFacade;
 
 class GetUserControl{
 public:
-    GetUserControl(QList<User*>&);
+    GetUserControl(QList<User*>&, StorageFacade*);
     ~GetUserControl();
 
     bool checkID(QString);
@@ -18,6 +22,7 @@ public:
 
 private:
     QList<User*> allUsers;
+    StorageFacade* facade;
 
 };
 

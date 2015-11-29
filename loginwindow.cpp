@@ -2,7 +2,7 @@
 #include "ui_loginwindow.h"
 using namespace std;
 
-
+/*
 LoginWindow::LoginWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::LoginWindow)
@@ -84,3 +84,4 @@ void LoginWindow::on_pushButton_signup_clicked()
     signupWin->setModal(true);
     signupWin->exec();
 }
+*/

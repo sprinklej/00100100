@@ -12,7 +12,7 @@ StorageFacade::StorageFacade(){
     storeProjectControl = new StoreProjectControl(allProjects, allUsers);
     getProjectControl = new GetProjectControl(allProjects, allUsers);
     storeUserControl = new StoreUserControl(allProjects, allUsers);
-    getUserControl = new GetUserControl(allUsers);
+    getUserControl = new GetUserControl(allUsers, this);
 
 
     //nobody is logged in yet - make sure hte system knows
@@ -49,7 +49,7 @@ void StorageFacade::StorageFacade::run(){
             delete regMgr;
 
         } else if(loggedInUser->getPolicy()){ //true if Student
-            stMgr = new ManageStudentControl();
+            stMgr = new ManageStudentControl(this);
             //call necessary functions
             delete stMgr;
 
@@ -73,7 +73,8 @@ void StorageFacade::storeProject(Project* p, QString sID, QString aID, bool newP
 }
 
 void StorageFacade::writeUser(User* u){
-    storeUserControl->store(u);
+    bool newUser = getUserControl->checkID(u->getID());
+    storeUserControl->store(newUser, u);
 }
 
 //need to figure this out better
@@ -119,5 +120,7 @@ void StorageFacade::handleRegister(User* newUser){
     allUsers.push_back(newUser);
     loggedInUser = u;
 }
+
+void StorageFacade::setLoggedInUser(User*u){loggedInUser = u;}
 
 

@@ -4,6 +4,7 @@
 #include <QDebug>
 
 #include "studentwindow.h"
+/*
 
 QualificationWindow::QualificationWindow(QWidget *parent) :
     QDialog(parent),
@@ -273,7 +274,7 @@ void QualificationWindow::on_pushButton_ok_clicked()
     //if no errors write to storage
 /**************************
  * TBD: check for errors
- **************************/
+ ************************** /
     if(update) Storage::getDB().updateStudent(student);
     else Storage::getDB().addUser(student);
 
@@ -284,7 +285,7 @@ void QualificationWindow::on_pushButton_ok_clicked()
                                                 1,1,1,1,1,1,1,
                                                 1,1,1,1,1,1,
                                                 1,1);
-    Storage::getDB().addUser(testStudent);*/
+    Storage::getDB().addUser(testStudent);* /
 
     //close window
     //delete student;  -dont delete student, we are still using this pointer
@@ -463,3 +464,4 @@ void QualificationWindow::on_slicri_valueChanged(int value)
     SVCrit = value;
     trackSlidersTotalVal(dif, ui->slicri);
 }
+*/

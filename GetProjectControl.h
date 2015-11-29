@@ -4,6 +4,7 @@
 #include "User.h"
 #include "Project.h"
 #include "QList"
+#include "QSqlQuery"
 
 class GetProjectControl{
 public:

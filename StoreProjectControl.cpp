@@ -72,7 +72,7 @@ bool StoreProjectControl::updateProject(Project* pr, QString studentID){
     //else
     QSqlQuery query;
     query.prepare("INSERT INTO projectsStudents(userID, projectID) VALUES(:iu, :ip)");
-    query.bindValue(":iu", st->getIDNum());
+    query.bindValue(":iu", studentID);//st->getIDNum());
     query.bindValue(":ip", pr->getProjectID());
     bool res = query.exec();
     return res;
