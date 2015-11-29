@@ -4,8 +4,6 @@
 #include "QDebug"
 #include "adminwindow.h"
 
-/*
-
 ProjectWindow::ProjectWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ProjectWindow)
@@ -61,15 +59,15 @@ void ProjectWindow::on_saveButton_clicked()
         Project* project = new Project(pName, owner->getIDNum(), courseName, courseNum, pDesc, teamSize);
         /********
          * TBD: check if the project title exists in the database
-         ******* /
+         *******/
 
         if(edit){
-            Storage::getDB().updateProject(project);
+//            Storage::getDB().updateProject(project);
             delete project;
             parentWindow->refresh();
             this->~ProjectWindow();
         } else{
-            Storage::getDB().addProject(project, owner);
+//            Storage::getDB().addProject(project, owner);
             delete project;
             parentWindow->refresh();
             this->~ProjectWindow();
@@ -77,4 +75,4 @@ void ProjectWindow::on_saveButton_clicked()
     }
 }
 
-*/
+

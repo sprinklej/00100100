@@ -2,8 +2,6 @@
 #include "ui_signupwindow.h"
 #include "qualificationwindow.h"
 
-/*
-
 SignupWindow::SignupWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SignupWindow)
@@ -43,7 +41,7 @@ void SignupWindow::on_pushButton_ok_clicked()
 
     } else if(ui->radioButton_admin->isChecked()) { // create admin account
         Admin* ad = new Admin(firstName, lastName, ID, 1);
-        Storage::getDB().addUser(ad);
+//        Storage::getDB().addUser(ad);
     }
 
     //if no errors close window
@@ -62,4 +60,4 @@ void SignupWindow::getQualifications(Student* st){
     qualWin->show();
 }
 
-*/
+

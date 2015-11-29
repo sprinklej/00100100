@@ -4,8 +4,6 @@
 #include "Storage.h"
 #include <QDebug>
 
-/*
-
 AdminWindow::AdminWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::AdminWindow)
@@ -33,14 +31,14 @@ AdminWindow::~AdminWindow()
 // setup the admin window with some info
 void AdminWindow::setAdmin(Admin* s)
 {
-    user = s;
-    ui->title->setText("Projects available for admin " + s->getIDNum());
+/*    user = s;
+    ui->title->setText("Projects available for admin " + s->getIDNum()); */
 }
 
 
 // refreshes the list of projects
 void AdminWindow::refresh(){
-
+/*
     // clear list of projects
     ui->projectsBox->clear();
     int num = projectsOwned.size();
@@ -52,17 +50,17 @@ void AdminWindow::refresh(){
     Storage::getDB().getProjects(*user, projectsOwned);
     foreach(Project* p, projectsOwned){
         ui->projectsBox->addItem(p->getProjectID());
-    }
+    } */
 }
 
 
 //create a new project
 void AdminWindow::on_pushButton_clicked(){
-    ProjectWindow *pWin = new ProjectWindow();
+/*    ProjectWindow *pWin = new ProjectWindow();
     pWin->setParentWindow(this);
     pWin->setOwner(user);
     pWin->setEdit(false);
-    pWin->show();
+    pWin->show(); */
 }
 
 
@@ -70,7 +68,7 @@ void AdminWindow::on_pushButton_clicked(){
 void AdminWindow::on_pushButton_2_clicked()
 {
     // no projects to edit
-    if(ui->projectsBox->currentText() == ""){
+/*    if(ui->projectsBox->currentText() == ""){
         ui->title->setText("No project selected");
         return;
     }
@@ -95,7 +93,7 @@ void AdminWindow::on_pushButton_2_clicked()
     pWin->setOwner(user);
     pWin->setEdit(true);
     pWin->setProject(projectBeingEdited);
-    pWin->show();
+    pWin->show(); */
 }
 
-*/
+

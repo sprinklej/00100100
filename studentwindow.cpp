@@ -203,24 +203,24 @@ void StudentWindow::on_pushButton_joinProject_clicked()
 
 
 
-/* --------------------------- Profile Tab ------------------------* /
+/* --------------------------- Profile Tab ------------------------*/
 //manage qualifications clicked
 void StudentWindow::on_pushButton_manQual_clicked()
 {
 
-    manStudControl->manageQualifications();
+    //manStudControl->manageQualifications();
 }
 
 
 
-/* --------------------------- logout ------------------------* /
+/* --------------------------- logout ------------------------*/
 void StudentWindow::on_pushButton_Logout1_clicked()
 {
-    manStudControl->logout();
+    //manStudControl->logout();
 }
 
 void StudentWindow::on_pushButton_Logout2_clicked()
 {
-    manStudControl->logout();
+    //manStudControl->logout();
 }
-*/
+

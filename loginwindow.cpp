@@ -2,7 +2,7 @@
 #include "ui_loginwindow.h"
 using namespace std;
 
-/*
+
 LoginWindow::LoginWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::LoginWindow)
@@ -30,7 +30,7 @@ LoginWindow::~LoginWindow()
 void LoginWindow::on_pushButton_login_clicked()
 {
      // get username from text box
-     QString userName;
+/*     QString userName;
      userName = ui->lineEdit_username->text();
 
      User* currentUser = 0;
@@ -47,22 +47,22 @@ void LoginWindow::on_pushButton_login_clicked()
             login((Admin*)currentUser);
          }
          this->~LoginWindow();
-     }
+     } */
 }
 
 // login as an admin
 void LoginWindow::login(Admin* ad){
     //this->hide();
-    AdminWindow *adminWin = new AdminWindow();
+    /*AdminWindow *adminWin = new AdminWindow();
     adminWin->show();
     adminWin->setAdmin(ad);
-    adminWin->refresh();
+    adminWin->refresh(); */
 }
 
 // login as a student
 void LoginWindow::login(Student* st){
     //this->hide();
-    StudentWindow *studWin = new StudentWindow();
+/*    StudentWindow *studWin = new StudentWindow();
     ManageStudentControl* manStudCon = new ManageStudentControl();
     studWin->show();
     studWin->setManStudContrl(manStudCon);
@@ -72,16 +72,17 @@ void LoginWindow::login(Student* st){
 
     studWin->setStudent(st);
     studWin->showUserInfo();
-    studWin->refresh();
+    studWin->refresh(); */
 }
 
 
 // sign up new student or admin user
 void LoginWindow::on_pushButton_signup_clicked()
 {
-    // show signup window and disables login window
+    /// show signup window and disables login window
+    /*
     SignupWindow *signupWin = new SignupWindow;
     signupWin->setModal(true);
-    signupWin->exec();
+    signupWin->exec(); */
 }
-*/
+
