@@ -2,17 +2,24 @@
 
 StorageFacade::StorageFacade(){
     //create the database connection
-    storage = Storage();
+
+qDebug() << "Create storage...";
+    storage = new Storage(this);
+    database = storage->getDatabase();
 
     //initialize the collection classes
     allUsers = QList<User*>();
     allProjects = QList<Project*>();
 
     //initialize the controllers
-    storeProjectControl = new StoreProjectControl(allProjects, allUsers);
-    getProjectControl = new GetProjectControl(allProjects, allUsers);
-    storeUserControl = new StoreUserControl(allProjects, allUsers);
-    getUserControl = new GetUserControl(allUsers, this);
+qDebug() << "Create storeproject controller.";
+    storeProjectControl = new StoreProjectControl(allProjects, allUsers, database);
+qDebug() << "Create getproject control...";
+    getProjectControl = new GetProjectControl(allProjects, allUsers, database);
+qDebug() << "Create store user control";
+    storeUserControl = new StoreUserControl(allProjects, allUsers, database);
+qDebug() << "Create get user control...";
+    getUserControl = new GetUserControl(allUsers, this, database);
 
 
     //nobody is logged in yet - make sure hte system knows
@@ -37,27 +44,38 @@ StorageFacade::~StorageFacade(){
     delete storeUserControl;
     delete getUserControl;
 
+    delete storage;
+
 }
+
+/*
+void StorageFacade::setDB(QSqlDatabase& db){
+    database = db;
+}*/
 
 void StorageFacade::StorageFacade::run(){
     executing = 1;
 
     while(executing){
         if(!loggedInUser){
+qDebug() << "Nobody logged in ... create a registrationmanager";
             regMgr = new ManageRegistrationControl();
-            //call the necessary functions
+            //call the necessary functions          
             delete regMgr;
 
         } else if(loggedInUser->getPolicy()){ //true if Student
+qDebug() << "Student logged in ... create a studentmanager";
             stMgr = new ManageStudentControl(this);
             //call necessary functions
             delete stMgr;
 
         } else{
             adMgr = new ManageAdminControl();
+qDebug() << "Admin logged in ... create an adminmanager";
             // call necessary functions
             delete adMgr;
         }
+executing = 0;
     }
 
 

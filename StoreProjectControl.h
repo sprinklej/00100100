@@ -8,7 +8,7 @@
 
 class StoreProjectControl{
 public:
-    StoreProjectControl(QList<Project*>&, QList<User*>&);
+    StoreProjectControl(QList<Project*>&, QList<User*>&, QSqlDatabase&);
     StoreProjectControl();
     ~StoreProjectControl();
 
@@ -20,6 +20,7 @@ public:
 private:
     QList<Project*> allProjects;
     QList<User*> allUsers;
+    QSqlDatabase database;
 
 };
 

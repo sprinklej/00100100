@@ -6,9 +6,14 @@
 
 class SQLContext{
 public:
+    SQLContext(QSqlDatabase&);
     User* user;
     SQLStorageStrategy* strat;
     bool query(bool, User*);
+
+
+private:
+    QSqlDatabase database;
 };
 
 

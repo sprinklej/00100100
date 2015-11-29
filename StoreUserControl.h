@@ -8,7 +8,7 @@
 
 class StoreUserControl{
 public:
-    StoreUserControl(QList<Project*>&, QList<User*>&);
+    StoreUserControl(QList<Project*>&, QList<User*>&, QSqlDatabase&);
     ~StoreUserControl();
 
     /////Operations
@@ -20,9 +20,10 @@ public:
 private:
     QList<User*> allUsers;
     QList<Project*> allProjects;
+    QSqlDatabase database;
 
     ///// Associations
-    SQLContext context;
+    SQLContext* context;
 
 
 };

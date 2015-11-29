@@ -8,7 +8,7 @@
 
 class GetProjectControl{
 public:
-    GetProjectControl(QList<Project*>&, QList<User*>&);
+    GetProjectControl(QList<Project*>&, QList<User*>&, QSqlDatabase&);
     ~GetProjectControl();
 
     void prepareStatement(QString, QString);
@@ -18,6 +18,7 @@ public:
 private:
     QList<Project*> allProjects;
     QList<User*> allUsers;
+    QSqlDatabase database;
 };
 
 #endif // GETPROJECTCONTROL_H

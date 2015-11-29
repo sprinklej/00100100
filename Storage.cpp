@@ -6,7 +6,9 @@
     Storage();
     static Storage* instance;*/
 
-Storage::Storage(){
+Storage::Storage(StorageFacade* sf){
+    facade = sf;
+
     // load the SQLite driver
     database = QSqlDatabase::addDatabase("QSQLITE");
 
@@ -15,8 +17,8 @@ Storage::Storage(){
     curr.cdUp();
     QString dbLocation = curr.path() + "/00100100/cupidD4";
     database.setDatabaseName(dbLocation);
-    database.open();
-
+    //database.open();
+    //sf->setDB(database);
     qDebug() << "Open the database";
 }
 
@@ -24,12 +26,16 @@ Storage::~Storage(){
     database.close();
 }
 
+QSqlDatabase& Storage::getDatabase(){
+    return database;
+}
+
 
 /*
 Storage& Storage::getDB(){
     static Storage instance;
     return instance;
-}
+}* /
 
 //adds the user's data to Storage
 void Storage::addUser(Student* st){

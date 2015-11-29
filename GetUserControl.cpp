@@ -2,9 +2,10 @@
 #include "StorageFacade.h"
 
 
-GetUserControl::GetUserControl(QList<User*>& uList, StorageFacade* f){
+GetUserControl::GetUserControl(QList<User*>& uList, StorageFacade* f, QSqlDatabase& db){
     allUsers = uList;
     facade = f;
+    database = db;
 }
 
 GetUserControl::~GetUserControl(){}
@@ -12,6 +13,7 @@ GetUserControl::~GetUserControl(){}
 bool GetUserControl::checkID(QString id){
 
     //query the database for all IDs
+    database.open();
     QSqlQuery query;
     query.exec("SELECT id FROM admins UNION SELECT id FROM students;");
 
@@ -27,6 +29,7 @@ bool GetUserControl::checkID(QString id){
 void GetUserControl::getIDs(QList<QString>& list){
 
     //query the database for all IDs
+    database.open();
     QSqlQuery query;
     query.exec("SELECT id FROM admins UNION SELECT id FROM students;");
 
@@ -71,6 +74,7 @@ void GetUserControl::initializeUsersList(){
     allUsers.clear();
 
     //get the student data
+    database.open();
     QSqlQuery query;
     query.exec("SELECT * FROM students;");
 

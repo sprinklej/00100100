@@ -9,8 +9,9 @@
 #include <QSqlQuery>
 #include <QDir>
 #include <QVariant>
-using namespace std;
+class StorageFacade;
 
+using namespace std;
 
 class Storage{
 
@@ -31,9 +32,12 @@ public:
     void getAllProjects(QList<Project*>&); // get all the projects
 
     //Private members that are internal to the Singleton pattern.*/
-    QSqlDatabase database;
-    Storage();
+    QSqlDatabase& getDatabase();
+    Storage(StorageFacade*);
     ~Storage();
+private:
+    StorageFacade* facade;
+    QSqlDatabase database;
 };
 
 #endif // STORAGE_H

@@ -2,9 +2,10 @@
 #include "QVariant"
 #include "QDebug"
 
-StoreProjectControl::StoreProjectControl(QList<Project*>& plist, QList<User*>& ulist){
+StoreProjectControl::StoreProjectControl(QList<Project*>& plist, QList<User*>& ulist, QSqlDatabase& db){
     allUsers = ulist;
     allProjects = plist;
+    database = db;
 }
 
 StoreProjectControl::~StoreProjectControl(){
@@ -35,6 +36,7 @@ bool StoreProjectControl::store(Project* p, QString oID, QString sID, bool newPr
 //call this when a new project is created
 bool StoreProjectControl::insertProject(Project* pr, QString own){
 
+    database.open();
     QSqlQuery query;
     query.prepare("INSERT INTO projects(projectID, owner, courseName, courseNum, description, teamSize)"
                   "VALUES (:ipr, :iow, :icn, :icnm, :ides, :its)");
@@ -52,8 +54,9 @@ bool StoreProjectControl::insertProject(Project* pr, QString own){
 //call this when a project is updated.  The QString is empty is an admin is just updating data fields.
 //storageFacade needs to checkID() studentID first
 bool StoreProjectControl::updateProject(Project* pr, QString studentID){
-
+    database.open();
     if(studentID == ""){
+
         QSqlQuery query;
         query.prepare("UPDATE projects SET "
                       "courseName = :icn, courseNum = :icnm, description = :ides, teamSize = :its "

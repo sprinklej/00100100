@@ -1,9 +1,10 @@
 #include "GetProjectControl.h";
 #include "QDebug"
 
-GetProjectControl::GetProjectControl(QList<Project*>& pList, QList<User*>& uList){
+GetProjectControl::GetProjectControl(QList<Project*>& pList, QList<User*>& uList, QSqlDatabase& db){
     allProjects = pList;
     allUsers = uList;
+    database = db;
 }
 
 GetProjectControl::~GetProjectControl(){
@@ -25,6 +26,7 @@ void GetProjectControl::intitializeProjects(){
     }
 
     //now go get the projects...
+    database.open();
     QSqlQuery query;
     query.exec("SELECT * FROM projects;");
 

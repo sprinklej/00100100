@@ -11,7 +11,7 @@ class StorageFacade;
 
 class GetUserControl{
 public:
-    GetUserControl(QList<User*>&, StorageFacade*);
+    GetUserControl(QList<User*>&, StorageFacade*, QSqlDatabase&);
     ~GetUserControl();
 
     bool checkID(QString);
@@ -23,6 +23,7 @@ public:
 private:
     QList<User*> allUsers;
     StorageFacade* facade;
+    QSqlDatabase database;
 
 };
 

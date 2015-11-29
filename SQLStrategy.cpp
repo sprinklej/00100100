@@ -1,12 +1,15 @@
 #include "SQLStrategy.h"
 
 
-UpdateStudentStrategy::UpdateStudentStrategy(){}
+UpdateStudentStrategy::UpdateStudentStrategy(QSqlDatabase& db){
+        database = db;
+}
 
 bool UpdateStudentStrategy::createQuery(User* u){
 
     Student* st = dynamic_cast<Student*>(u);
 
+    database.open();
     QSqlQuery query;
     query.prepare("UPDATE users SET "
                   "fname = :fname,"
@@ -104,11 +107,14 @@ bool UpdateStudentStrategy::createQuery(User* u){
     return res;
 }
 
-InsertStudentStrategy::InsertStudentStrategy(){}
+InsertStudentStrategy::InsertStudentStrategy(QSqlDatabase& db){
+    database = db;
+}
 
 bool InsertStudentStrategy::createQuery(User* u){
     Student* st = dynamic_cast<Student*>(u);
 
+    database.open();
     QSqlQuery query;
     query.prepare("INSERT INTO users(id, fname, lname, att_leader, att_avail, att_2404, att_3005,"
                   "att_coding, att_dbase, att_selfDir, att_writing, att_UI, att_algorithm,"
@@ -177,11 +183,14 @@ bool InsertStudentStrategy::createQuery(User* u){
     return res;
 }
 
-UpdateAdminStrategy::UpdateAdminStrategy(){}
+UpdateAdminStrategy::UpdateAdminStrategy(QSqlDatabase& db){
+        database = db;
+}
 
 bool UpdateAdminStrategy::createQuery(User* u){
     Admin* ad = dynamic_cast<Admin*>(u);
 
+    database.open();
     QSqlQuery query;
     query.prepare("INSERT INTO users(id, fname, lname) VALUES (:iid, :ifn, :iln)");
     query.bindValue(":iid", ad->getIDNum());
@@ -192,7 +201,9 @@ bool UpdateAdminStrategy::createQuery(User* u){
     return res;
 }
 
-InsertAdminStrategy::InsertAdminStrategy(){}
+InsertAdminStrategy::InsertAdminStrategy(QSqlDatabase& db){
+        database = db;
+}
 
 //not written yet
 bool InsertAdminStrategy::createQuery(User* u){

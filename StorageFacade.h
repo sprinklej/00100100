@@ -14,6 +14,7 @@
 #include "Storage.h"
 #include "User.h"
 
+
 class StorageFacade{
 public:
     // operations
@@ -30,7 +31,7 @@ public:
     void setLoggedInUser(User*);
 
     // attributes and relationships
-
+    //void setDB(QSqlDatabase&);
 
 private:
     // relationships to subsystem
@@ -50,7 +51,8 @@ private:
     QList<Project*> allProjects;
     bool executing;
 
-    Storage storage;
+    Storage* storage;
+    QSqlDatabase database;
 
 };
 

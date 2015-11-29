@@ -15,29 +15,32 @@ class SQLStorageStrategy{
 public:
     virtual bool createQuery(User*) = 0;
 
+protected:
+    QSqlDatabase database;
+
 };
 
 class InsertStudentStrategy : public SQLStorageStrategy{
 public:
-    InsertStudentStrategy();
+    InsertStudentStrategy(QSqlDatabase&);
     bool createQuery(User*);
 };
 
 class UpdateStudentStrategy : public SQLStorageStrategy{
 public:
-    UpdateStudentStrategy();
+    UpdateStudentStrategy(QSqlDatabase&);
     bool createQuery(User*);
 };
 
 class InsertAdminStrategy : public SQLStorageStrategy{
 public:
-    InsertAdminStrategy();
+    InsertAdminStrategy(QSqlDatabase&);
     bool createQuery(User*);
 };
 
 class UpdateAdminStrategy : public SQLStorageStrategy{
 public:
-    UpdateAdminStrategy();
+    UpdateAdminStrategy(QSqlDatabase&);
     bool createQuery(User*);
 };
 
