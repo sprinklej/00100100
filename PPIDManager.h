@@ -4,22 +4,34 @@
 #include "Project.h";
 #include "User.h";
 #include "Team.h";
+#include <algorithm>
+#include "QHash"
 
 class PPIDManager{
 public:
-
     PPIDManager(QList<Student*>&, Project*);
-    void createTeams();
+    ~PPIDManager();
     void printSummaryReport();
     void printDetailedReport();
-    int match(Team*, Student*);
 
 private:
+    void runAlgorithm();
+    void calculateAverages();
     QList<Student*> students;
     Project* project;
     QList<Team*> teams;
+    int numTeams;
 
-int numteams;
+    QHash<QString, float> averages;
+    bool compStudentsOnLeader(Student*, Student*); //TODO
+    bool compTeamsOnVariance(Team*, Team*);
+    bool compStudentsOnCoding(Student*, Student*);
+    bool compStudentsOnWriting(Student*, Student*);
+    bool compStudentsOverall(Student*, Student*);
+
+    int bestMatchScore = 0;
+    Student* bestStudent = 0;
+    int matchmatch(Team*, Student*);
 };
 
 #endif // PPIDMANAGER_H
