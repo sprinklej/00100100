@@ -1,7 +1,10 @@
 #include "GetProjectControl.h";
+#include "StorageFacade.h"
+
 #include "QDebug"
 
-GetProjectControl::GetProjectControl(QList<Project*>& pList, QList<User*>& uList, QSqlDatabase& db){
+GetProjectControl::GetProjectControl(StorageFacade* f, QList<Project*>& pList, QList<User*>& uList, QSqlDatabase& db){
+    facade = f;
     allProjects = pList;
     allUsers = uList;
     database = db;
@@ -72,6 +75,8 @@ void GetProjectControl::intitializeProjects(){
         }
 
     }
+
+    facade->setAllProjects(allProjects);
 
 }
 

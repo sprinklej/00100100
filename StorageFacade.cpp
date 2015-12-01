@@ -15,7 +15,7 @@ qDebug() << "Create storage...";
 qDebug() << "Create storeproject controller.";
     storeProjectControl = new StoreProjectControl(allProjects, allUsers, database);
 qDebug() << "Create getproject control...";
-    getProjectControl = new GetProjectControl(allProjects, allUsers, database);
+    getProjectControl = new GetProjectControl(this, allProjects, allUsers, database);
 qDebug() << "Create store user control";
     storeUserControl = new StoreUserControl(allProjects, allUsers, database);
 qDebug() << "Create get user control...";
@@ -31,7 +31,6 @@ qDebug() << "Create get user control...";
     getProjectControl->intitializeProjects();
 
     //system is now set up
-
 }
 
 StorageFacade::~StorageFacade(){
@@ -48,13 +47,32 @@ StorageFacade::~StorageFacade(){
 
 }
 
+// setter
+void StorageFacade::setAllUsers(QList<User*> usrs) {
+    allUsers = usrs;
+}
+
+void StorageFacade::setAllProjects(QList<Project*> prjcts) {
+    allProjects = prjcts;
+}
+
+// getter
+User* StorageFacade::getLoggedInUser() {
+    return loggedInUser;
+}
+
 /*
 void StorageFacade::setDB(QSqlDatabase& db){
     database = db;
 }*/
 
-void StorageFacade::StorageFacade::run(){
+void StorageFacade::run(){
     executing = 1;
+
+// for testing the student / admin managers only
+QString uID = "100542806";  // student
+//QString uID = "soma";     // admin
+handleLogin(uID);           // log a user in
 
     while(executing){
         if(!loggedInUser){
@@ -62,7 +80,6 @@ qDebug() << "Nobody logged in ... create a registrationmanager";
             regMgr = new ManageRegistrationControl();
             //call the necessary functions          
             delete regMgr;
-
         } else if(loggedInUser->getPolicy()){ //true if Student
 qDebug() << "Student logged in ... create a studentmanager";
             stMgr = new ManageStudentControl(this);
@@ -109,7 +126,6 @@ void StorageFacade::getUserIDs(QList<QString>& u){
 }
 
 void StorageFacade::handleLogin(QString uID){
-
     User* u;
     foreach(u, allUsers){
         if(uID == u->getID()){

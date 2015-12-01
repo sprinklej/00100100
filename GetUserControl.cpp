@@ -3,7 +3,7 @@
 
 
 GetUserControl::GetUserControl(QList<User*>& uList, StorageFacade* f, QSqlDatabase& db){
-    allUsers = uList;
+    allUsers = uList; // doesnt do what you think its doing the allUsers list still comes out empty
     facade = f;
     database = db;
 }
@@ -159,5 +159,8 @@ void GetUserControl::initializeUsersList(){
         allUsers.push_back(a);
     }
 
+
+    // add all users to the facades allUser list
+    facade->setAllUsers(allUsers);
 }
 

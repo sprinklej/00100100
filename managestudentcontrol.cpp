@@ -6,13 +6,21 @@ using namespace std;
 
 ManageStudentControl::ManageStudentControl(StorageFacade* f)
 {
-    studWin = NULL;
     facade = f;
+    user = (Student*) facade->getLoggedInUser();
+
+    StudentWindow *stdWin = new StudentWindow();
+    studWin = stdWin;
+    studWin->setManStudContrl(this);
+    studWin->setStudent(user);
+    studWin->showUserInfo();
+    studWin->refresh();
+    studWin->show();
 }
 
 
 /* --------------------------- setters ------------------------*/
-void ManageStudentControl::setStudWind(StudentWindow* stWin)
+void ManageStudentControl::setStudWind(StudentWindow* stWin) // probably not needed anymore
 {
     studWin = stWin;
 }
@@ -27,8 +35,8 @@ void ManageStudentControl::setStudent(Student* s)
 // refresh the list of projects/joined projects
 void ManageStudentControl::refresh()
 {
-    /*
-    Storage::getDB().getAllProjects(allProjects);*/
+
+    //Storage::getDB().getAllProjects(allProjects);
     facade->getProjects(allProjects);
 
     foreach(Project* p, allProjects){
@@ -44,7 +52,6 @@ void ManageStudentControl::refresh()
             }
         }
     }
-
 }
 
 

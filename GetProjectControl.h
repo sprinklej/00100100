@@ -6,9 +6,11 @@
 #include "QList"
 #include "QSqlQuery"
 
+class StorageFacade;
+
 class GetProjectControl{
 public:
-    GetProjectControl(QList<Project*>&, QList<User*>&, QSqlDatabase&);
+    GetProjectControl(StorageFacade*, QList<Project*>&, QList<User*>&, QSqlDatabase&);
     ~GetProjectControl();
 
     void prepareStatement(QString, QString);
@@ -19,6 +21,7 @@ private:
     QList<Project*> allProjects;
     QList<User*> allUsers;
     QSqlDatabase database;
+    StorageFacade* facade;
 };
 
 #endif // GETPROJECTCONTROL_H

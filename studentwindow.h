@@ -9,7 +9,6 @@
 //#include "Project.h"
 
 class ManageStudentControl;
-#include "managestudentcontrol.h"
 
 
 namespace Ui {

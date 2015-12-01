@@ -30,6 +30,13 @@ public:
     void handleLogout();
     void setLoggedInUser(User*);
 
+    // setters
+    void setAllUsers(QList<User*>);
+    void setAllProjects(QList<Project*>);
+
+    // getters
+    User* getLoggedInUser();
+
     // attributes and relationships
     //void setDB(QSqlDatabase&);
 

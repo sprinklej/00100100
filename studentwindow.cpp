@@ -1,10 +1,8 @@
 #include "studentwindow.h"
 #include "ui_studentwindow.h"
-//#include "Storage.h"
-//#include "qualificationwindow.h"
+#include "managestudentcontrol.h"
+
 #include <QDebug>
-
-
 
 // create and setup window
 StudentWindow::StudentWindow(QWidget *parent) :
@@ -196,9 +194,9 @@ void StudentWindow::refresh(){
 //join project
 void StudentWindow::on_pushButton_joinProject_clicked()
 {
-    if (ui->allProjlistWidget->currentItem() != NULL){ // if it is NULL then no item is selected yet
-        manStudControl->joinProject(ui->allProjlistWidget->currentItem()->text());
-    }
+   // if (ui->allProjlistWidget->currentItem() != NULL){ // if it is NULL then no item is selected yet
+   //     manStudControl->joinProject(ui->allProjlistWidget->currentItem()->text());
+   // }
 }
 
 

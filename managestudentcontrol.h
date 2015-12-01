@@ -1,12 +1,10 @@
 #ifndef MANAGESTUDENTCONTROL_H
 #define MANAGESTUDENTCONTROL_H
 
-class StudentWindow;
-#include "studentwindow.h"
-
 //#include "Storage.h"
+//#include "loginwindow.h"
 #include "qualificationwindow.h"
-#include "loginwindow.h"
+#include "studentwindow.h"
 class StorageFacade;
 
 using namespace std;
