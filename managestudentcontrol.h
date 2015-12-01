@@ -18,6 +18,7 @@ public:
     void joinProject(QString currentProj);
     void manageQualifications();
     void logout();
+    void createGUI();
 
     // set student
     void setStudent(Student*);

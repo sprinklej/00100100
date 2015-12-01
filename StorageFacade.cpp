@@ -83,9 +83,11 @@ qDebug() << "Nobody logged in ... create a registrationmanager";
         } else if(loggedInUser->getPolicy()){ //true if Student
 qDebug() << "Student logged in ... create a studentmanager";
             stMgr = new ManageStudentControl(this);
-            //call necessary functions
-            delete stMgr;
-
+            stMgr->createGUI();
+//cant delete the stMgr object here, because as soon as stMgr->createGUI() returns
+//then the object is deleted, meaning you cant call any other stMgr commands
+//delete stMgr;
+qDebug() << "test to see when stMgr gets deleted";
         } else{
             adMgr = new ManageAdminControl();
 qDebug() << "Admin logged in ... create an adminmanager";

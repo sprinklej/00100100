@@ -9,15 +9,19 @@ ManageStudentControl::ManageStudentControl(StorageFacade* f)
     facade = f;
     user = (Student*) facade->getLoggedInUser();
 
-    StudentWindow *stdWin = new StudentWindow();
-    studWin = stdWin;
+}
+
+/* --------------------------- run function ------------------------*/
+void ManageStudentControl::createGUI()
+{
+    StudentWindow *studWin = new StudentWindow();
+    setStudWind(studWin);
     studWin->setManStudContrl(this);
     studWin->setStudent(user);
     studWin->showUserInfo();
     studWin->refresh();
     studWin->show();
 }
-
 
 /* --------------------------- setters ------------------------*/
 void ManageStudentControl::setStudWind(StudentWindow* stWin) // probably not needed anymore
@@ -31,11 +35,11 @@ void ManageStudentControl::setStudent(Student* s)
 }
 
 
+
 /* --------------------------- Project Tab ------------------------*/
 // refresh the list of projects/joined projects
 void ManageStudentControl::refresh()
 {
-
     //Storage::getDB().getAllProjects(allProjects);
     facade->getProjects(allProjects);
 
@@ -55,14 +59,17 @@ void ManageStudentControl::refresh()
 }
 
 
+
 // join a project
 void ManageStudentControl::joinProject(QString currentProj)
 {
     QString st= "";
-
     //clear any status text
     studWin->setStatus2(st);
 
+    // text just for texting!
+    studWin->setStatus2("You called the join project function");
+/*
     // join the project
     foreach(Project* p, allProjects){
         if(p->getProjectID() == currentProj){
@@ -77,10 +84,14 @@ void ManageStudentControl::joinProject(QString currentProj)
             }
         }
     }
-    return;
+    return;*/
 }
 
+
+
+
 Student* ManageStudentControl::getCurrentUser(){return user;}
+
 
 
 /* --------------------------- Profile Tab ------------------------* /
