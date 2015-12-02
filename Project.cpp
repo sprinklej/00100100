@@ -25,7 +25,6 @@ void Project::addStudent(Student* stdnt){
 /////////////// GETTERS
 QString Project::getProjectID(){return projectID;}
 QString Project::getCourseNum(){return courseNum;}
-//QString Project::getPTitle(){return pTitle;}
 QString Project::getCourseName(){return courseName;}
 QString Project::getPDescription(){return pDescription;}
 QList<Student*>& Project::getStudentList(){return students;}

@@ -1,8 +1,6 @@
 #include "PPIDManager.h";
 
-//////////////////////////CLASS IS NOT COMPLETE
-/// //////////////////////FEEL FREE TO COMMENT OUT
-///
+
 PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p){
     students = new QList<Student*>(); // need a new one - PPID destroys the list
     Student* s;
@@ -185,6 +183,11 @@ void PPIDManager::calculateAverages(){
 
 }
 
+
+//TODO:
+//Need to handle cases where number of students < num teams * 3
+//TODO:
+//Need an exception for when there are too few Students given team size
 void PPIDManager::RunAlgorithm(){
 
     if(numTeams < students.Size() *2){
@@ -214,7 +217,7 @@ void PPIDManager::RunAlgorithm(){
     Student* s;
     int pos = 0;
     foreach(s, students){
-        if(s->getAtt_Ldr()){
+        if(s->getreq_Ldr()){
             Team* t = new Team();
             t << s;
             students.removeAt(pos--);
@@ -279,6 +282,7 @@ void PPIDManager::RunAlgorithm(){
             }
         students.remove(bestStudent);
         t << bestStudent;
+        }
     }
 
     /*Two ways to do this:
@@ -311,6 +315,7 @@ void PPIDManager::RunAlgorithm(){
             }
         students.remove(bestStudent);
         t << bestStudent;
+        }
     }
 
     while(teams->size >= students->size){
@@ -395,6 +400,7 @@ void PPIDManager::RunAlgorithm(){
 
 
 
+//TODO
 void PPIDManager::printSummaryReport(){
 /*
 PPID SUMMARY REPORT
@@ -427,347 +433,45 @@ Team n:
 
 }
 
+//TODO
 void PPIDManager::printDetailedReport(){
 }
 
-
-/*
-
-
-PPID Manager(QList<Student*>& students, Project* p){
-
-Note: the PPID destroys the students list
-
-
-Need:
-  - function to sort a QList by leaderscore
-  - add a getLeaderscore() to Student
-  - add a getCoderScore() to Student
-  - int match(team*, student*)
-
-
-
-
-
-
-
-
-11. if numTeams * 3 >= students (remember we have already removed numTeams * 3) do 12-15
-
-12.
-    Two ways to do this:
-    12a. Sort the teams from highest to lowest variance
-    12b. Sort the teams from weakest to strongest
-
-    13.  Sort students on coderscore
-
-    14.  For each team in teams:
-            let bestmatch = match(team, student(0))
-            let beststudent = student(0)
-
-                For student from 0 to numteams
-                    if int m = match(team, student(n)) < bestmatch
-                    bestmatch = m
-                    beststudent = student(n)
-
-                Remove beststudent from students
-                push beststudent to team
-
-    15 Repeat 6-11
-
-16.  numTeams *3 is now < students
-
-17.  While students is not empty repeat 18, 19
-
-18.  Two ways to do this:
-    18a. Sort the teams from highest to lowest variance
-    18b. Sort the teams from weakest to strongest
-
-19.  For each team in teams:
-        let bestmatch = match(team, student(0))
-        let beststudent = student(0)
-
-            For student from 0 to numteams
-                if int m = match(team, student(n)) < bestmatch
-                bestmatch = m
-                beststudent = student(n)
-
-            Remove beststudent from students
-            push beststudent to team
-
-20.  PPID is finished.  Print one of:
-
-PPID SUMMARY REPORT
-Project:
-  Class:
-..................................................................................
-Team n:
-  Leader - Student Name ......... 100234512
-   Coder - Student Name ......... 100674556
-  Writer - Student Name ......... 100345234
-   Other - Student Name ......... 100345233
-..................................................................................
-
-==================================================================================
-
-PPID DETAILED REPORT
-Project:
-  Class:
-..................................................................................
-
-Team n:
-  Leader - Student Name ......... 100234512
-   Coder - Student Name ......... 100674556
-  Writer - Student Name ......... 100345234
-   Other - Student Name ......... 100345233
-
-..................................................................................
-
-Availability:
-          ||Sun     ||Mon     ||Tue     ||Wed     ||Thur    ||Fri     ||Sat     ||
-          ||AM|PM|Ev||AM|PM|Ev||AM|PM|Ev||AM|PM|Ev||AM|PM|Ev||AM|PM|Ev||AM|PM|Ev||
-100234512 ||1 |  |  || 1|  |  ||  |  |  ||  |  |  ||  |  |  ||  |  |  ||  |  |  ||
-100674556 ||1 |  |  || 1|  |  ||  |  |  ||  |  |  ||  |  |  ||  |  |  ||  |  |  ||
-100345234 ||  |1 |  ||  | 1| 1||  |  |  ||  |  |  ||  |  |  ||  |  |  ||  |  |  ||
-100345233 ||  |  |1 ||  |  | 1||  |  |  ||  |  |  ||  |  |  ||  |  |  ||  |  |  ||
-
-Total availability overlap index: n (60%)
-..................................................................................
-
-Qualifications:
-          ||Leader           ||Coder            ||Writer           ||
-          ||L1|L2|L3|L4|L5|L6||C1|C2|C3|C4|C5|C6||W1|W2|W3|W4|W5|W6||
-100234512 ||  |  |  |  |  |  ||  |  |  |  |  |  ||  |  |  |  |  |  ||
-100674556 ||  |  |  |  |  |  ||  |  |  |  |  |  ||  |  |  |  |  |  ||
-100345234 ||  |  |  |  |  |  ||  |  |  |  |  |  ||  |  |  |  |  |  ||
-100345233 ||  |  |  |  |  |  ||  |  |  |  |  |  ||  |  |  |  |  |  ||
-.....................................................................
-    Total ||                 ||                 ||                 ||
-Class Avg ||                 ||                 ||                 ||
- Variance ||                 ||                 ||                 ||
-
-Total Qualification index: n
-..................................................................................
-
-Looking for:
-          ||Leader           ||Coder            ||Writer           ||
-          ||L1|L2|L3|L4|L5|L6||C1|C2|C3|C4|C5|C6||W1|W2|W3|W4|W5|W6||
-100234512 ||  |  |  |  |  |  ||  |  |  |  |  |  ||  |  |  |  |  |  ||
-100674556 ||  |  |  |  |  |  ||  |  |  |  |  |  ||  |  |  |  |  |  ||
-100345234 ||  |  |  |  |  |  ||  |  |  |  |  |  ||  |  |  |  |  |  ||
-100345233 ||  |  |  |  |  |  ||  |  |  |  |  |  ||  |  |  |  |  |  ||
-.....................................................................
-TotLooking||                 ||                 ||                 ||
- TotFound ||                 ||                 ||                 ||
- Variance ||                 ||                 ||                 ||
-
-Total (Looking for - found) index: n
-..................................................................................
- Availability Index :
-Qualification Index :
-  Looking for Index :
-
-FINAL SCORE:
-..................................................................................
-
-/*
-
-
-/*
-
-PPID Manager Class in Pseudocode
-
-
-
-Note: the PPID destroys the students list
-
-Start:
-calculate and save the mean value of each qualification
-
-Need:
-  - function to sort a QList by leaderscore
-  - add a getLeaderscore() to Student
-  - add a getCoderScore() to Student
-  - int match(team*, student*)
-  - void printSummary(Qlist<Team*>)
-  - void printDetailed(Qlist<Team*>)
-
-1. Calculate the number of teams numTeams
-2. Make a QList<Student*> of Teams
-3. Sort students on the basis of leaderScore()
-4. For each student in students:
-    - if leader - true:
-        - create a new team
-        - push the team to teams
-        - remove s
-        - push s to teams
-        - if teams.size = numteams, break
-5.  If teams.size < numteams:
-    For each student in students:
-        - create a new team
-        - push the team to teams
-        - remove s
-        - push s to teams
-        - if teams.size = numteams, break
-
-- We now have all the teams and all the leaders
-
-Two ways to do this:
-6a. Sort the teams from highest to lowest variance
-6b. Sort the teams from weakest to strongest
-
-7.  Sort students on coderscore
-
-8.  For each team in teams:
-            let bestmatch = match(team, student(0))
-            let beststudent = student(0)
-
-                For student from 0 to numteams
-                    if int m = match(team, student(n)) < bestmatch
-                    bestmatch = m
-                    beststudent = student(n)
-
-                Remove beststudent from students
-                push beststudent to team
-
-Two ways to do this:
-9a. Sort the teams from highest to lowest variance
-9b. Sort the teams from weakest to strongest
-
-10.  Sort students on presenterscore
-            let bestmatch = match(team, student(0))
-            let beststudent = student(0)
-
-                For student from 0 to numteams
-                    if int m = match(team, student(n)) < bestmatch
-                    bestmatch = m
-                    beststudent = student(n)
-
-                Remove beststudent from students
-                push beststudent to team
-
-11. if numTeams * 3 >= students (remember we have already removed numTeams * 3) do 12-15
-
-12.
-    Two ways to do this:
-    12a. Sort the teams from highest to lowest variance
-    12b. Sort the teams from weakest to strongest
-
-    13.  Sort students on coderscore
-
-    14.  For each team in teams:
-            let bestmatch = match(team, student(0))
-            let beststudent = student(0)
-
-                For student from 0 to numteams
-                    if int m = match(team, student(n)) < bestmatch
-                    bestmatch = m
-                    beststudent = student(n)
-
-                Remove beststudent from students
-                push beststudent to team
-
-    15 Repeat 6-11
-
-16.  numTeams *3 is now < students
-
-17.  While students is not empty repeat 18, 19
-
-18.  Two ways to do this:
-    18a. Sort the teams from highest to lowest variance
-    18b. Sort the teams from weakest to strongest
-
-19.  For each team in teams:
-        let bestmatch = match(team, student(0))
-        let beststudent = student(0)
-
-            For student from 0 to numteams
-                if int m = match(team, student(n)) < bestmatch
-                bestmatch = m
-                beststudent = student(n)
-
-            Remove beststudent from students
-            push beststudent to team
-
-20.  PPID is finished.  Print one of:
-
-PPID SUMMARY REPORT
-Project:
-  Class:
-..................................................................................
-Team n:
-  Leader - Student Name ......... 100234512
-   Coder - Student Name ......... 100674556
-  Writer - Student Name ......... 100345234
-   Other - Student Name ......... 100345233
-..................................................................................
-
-==================================================================================
-
-PPID DETAILED REPORT
-Project:
-  Class:
-..................................................................................
-
-Team n:
-  Leader - Student Name ......... 100234512
-   Coder - Student Name ......... 100674556
-  Writer - Student Name ......... 100345234
-   Other - Student Name ......... 100345233
-
-..................................................................................
-
-Availability:
-          ||Sun     ||Mon     ||Tue     ||Wed     ||Thur    ||Fri     ||Sat     ||
-          ||AM|PM|Ev||AM|PM|Ev||AM|PM|Ev||AM|PM|Ev||AM|PM|Ev||AM|PM|Ev||AM|PM|Ev||
-100234512 ||1 |  |  || 1|  |  ||  |  |  ||  |  |  ||  |  |  ||  |  |  ||  |  |  ||
-100674556 ||1 |  |  || 1|  |  ||  |  |  ||  |  |  ||  |  |  ||  |  |  ||  |  |  ||
-100345234 ||  |1 |  ||  | 1| 1||  |  |  ||  |  |  ||  |  |  ||  |  |  ||  |  |  ||
-100345233 ||  |  |1 ||  |  | 1||  |  |  ||  |  |  ||  |  |  ||  |  |  ||  |  |  ||
-
-Total availability overlap index: n (60%)
-..................................................................................
-
-Qualifications:
-          ||Leader           ||Coder            ||Writer           ||
-          ||L1|L2|L3|L4|L5|L6||C1|C2|C3|C4|C5|C6||W1|W2|W3|W4|W5|W6||
-100234512 ||  |  |  |  |  |  ||  |  |  |  |  |  ||  |  |  |  |  |  ||
-100674556 ||  |  |  |  |  |  ||  |  |  |  |  |  ||  |  |  |  |  |  ||
-100345234 ||  |  |  |  |  |  ||  |  |  |  |  |  ||  |  |  |  |  |  ||
-100345233 ||  |  |  |  |  |  ||  |  |  |  |  |  ||  |  |  |  |  |  ||
-.....................................................................
-    Total ||                 ||                 ||                 ||
-Class Avg ||                 ||                 ||                 ||
- Variance ||                 ||                 ||                 ||
-
-Total Qualification index: n
-..................................................................................
-
-Looking for:
-          ||Leader           ||Coder            ||Writer           ||
-          ||L1|L2|L3|L4|L5|L6||C1|C2|C3|C4|C5|C6||W1|W2|W3|W4|W5|W6||
-100234512 ||  |  |  |  |  |  ||  |  |  |  |  |  ||  |  |  |  |  |  ||
-100674556 ||  |  |  |  |  |  ||  |  |  |  |  |  ||  |  |  |  |  |  ||
-100345234 ||  |  |  |  |  |  ||  |  |  |  |  |  ||  |  |  |  |  |  ||
-100345233 ||  |  |  |  |  |  ||  |  |  |  |  |  ||  |  |  |  |  |  ||
-.....................................................................
-TotLooking||                 ||                 ||                 ||
- TotFound ||                 ||                 ||                 ||
- Variance ||                 ||                 ||                 ||
-
-Total (Looking for - found) index: n
-..................................................................................
- Availability Index :
-Qualification Index :
-  Looking for Index :
-
-FINAL SCORE:
-..................................................................................
-
-
+//The purpose of this function is to determine the variance of two teams'
+//qualifications vs. the average of the population, then funding the sum
+//over all qualifications.
+//It will identify either a large negative difference or a large positive difference as being undesirable
+//This is done by squaring the difference.
+//For example, Team1Q1 = 3.1 Q1classAvg = 2.5 T1Q2 = 0.3 Q2CAvg = 1.6
+// = (3.1 - 2.5)^2 + (0.3-1.6)^2
+//This accomplishes two things:
+//  - It provides an absolute value
+//  - It prioritizes large differences
+//For this last reason, it is preferred to a stright up absolute value
+bool PPIDManager::compTeamsOnVariance(Team* t1, Team* t2, QHash<QString, float>& avgs){
+    return(t1->getQualVariance(avgs) <= t2->getQualVariance(avgs);
 }
 
 
+bool PPIDManager::compTeamsOnLookingForVariance(Team* t1, Team* t2){
+    return(t1->getLFQualVariance() <= t2->getLFQualVariance();
+}
 
 
-*/
+//These functions will check if s1 <= s2 and are used by the sort algorithm
+bool PPIDManager::compStudentsOnLeader(Student* s1, Student* s2){
+    return(s1->getLeaderScore() <= s2->getLeaderScore());
+}
+
+bool PPIDManager::compStudentsOnCoding(Student* s1, Student* s2){
+    return(s1->getCoderScore() <= s2->getCoderScore());
+}
+
+bool PPIDManager::compStudentsOnWriting(Student* s1, Student* s2){
+    return(s1->getWriterScore() <= s2->getWriterScore());
+}
+
+bool PPIDManager::compStudentsOverall(Student* s1, Student* s2){
+    return(s1->getOverallScore() <= s2->getOverallScore());
+}
+

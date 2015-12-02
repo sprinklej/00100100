@@ -252,3 +252,20 @@ QString Admin::getLastName(){return lastName;}
 
 bool Admin::getPolicy(){return false;}
 QList<Project*>* Admin::getProjects(){return 0;}
+
+
+int Student::getLeaderScore(){
+    return req_selfDir + req_teamwork + req_experience + req_comm + req_critic +  	req_reliable + req_respect;
+}
+
+int Student::getCoderScore(){
+    return req_2404 + req_3005 + req_coding + req_dbase + req_algorithm + req_testing;
+}
+
+int Student::getWriterScore(){
+    return req_UI + req_creative + req_present + req_writing + req_UML + req_req;
+}
+
+int Student::getOverallScore(){
+    return getLeaderScore() + getCoderScore() + getWriterScore();
+}

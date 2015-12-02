@@ -5,6 +5,7 @@
 #include "User.h";
 #include "Team.h";
 #include <algorithm>
+#include "math.h"
 #include "QHash"
 
 class PPIDManager{
@@ -29,9 +30,9 @@ private:
     bool compStudentsOnWriting(Student*, Student*);
     bool compStudentsOverall(Student*, Student*);
 
-    int bestMatchScore = 0;
+    float bestMatchScore = 0;
     Student* bestStudent = 0;
-    int matchmatch(Team*, Student*);
+    float match(Team*, Student*);
 };
 
 #endif // PPIDMANAGER_H

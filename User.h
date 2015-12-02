@@ -2,7 +2,6 @@
 #define USER_H
 
 class Project;
-//#include "Project.h"
 #include <QString>
 using namespace std;
 
@@ -92,7 +91,6 @@ public:
 
     // getters
     QString getIDNum();          //students start with "1", Admins start with "A"
-//    QString getUserName();
     QString getFirstName();
     QString getLastName();
     bool getAtt_leader(); // : int        -- want to be a leader? yes/no
@@ -184,6 +182,11 @@ public:
     bool getPolicy();
     QList<Project*>* getProjects();
 
+    int getLeaderScore();
+    int getCoderScore();
+    int getWriterScore();
+    int getOverallScore();
+
 };
 
 
@@ -204,7 +207,6 @@ public:
 
     // getters
     QString getIDNum();          //students start with "1", Admins start with "A"
- //   QString getUserName();
     QString getFirstName();
     QString getLastName();
 

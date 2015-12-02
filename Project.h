@@ -14,7 +14,6 @@ class Project
 protected:
     QString projectID;
     QString courseNum;
-    //QString pTitle;
     QString ownerID;
     QString courseName;
     QString pDescription;
@@ -38,11 +37,10 @@ public:
     // getters
     QString getProjectID();
     QString getCourseNum();
-    //QString getPTitle();
     QString getCourseName();
     QString getPDescription();
     int getTeamSize();
-    QList<Student*>& getStudentList();  //is this right - return a pointer to the Qlist?
+    QList<Student*>& getStudentList();
 };
 
 
