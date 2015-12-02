@@ -1,7 +1,6 @@
 #ifndef ADMINWINDOW_H
 #define ADMINWINDOW_H
 
-
 #include <QMainWindow>
 #include <QStyle>
 #include <QWidget>
@@ -10,8 +9,6 @@
 #include <QDebug>
 #include "User.h"
 #include "Project.h"
-
-// this is a git simple push test
 
 namespace Ui {
 class AdminWindow;
