@@ -37,7 +37,7 @@ public:
     float square(float);
     float getQualVariance(QHash<QString, float>&);
     float getLFVariance();
-    float Team::getScheduleMatch();
+    float getScheduleMatch();
     float match(Student*, QHash<QString, float>&);
 };
 

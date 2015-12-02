@@ -2,7 +2,7 @@
 
 
 PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p){
-    students = new QList<Student*>(); // need a new one - PPID destroys the list
+    students = QList<Student*>(); // need a new one - PPID destroys the list
     Student* s;
     foreach(s,stIn){
         students.push_back(s);
@@ -12,7 +12,7 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p){
 
     //1. Calculate the number of teams numTeams
     //2. Make a QList<Team*> of Teams
-    numTeams = p->getNumTeams();
+    numTeams = students.size() / p->getTeamSize();
 
 
 }
@@ -60,45 +60,45 @@ void PPIDManager::calculateAverages(){
 
     Student* s;
     foreach(s, students){
-        att_2404 += s->att_2404;
-        att_3005 += s->att_3005;
-        att_coding += s->att_coding;
-        att_dbase += s->att_dbase;
-        att_selfDir += s->att_selfDir;
-        att_writing += s->att_writing;
-        att_UI += s->att_UI;
-        att_algorithm += s->att_algorithm;
-        att_present += s->att_present;
-        att_teamwork += s->att_teamwork;
-        att_experience += s->att_experience;
-        att_testing += s->att_testing;
-        att_UML += s->att_UML;
-        att_req += s->att_req;
-        att_reliable += s->att_reliable;
-        att_comm += s->att_comm;
-        att_respect += s->att_respect;
-        att_creative += s->att_creative;
-        att_critic += s->att_critic;
-        req_leader += s->req_leader;
-        req_2404 += s->req_2404;
-        req_3005 += s->req_3005;
-        req_coding += s->req_coding;
-        req_dbase += s->req_dbase;
-        req_selfDir += s->req_selfDir;
-        req_writing += s->req_writing;
-        req_UI += s->req_UI;
-        req_algorithm += s->req_algorithm;
-        req_present += s->req_present;
-        req_teamwork += s->req_teamwork;
-        req_experience += s->req_experience;
-        req_testing += s->req_testing;
-        req_UML += s->req_UML;
-        req_req += s->req_req;
-        req_reliable += s->req_reliable;
-        req_comm += s->req_comm;
-        req_respect += s->req_respect;
-        req_creative += s->req_creative;
-        req_critic  += s->req_critic;
+        att_2404 += s->getAtt_2404();
+        att_3005 += s->getAtt_3005();
+        att_coding += s->getAtt_coding();
+        att_dbase += s->getAtt_dbase();
+        att_selfDir += s->getAtt_selfDir();
+        att_writing += s->getAtt_writing();
+        att_UI += s->getAtt_UI();
+        att_algorithm += s->getAtt_algorithm();
+        att_present += s->getAtt_present();
+        att_teamwork += s->getAtt_teamwork();
+        att_experience += s->getAtt_experience();
+        att_testing += s->getAtt_testing();
+        att_UML += s->getAtt_UML();
+        att_req += s->getAtt_req();
+        att_reliable += s->getAtt_reliable();
+        att_comm += s->getAtt_comm();
+        att_respect += s->getAtt_respect();
+        att_creative += s->getAtt_creative();
+        att_critic += s->getAtt_critic();
+        req_leader += s->getReq_leader();
+        req_2404 += s->getReq_2404();
+        req_3005 += s->getReq_3005();
+        req_coding += s->getReq_coding();
+        req_dbase += s->getReq_dbase();
+        req_selfDir += s->getReq_selfDir();
+        req_writing += s->getReq_writing();
+        req_UI += s->getReq_UI();
+        req_algorithm += s->getReq_algorithm();
+        req_present += s->getReq_present();
+        req_teamwork += s->getReq_teamwork();
+        req_experience += s->getReq_experience();
+        req_testing += s->getReq_testing();
+        req_UML += s->getReq_UML();
+        req_req += s->getReq_req();
+        req_reliable += s->getReq_reliable();
+        req_comm += s->getReq_comm();
+        req_respect += s->getReq_respect();
+        req_creative += s->getReq_creative();
+        req_critic  += s->getReq_critic();
     }
 
     att_2404 /= students.size();
@@ -188,14 +188,14 @@ void PPIDManager::calculateAverages(){
 //Need to handle cases where number of students < num teams * 3
 //TODO:
 //Need an exception for when there are too few Students given team size
-void PPIDManager::RunAlgorithm(){
+void PPIDManager::runAlgorithm(){
 
-    if(numTeams < students.Size() *2){
+    if(numTeams < students.size() *2){
         //give an error dialog
         return;
     }
 
-    if(numTeams < students.Size() *3){
+    if(numTeams < students.size() *3){
         //run alternative PPID
         return;
     }
@@ -217,13 +217,13 @@ void PPIDManager::RunAlgorithm(){
     Student* s;
     int pos = 0;
     foreach(s, students){
-        if(s->getreq_Ldr()){
+        if(s->getReq_ldr()){
             Team* t = new Team();
-            t << s;
+            t->getStudents().push_back(s);
             students.removeAt(pos--);
             teams << t;
         }
-        if(teams.Size() <= numTeams) break;
+        if(teams.size() <= numTeams) break;
         pos++;
     }
 
@@ -237,12 +237,12 @@ void PPIDManager::RunAlgorithm(){
         - if teams.size = numteams, break*/
 
     pos = 0;
-    while(teams.Size() < numTeams){
+    while(teams.size() < numTeams){
         foreach(s, students){
             Team* t = new Team();
-            t << s;
+            t->getStudents().push_back(s);
             students.removeAt(pos--);
-            teams << t;
+            teams.push_back(t);
         }
         pos++;
     }
@@ -252,10 +252,10 @@ void PPIDManager::RunAlgorithm(){
     /*Two ways to do this:
     6a. Sort the teams from highest to lowest variance
     6b. Sort the teams from weakest to strongest*/
-    std::sort(teams.begin(), teams.end(), compTeamsOnVariance);
+    //std::sort(teams.begin(), teams.end(), compTeamsOnVariance);
 
     //7.  Sort students on coderscore
-    std::sort(students.begin(), students.end(), compStudentsOnCoding);
+    //std::sort(students.begin(), students.end(), compStudentsOnCoding);
 
     //Now assign the best fit coder to each team
     /*8.  For each team in teams:
@@ -273,7 +273,8 @@ void PPIDManager::RunAlgorithm(){
     bestMatchScore = 0;
     bestStudent = students.at(0);
 
-    foreach(t, Teams){
+    //need to write the removeAt properly
+    /*foreach(t, Teams){
         foreach(s, students){
             int m = match(s, t);
             if(m > bestMatchScore){
@@ -283,7 +284,7 @@ void PPIDManager::RunAlgorithm(){
         students.remove(bestStudent);
         t << bestStudent;
         }
-    }
+    }*/
 
     /*Two ways to do this:
     9a. Sort the teams from highest to lowest variance
@@ -381,7 +382,7 @@ void PPIDManager::RunAlgorithm(){
     while(students.size() > 0){
         std::sort(teams.begin(), teams.end(), compTeamsOnVariance);
             foreach(t, Teams){
-            if(students->size() == 0) {return;}
+            if(students.size() == 0) {return;}
             foreach(s, students){
                 if(students->size() == 0) {return;}
                 int m = match(s, t);
@@ -414,18 +415,18 @@ Team n:
    Other - Student Name ......... 100345233
 ..................................................................................
 */
-    printf("PPID SUMMARY REPORT\n");
-    printf("Project: %s\n", project->getTitle());
-    printf("Class: %s %s\n", project->getCourseNumber(), project->getCourseDescription());
-    printf("..................................................................................\n");
+    //printf("PPID SUMMARY REPORT\n");
+    //printf("Project: %s\n", project->getTitle());
+    //printf("Class: %s %s\n", project->getCourseNumber(), project->getCourseDescription());
+    //printf("..................................................................................\n");
     int n = 0;
     Team* t;
     Student* s;
     foreach(t, teams){
         n++;
-        printf("Team %d: \n", n);
-        foreach(s, teams->getStudents()){
-            if()
+        //printf("Team %d: \n", n);
+        foreach(s, t->getStudents()){
+           // if()
 
         }
 
@@ -449,12 +450,12 @@ void PPIDManager::printDetailedReport(){
 //  - It prioritizes large differences
 //For this last reason, it is preferred to a stright up absolute value
 bool PPIDManager::compTeamsOnVariance(Team* t1, Team* t2, QHash<QString, float>& avgs){
-    return(t1->getQualVariance(avgs) <= t2->getQualVariance(avgs);
+    return(t1->getQualVariance(avgs) <= t2->getQualVariance(avgs));
 }
 
 
 bool PPIDManager::compTeamsOnLookingForVariance(Team* t1, Team* t2){
-    return(t1->getLFQualVariance() <= t2->getLFQualVariance();
+    return(t1->getLFQualVariance() <= t2->getLFQualVariance());
 }
 
 

@@ -17,6 +17,7 @@ public:
 
 private:
     void runAlgorithm();
+
     void calculateAverages();
     QList<Student*> students;
     Project* project;
@@ -24,11 +25,13 @@ private:
     int numTeams;
 
     QHash<QString, float> averages;
-    bool compStudentsOnLeader(Student*, Student*); //TODO
-    bool compTeamsOnVariance(Team*, Team*);
+    bool compStudentsOnLeader(Student*, Student*);
+    bool compTeamsOnVariance(Team*, Team*, QHash<QString, float>&);
+    bool compTeamsOnLookingForVariance(Team*, Team*);
     bool compStudentsOnCoding(Student*, Student*);
     bool compStudentsOnWriting(Student*, Student*);
     bool compStudentsOverall(Student*, Student*);
+
 
     float bestMatchScore = 0;
     Student* bestStudent = 0;

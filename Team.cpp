@@ -11,7 +11,7 @@ Team::Team()
 }
 
 float Team::square(float base){
-    return(math::pow(base,2.0));
+    return(pow(base,2.0));
 }
 
 float Team::getQualVariance(QHash<QString, float>& avgs){
@@ -43,26 +43,26 @@ float Team::getQualVariance(QHash<QString, float>& avgs){
     // square it
     // add it to the temporary summing variable
     Student* s;
-    foreach(s, Students){
-        temp_att_2404 += square((float)s->get_att_2404() - (float)avgs["att_2404"]);
-        temp_att_3005 += square((float)s->get_att_3005() - (float)avgs["att_3005"]);
-        temp_att_coding += square((float)s->get_att_coding() - (float)avgs["att_coding"]);
-        temp_att_dbase += square((float)s->get_att_dbase() - (float)avgs["att_dbase"]);
-        temp_att_selfDir += square((float)s->get_att_selfDir() - (float)avgs["att_selfDir"]);
-        temp_att_writing += square((float)s->get_att_writing() - (float)avgs["att_writing"]);
-        temp_att_UI += square((float)s->get_att_UI() - (float)avgs["att_UI"]);
-        temp_att_algorithm += square((float)s->get_att_algorithm() - (float)avgs["att_algorithm"]);
-        temp_att_present += square((float)s->get_att_present() - (float)avgs["att_present"]);
-        temp_att_teamwork += square((float)s->get_att_teamwork() - (float)avgs["att_teamwork"]);
-        temp_att_experience += square((float)s->get_att_experience() - (float)avgs["att_experience"]);
-        temp_att_testing += square((float)s->get_att_testing() - (float)avgs["att_testing"]);
-        temp_att_UML += square((float)s->get_att_UML() - (float)avgs["att_UML"]);
-        temp_att_req += square((float)s->get_att_req() - (float)avgs["att_req"]);
-        temp_att_reliable += square((float)s->get_att_reliable() - (float)avgs["att_reliable"]);
-        temp_att_comm += square((float)s->get_att_comm() - (float)avgs["att_comm"]);
-        temp_att_respect += square((float)s->get_att_respect() - (float)avgs["att_respect"]);
-        temp_att_creative += square((float)s->get_att_creative() - (float)avgs["att_creative"]);
-        temp_att_critic += square((float)s->get_att_critic() - (float)avgs["att_critic"]);
+    foreach(s, students){
+        temp_att_2404 += square((float)s->getAtt_2404() - (float)avgs["att_2404"]);
+        temp_att_3005 += square((float)s->getAtt_3005() - (float)avgs["att_3005"]);
+        temp_att_coding += square((float)s->getAtt_coding() - (float)avgs["att_coding"]);
+        temp_att_dbase += square((float)s->getAtt_dbase() - (float)avgs["att_dbase"]);
+        temp_att_selfDir += square((float)s->getAtt_selfDir() - (float)avgs["att_selfDir"]);
+        temp_att_writing += square((float)s->getAtt_writing() - (float)avgs["att_writing"]);
+        temp_att_UI += square((float)s->getAtt_UI() - (float)avgs["att_UI"]);
+        temp_att_algorithm += square((float)s->getAtt_algorithm() - (float)avgs["att_algorithm"]);
+        temp_att_present += square((float)s->getAtt_present() - (float)avgs["att_present"]);
+        temp_att_teamwork += square((float)s->getAtt_teamwork() - (float)avgs["att_teamwork"]);
+        temp_att_experience += square((float)s->getAtt_experience() - (float)avgs["att_experience"]);
+        temp_att_testing += square((float)s->getAtt_testing() - (float)avgs["att_testing"]);
+        temp_att_UML += square((float)s->getAtt_UML() - (float)avgs["att_UML"]);
+        temp_att_req += square((float)s->getAtt_req() - (float)avgs["att_req"]);
+        temp_att_reliable += square((float)s->getAtt_reliable() - (float)avgs["att_reliable"]);
+        temp_att_comm += square((float)s->getAtt_comm() - (float)avgs["att_comm"]);
+        temp_att_respect += square((float)s->getAtt_respect() - (float)avgs["att_respect"]);
+        temp_att_creative += square((float)s->getAtt_creative() - (float)avgs["att_creative"]);
+        temp_att_critic += square((float)s->getAtt_critic() - (float)avgs["att_critic"]);
     }
 
     //divide the summing variables by number of students:
@@ -142,26 +142,26 @@ float Team::getLFVariance(){
 
     //first find the mean of all qualifications on the team
     Student* s;
-    foreach(s, Students){
-        temp_att_2404 += s->get_att_2404();
-        temp_att_3005 += s->get_att_3005();
-        temp_att_coding += s->get_att_coding();
-        temp_att_dbase += s->get_att_dbase();
-        temp_att_selfDir += s->get_att_selfDir();
-        temp_att_writing += s->get_att_writing();
-        temp_att_UI += s->get_att_UI();
-        temp_att_algorithm += s->get_att_algorithm();
-        temp_att_present += s->get_att_present();
-        temp_att_teamwork += s->get_att_teamwork();
-        temp_att_experience += s->get_att_experience();
-        temp_att_testing += s->get_att_testing();
-        temp_att_UML += s->get_att_UML();
-        temp_att_req += s->get_att_req();
-        temp_att_reliable += s->get_att_reliable();
-        temp_att_comm += s->get_att_comm();
-        temp_att_respect += s->get_att_respect();
-        temp_att_creative += s->get_att_creative();
-        temp_att_critic += s->get_att_critic();
+    foreach(s, students){
+        temp_att_2404 += s->getAtt_2404();
+        temp_att_3005 += s->getAtt_3005();
+        temp_att_coding += s->getAtt_coding();
+        temp_att_dbase += s->getAtt_dbase();
+        temp_att_selfDir += s->getAtt_selfDir();
+        temp_att_writing += s->getAtt_writing();
+        temp_att_UI += s->getAtt_UI();
+        temp_att_algorithm += s->getAtt_algorithm();
+        temp_att_present += s->getAtt_present();
+        temp_att_teamwork += s->getAtt_teamwork();
+        temp_att_experience += s->getAtt_experience();
+        temp_att_testing += s->getAtt_testing();
+        temp_att_UML += s->getAtt_UML();
+        temp_att_req += s->getAtt_req();
+        temp_att_reliable += s->getAtt_reliable();
+        temp_att_comm += s->getAtt_comm();
+        temp_att_respect += s->getAtt_respect();
+        temp_att_creative += s->getAtt_creative();
+        temp_att_critic += s->getAtt_critic();
     }
 
     temp_att_2404 /= students.size();
@@ -185,26 +185,26 @@ float Team::getLFVariance(){
     temp_att_critic /= students.size();
 
     //now we find the variance between looking for and average
-    foreach(s, Students){
-        temp_req_2404 += square((float)s->get_req_2404() - temp_att_2404);
-        temp_req_3005 += square((float)s->get_req_3005() - temp_att_3005);
-        temp_req_coding += square((float)s->get_req_coding() - temp_att_coding);
-        temp_req_dbase += square((float)s->get_req_dbase() - temp_att_dbase);
-        temp_req_selfDir += square((float)s->get_req_selfDir() - temp_att_selfDir );
-        temp_req_writing += square((float)s->get_req_writing() - temp_att_writing);
-        temp_req_UI += square((float)s->get_req_UI() - temp_att_UI);
-        temp_req_algorithm += square((float)s->get_req_algorithm() - temp_att_algorithm);
-        temp_req_present += square((float)s->get_req_present() - temp_att_present);
-        temp_req_teamwork += square((float)s->get_req_teamwork() - temp_att_teamwork);
-        temp_req_experience += square((float)s->get_req_experience() - temp_att_experience);
-        temp_req_testing += square((float)s->get_req_testing() - temp_att_testing);
-        temp_req_UML += square((float)s->get_req_UML() - temp_att_UML);
-        temp_req_req += square((float)s->get_req_req() - temp_att_req);
-        temp_req_reliable += square((float)s->get_req_reliable() - temp_att_reliable);
-        temp_req_comm += square((float)s->get_req_comm() - temp_att_comm);
-        temp_req_respect += square((float)s->get_req_respect() - temp_att_respect);
-        temp_req_creative += square((float)s->get_req_creative() - temp_att_creative);
-        temp_req_critic += square((float)s->get_req_critic() - temp_att_critic);
+    foreach(s, students){
+        temp_req_2404 += square((float)s->getReq_2404() - temp_att_2404);
+        temp_req_3005 += square((float)s->getReq_3005() - temp_att_3005);
+        temp_req_coding += square((float)s->getReq_coding() - temp_att_coding);
+        temp_req_dbase += square((float)s->getReq_dbase() - temp_att_dbase);
+        temp_req_selfDir += square((float)s->getReq_selfDir() - temp_att_selfDir );
+        temp_req_writing += square((float)s->getReq_writing() - temp_att_writing);
+        temp_req_UI += square((float)s->getReq_UI() - temp_att_UI);
+        temp_req_algorithm += square((float)s->getReq_algorithm() - temp_att_algorithm);
+        temp_req_present += square((float)s->getReq_present() - temp_att_present);
+        temp_req_teamwork += square((float)s->getReq_teamwork() - temp_att_teamwork);
+        temp_req_experience += square((float)s->getReq_experience() - temp_att_experience);
+        temp_req_testing += square((float)s->getReq_testing() - temp_att_testing);
+        temp_req_UML += square((float)s->getReq_UML() - temp_att_UML);
+        temp_req_req += square((float)s->getReq_req() - temp_att_req);
+        temp_req_reliable += square((float)s->getReq_reliable() - temp_att_reliable);
+        temp_req_comm += square((float)s->getReq_comm() - temp_att_comm);
+        temp_req_respect += square((float)s->getReq_respect() - temp_att_respect);
+        temp_req_creative += square((float)s->getReq_creative() - temp_att_creative);
+        temp_req_critic += square((float)s->getReq_critic() - temp_att_critic);
     }
 
     //now we find the average over the team
@@ -241,8 +241,8 @@ float Team::getScheduleMatch(){
     Student* s;
         //count from 0 to 20
     for(int i = 0; i < 21; ++i){
-        foreach(s, Students){
-            if(att_avail.charAt(i) == 'F'){
+        foreach(s, students){
+            if(s->getAtt_avail().at(i) == 'F'){
                 tot -= 1.0;
                 break;
             }
