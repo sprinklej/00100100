@@ -1,6 +1,7 @@
 #ifndef ADMINWINDOW_H
 #define ADMINWINDOW_H
 
+
 #include <QMainWindow>
 #include <QStyle>
 #include <QWidget>
