@@ -187,13 +187,13 @@ void QualificationWindow::on_pushButton_ok_clicked()
     else if(ui->rbuml_3->isChecked()) att_uml= 3;
     else if(ui->rbuml_4->isChecked()) att_uml = 4;
 
-    int att_wg = 0;
+    int att_wg = 0; // writing and grammar
     if(ui->rbwg_1->isChecked()) att_wg = 1;
     else if(ui->rbwg_2->isChecked()) att_wg = 2;
     else if(ui->rbrg_3->isChecked()) att_wg = 3;
     else if(ui->rbwg_4->isChecked()) att_wg = 4;
 
-    int att_writing = 0;
+    int att_writing = 0; // tech writing
     if(ui->rbwriting_1->isChecked()) att_writing = 1;
     else if(ui->rbwriting_2->isChecked()) att_writing = 2;
     else if(ui->rbwriting_3->isChecked()) att_writing = 3;
@@ -232,7 +232,7 @@ void QualificationWindow::on_pushButton_ok_clicked()
     student->setAtt_coding(att_coding);
     student->setAtt_dbase(att_dbase);
     student->setAtt_selfDir(att_sd);
-//    student->setAtt_wg(att_wg);   //not sure if in database guessing its writing and grammar
+//    student->setAtt_wg(att_wg);   // writing and grammar
     student->setAtt_writing(att_writing);
     student->setAtt_UI(att_ui);
     student->setAtt_algorithm(att_alg);

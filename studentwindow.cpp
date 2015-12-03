@@ -91,6 +91,7 @@ void StudentWindow::showUserInfo()
     // experience strings
     ui->cplusplus->setText(experienceString(user->getAtt_coding()));
     ui->dbDesign->setText(experienceString(user->getAtt_dbase()));
+    ui->techWriting->setText(experienceString(user->getAtt_writing()));
 
     //agree strings
     ui->selfDirected->setText(agreeString(user->getAtt_selfDir()));
@@ -123,10 +124,8 @@ void StudentWindow::showUserInfo()
     }
     ui->workExper->setText(expString);
 
-    // ui->techWriting->setText(user->getAtt_);   ??
-    // ui->techAndGramm->setText(user->getAtt_);   ??
-    // which one does the one below belong to???????
-    // int getAtt_writing(); // int -- self-assessed technical writing skill and grammar (can be made objective)
+
+    // We dont have a thing for writing and grammar! i.e. int getAtt_wg();
 }
 
 /* -------- helper functions --------*/

@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 
     // launch the storage facade which controls the whole system
     StorageFacade facade = StorageFacade();
-    //facade.run();
+    facade.run();
 
     // this is the test part
     //test student creation
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     facade.handleLogin("100100100");
 
     //check
-    User* u = facade.getLoggedInUser();
+   User* u = facade.getLoggedInUser();
 qDebug() << u->getID();
 qDebug() << "Works up to here";
 //works up to here
