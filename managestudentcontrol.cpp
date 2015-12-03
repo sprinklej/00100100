@@ -35,10 +35,6 @@ void ManageStudentControl::setStudent(Student* s)
     user = s;
 }
 
-void ManageStudentControl::setJoinedProjects(QList<Project*> JPs)
-{
-    joinedProjects = JPs;
-}
 
 /* --------------------------- getters ------------------------*/
 Student* ManageStudentControl::getCurrentUser()
@@ -62,6 +58,7 @@ void ManageStudentControl::refresh()
 
         // add to list of already joined projects
         foreach(Student* s, p->getStudentList()){
+            qDebug() << "test";
             if(s->getIDNum() == user->getIDNum()){
                 qDebug() << "joined a project";
                 joinedProjects.push_back(p);

@@ -20,7 +20,6 @@ public:
 
     // setters
     void setStudent(Student*);
-    void setJoinedProjects(QList<Project*>);
 
     // getters
     Student* getCurrentUser();
@@ -29,7 +28,7 @@ private:
     StudentWindow* studWin;
     Student* user;
     QList<Project*> allProjects;
-    QList<Project*> joinedProjects;
+    QList<Project*> joinedProjects; // remove?
     StorageFacade* facade;
 };
 

@@ -78,7 +78,7 @@ void StorageFacade::run(){
         stMgr = new ManageStudentControl(this);
         stMgr->createGUI();
     } else {                                // else must be an admin user
-        qDebug() << "Admin logged in ... r";
+        qDebug() << "Admin logged in ...";
         adMgr = new ManageAdminControl(this);
         adMgr->createGUI();
     }
