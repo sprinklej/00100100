@@ -11,6 +11,7 @@
 #include "Project.h"
 
 // this is a git simple push test
+class ManageAdminControl;
 
 namespace Ui {
 class AdminWindow;
@@ -24,7 +25,8 @@ public:
     explicit AdminWindow(QWidget *parent = 0);
     ~AdminWindow();
     void refresh();
-    void setAdmin(Admin* s);
+    void setAdmin(Admin* a);
+    void setManAdmContrl(ManageAdminControl* mac);
 
 private slots:
     void on_pushButton_clicked();
@@ -34,6 +36,7 @@ private slots:
 private:
     Ui::AdminWindow *ui;
     Admin* user;
+    ManageAdminControl *manAddControl;
     QList<Project *> projectsOwned;
 
 };

@@ -11,13 +11,23 @@ void ManageAdminControl::createGUI()
 
     AdminWindow *studWin = new AdminWindow();
     //setStudWind(studWin);
-    //studWin->setManStudContrl(this);
+    studWin->setManAdmContrl(this);
     studWin->setAdmin(user);
     //studWin->showUserInfo();
     studWin->refresh();
     studWin->show();
 }
 
+/* --------------------------- setters ------------------------*/
+void ManageAdminControl::setAdmWind(AdminWindow* adWin) // probably not needed anymore
+{
+    admWin = adWin;
+}
+
+void ManageAdminControl::setAdmin(Admin* a)
+{
+    user = a;
+}
 
 
 /*

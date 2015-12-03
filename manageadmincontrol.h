@@ -12,10 +12,14 @@ class ManageAdminControl
 {
 public:
     ManageAdminControl(StorageFacade*);
+    void setAdmWind(AdminWindow*);
     void createGUI();
 
+    // setters
+    void setAdmin(Admin*);
+
 private:
-    StudentWindow* studWin;
+    AdminWindow* admWin;
     Admin* user;
     QList<Project*> allProjects;
     QList<Project*> joinedProjects;

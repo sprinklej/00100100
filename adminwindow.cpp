@@ -3,6 +3,7 @@
 #include "projectwindow.h"
 #include "Storage.h"
 #include <QDebug>
+#include "manageadmincontrol.h"
 
 AdminWindow::AdminWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -29,12 +30,16 @@ AdminWindow::~AdminWindow()
     delete ui;
 }
 
-
-// setup the admin window with some info
-void AdminWindow::setAdmin(Admin* s)
+/* --------------------------- setters ------------------------*/
+void AdminWindow::setAdmin(Admin* a)
 {
-    user = s;
+    user = a;
     ui->title->setText("Projects available for admin " /*+ s->getIDNum()*/);
+}
+
+void AdminWindow::setManAdmContrl(ManageAdminControl* mac)
+{
+    manAddControl = mac;
 }
 
 
