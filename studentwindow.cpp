@@ -194,7 +194,9 @@ void StudentWindow::refresh(){
 //join project
 void StudentWindow::on_pushButton_joinProject_clicked()
 {
-    if (ui->allProjlistWidget->currentItem() != NULL){ // if it is NULL then no item is selected yet
+    if (ui->allProjlistWidget->currentItem() == NULL){ // if it is NULL then no item is selected yet
+        ui->status2->setText("No project selected, please select a project to join first");
+    } else {
         manStudControl->joinProject(ui->allProjlistWidget->currentItem()->text());
     }
 }
@@ -214,11 +216,11 @@ void StudentWindow::on_pushButton_manQual_clicked()
 /* --------------------------- logout ------------------------*/
 void StudentWindow::on_pushButton_Logout1_clicked()
 {
-    //manStudControl->logout();
+    manStudControl->logout();
 }
 
 void StudentWindow::on_pushButton_Logout2_clicked()
 {
-    //manStudControl->logout();
+    manStudControl->logout();
 }
 

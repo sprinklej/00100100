@@ -11,6 +11,7 @@ ManageStudentControl::ManageStudentControl(StorageFacade* f)
 
 }
 
+
 /* --------------------------- run function ------------------------*/
 void ManageStudentControl::createGUI()
 {
@@ -34,6 +35,17 @@ void ManageStudentControl::setStudent(Student* s)
     user = s;
 }
 
+void ManageStudentControl::setJoinedProjects(QList<Project*> JPs)
+{
+    joinedProjects = JPs;
+}
+
+/* --------------------------- getters ------------------------*/
+Student* ManageStudentControl::getCurrentUser()
+{
+    return user;
+}
+
 
 
 /* --------------------------- Project Tab ------------------------*/
@@ -51,6 +63,7 @@ void ManageStudentControl::refresh()
         // add to list of already joined projects
         foreach(Student* s, p->getStudentList()){
             if(s->getIDNum() == user->getIDNum()){
+                qDebug() << "joined a project";
                 joinedProjects.push_back(p);
                 studWin->setJoinedProjListWidget(p->getProjectID());
             }
@@ -67,16 +80,12 @@ void ManageStudentControl::joinProject(QString currentProj)
     //clear any status text
     studWin->setStatus2(st);
 
-    // text just for texting!
-    studWin->setStatus2("You called the join project function");
-/*
     // join the project
     foreach(Project* p, allProjects){
         if(p->getProjectID() == currentProj){
-            if(!joinedProjects.contains(p)){
+            if(!joinedProjects.contains(p)){ //Joined projects is not being populated!
                 joinedProjects.push_back(p);
                 studWin->setJoinedProjListWidget(p->getProjectID());
-                //Storage::getDB().joinProject(p, user);
                 facade->storeProject(p, "", user->getID(), false);
                 studWin->setStatus2("Project joined!");
             } else {
@@ -84,13 +93,12 @@ void ManageStudentControl::joinProject(QString currentProj)
             }
         }
     }
-    return;*/
+    return;
 }
 
 
 
 
-Student* ManageStudentControl::getCurrentUser(){return user;}
 
 
 
@@ -109,14 +117,13 @@ void ManageStudentControl::manageQualifications()
 }
 
 
-
-/* --------------------------- logout ------------------------* /
+*/
+/* --------------------------- logout ------------------------*/
 void ManageStudentControl::logout()
 {
     studWin->~StudentWindow();
+    facade->run();
+    delete this;
 
-    // display the login window again
-    LoginWindow* login = new LoginWindow();
-    login->show();
 }
-*/
+

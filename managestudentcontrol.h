@@ -20,9 +20,14 @@ public:
     void logout();
     void createGUI();
 
-    // set student
+    // setters
     void setStudent(Student*);
+    void setJoinedProjects(QList<Project*>);
+
+    // getters
     Student* getCurrentUser();
+
+
 
 private:
     StudentWindow* studWin;
