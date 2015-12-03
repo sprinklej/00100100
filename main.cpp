@@ -7,9 +7,8 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    //LoginWindow login;
-    //login.show();
 
+    // launch the storage facade which controls the whole system
     StorageFacade facade = StorageFacade();
     //facade.run();
 
@@ -29,7 +28,7 @@ int main(int argc, char *argv[])
     //check
     User* u = facade.getLoggedInUser();
 qDebug() << u->getID();
-
+qDebug() << "Works up to here";
 //works up to here
 
     return a.exec();
