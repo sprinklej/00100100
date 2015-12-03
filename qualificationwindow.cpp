@@ -232,7 +232,6 @@ void QualificationWindow::on_pushButton_ok_clicked()
     student->setAtt_coding(att_coding);
     student->setAtt_dbase(att_dbase);
     student->setAtt_selfDir(att_sd);
-//    student->setAtt_wg(att_wg);   // writing and grammar
     student->setAtt_writing(att_writing);
     student->setAtt_UI(att_ui);
     student->setAtt_algorithm(att_alg);

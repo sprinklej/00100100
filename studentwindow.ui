@@ -89,25 +89,25 @@
          <x>0</x>
          <y>0</y>
          <width>423</width>
-         <height>541</height>
+         <height>518</height>
         </rect>
        </property>
        <layout class="QGridLayout" name="gridLayout">
-        <item row="12" column="1">
+        <item row="11" column="1">
          <widget class="QLabel" name="uiDesign">
           <property name="text">
            <string>...</string>
           </property>
          </widget>
         </item>
-        <item row="24" column="1">
+        <item row="23" column="1">
          <widget class="QLabel" name="reliable">
           <property name="text">
            <string>...</string>
           </property>
          </widget>
         </item>
-        <item row="15" column="0">
+        <item row="14" column="0">
          <widget class="QLabel" name="text_UML">
           <property name="text">
            <string>UML Design</string>
@@ -121,14 +121,14 @@
           </property>
          </widget>
         </item>
-        <item row="17" column="1">
+        <item row="16" column="1">
          <widget class="QLabel" name="presentationSkills">
           <property name="text">
            <string>...</string>
           </property>
          </widget>
         </item>
-        <item row="28" column="0">
+        <item row="27" column="0">
          <widget class="QLabel" name="text_constCrit">
           <property name="text">
            <string>Constructive Criticism</string>
@@ -142,7 +142,7 @@
           </property>
          </widget>
         </item>
-        <item row="25" column="0">
+        <item row="24" column="0">
          <widget class="QLabel" name="text_commSkill">
           <property name="text">
            <string>Communication Skills</string>
@@ -156,17 +156,10 @@
           </property>
          </widget>
         </item>
-        <item row="16" column="1">
+        <item row="15" column="1">
          <widget class="QLabel" name="algorithmDesign">
           <property name="text">
            <string>...</string>
-          </property>
-         </widget>
-        </item>
-        <item row="8" column="0">
-         <widget class="QLabel" name="text_TechGram">
-          <property name="text">
-           <string>Tech &amp; Grammar</string>
           </property>
          </widget>
         </item>
@@ -177,21 +170,28 @@
           </property>
          </widget>
         </item>
-        <item row="12" column="0">
+        <item row="27" column="1">
+         <widget class="QLabel" name="constructCrit">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="0">
          <widget class="QLabel" name="text_UIDesign">
           <property name="text">
            <string>UI Design</string>
           </property>
          </widget>
         </item>
-        <item row="27" column="0">
+        <item row="26" column="0">
          <widget class="QLabel" name="text_Creative">
           <property name="text">
            <string>Creative</string>
           </property>
          </widget>
         </item>
-        <item row="24" column="0">
+        <item row="23" column="0">
          <widget class="QLabel" name="text_reliable">
           <property name="text">
            <string>Reliable</string>
@@ -219,7 +219,7 @@
           </property>
          </widget>
         </item>
-        <item row="21" column="0">
+        <item row="20" column="0">
          <widget class="QLabel" name="text_softDes">
           <property name="text">
            <string>Software Testing</string>
@@ -233,7 +233,7 @@
           </property>
          </widget>
         </item>
-        <item row="23" column="0">
+        <item row="22" column="0">
          <widget class="QLabel" name="text_reqAnal">
           <property name="text">
            <string>Requirements Analysis</string>
@@ -261,14 +261,14 @@
           </property>
          </widget>
         </item>
-        <item row="19" column="0">
+        <item row="18" column="0">
          <widget class="QLabel" name="text_teamwork">
           <property name="text">
            <string>Teamwork</string>
           </property>
          </widget>
         </item>
-        <item row="27" column="1">
+        <item row="26" column="1">
          <widget class="QLabel" name="creative">
           <property name="text">
            <string>...</string>
@@ -296,31 +296,17 @@
           </property>
          </widget>
         </item>
-        <item row="8" column="1">
-         <widget class="QLabel" name="techAndGramm">
-          <property name="text">
-           <string>???</string>
-          </property>
-         </widget>
-        </item>
-        <item row="26" column="0">
-         <widget class="QLabel" name="text_respect">
-          <property name="text">
-           <string>Respectful</string>
-          </property>
-         </widget>
-        </item>
-        <item row="18" column="1">
+        <item row="17" column="1">
          <widget class="QLabel" name="selfDirected">
           <property name="text">
            <string>...</string>
           </property>
          </widget>
         </item>
-        <item row="28" column="1">
-         <widget class="QLabel" name="constructCrit">
+        <item row="25" column="0">
+         <widget class="QLabel" name="text_respect">
           <property name="text">
-           <string>...</string>
+           <string>Respectful</string>
           </property>
          </widget>
         </item>
@@ -331,49 +317,49 @@
           </property>
          </widget>
         </item>
-        <item row="16" column="0">
+        <item row="15" column="0">
          <widget class="QLabel" name="text_AlgDes">
           <property name="text">
            <string>Algorithm Design</string>
           </property>
          </widget>
         </item>
-        <item row="17" column="0">
+        <item row="16" column="0">
          <widget class="QLabel" name="text_PresSkills">
           <property name="text">
            <string>Presentation Skills</string>
           </property>
          </widget>
         </item>
-        <item row="23" column="1">
+        <item row="22" column="1">
          <widget class="QLabel" name="reqAnalysis">
           <property name="text">
            <string>...</string>
           </property>
          </widget>
         </item>
-        <item row="15" column="1">
+        <item row="14" column="1">
          <widget class="QLabel" name="umlDesign">
           <property name="text">
            <string>...</string>
           </property>
          </widget>
         </item>
-        <item row="25" column="1">
+        <item row="24" column="1">
          <widget class="QLabel" name="commSkills">
           <property name="text">
            <string>...</string>
           </property>
          </widget>
         </item>
-        <item row="21" column="1">
+        <item row="20" column="1">
          <widget class="QLabel" name="softWareTest">
           <property name="text">
            <string>...</string>
           </property>
          </widget>
         </item>
-        <item row="18" column="0">
+        <item row="17" column="0">
          <widget class="QLabel" name="text_SelfDir">
           <property name="text">
            <string>Self Directed</string>
@@ -387,28 +373,28 @@
           </property>
          </widget>
         </item>
-        <item row="26" column="1">
+        <item row="25" column="1">
          <widget class="QLabel" name="respectful">
           <property name="text">
            <string>...</string>
           </property>
          </widget>
         </item>
-        <item row="19" column="1">
+        <item row="18" column="1">
          <widget class="QLabel" name="teamwork">
           <property name="text">
            <string>...</string>
           </property>
          </widget>
         </item>
-        <item row="11" column="0">
+        <item row="10" column="0">
          <widget class="QLabel" name="text_workEx">
           <property name="text">
            <string>Work Experience</string>
           </property>
          </widget>
         </item>
-        <item row="11" column="1">
+        <item row="10" column="1">
          <widget class="QLabel" name="workExper">
           <property name="text">
            <string>...</string>
