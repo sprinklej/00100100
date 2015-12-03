@@ -12,7 +12,7 @@ ManageStudentControl::ManageStudentControl(StorageFacade* f)
 }
 
 
-/* --------------------------- run function ------------------------*/
+/* --------------------------- GUI function ------------------------*/
 void ManageStudentControl::createGUI()
 {
     StudentWindow *studWin = new StudentWindow();

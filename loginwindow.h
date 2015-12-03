@@ -11,7 +11,9 @@
 #include "adminwindow.h"
 #include "signupwindow.h"
 #include "User.h"
-#include "Storage.h"
+//#include "Storage.h"
+
+class ManageRegistrationControl;
 
 namespace Ui {
 class LoginWindow;
@@ -25,8 +27,11 @@ public:
     explicit LoginWindow(QWidget *parent = 0);
     ~LoginWindow();
 
-    void login(Admin*);
-    void login(Student*);
+    void showLogo(QPixmap logo);
+    void setStatus(QString);
+
+    // setter
+    void setRegManContrl(ManageRegistrationControl*);
 
 private slots:
     void on_pushButton_login_clicked();
@@ -35,7 +40,7 @@ private slots:
 
 private:
     Ui::LoginWindow *ui;
-
+    ManageRegistrationControl *manRegControl;
 };
 
 #endif // LOGINWINDOW_H

@@ -1,55 +1,80 @@
 #include "manageRegistrationControl.h"
 #include "signupwindow.h"
-#include "qualificationwindow.h"
-#include "ui_qualificationwindow.h"
-#include "Storage.h"
 
-ManageRegistrationControl::ManageRegistrationControl()
+#include <QDebug>
+#include "StorageFacade.h"
+using namespace std;
+
+ManageRegistrationControl::ManageRegistrationControl(StorageFacade* f)
 {
-//ui(new Ui::SignupWindow);
+    facade = f;
+}
 
-//ui->setupUi(this);
-//ui->status->setText("");
+ManageRegistrationControl::~ManageRegistrationControl()
+{
+}
 
+
+/* --------------------------- GUI function ------------------------*/
+void ManageRegistrationControl::createGUI()
+{
     // set working directory
     QDir curr = QDir::current(); //get current dir
     curr.cdUp();                 //go up one dir
     QString logoPath = curr.path() + "/00100100/images/logo.png"; //set dir
 
+    // create loginWindow object
+    LoginWindow *logWin = new LoginWindow();
+    setLogWind(logWin);
+    logWin->setRegManContrl(this);
+
     // display logo
     QPixmap logo (logoPath);
-//ui->label_logo->setPixmap(logo);
+    logWin->showLogo(logo);
+
+    // show window
+    logWin->show();
 }
 
-ManageRegistrationControl::~ManageRegistrationControl()
+
+
+/* --------------------------- setters ------------------------*/
+void ManageRegistrationControl::setLogWind(LoginWindow* lWin)
 {
-//delete ui;
-}
-
-void ManageRegistrationControl::login(Admin* ad){
-   /* AdminWindow *adminWin = new AdminWindow();
-    adminWin->show();
-    adminWin->setAdmin(ad);
-    adminWin->refresh();
-    */
-}
-
-void ManageRegistrationControl::login(Student* st){
-   /* StudentWindow *studWin = new StudentWindow();
-    ManageStudentControl* manStudCon = new ManageStudentControl();
-    studWin->show();
-    studWin->setManStudContrl(manStudCon);
-
-    manStudCon->setStudWind(studWin);
-    manStudCon->setStudent(st);
-
-    studWin->setStudent(st);
-    studWin->showUserInfo();
-    studWin->refresh();
-    */
+    logWin = lWin;
 }
 
 
+
+/* --------------------------- login ------------------------*/
+void ManageRegistrationControl::login(QString uID) {
+    facade->handleLogin(this, uID);
+}
+
+void ManageRegistrationControl::loginSuccess() {
+    logWin->setStatus("");
+    logWin->~LoginWindow();
+    facade->run();
+    delete this;
+}
+
+void ManageRegistrationControl::loginFailure(QString string) {
+    logWin->setStatus(string);
+}
+
+
+
+/* --------------------------- signup ------------------------*/
+void ManageRegistrationControl::signup()
+{
+    logWin->setStatus("you clicked signup!");
+}
+
+
+
+
+
+/* --------------------------- needed? ------------------------*/
 void ManageRegistrationControl::on_radioButton_admin_clicked()
 {
 //ui->label_ID->setText("Email address");

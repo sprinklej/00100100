@@ -1,7 +1,9 @@
 #include "loginwindow.h"
 #include "ui_loginwindow.h"
+#include "manageRegistrationControl.h"
 using namespace std;
 
+#include <QDebug>
 
 LoginWindow::LoginWindow(QWidget *parent) :
     QDialog(parent),
@@ -9,15 +11,6 @@ LoginWindow::LoginWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->status->setText("");
-
-    // set working directory
-    QDir curr = QDir::current(); //get current dir
-    curr.cdUp();                 //go up one dir
-    QString logoPath = curr.path() + "/00100100/images/logo.png"; //set dir
-
-    // display logo
-    QPixmap logo (logoPath);
-    ui->label_logo->setPixmap(logo);
 }
 
 LoginWindow::~LoginWindow()
@@ -26,63 +19,56 @@ LoginWindow::~LoginWindow()
 }
 
 
-// login to system
+/* --------------------------- setters ------------------------*/
+void LoginWindow::setRegManContrl(ManageRegistrationControl* mrc)
+{
+    manRegControl = mrc;
+}
+
+
+
+/* --------------------------- update GUI elements ------------------------*/
+void LoginWindow::showLogo(QPixmap logo)
+{
+    ui->label_logo->setPixmap(logo);
+}
+
+void LoginWindow::setStatus(QString string)
+{
+    ui->status->setText(string);
+}
+
+
+
+/* --------------------------- login ------------------------*/
 void LoginWindow::on_pushButton_login_clicked()
 {
-     // get username from text box
-/*     QString userName;
-     userName = ui->lineEdit_username->text();
+    // check if text was entered
+    if (ui->lineEdit_username->text() == ""){
+        ui->status->setText("Enter username");
+    } else {
+        ui->status->setText("");
 
-     User* currentUser = 0;
-
-     // check login against Database
-     bool found = Storage::getDB().getUser(userName, &currentUser);
-
-     if(!found){
-         ui->status->setText("Username does not exist.");
-     } else {
-         if (userName.at(0) == '1') {
-            login((Student*)currentUser);
-         } else{
-            login((Admin*)currentUser);
-         }
-         this->~LoginWindow();
-     } */
-}
-
-// login as an admin
-void LoginWindow::login(Admin* ad){
-    //this->hide();
-    /*AdminWindow *adminWin = new AdminWindow();
-    adminWin->show();
-    adminWin->setAdmin(ad);
-    adminWin->refresh(); */
-}
-
-// login as a student
-void LoginWindow::login(Student* st){
-    //this->hide();
-/*    StudentWindow *studWin = new StudentWindow();
-    ManageStudentControl* manStudCon = new ManageStudentControl();
-    studWin->show();
-    studWin->setManStudContrl(manStudCon);
-
-    manStudCon->setStudWind(studWin);
-    manStudCon->setStudent(st);
-
-    studWin->setStudent(st);
-    studWin->showUserInfo();
-    studWin->refresh(); */
+        // get username from text box
+        QString userName;
+        userName = ui->lineEdit_username->text();
+        // login
+        manRegControl->login(userName);
+    }
 }
 
 
-// sign up new student or admin user
+
+/* --------------------------- signup ------------------------*/
 void LoginWindow::on_pushButton_signup_clicked()
 {
-    /// show signup window and disables login window
+    manRegControl->signup();
+    // show signup window and disables login window
     /*
     SignupWindow *signupWin = new SignupWindow;
     signupWin->setModal(true);
     signupWin->exec(); */
 }
+
+
 

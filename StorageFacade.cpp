@@ -67,59 +67,21 @@ void StorageFacade::setDB(QSqlDatabase& db){
 }*/
 
 void StorageFacade::run(){
-    //loggedInUser = NULL; // has to be put into the logout functions!
-
-    // for testing the student / admin managers only
-    QString uID = "";
-    //uID = "100542806"; // student
-    uID = "soma"; // admin
-    handleLogin(uID);           // log a user in
-
     qDebug() << "HANDLE LOGIN PASS";
 
     if(!loggedInUser){
-        qDebug() << "Nobody logged in ... create a registrationmanager";
-        regMgr = new ManageRegistrationControl();
-        //call the necessary functions
-    } else if(loggedInUser->getPolicy()){ //true if Student
-        qDebug() << "Student logged in ... create a studentmanager";
+        qDebug() << "Nobody logged in ...";
+        regMgr = new ManageRegistrationControl(this);
+        regMgr->createGUI();
+    } else if(loggedInUser->getPolicy()){   // true if Student
+        qDebug() << "Student logged in ...";
         stMgr = new ManageStudentControl(this);
         stMgr->createGUI();
-    } else { // else must be an admin user
-        qDebug() << "Admin logged in ... create an adminmanager";
+    } else {                                // else must be an admin user
+        qDebug() << "Admin logged in ... r";
         adMgr = new ManageAdminControl(this);
         adMgr->createGUI();
     }
-
-    // original
-    /*    executing = 1;
-
-
-
-    while(executing){
-        if(!loggedInUser){
-qDebug() << "Nobody logged in ... create a registrationmanager";
-            regMgr = new ManageRegistrationControl();
-            //call the necessary functions
-            delete regMgr;
-        } else if(loggedInUser->getPolicy()){ //true if Student
-qDebug() << "Student logged in ... create a studentmanager";
-            stMgr = new ManageStudentControl(this);
-            stMgr->createGUI();
-//cant delete the stMgr object here, because as soon as stMgr->createGUI() returns
-//then the object is deleted, meaning you cant call any other stMgr commands
-//delete stMgr;
-qDebug() << "test to see when stMgr gets deleted";
-        } else{
-            adMgr = new ManageAdminControl();
-qDebug() << "Admin logged in ... create an adminmanager";
-            // call necessary functions
-            delete adMgr;
-        }
-executing = 0;
-    }
-
-*/
 }
 
 /*
@@ -151,7 +113,10 @@ void StorageFacade::getUserIDs(QList<QString>& u){
 
 }
 
-void StorageFacade::handleLogin(QString uID){
+void StorageFacade::handleLogin(ManageRegistrationControl *manRegCon, QString uID){
+    // make sure no one is logged in
+    loggedInUser = NULL;
+
     User* u;
     foreach(u, allUsers){
         if(uID == u->getID()){
@@ -161,10 +126,11 @@ void StorageFacade::handleLogin(QString uID){
         }
     }
 
-    if(!loggedInUser){
-        //give the user an error dialog
+    if(loggedInUser){   // successful login
+        manRegCon->loginSuccess();
+    } else {            // give the user an error dialog
+        manRegCon->loginFailure("Username does not exist");
     }
-
 }
 
 void StorageFacade::handleRegister(User* newUser){

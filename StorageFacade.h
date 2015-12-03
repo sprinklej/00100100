@@ -25,7 +25,7 @@ public:
     void writeUser(User*);
     void getProjects(QList<Project*>&);
     void getUserIDs(QList<QString>&);
-    void handleLogin(QString); //User*);
+    void handleLogin(ManageRegistrationControl *, QString);
     void handleRegister(User*);
     void handleLogout();
     void setLoggedInUser(User*);

@@ -187,11 +187,11 @@ void QualificationWindow::on_pushButton_ok_clicked()
     else if(ui->rbuml_3->isChecked()) att_uml= 3;
     else if(ui->rbuml_4->isChecked()) att_uml = 4;
 
-    int att_wg = 0; // writing and grammar
-    if(ui->rbwg_1->isChecked()) att_wg = 1;
-    else if(ui->rbwg_2->isChecked()) att_wg = 2;
-    else if(ui->rbrg_3->isChecked()) att_wg = 3;
-    else if(ui->rbwg_4->isChecked()) att_wg = 4;
+    //int att_wg = 0; // writing and grammar
+    //if(ui->rbwg_1->isChecked()) att_wg = 1;
+    //else if(ui->rbwg_2->isChecked()) att_wg = 2;
+    //else if(ui->rbrg_3->isChecked()) att_wg = 3;
+    //else if(ui->rbwg_4->isChecked()) att_wg = 4;
 
     int att_writing = 0; // tech writing
     if(ui->rbwriting_1->isChecked()) att_writing = 1;

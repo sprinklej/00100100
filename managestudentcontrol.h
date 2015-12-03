@@ -1,8 +1,6 @@
 #ifndef MANAGESTUDENTCONTROL_H
 #define MANAGESTUDENTCONTROL_H
 
-//#include "Storage.h"
-//#include "loginwindow.h"
 #include "qualificationwindow.h"
 #include "studentwindow.h"
 class StorageFacade;
@@ -26,8 +24,6 @@ public:
 
     // getters
     Student* getCurrentUser();
-
-
 
 private:
     StudentWindow* studWin;
