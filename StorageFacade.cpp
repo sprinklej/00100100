@@ -67,12 +67,30 @@ void StorageFacade::setDB(QSqlDatabase& db){
 }*/
 
 void StorageFacade::run(){
-    executing = 1;
+    loggedInUser = NULL;
 
 // for testing the student / admin managers only
 QString uID = "100542806";  // student
 //QString uID = "soma";     // admin
 handleLogin(uID);           // log a user in
+
+    if(!loggedInUser){
+qDebug() << "Nobody logged in ... create a registrationmanager";
+        regMgr = new ManageRegistrationControl();
+        //call the necessary functions
+} else if(loggedInUser->getPolicy()){ //true if Student
+qDebug() << "Student logged in ... create a studentmanager";
+        stMgr = new ManageStudentControl(this);
+        stMgr->createGUI();
+} else { // else must be an admin user
+qDebug() << "Admin logged in ... create an adminmanager";
+        adMgr = new ManageAdminControl();
+}
+
+// original
+/*    executing = 1;
+
+
 
     while(executing){
         if(!loggedInUser){
@@ -97,7 +115,7 @@ qDebug() << "Admin logged in ... create an adminmanager";
 executing = 0;
     }
 
-
+*/
 }
 
 /*
