@@ -1,5 +1,5 @@
 #include "PPIDManager.h";
-
+/*
 
 PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p){
     students = QList<Student*>(); // need a new one - PPID destroys the list
@@ -213,7 +213,7 @@ void PPIDManager::runAlgorithm(){
         - push the team to teams
         - remove s
         - push s to teams
-        - if teams.size = numteams, break*/
+        - if teams.size = numteams, break* /
     Student* s;
     int pos = 0;
     foreach(s, students){
@@ -234,7 +234,7 @@ void PPIDManager::runAlgorithm(){
         - push the team to teams
         - remove s
         - push s to teams
-        - if teams.size = numteams, break*/
+        - if teams.size = numteams, break* /
 
     pos = 0;
     while(teams.size() < numTeams){
@@ -251,7 +251,7 @@ void PPIDManager::runAlgorithm(){
 
     /*Two ways to do this:
     6a. Sort the teams from highest to lowest variance
-    6b. Sort the teams from weakest to strongest*/
+    6b. Sort the teams from weakest to strongest* /
     //std::sort(teams.begin(), teams.end(), compTeamsOnVariance);
 
     //7.  Sort students on coderscore
@@ -268,7 +268,7 @@ void PPIDManager::runAlgorithm(){
                     beststudent = student(n)
 
                 Remove beststudent from students
-                push beststudent to team*/
+                push beststudent to team* /
 
     bestMatchScore = 0;
     bestStudent = students.at(0);
@@ -284,15 +284,15 @@ void PPIDManager::runAlgorithm(){
         students.remove(bestStudent);
         t << bestStudent;
         }
-    }*/
+    }* /
 
     /*Two ways to do this:
     9a. Sort the teams from highest to lowest variance
     9b. Sort the teams from weakest to strongest	*/
-    std::sort(teams.begin(), teams.end(), compTeamsOnVariance);
+    //std::sort(teams.begin(), teams.end(), compTeamsOnVariance);
 
     //10.  Sort students on presenterscore
-    std::sort(students.begin(), students.end(), compStudentsOnWriting);
+    //std::sort(students.begin(), students.end(), compStudentsOnWriting);
 
     /*		let bestmatch = match(team, student(0))
             let beststudent = student(0)
@@ -302,7 +302,7 @@ void PPIDManager::runAlgorithm(){
                     beststudent = student(n)
 
                 Remove beststudent from students
-                push beststudent to team*/
+                push beststudent to team* /
 
     bestMatchScore = 0;
     bestStudent = students.at(0);
@@ -414,7 +414,7 @@ Team n:
   Writer - Student Name ......... 100345234
    Other - Student Name ......... 100345233
 ..................................................................................
-*/
+* /
     //printf("PPID SUMMARY REPORT\n");
     //printf("Project: %s\n", project->getTitle());
     //printf("Class: %s %s\n", project->getCourseNumber(), project->getCourseDescription());
@@ -476,3 +476,4 @@ bool PPIDManager::compStudentsOverall(Student* s1, Student* s2){
     return(s1->getOverallScore() <= s2->getOverallScore());
 }
 
+*/

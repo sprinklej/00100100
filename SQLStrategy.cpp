@@ -11,7 +11,7 @@ bool UpdateStudentStrategy::createQuery(User* u){
 
     database.open();
     QSqlQuery query;
-    query.prepare("UPDATE users SET "
+    query.prepare("UPDATE students SET "
                   "fname = :fname,"
                   "lname = :lname,"
                   "att_leader = :att_leader"
@@ -115,8 +115,9 @@ bool InsertStudentStrategy::createQuery(User* u){
     Student* st = dynamic_cast<Student*>(u);
 
     database.open();
+
     QSqlQuery query;
-    query.prepare("INSERT INTO users(id, fname, lname, att_leader, att_avail, att_2404, att_3005,"
+    query.prepare("INSERT INTO students(id, fname, lname, att_leader, att_avail, att_2404, att_3005,"
                   "att_coding, att_dbase, att_selfDir, att_writing, att_UI, att_algorithm,"
                   "att_present, att_teamwork, att_experience, att_testing, att_UML,"
                   "att_req, att_reliable, att_comm, att_respect, att_creative, att_critic,"
@@ -180,6 +181,9 @@ bool InsertStudentStrategy::createQuery(User* u){
     query.bindValue(":req_critic",st->getReq_critic());
 
     bool res = query.exec();
+
+qDebug()<< query.lastError();
+
     return res;
 }
 
@@ -192,7 +196,7 @@ bool UpdateAdminStrategy::createQuery(User* u){
 
     database.open();
     QSqlQuery query;
-    query.prepare("INSERT INTO users(id, fname, lname) VALUES (:iid, :ifn, :iln)");
+    query.prepare("INSERT INTO admins(id, fname, lname) VALUES (:iid, :ifn, :iln)");
     query.bindValue(":iid", ad->getIDNum());
     query.bindValue(":ifn", ad->getFirstName());
     query.bindValue(":iln", ad->getLastName());

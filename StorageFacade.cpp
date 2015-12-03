@@ -110,7 +110,9 @@ void StorageFacade::storeProject(Project* p, QString sID, QString aID, bool newP
 }
 
 void StorageFacade::writeUser(User* u){
+qDebug() << "writing User" << u->getID();
     bool newUser = getUserControl->checkID(u->getID());
+qDebug() << "Check ID " << (getUserControl->checkID(u->getID())?"true":"false");
     storeUserControl->store(newUser, u);
 }
 
@@ -133,6 +135,7 @@ void StorageFacade::handleLogin(QString uID){
         if(uID == u->getID()){
             //exists = true;
             loggedInUser = u;
+            qDebug() << "Logged in user " << loggedInUser->getID();
         }
     }
 
