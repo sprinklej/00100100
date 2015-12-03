@@ -3,7 +3,7 @@
 StorageFacade::StorageFacade(){
     //create the database connection
 
-qDebug() << "Create storage...";
+    qDebug() << "Create storage...";
     storage = new Storage(this);
     database = storage->getDatabase();
 
@@ -12,13 +12,13 @@ qDebug() << "Create storage...";
     allProjects = QList<Project*>();
 
     //initialize the controllers
-qDebug() << "Create storeproject controller.";
+    qDebug() << "Create storeproject controller.";
     storeProjectControl = new StoreProjectControl(allProjects, allUsers, database);
-qDebug() << "Create getproject control...";
+    qDebug() << "Create getproject control...";
     getProjectControl = new GetProjectControl(this, allProjects, allUsers, database);
-qDebug() << "Create store user control";
+    qDebug() << "Create store user control";
     storeUserControl = new StoreUserControl(allProjects, allUsers, database);
-qDebug() << "Create get user control...";
+    qDebug() << "Create get user control...";
     getUserControl = new GetUserControl(allUsers, this, database);
 
 
@@ -69,26 +69,36 @@ void StorageFacade::setDB(QSqlDatabase& db){
 void StorageFacade::run(){
     loggedInUser = NULL;
 
-// for testing the student / admin managers only
-QString uID = "100542806";  // student
-//QString uID = "soma";     // admin
-handleLogin(uID);           // log a user in
+    // for testing the student / admin managers only
+    QString uID = "";  // student
+       // admin
+
+    //uID = "100542806"; // student
+    uID = "soma"; // admin
+
+
+    handleLogin(uID);           // log a user in
+
+    qDebug() << "HANDLE LOGIN PASS";
 
     if(!loggedInUser){
-qDebug() << "Nobody logged in ... create a registrationmanager";
+        qDebug() << "Nobody logged in ... create a registrationmanager";
         regMgr = new ManageRegistrationControl();
         //call the necessary functions
-} else if(loggedInUser->getPolicy()){ //true if Student
-qDebug() << "Student logged in ... create a studentmanager";
+    } else if(loggedInUser->getPolicy()){ //true if Student
+        qDebug() << "Student logged in ... create a studentmanager";
         stMgr = new ManageStudentControl(this);
         stMgr->createGUI();
-} else { // else must be an admin user
-qDebug() << "Admin logged in ... create an adminmanager";
-        adMgr = new ManageAdminControl();
-}
 
-// original
-/*    executing = 1;
+        //adMgr = new ManageAdminControl(this);
+    } else { // else must be an admin user
+        qDebug() << "Admin logged in ... create an adminmanager";
+        adMgr = new ManageAdminControl(this);
+        adMgr->createGUI();
+    }
+
+    // original
+    /*    executing = 1;
 
 
 
@@ -96,7 +106,7 @@ qDebug() << "Admin logged in ... create an adminmanager";
         if(!loggedInUser){
 qDebug() << "Nobody logged in ... create a registrationmanager";
             regMgr = new ManageRegistrationControl();
-            //call the necessary functions          
+            //call the necessary functions
             delete regMgr;
         } else if(loggedInUser->getPolicy()){ //true if Student
 qDebug() << "Student logged in ... create a studentmanager";
@@ -128,9 +138,9 @@ void StorageFacade::storeProject(Project* p, QString sID, QString aID, bool newP
 }
 
 void StorageFacade::writeUser(User* u){
-qDebug() << "writing User" << u->getID();
+    qDebug() << "writing User" << u->getID();
     bool newUser = getUserControl->checkID(u->getID());
-qDebug() << "Check ID " << (getUserControl->checkID(u->getID())?"true":"false");
+    qDebug() << "Check ID " << (getUserControl->checkID(u->getID())?"true":"false");
     storeUserControl->store(newUser, u);
 }
 
