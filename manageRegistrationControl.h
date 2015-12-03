@@ -10,11 +10,11 @@ class ManageRegistrationControl
 public:
     ManageRegistrationControl();
 
-    ~ManageRegistrationontrol();
+    ~ManageRegistrationControl();
 
     void login(Admin*);
     void login(Student*);
-    explicit SignupWindow(QWidget *parent = 0);
+//explicit SignupWindow(QWidget *parent = 0);
 
     void on_radioButton_student_clicked();
     void on_radioButton_admin_clicked();
@@ -24,7 +24,7 @@ public:
     void getQualifications(Student*);
 
 private:
-    Ui::SignupWindow *ui;
+//Ui::SignupWindow *ui;
 
 };
 

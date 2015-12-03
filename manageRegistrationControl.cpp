@@ -1,4 +1,4 @@
-#include "ManageRegistrationControl.h"
+#include "manageRegistrationControl.h"
 #include "signupwindow.h"
 #include "qualificationwindow.h"
 #include "ui_qualificationwindow.h"
@@ -6,10 +6,10 @@
 
 ManageRegistrationControl::ManageRegistrationControl()
 {
-    ui(new Ui::SignupWindow);
+//ui(new Ui::SignupWindow);
 
-    ui->setupUi(this);
-    ui->status->setText("");
+//ui->setupUi(this);
+//ui->status->setText("");
 
     // set working directory
     QDir curr = QDir::current(); //get current dir
@@ -18,23 +18,24 @@ ManageRegistrationControl::ManageRegistrationControl()
 
     // display logo
     QPixmap logo (logoPath);
-    ui->label_logo->setPixmap(logo);
+//ui->label_logo->setPixmap(logo);
 }
 
 ManageRegistrationControl::~ManageRegistrationControl()
 {
-    delete ui;
+//delete ui;
 }
 
 void ManageRegistrationControl::login(Admin* ad){
-    AdminWindow *adminWin = new AdminWindow();
+   /* AdminWindow *adminWin = new AdminWindow();
     adminWin->show();
     adminWin->setAdmin(ad);
     adminWin->refresh();
+    */
 }
 
 void ManageRegistrationControl::login(Student* st){
-    StudentWindow *studWin = new StudentWindow();
+   /* StudentWindow *studWin = new StudentWindow();
     ManageStudentControl* manStudCon = new ManageStudentControl();
     studWin->show();
     studWin->setManStudContrl(manStudCon);
@@ -45,22 +46,23 @@ void ManageRegistrationControl::login(Student* st){
     studWin->setStudent(st);
     studWin->showUserInfo();
     studWin->refresh();
+    */
 }
 
 
 void ManageRegistrationControl::on_radioButton_admin_clicked()
 {
-    ui->label_ID->setText("Email address");
+//ui->label_ID->setText("Email address");
 }
 
 void ManageRegistrationControl::on_radioButton_student_clicked()
 {
-    ui->label_ID->setText("Student ID # ");
+//ui->label_ID->setText("Student ID # ");
 }
 
 void ManageRegistrationControl::on_pushButton_cancel_clicked()
 {
-    this->~SignupWindow();
+//this->~SignupWindow();
 }
 
 void ManageRegistrationControl::on_pushButton_signup_clicked()
@@ -71,6 +73,7 @@ void ManageRegistrationControl::on_pushButton_signup_clicked()
     signupWin->exec();
 }
 
+/*
 void ManageRegistrationControl::getQualifictaions(Student *st)
 {
     this->hide();
@@ -78,3 +81,4 @@ void ManageRegistrationControl::getQualifictaions(Student *st)
     qualWin->setStudent(st);
     qualWin->show();
 }
+*/
