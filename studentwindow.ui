@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Tab_Profile">
      <attribute name="title">
@@ -533,8 +533,8 @@
       <property name="geometry">
        <rect>
         <x>50</x>
-        <y>416</y>
-        <width>361</width>
+        <y>420</y>
+        <width>551</width>
         <height>21</height>
        </rect>
       </property>
