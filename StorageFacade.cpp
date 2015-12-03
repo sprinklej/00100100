@@ -67,16 +67,12 @@ void StorageFacade::setDB(QSqlDatabase& db){
 }*/
 
 void StorageFacade::run(){
-    loggedInUser = NULL;
+    //loggedInUser = NULL; // has to be put into the logout functions!
 
     // for testing the student / admin managers only
-    QString uID = "";  // student
-       // admin
-
+    QString uID = "";
     //uID = "100542806"; // student
     uID = "soma"; // admin
-
-
     handleLogin(uID);           // log a user in
 
     qDebug() << "HANDLE LOGIN PASS";
@@ -89,8 +85,6 @@ void StorageFacade::run(){
         qDebug() << "Student logged in ... create a studentmanager";
         stMgr = new ManageStudentControl(this);
         stMgr->createGUI();
-
-        //adMgr = new ManageAdminControl(this);
     } else { // else must be an admin user
         qDebug() << "Admin logged in ... create an adminmanager";
         adMgr = new ManageAdminControl(this);

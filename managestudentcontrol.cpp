@@ -25,7 +25,7 @@ void ManageStudentControl::createGUI()
 }
 
 /* --------------------------- setters ------------------------*/
-void ManageStudentControl::setStudWind(StudentWindow* stWin) // probably not needed anymore
+void ManageStudentControl::setStudWind(StudentWindow* stWin)
 {
     studWin = stWin;
 }
@@ -122,6 +122,7 @@ void ManageStudentControl::manageQualifications()
 void ManageStudentControl::logout()
 {
     studWin->~StudentWindow();
+    facade->setLoggedInUser(NULL);
     facade->run();
     delete this;
 

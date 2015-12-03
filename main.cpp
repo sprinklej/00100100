@@ -14,21 +14,21 @@ int main(int argc, char *argv[])
 
     // this is the test part
     //test student creation
-    Student* testStud = new Student("Bob", "Jones","100100100", true, "TTTTTTTTTTTTTTTTTTTTT", 1,
+ /*   Student* testStud = new Student("Bob", "Jones","100100100", true, "TTTTTTTTTTTTTTTTTTTTT", 1,
                                    1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,false,1,1,1,1,
                                    1, 1, 1, 1, 1, 1, 1,
                                    1, 1, 1, 1, 1,1, 1,1);
 
-
-    facade.writeUser(testStud);
+*/
+//    facade.writeUser(testStud);
 
     //log in
-    facade.handleLogin("100100100");
+ //   facade.handleLogin("100100100");
 
     //check
-   User* u = facade.getLoggedInUser();
-qDebug() << u->getID();
-qDebug() << "Works up to here";
+//   User* u = facade.getLoggedInUser();
+//qDebug() << u->getID();
+//qDebug() << "Works up to here";
 //works up to here
 
     return a.exec();
