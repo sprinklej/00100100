@@ -31,6 +31,7 @@ QString Project::getCourseName(){return courseName;}
 QString Project::getPDescription(){return pDescription;}
 QList<Student*>& Project::getStudentList(){return students;}
 int Project::getTeamSize(){return teamSize;}
+QString Project::getOwnerID(){return ownerID;}
 
 //////Setters
 void Project::setProjectID(QString p_ID){

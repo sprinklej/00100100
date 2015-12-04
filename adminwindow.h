@@ -25,6 +25,7 @@ public:
     void refresh();
     void setAdmin(Admin* a);
     void setManAdmContrl(ManageAdminControl* mac);
+    void addToProjectsBox(QString);
 
     // project tab
     void setTitle(QString);

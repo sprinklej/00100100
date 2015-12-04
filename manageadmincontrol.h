@@ -14,7 +14,7 @@ public:
     void setAdmWind(AdminWindow*);
     void createGUI();
     void refresh();
-    void editProject();
+    void editProject(QString);
     void newProject();
     void logout();
     void runPPID();
@@ -29,7 +29,7 @@ private:
     AdminWindow* admWin;
     Admin* user;
     QList<Project*> allProjects;
-    QList<Project*> joinedProjects;
+    QList<Project*> ownedProjects;
     StorageFacade* facade;
 };
 

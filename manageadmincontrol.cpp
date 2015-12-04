@@ -6,6 +6,7 @@ ManageAdminControl::ManageAdminControl(StorageFacade* f)
 {
     facade = f;
     user = (Admin*) facade->getLoggedInUser();
+    facade->getProjects(allProjects);
 }
 
 void ManageAdminControl::createGUI()
@@ -36,49 +37,53 @@ void ManageAdminControl::refresh(){
     // clear list of projects
     admWin->clearProjectBox();
 
-    /*
-        // clear list of projects
-        ui->projectsBox->clear();
-        int num = projectsOwned.size();
-        for (int i =0; i < num; i++) {
-            delete(projectsOwned.takeAt(0));
-        }
+    //clear the qlist
+    ownedProjects.clear();
 
-        // add projects
-        Storage::getDB().getProjects(*user, projectsOwned);
-        foreach(Project* p, projectsOwned){
-            ui->projectsBox->addItem(p->getProjectID());
-        } */
+    // add projects
+    //Storage::getDB().getProjects(*user, projectsOwned);
+    foreach(Project* q, allProjects){
+        if(q->getOwnerID() ==  user->getID()){
+            ownedProjects.push_back(q);
+        }
+    }
+
+
+    foreach(Project* p, ownedProjects){
+        admWin->addToProjectsBox(p->getProjectTitle());
+    }
 }
 
 
 /* --------------------------- Project Tab ------------------------*/
 /* ------------ edit project ------------*/
-void ManageAdminControl::editProject(){
+void ManageAdminControl::editProject(QString pt){
     qDebug() << "edit project";
 
-/*
+
     // create a project object and put the project in it from the QList
     Project* projectBeingEdited = 0;
-    foreach(Project* p, projectsOwned){
-        if(p->getProjectID() == ui->projectsBox->currentText()){
+    foreach(Project* p, ownedProjects){
+        if(p->getProjectTitle() == pt){
             projectBeingEdited = p;
+            break;
         }
     }
 
     // no project found (probaly error then)
     if(projectBeingEdited == 0){
-        ui->title->setText("Unable to find project");
+        //ui->title->setText("Unable to find project");
+qDebug() <<    "Unable to find project";
         return;
     }
 
     // open edit project window
     ProjectWindow *pWin = new ProjectWindow();
-    pWin->setParentWindow(this);
+    pWin->setParent(this);
     pWin->setOwner(user);
     pWin->setEdit(true);
     pWin->setProject(projectBeingEdited);
-    pWin->show(); */
+    pWin->show();
 }
 
 
@@ -105,12 +110,15 @@ void ManageAdminControl::runPPID(){
 /* --------------------------- project window ------------------------*/
 void ManageAdminControl::saveProject(){
     qDebug() << "save project";
-    /*
+
     QString pName = ui->titleField->text();
     QString courseNum = ui->numField->text();
     QString courseName = ui->nameField->text();
     int teamSize = ui->teamSizeBox->value();
     QString pDesc = ui->descField->toPlainText();
+
+    Project* projectBeingEdited;
+    //go through OwnedProjects and find the pointer
 
     if(pName == "" || courseNum == "" || courseName == "" || pDesc == "" ){
         ui->status->setText("Please complete all fields");
@@ -126,20 +134,28 @@ void ManageAdminControl::saveProject(){
         /********
          * TBD: check if the project title exists in the database
          *******/
-/*
+
         if(edit){
-//            Storage::getDB().updateProject(project);
-            delete project;
+//          UPDATE
+            facade->storeProject(project, "", user->getID(), false);
+//set PRojectBeingEdited to have the updated fields
+            //delete project; //don;t need it anymore, data is all written
+            }
+
+
+            //delete project;
             parent->refresh();
             this->~ProjectWindow();
         } else{
-//            Storage::getDB().addProject(project, owner);
-            delete project;
+//          INSERT
+            facade->storeProject(project, "", user->getID(), true);
+            //push proejcet to projectsOwned and master projects list
+
             parent->refresh();
             this->~ProjectWindow();
         }
     }
-*/
+
 
 }
 

@@ -25,9 +25,9 @@ void GetProjectControl::intitializeProjects(){
     allProjects.clear();
     //also empty the students' projects
     User* u;
-qDebug() <<  "start of getProejcts -- here arethe users";
+
     foreach(u, allUsers){
-qDebug() <<  u->getID();
+
         //if(u->getProjects()){
         //    qDeleteAll(u->getProjects()->begin(), u->getProjects()->end());
         //    u->getProjects()->clear();
@@ -39,9 +39,6 @@ qDebug() <<  u->getID();
     QSqlQuery query;
     query.exec("SELECT * FROM projects;");
 
-    //query.exec();
-
-    qDebug() << "query executed";
 
     Project* newProj;
 
@@ -55,7 +52,7 @@ qDebug() <<  u->getID();
         int teamSize = query.value(6).toInt();
 
         newProj = new Project(projectID, projectTitle, ownerID, courseName, courseNum, description, teamSize);
-qDebug() << "Found: " << newProj->getProjectTitle();
+
         allProjects.push_back(newProj);
     }
 

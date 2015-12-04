@@ -42,6 +42,7 @@ public:
     QString getCourseNum();
     QString getCourseName();    
     QString getPDescription();
+    QString getOwnerID();
     int getTeamSize();
     QList<Student*>& getStudentList();
 };

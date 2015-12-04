@@ -45,6 +45,10 @@ void AdminWindow::clearProjectBox(){
     ui->projectsBox->clear();
 }
 
+    void AdminWindow::addToProjectsBox(QString title){
+    ui->projectsBox->addItem(title);
+}
+
 
 /* --------------------------- setters ------------------------*/
 void AdminWindow::setAdmin(Admin* a)
@@ -67,7 +71,7 @@ void AdminWindow::on_pushButton_EProj_clicked() // edit project clicked
      if(ui->projectsBox->currentText() == ""){
         setTitle("No project selected");
      } else {
-        manAddControl->editProject();
+        manAddControl->editProject(ui->projectsBox->currentText());
      }
 }
 
