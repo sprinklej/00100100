@@ -150,6 +150,5 @@ void ManageStudentControl::logout()
     facade->setLoggedInUser(NULL);
     facade->run();
     delete this;
-
 }
 

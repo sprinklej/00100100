@@ -9,7 +9,6 @@ AdminWindow::AdminWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::AdminWindow)
 {
-
     ui->setupUi(this);
 
     // open window in middle of screen
@@ -21,7 +20,6 @@ AdminWindow::AdminWindow(QWidget *parent) :
                     qApp->desktop()->availableGeometry()
                     )
                 );
-
 }
 
 
@@ -30,11 +28,29 @@ AdminWindow::~AdminWindow()
     delete ui;
 }
 
+
+/* --------------------------- refresh ------------------------*/
+void AdminWindow::refresh(){
+    manAddControl->refresh();
+}
+
+
+/* --------------------------- update GUI elements ------------------------*/
+/* ------------ Project Tab ------------*/
+void AdminWindow::setTitle(QString string){
+    ui->title->setText(string);
+}
+
+void AdminWindow::clearProjectBox(){
+    ui->projectsBox->clear();
+}
+
+
 /* --------------------------- setters ------------------------*/
 void AdminWindow::setAdmin(Admin* a)
 {
     user = a;
-    ui->title->setText("Projects available for admin " /*+ s->getIDNum()*/);
+    setTitle("Projects available for admin " + user->getIDNum());
 }
 
 void AdminWindow::setManAdmContrl(ManageAdminControl* mac)
@@ -43,64 +59,43 @@ void AdminWindow::setManAdmContrl(ManageAdminControl* mac)
 }
 
 
-// refreshes the list of projects
-void AdminWindow::refresh(){
-/*
-    // clear list of projects
-    ui->projectsBox->clear();
-    int num = projectsOwned.size();
-    for (int i =0; i < num; i++) {
-        delete(projectsOwned.takeAt(0));
-    }
 
-    // add projects
-    Storage::getDB().getProjects(*user, projectsOwned);
-    foreach(Project* p, projectsOwned){
-        ui->projectsBox->addItem(p->getProjectID());
-    } */
-}
-
-
-//create a new project
-void AdminWindow::on_pushButton_clicked(){
-/*    ProjectWindow *pWin = new ProjectWindow();
-    pWin->setParentWindow(this);
-    pWin->setOwner(user);
-    pWin->setEdit(false);
-    pWin->show(); */
-}
-
-
-//edit project
-void AdminWindow::on_pushButton_2_clicked()
+/* --------------------------- Project Tab ------------------------*/
+void AdminWindow::on_pushButton_EProj_clicked() // edit project clicked
 {
     // no projects to edit
-/*    if(ui->projectsBox->currentText() == ""){
-        ui->title->setText("No project selected");
-        return;
-    }
-
-    // create a project object and put the project in it from the QList
-    Project* projectBeingEdited = 0;
-    foreach(Project* p, projectsOwned){
-        if(p->getProjectID() == ui->projectsBox->currentText()){
-            projectBeingEdited = p;
-        }
-    }
-
-    // no project found (probaly error then)
-    if(projectBeingEdited == 0){
-        ui->title->setText("Unable to find project");
-        return;
-    }
-
-    // open edit project window
-    ProjectWindow *pWin = new ProjectWindow();
-    pWin->setParentWindow(this);
-    pWin->setOwner(user);
-    pWin->setEdit(true);
-    pWin->setProject(projectBeingEdited);
-    pWin->show(); */
+     if(ui->projectsBox->currentText() == ""){
+        setTitle("No project selected");
+     } else {
+        manAddControl->editProject();
+     }
 }
+
+void AdminWindow::on_pushButton_NProj_clicked() // new project clicked
+{
+    manAddControl->newProject();
+}
+
+
+
+/* --------------------------- PPID Tab ------------------------*/
+void AdminWindow::on_pushButton_PPID_clicked()
+{
+    manAddControl->runPPID();
+}
+
+
+
+/* --------------------------- logout ------------------------*/
+void AdminWindow::on_pushButton_logout1_clicked()
+{
+    manAddControl->logout();
+}
+
+void AdminWindow::on_pushButton_logout2_clicked()
+{
+    manAddControl->logout();
+}
+
 
 

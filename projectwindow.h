@@ -6,6 +6,7 @@
 #include "User.h"
 #include "adminwindow.h"
 
+class ManageAdminControl;
 
 namespace Ui {
 class ProjectWindow;
@@ -22,7 +23,7 @@ public:
     void setOwner(Admin*);
     void setEdit(bool);
     void setProject(Project*);
-    void setParentWindow(AdminWindow*);
+    void setParent(ManageAdminControl*);
 
 private slots:
     void on_cancelButton_clicked();
@@ -34,7 +35,7 @@ private:
     Admin* owner;
     bool edit;
     Project* project;
-    AdminWindow* parentWindow;
+    ManageAdminControl* parent;
 };
 
 #endif // PROJECTWINDOW_H

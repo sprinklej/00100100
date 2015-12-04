@@ -8,9 +8,7 @@
 #include <QList>
 #include <QDebug>
 #include "User.h"
-#include "Project.h"
 
-// this is a git simple push test
 class ManageAdminControl;
 
 namespace Ui {
@@ -28,10 +26,20 @@ public:
     void setAdmin(Admin* a);
     void setManAdmContrl(ManageAdminControl* mac);
 
-private slots:
-    void on_pushButton_clicked();
+    // project tab
+    void setTitle(QString);
+    void clearProjectBox();
 
-    void on_pushButton_2_clicked();
+private slots:
+    void on_pushButton_EProj_clicked();
+
+    void on_pushButton_NProj_clicked();
+
+    void on_pushButton_logout1_clicked();
+
+    void on_pushButton_logout2_clicked();
+
+    void on_pushButton_PPID_clicked();
 
 private:
     Ui::AdminWindow *ui;
