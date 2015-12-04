@@ -16,6 +16,8 @@ public:
     void prepareStatement(QString, QString);
     void execute(QList<Project*>&);
     void intitializeProjects();
+    void setUsers(QList<User*>&);
+
 
 private:
     QList<Project*> allProjects;

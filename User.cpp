@@ -226,8 +226,6 @@ void Student::setReq_creative(int a){req_creative = a;}
 void Student::setReq_critic(int a){req_critic = a;}
 
 bool Student::getPolicy(){return true;}
-QList<Project*>* Student::getProjects(){return projects;}
-
 
 Admin::Admin(QString fn, QString ln, QString id, int a1){
     firstName = fn;
@@ -252,7 +250,7 @@ QString Admin::getLastName(){return lastName;}
 
 bool Admin::getPolicy(){return false;}
 QList<Project*>* Admin::getProjects(){return 0;}
-
+QList<Project*>* Student::getProjects(){return projects;}
 
 int Student::getLeaderScore(){
     return req_selfDir + req_teamwork + req_experience + req_comm + req_critic +  	req_reliable + req_respect;
@@ -271,9 +269,12 @@ int Student::getOverallScore(){
 }
 
 void Student::joinProject(Project* p){
-    if(!projects){
-        projects = new QList<Project*>();
-    }
+    //if(!projects){
+   //     projects = new QList<Project*>();
+    //}
     projects->push_back(p);
 }
 void Admin::joinProject(Project* p){return;}
+
+void Admin::initializeProjects(){return;}
+void Student::initializeProjects(){projects = new QList<Project*>();}

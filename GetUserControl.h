@@ -19,6 +19,7 @@ public:
     void login(User*);
     void registerUser(User*);
     void initializeUsersList();
+    QList<User*>& getUsers();
 
 private:
     QList<User*> allUsers;

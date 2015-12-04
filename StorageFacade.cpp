@@ -27,6 +27,7 @@ StorageFacade::StorageFacade(){
 
     //load the projects
     getUserControl->initializeUsersList();
+    getProjectControl->setUsers(getUserControl->getUsers());
     //gets projects and links with users
     getProjectControl->intitializeProjects();
 

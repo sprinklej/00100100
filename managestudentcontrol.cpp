@@ -20,8 +20,11 @@ void ManageStudentControl::createGUI()
     studWin->setManStudContrl(this);
     studWin->setStudent(user);
     studWin->showUserInfo();
-    studWin->refresh();
+
+
     studWin->show();
+    refresh();
+    //studWin->refresh();
 }
 
 /* --------------------------- setters ------------------------*/
@@ -48,33 +51,41 @@ Student* ManageStudentControl::getCurrentUser()
 // refresh the list of projects/joined projects
 void ManageStudentControl::refresh()
 {
-    //Storage::getDB().getAllProjects(allProjects);
-    facade->getProjects(allProjects);
-/*
-    foreach(Project* p, allProjects){
 
+qDebug() <<"refresh";
+    //Storage::getDB().getAllProjects(allProjects);
+    Project* p;
+    facade->getProjects(allProjects);
+    studWin->clearLists();
+qDebug() <<"fetch projects";
+    //*
+    foreach(Project* p, allProjects){
+qDebug() << p->getProjectTitle();
         // add to list of all projects
         studWin->setAllProjListWidget(p->getProjectTitle());
 
         // add to list of already joined projects
         foreach(Student* s, p->getStudentList()){
             qDebug() << "test";
+            qDebug() << s << " Address of: " << s->getIDNum();
+            qDebug() << user << " Address of: " << user->getIDNum();
             if(s->getIDNum() == user->getIDNum()){
+
                 qDebug() << "joined a project";
                 joinedProjects.push_back(p);
                 studWin->setJoinedProjListWidget(p->getProjectTitle());
             }
         }
-    }*/
-    studWin->clearLists();
+    }//*/
 
-    foreach(Project* p, allProjects){
+    /*
+    foreach(p, allProjects){
         studWin->setAllProjListWidget(p->getProjectTitle());
         if(p->getStudentList().contains(user)){
             joinedProjects.push_back(p);
             studWin->setJoinedProjListWidget(p->getProjectTitle());
         }
-    }
+    }/*/
 
 }
 

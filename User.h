@@ -23,6 +23,7 @@ public:
     virtual QList<Project*>* getProjects() = 0;
     QString getID();
     virtual void joinProject(Project*) = 0;
+    virtual void initializeProjects() = 0;
 };
 
 
@@ -73,8 +74,7 @@ protected:
     int req_creative;
     int req_critic;
 
-    //projects
-    QList<Project*>* projects;
+
 
 public:
     // constructors/destructor
@@ -89,6 +89,8 @@ public:
     ~Student();
 
 
+    //projects
+    QList<Project*>* projects;
 
     // getters
     QString getIDNum();          //students start with "1", Admins start with "A"
@@ -183,6 +185,7 @@ public:
     bool getPolicy();
     QList<Project*>* getProjects();
     void joinProject(Project*);
+    void initializeProjects();
 
     int getLeaderScore();
     int getCoderScore();
@@ -215,5 +218,6 @@ public:
     bool getPolicy();
     QList<Project*>* getProjects();
     void joinProject(Project*);
+    void initializeProjects();
 };
 #endif // USER_H

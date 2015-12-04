@@ -41,6 +41,10 @@ void GetUserControl::getIDs(QList<QString>& list){
 
 }
 
+QList<User*>& GetUserControl::getUsers(){
+    return allUsers;
+}
+
 void GetUserControl::login(User* user){
     if (checkID(user->getID())){
         facade->setLoggedInUser(user);
