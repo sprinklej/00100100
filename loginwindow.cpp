@@ -63,11 +63,6 @@ void LoginWindow::on_pushButton_login_clicked()
 void LoginWindow::on_pushButton_signup_clicked()
 {
     manRegControl->signup();
-    // show signup window and disables login window
-    /*
-    SignupWindow *signupWin = new SignupWindow;
-    signupWin->setModal(true);
-    signupWin->exec(); */
 }
 
 

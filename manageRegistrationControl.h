@@ -18,23 +18,18 @@ public:
     void login(QString);
     void loginSuccess();
     void loginFailure(QString);
-    void signup();
     void setLogWind(LoginWindow*);
 
-
-//explicit SignupWindow(QWidget *parent = 0);
-    void on_radioButton_student_clicked();
-    void on_radioButton_admin_clicked();
-    void on_pushButton_cancel_clicked();
-    void on_pushButton_ok_clicked();
-    void on_pushButton_signup_clicked();
-    void getQualifications(Student*);
+    //signup
+    void signup();
+    void createNewUser(QString, QString, QString, bool);
+    void setSignupWin(SignupWindow*);
 
 private:
 //Ui::SignupWindow *ui;
     LoginWindow* logWin;
+    SignupWindow* signupWin;
     StorageFacade* facade;
-
 };
 
 #endif

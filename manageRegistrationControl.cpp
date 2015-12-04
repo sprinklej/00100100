@@ -44,6 +44,10 @@ void ManageRegistrationControl::setLogWind(LoginWindow* lWin)
     logWin = lWin;
 }
 
+void ManageRegistrationControl::setSignupWin(SignupWindow* suw)
+{
+    signupWin = suw;
+}
 
 
 /* --------------------------- login ------------------------*/
@@ -67,36 +71,34 @@ void ManageRegistrationControl::loginFailure(QString string) {
 /* --------------------------- signup ------------------------*/
 void ManageRegistrationControl::signup()
 {
-    logWin->setStatus("you clicked signup!");
-}
-
-
-
-
-
-/* --------------------------- needed? ------------------------*/
-void ManageRegistrationControl::on_radioButton_admin_clicked()
-{
-//ui->label_ID->setText("Email address");
-}
-
-void ManageRegistrationControl::on_radioButton_student_clicked()
-{
-//ui->label_ID->setText("Student ID # ");
-}
-
-void ManageRegistrationControl::on_pushButton_cancel_clicked()
-{
-//this->~SignupWindow();
-}
-
-void ManageRegistrationControl::on_pushButton_signup_clicked()
-{
+    //logWin->setStatus("you clicked signup!");
     // show signup window and disables login window
     SignupWindow *signupWin = new SignupWindow;
+    setSignupWin(signupWin);
+    signupWin->setParent(this);
     signupWin->setModal(true);
     signupWin->exec();
 }
+
+/* ------------ create new user ------------*/
+// bool radio: student = true, admin = false
+void ManageRegistrationControl::createNewUser(QString fName, QString lName, QString ID, bool radio)
+{
+    if (radio) { // create student
+        Student * st = new Student(fName, lName, ID, 1);
+        //getQualifications(st);
+    } else { // create admin
+        Admin* ad = new Admin(fName, lName, ID, 1);
+    }
+
+    // save user info!!!
+
+    // destroy signup
+    signupWin->~SignupWindow();
+    setSignupWin(NULL);
+}
+
+
 
 /*
 void ManageRegistrationControl::getQualifictaions(Student *st)

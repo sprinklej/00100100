@@ -1,6 +1,7 @@
 #include "signupwindow.h"
 #include "ui_signupwindow.h"
-#include "qualificationwindow.h"
+//#include "qualificationwindow.h"
+#include "manageRegistrationControl.h"
 
 SignupWindow::SignupWindow(QWidget *parent) :
     QDialog(parent),
@@ -14,6 +15,13 @@ SignupWindow::~SignupWindow()
     delete ui;
 }
 
+/* --------------------------- setter ------------------------*/
+void SignupWindow::setParent(ManageRegistrationControl * mrc)
+{
+    parent = mrc;
+}
+
+/* --------------------------- update GUI elements ------------------------*/
 void SignupWindow::on_radioButton_student_clicked()
 {
     ui->label_ID->setText("Student ID # ");
@@ -24,40 +32,55 @@ void SignupWindow::on_radioButton_admin_clicked()
     ui->label_ID->setText("Email address");
 }
 
+
+/* --------------------------- click ok ------------------------*/
 void SignupWindow::on_pushButton_ok_clicked()
 {
-    // get user info
-    QString firstName, lastName, ID;
-    firstName = ui->lineEdit_firstname->text();
-    lastName = ui->lineEdit_lastname->text();
-    ID = ui->lineEdit_ID->text();
+    int flag = 1;
+    bool radio;
 
-    //validate userinput
-
-    // add user info to database
-    if(ui->radioButton_student->isChecked()){ // create student account
-        Student* st = new Student(firstName, lastName, ID, 1);
-        getQualifications(st);
-
-    } else if(ui->radioButton_admin->isChecked()) { // create admin account
-        Admin* ad = new Admin(firstName, lastName, ID, 1);
-//        Storage::getDB().addUser(ad);
+    // highlight text fields not filled in
+    if (ui->lineEdit_firstname->text() == "") {
+        ui->label_FN->setStyleSheet("QLabel {color:red}");
+        flag = 0;
+    }
+    if (ui->lineEdit_lastname->text() == "") {
+        ui->label_LN->setStyleSheet("QLabel {color:red}");
+        flag = 0;
+    }
+    if (ui->lineEdit_ID->text() == "") {
+        ui->label_ID->setStyleSheet("QLabel {color:red}");
+        flag = 0;
     }
 
-    //if no errors close window
-    this->~SignupWindow();
+    // do actual work
+    if (flag) {
+        if(ui->radioButton_student->isChecked()){
+            radio = true;
+        } else {
+            radio = false;
+        }
+
+        parent->createNewUser(ui->lineEdit_firstname->text(),ui->lineEdit_lastname->text(),
+                              ui->lineEdit_ID->text(), radio);
+    }
 }
 
+
+/* --------------------------- click cancel ------------------------*/
 void SignupWindow::on_pushButton_cancel_clicked()
 {
     this->~SignupWindow();
 }
 
+
 void SignupWindow::getQualifications(Student* st){
+    /*
     this->hide();
     QualificationWindow* qualWin = new QualificationWindow();
     qualWin->setStudent(st);
     qualWin->show();
+    */
 }
 
 
