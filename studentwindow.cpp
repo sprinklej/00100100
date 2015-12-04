@@ -68,6 +68,10 @@ void StudentWindow::setJoinedProjListWidget(QString string)
     return;
 }
 
+void StudentWindow::clearLists(){
+    ui->joinedProjlistWidget->clear();
+    ui->allProjlistWidget->clear();
+}
 
 /* ------------ Profile Tab ------------*/
 // show all the students info

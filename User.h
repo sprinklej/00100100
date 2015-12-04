@@ -22,6 +22,7 @@ public:
     virtual bool getPolicy() = 0;
     virtual QList<Project*>* getProjects() = 0;
     QString getID();
+    virtual void joinProject(Project*) = 0;
 };
 
 
@@ -181,6 +182,7 @@ public:
 
     bool getPolicy();
     QList<Project*>* getProjects();
+    void joinProject(Project*);
 
     int getLeaderScore();
     int getCoderScore();
@@ -212,5 +214,6 @@ public:
 
     bool getPolicy();
     QList<Project*>* getProjects();
+    void joinProject(Project*);
 };
 #endif // USER_H

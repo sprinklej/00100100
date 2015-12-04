@@ -33,8 +33,8 @@ private:
     bool compStudentsOverall(Student*, Student*);
 
 
-    float bestMatchScore = 0;
-    Student* bestStudent = 0;
+    float bestMatchScore;
+    Student* bestStudent;
     float match(Team*, Student*);
 };
 

@@ -269,3 +269,11 @@ int Student::getWriterScore(){
 int Student::getOverallScore(){
     return getLeaderScore() + getCoderScore() + getWriterScore();
 }
+
+void Student::joinProject(Project* p){
+    if(!projects){
+        projects = new QList<Project*>();
+    }
+    projects->push_back(p);
+}
+void Admin::joinProject(Project* p){return;}

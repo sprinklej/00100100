@@ -13,6 +13,7 @@ class Project
 {
 protected:
     QString projectID;
+    QString projectTitle;
     QString courseNum;
     QString ownerID;
     QString courseName;
@@ -25,10 +26,11 @@ public:
     // constructor/destructor
     //Project(int project_ID, int course_Num, QString p_Title, QString course_Name, QString p_Description, QList<Student> * stdnts);
     //     Project* newProj = new Project(projectID, ad.getIDNum(), courseName, courseNum, description, teamSize);
-    Project(QString project_ID, QString own, QString course_Name, QString course_Num, QString p_Description, int ts);
+    Project(QString project_ID, QString ptitle, QString own, QString course_Name, QString course_Num, QString p_Description, int ts);
     ~Project();
 
     // setters
+    void setProjectID(QString p_ID);
     void setCourseNum(QString course_Num);
     void setPTitle(QString p_Title);
     void setPDescription(QString p_Description);
@@ -36,8 +38,9 @@ public:
 
     // getters
     QString getProjectID();
+    QString getProjectTitle();
     QString getCourseNum();
-    QString getCourseName();
+    QString getCourseName();    
     QString getPDescription();
     int getTeamSize();
     QList<Student*>& getStudentList();

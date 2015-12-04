@@ -37,6 +37,7 @@ public:
     QString codingString(int num);
     QString experienceString(int num);
     QString agreeString(int num);
+    void clearLists();
 
 private slots:
     void on_pushButton_manQual_clicked();

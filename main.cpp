@@ -23,13 +23,8 @@ int main(int argc, char *argv[])
 //    facade.writeUser(testStud);
 
     //log in
- //   facade.handleLogin("100100100");
+   //facade.handleLogin("100100100");
 
-    //check
-//   User* u = facade.getLoggedInUser();
-//qDebug() << u->getID();
-//qDebug() << "Works up to here";
-//works up to here
 
     return a.exec();
 }

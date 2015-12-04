@@ -50,11 +50,11 @@ void ManageStudentControl::refresh()
 {
     //Storage::getDB().getAllProjects(allProjects);
     facade->getProjects(allProjects);
-
+/*
     foreach(Project* p, allProjects){
 
         // add to list of all projects
-        studWin->setAllProjListWidget(p->getProjectID());
+        studWin->setAllProjListWidget(p->getProjectTitle());
 
         // add to list of already joined projects
         foreach(Student* s, p->getStudentList()){
@@ -62,10 +62,20 @@ void ManageStudentControl::refresh()
             if(s->getIDNum() == user->getIDNum()){
                 qDebug() << "joined a project";
                 joinedProjects.push_back(p);
-                studWin->setJoinedProjListWidget(p->getProjectID());
+                studWin->setJoinedProjListWidget(p->getProjectTitle());
             }
         }
+    }*/
+    studWin->clearLists();
+
+    foreach(Project* p, allProjects){
+        studWin->setAllProjListWidget(p->getProjectTitle());
+        if(p->getStudentList().contains(user)){
+            joinedProjects.push_back(p);
+            studWin->setJoinedProjListWidget(p->getProjectTitle());
+        }
     }
+
 }
 
 
@@ -77,19 +87,37 @@ void ManageStudentControl::joinProject(QString currentProj)
     //clear any status text
     studWin->setStatus2(st);
 
-    // join the project
+    /*Must do three things:
+    1. Add the project to the student's collection
+    2. Add the student to the project's collection
+    3. Update the project in storage
+    */
+
+    //Add the student
     foreach(Project* p, allProjects){
-        if(p->getProjectID() == currentProj){
+        if(p->getProjectTitle() == currentProj){
             if(!joinedProjects.contains(p)){ //Joined projects is not being populated!
                 joinedProjects.push_back(p);
-                studWin->setJoinedProjListWidget(p->getProjectID());
+qDebug() << "push project " << p->getProjectTitle() << " to joinedprojects";
+               // user->joinProject(p);  //This is crashing
+qDebug() << "push project " << p->getProjectTitle() << " to " << user->getFirstName() << "'s projects";
+
+                p->addStudent(user);
+qDebug() << "push student " << user->getFirstName() << " to project " << p->getProjectTitle();
+                studWin->setJoinedProjListWidget(p->getProjectTitle());
                 facade->storeProject(p, "", user->getID(), false);
                 studWin->setStatus2("Project joined!");
+
             } else {
                 studWin->setStatus2("You have already joined this project!");
             }
         }
     }
+
+    //Add the project
+
+    refresh();
+
     return;
 }
 

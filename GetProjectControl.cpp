@@ -41,14 +41,15 @@ void GetProjectControl::intitializeProjects(){
 
     while(query.next()){
         QString projectID = query.value(0).toString();
-        QString ownerID = query.value(1).toString();
-        QString courseName = query.value(2).toString();
-        QString courseNum = query.value(3).toString();
-        QString description = query.value(4).toString();
-        int teamSize = query.value(5).toInt();
+        QString projectTitle = query.value(1).toString();
+        QString ownerID = query.value(2).toString();
+        QString courseName = query.value(3).toString();
+        QString courseNum = query.value(4).toString();
+        QString description = query.value(5).toString();
+        int teamSize = query.value(6).toInt();
 
-        newProj = new Project(projectID, ownerID, courseName, courseNum, description, teamSize);
-
+        newProj = new Project(projectID, projectTitle, ownerID, courseName, courseNum, description, teamSize);
+qDebug() << "Found: " << newProj->getProjectTitle();
         allProjects.push_back(newProj);
     }
 
@@ -68,6 +69,7 @@ void GetProjectControl::intitializeProjects(){
                 if(p->getProjectID() == pID && u->getID() == sID) {
                     //Student* s = dynamic_cast<Student*> u; //safe because we only have Students in the projectsStudents table, but a getcollection is still better
                     //s->projects.pushback(p);
+qDebug() << "Linking project " << p->getProjectTitle() << " to students";
                     u->getProjects()->push_back(p);
                     p->getStudentList().push_back(dynamic_cast<Student*>(u));
                 }

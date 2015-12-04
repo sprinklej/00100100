@@ -28,7 +28,10 @@ void ProjectWindow::setOwner(Admin* ad){
 
 void ProjectWindow::setProject(Project* p){
     project = p;
-    ui->titleField->setText(p->getProjectID());
+    //ui->titleField->setText(p->getProjectID());
+    //-- we changed the schema to make this an integer key
+    //it is now:
+    ui->titleField->setText(p->getProjectTitle());
     ui->nameField->setText(p->getCourseName());
     ui->numField->setText(p->getCourseNum());
     ui->descField->setText(p->getPDescription());
@@ -56,7 +59,13 @@ void ProjectWindow::on_saveButton_clicked()
         ui->status->setText("Please complete all fields");
     } else {
 
-        Project* project = new Project(pName, owner->getIDNum(), courseName, courseNum, pDesc, teamSize);
+
+        //We are creating new projects with an ID of -1
+        //This works because SQL autogenerates the ID
+        //We will not be attempting to write the ID of the new project to SQL
+        //When we save, SQL will make up the ID at that time.
+        //If we update that is a totally different command
+        Project* project = new Project("-1", pName, owner->getIDNum(), courseName, courseNum, pDesc, teamSize);
         /********
          * TBD: check if the project title exists in the database
          *******/
