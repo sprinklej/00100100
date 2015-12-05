@@ -1,7 +1,7 @@
 #include "manageadmincontrol.h"
 #include "managestudentcontrol.h"
 #include "StorageFacade.h"
-#include "PPIDManager.h"
+
 
 ManageAdminControl::ManageAdminControl(StorageFacade* f)
 {
@@ -13,12 +13,12 @@ ManageAdminControl::ManageAdminControl(StorageFacade* f)
 void ManageAdminControl::createGUI()
 {
 
-    AdminWindow *adWin = new AdminWindow();
-    setAdmWind(adWin);
-    adWin->setManAdmContrl(this);
-    adWin->setAdmin(user);
-    adWin->refresh();
-    adWin->show();
+    AdminWindow *admWin = new AdminWindow();
+    setAdmWind(admWin);
+    admWin->setManAdmContrl(this);
+    admWin->setAdmin(user);
+    admWin->refresh();
+    admWin->show();
 }
 
 /* --------------------------- setters ------------------------*/
@@ -31,6 +31,12 @@ void ManageAdminControl::setAdmin(Admin* a)
 {
     user = a;
 }
+
+/* --------------------------- update GUI ------------------------*/
+void ManageAdminControl::setStatus(QString string) {
+    admWin->setTitle(string);
+}
+
 
 /* --------------------------- refesh ------------------------*/
 void ManageAdminControl::refresh(){
@@ -56,7 +62,7 @@ void ManageAdminControl::refresh(){
 }
 
 
-/* --------------------------- Project Tab ------------------------*/
+/* --------------------------- Project ------------------------*/
 /* ------------ edit project ------------*/
 void ManageAdminControl::editProject(QString pt){
     qDebug() << "edit project";
@@ -101,7 +107,7 @@ void ManageAdminControl::newProject(){
 
 
 
-/* --------------------------- PPID Tab ------------------------*/
+/* --------------------------- PPID ------------------------*/
 void ManageAdminControl::runPPID(QString pt){
     qDebug() << "runPPID";
 
@@ -121,7 +127,7 @@ void ManageAdminControl::runPPID(QString pt){
     }
 
     // run PPID algorithm on project
-    PPIDManager *ppid = new PPIDManager(PPIDProject->getStudentList(), PPIDProject);
+    PPIDManager *ppid = new PPIDManager(PPIDProject->getStudentList(), PPIDProject, this);
 
     // display PPID algorithm results
 }

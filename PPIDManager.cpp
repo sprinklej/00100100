@@ -1,7 +1,10 @@
 #include "PPIDManager.h"
+#include "manageadmincontrol.h"
 #include "QDebug"
 
-PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p){
+PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* mac){
+    manAdminCon = mac;
+
     students = QList<Student*>(); // need a new one - PPID destroys the list
     Student* s;
     //instead of sorting on leader, we will construc the list in leader sorted order.
@@ -39,6 +42,8 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p){
     numTeams = students.size() / p->getTeamSize();
     qDebug() << "PPID is starting \n" << numTeams << " teams";
 
+    // can send messages to the admin window now
+    manAdminCon->setStatus("PPID is starting!");
 
 }
 
