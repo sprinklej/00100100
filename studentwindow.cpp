@@ -73,6 +73,12 @@ void StudentWindow::clearLists(){
     ui->allProjlistWidget->clear();
 }
 
+void StudentWindow::setLabels(QString cNum, QString cName, QString pDescrip){
+    ui->label_cNum->setText(cNum);
+    ui->label_cName->setText(cName);
+    ui->textBrowser->setText(pDescrip);
+}
+
 /* ------------ Profile Tab ------------*/
 // show all the students info
 // This function looks big but there is no "work" being done
@@ -204,6 +210,15 @@ void StudentWindow::on_pushButton_joinProject_clicked()
     }
 }
 
+void StudentWindow::on_allProjlistWidget_clicked(const QModelIndex &index)
+{
+    manStudControl->setProjectLabels(ui->allProjlistWidget->currentItem()->text());
+}
+
+void StudentWindow::on_joinedProjlistWidget_clicked(const QModelIndex &index)
+{
+     manStudControl->setProjectLabels(ui->joinedProjlistWidget->currentItem()->text());
+}
 
 
 /* --------------------------- Profile Tab ------------------------*/
@@ -225,4 +240,10 @@ void StudentWindow::on_pushButton_Logout2_clicked()
 {
     manStudControl->logout();
 }
+
+
+
+
+
+
 

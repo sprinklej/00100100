@@ -45,9 +45,17 @@ void AdminWindow::clearProjectBox(){
     ui->projectsBox->clear();
 }
 
-    void AdminWindow::addToProjectsBox(QString title){
+void AdminWindow::addToProjectsBox(QString title){
     ui->projectsBox->addItem(title);
 }
+
+
+void AdminWindow::setLabels(QString cNum, QString cName, QString pDescrip){
+    ui->label_courseNum->setText(cNum);
+    ui->label_courseName->setText(cName);
+    ui->textBrowser->setText(pDescrip);
+}
+
 
 
 /* --------------------------- setters ------------------------*/
@@ -101,3 +109,8 @@ void AdminWindow::on_pushButton_logout1_clicked()
 }
 
 
+
+void AdminWindow::on_projectsBox_activated(const QString &arg1)
+{
+    manAddControl->changeLabels(arg1);
+}

@@ -30,6 +30,7 @@ public:
     // project tab
     void setTitle(QString);
     void clearProjectBox();
+    void setLabels(QString, QString, QString);
 
 private slots:
     void on_pushButton_EProj_clicked();
@@ -41,6 +42,8 @@ private slots:
     //void on_pushButton_logout2_clicked();
 
     void on_pushButton_PPID_clicked();
+
+    void on_projectsBox_activated(const QString &arg1);
 
 private:
     Ui::AdminWindow *ui;

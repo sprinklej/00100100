@@ -20,6 +20,7 @@ public:
     void logout();
     void runPPID(QString);
     void setStatus(QString);
+    void changeLabels(QString);
 
     // project window
     void saveProject(bool, ProjectWindow*, QString, QString, QString, int, QString);

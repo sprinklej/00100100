@@ -132,9 +132,18 @@ qDebug() << "push student " << user->getFirstName() << " to project " << p->getP
     return;
 }
 
-
-
-
+// display info about the project
+void ManageStudentControl::setProjectLabels(QString title)
+{
+    foreach(Project* p, allProjects){
+        if(p->getProjectTitle() == title){
+            QString num = "Course Number: " + p->getCourseNum();
+            QString name = "Course Name: " + p->getCourseName();
+            studWin->setLabels(num, name, p->getPDescription());
+            return;
+        }
+    }
+}
 
 
 

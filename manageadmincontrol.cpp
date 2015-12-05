@@ -55,9 +55,13 @@ void ManageAdminControl::refresh(){
         }
     }
 
-
+    int flag = 1;
     foreach(Project* p, ownedProjects){
         admWin->addToProjectsBox(p->getProjectTitle());
+        if (flag == 1) {
+            changeLabels(p->getProjectTitle());
+            flag = 0;
+        }
     }
 }
 
@@ -192,6 +196,22 @@ Project* project = new Project("-1", pName, user->getID(), courseName, courseNum
 }
 
 
+/* --------------------------- Labels ------------------------*/
+void ManageAdminControl::changeLabels(QString title){
+    // create a project object and put the project in it from the QList
+
+    projectBeingEdited = 0;
+    foreach(Project* p, ownedProjects){
+        if(p->getProjectTitle() == title){
+            projectBeingEdited = p;
+            break;
+        }
+    }
+
+    QString num = "Course Number: " + projectBeingEdited->getCourseNum();
+    QString name = "Course Name: " + projectBeingEdited->getCourseName();
+    admWin->setLabels(num, name, projectBeingEdited->getPDescription());
+}
 
 /* --------------------------- logout ------------------------*/
 void ManageAdminControl::logout(){

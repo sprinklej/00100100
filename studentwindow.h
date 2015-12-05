@@ -33,6 +33,7 @@ public:
     void setAllProjListWidget(QString string);
     void setJoinedProjListWidget(QString string);
     void showUserInfo();
+    void setLabels(QString, QString, QString);
     // showUserInfo helpers
     QString codingString(int num);
     QString experienceString(int num);
@@ -46,6 +47,10 @@ private slots:
     void on_pushButton_Logout1_clicked();
 
     void on_pushButton_Logout2_clicked();
+
+    void on_allProjlistWidget_clicked(const QModelIndex &index);
+
+    void on_joinedProjlistWidget_clicked(const QModelIndex &index);
 
 private:
     Ui::StudentWindow *ui;

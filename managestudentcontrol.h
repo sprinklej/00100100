@@ -18,6 +18,7 @@ public:
     void logout();
     void createGUI();
     void updateUserInfo();
+    void setProjectLabels(QString);
 
     // setters
     void setStudent(Student*);
