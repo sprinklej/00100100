@@ -13,6 +13,14 @@ PPIDResultsWindow::~PPIDResultsWindow()
     delete ui;
 }
 
+
+void PPIDResultsWindow::setResults(QString sumResults, QString detResults)
+{
+    ui->textBrowser_Summary->setText(sumResults);
+    ui->textBrowser_Detailed->setText(detResults);
+}
+
+
 // show text on the summary tab
 void PPIDResultsWindow::showSummaryText(QTextStream *stream, QString FN)
 {

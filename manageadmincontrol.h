@@ -3,6 +3,7 @@
 
 #include "adminwindow.h"
 #include "projectwindow.h"
+#include "PPIDManager.h"
 class StorageFacade;
 
 using namespace std;
@@ -18,6 +19,7 @@ public:
     void newProject();
     void logout();
     void runPPID(QString);
+    void setStatus(QString);
 
     // project window
     void saveProject(bool, ProjectWindow*, QString, QString, QString, int, QString);

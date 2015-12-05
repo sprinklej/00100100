@@ -8,13 +8,23 @@
 #include "math.h"
 #include "QHash"
 
+#include "ppidresultswindow.h"
+
+class ManageAdminControl;
+
 class PPIDManager{
 public:
-    PPIDManager(QList<Student*>&, Project*);
+    PPIDManager(QList<Student*>&, Project*, ManageAdminControl*);
     ~PPIDManager();
+<<<<<<< HEAD
     void printSummaryReport();
     void printDetailedReport();
     void runAlgorithm();
+=======
+    QString printSummaryReport();
+    QString printDetailedReport();
+    void displayReports();
+>>>>>>> 408f47fd6db524e447efe63abd3c2b0580d3732f
 
 private:
 
@@ -42,6 +52,9 @@ private:
     float bestMatchScore;
     Student* bestStudent;
     float match(Team*, Student*);
+
+    //admin managers
+    ManageAdminControl* manAdminCon;
 };
 
 #endif // PPIDMANAGER_H

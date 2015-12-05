@@ -1,6 +1,8 @@
 #include "PPIDManager.h"
+#include "manageadmincontrol.h"
 #include "QDebug"
 
+<<<<<<< HEAD
 /******
  * Note: All sorts are implemented as insertion sort
  * It's straightforward to implement, and quadratic time is not
@@ -8,6 +10,11 @@
  ******/
 
 PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p){
+=======
+PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* mac){
+    manAdminCon = mac;
+
+>>>>>>> 408f47fd6db524e447efe63abd3c2b0580d3732f
     students = QList<Student*>(); // need a new one - PPID destroys the list
     Student* s;
     teams = new QList<Team*>();
@@ -49,6 +56,13 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p){
     //1. Calculate the number of teams numTeams
     //2. Make a QList<Team*> of Teams
     numTeams = students.size() / p->getTeamSize();
+<<<<<<< HEAD
+=======
+    qDebug() << "PPID is starting \n" << numTeams << " teams";
+
+    // can send messages to the admin window now
+    manAdminCon->setStatus("PPID is starting!");
+>>>>>>> 408f47fd6db524e447efe63abd3c2b0580d3732f
 
 }
 
@@ -469,8 +483,15 @@ void PPIDManager::calculateAverages(){
 
 
 
-//TODO
-void PPIDManager::printSummaryReport(){
+void PPIDManager::displayReports(){
+    QString sumReport = printSummaryReport();
+    QString detReport = printDetailedReport();
+    PPIDResultsWindow* ppidResWin = new PPIDResultsWindow();
+    ppidResWin->setResults(sumReport, detReport);
+    ppidResWin->show();
+}
+
+
 /*
 PPID SUMMARY REPORT
 Project:
@@ -482,29 +503,45 @@ Team n:
   Writer - Student Name ......... 100345234
    Other - Student Name ......... 100345233
 ..................................................................................
-* /
-    //printf("PPID SUMMARY REPORT\n");
-    //printf("Project: %s\n", project->getTitle());
-    //printf("Class: %s %s\n", project->getCourseNumber(), project->getCourseDescription());
-    //printf("..................................................................................\n");
-    int n = 0;
+*/
+QString PPIDManager::printSummaryReport(){
+    QString sumString = "";
+    sumString = "PPID SUMMARY REPORT\n";
+    sumString = sumString + "Project: " + project->getProjectTitle() + "\n";
+    sumString = sumString + "Class: " + project->getCourseNum() + " "+ project->getPDescription() + "\n";
+
+    int tCntr = 1;
+    int sCntr;
     Team* t;
     Student* s;
     foreach(t, teams){
-        n++;
-        //printf("Team %d: \n", n);
+        sCntr = 0;
+        sumString = sumString + "..................................................................................\n";
+        sumString = sumString + "Team: " + tCntr + "\n";
+        tCntr++;
+
         foreach(s, t->getStudents()){
-           // if()
+            if(sCntr == 0) {
+                sumString = sumString + "  Leader\t";
+            } else if (sCntr == 1){
+                sumString = sumString + "  Coder\t";
+            } else if (sCntr == 2){
+                sumString = sumString + "  Writer\t";
+            } else if (sCntr >= 3){
+                sumString = sumString + "  Member\t";
+            }
 
+            sumString = sumString + s->getFirstName() + " " + s->getLastName();
+            sumString = sumString + "\t\t" + s->getIDNum() + "\n";
+            sCntr++;
         }
-
     }
-*/
+
+    sumString = sumString + "..................................................................................\n";
+    return sumString;
 }
 
-//TODO
-void PPIDManager::printDetailedReport(){
-}
+
 
 //The purpose of this function is to determine the variance of two teams'
 //qualifications vs. the average of the population, then funding the sum
@@ -517,6 +554,27 @@ void PPIDManager::printDetailedReport(){
 //  - It provides an absolute value
 //  - It prioritizes large differences
 //For this last reason, it is preferred to a stright up absolute value
+QString PPIDManager::printDetailedReport(){
+    QString detString = "";
+    detString = "PPID DETAILED REPORT\n";
+    detString = detString + "Project: " + project->getProjectTitle() + "\n";
+    detString = detString + "Class: " + project->getCourseNum() + " "+ project->getPDescription() + "\n";
+
+    int tCntr = 1;
+    Team* t;
+    foreach(t, teams){
+        detString = detString + "..................................................................................\n";
+        detString= detString + "Team: " + tCntr + "\n";
+
+        //Q1 = 3.1 Q1classAvg = 2.5 T1Q2 = 0.3 Q2CAvg = 1.6
+        // = (3.1 - 2.5)^2 + (0.3-1.6)^2
+
+        tCntr++;
+    }
+
+    detString = detString + "..................................................................................\n";
+    return detString;
+}
 bool PPIDManager::compTeamsOnVariance(Team* t1, Team* t2, QHash<QString, float>& avgs){
     return(t1->getQualVariance(avgs) <= t2->getQualVariance(avgs));
 }
