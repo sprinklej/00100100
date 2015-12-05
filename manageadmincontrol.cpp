@@ -1,7 +1,7 @@
 #include "manageadmincontrol.h"
 #include "managestudentcontrol.h"
 #include "StorageFacade.h"
-
+#include "PPIDManager.h"
 
 ManageAdminControl::ManageAdminControl(StorageFacade* f)
 {
@@ -127,7 +127,12 @@ void ManageAdminControl::runPPID(QString pt){
     }
 
     // run PPID algorithm on project
+<<<<<<< HEAD
+    PPIDManager *ppid = new PPIDManager(PPIDProject->getStudentList(), PPIDProject);
+    ppid->runAlgorithm();
+=======
     PPIDManager *ppid = new PPIDManager(PPIDProject->getStudentList(), PPIDProject, this);
+>>>>>>> 408f47fd6db524e447efe63abd3c2b0580d3732f
 
     // display PPID algorithm results
     ppid->displayReports();
