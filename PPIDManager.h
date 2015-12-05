@@ -53,6 +53,11 @@ private:
     Student* bestStudent;
     float match(Team*, Student*);
 
+    void getLeaders();
+    void getCoders();
+    void getWriters();
+    void getAnyone();
+
     //admin managers
     ManageAdminControl* manAdminCon;
 };

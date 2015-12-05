@@ -123,12 +123,12 @@ void PPIDManager::runAlgorithm(){
 qDebug() << "Leaders assigned";
 
 
-    ////////// Addign a coder
+    ////////// Assign a coder
 
+    getCoders();
     //7.  Sort students on coderscore
-    //std::sort(students.begin(), students.end(), compStudentsOnCoding);
 
-    QList<Student*>* sortedStudents = new QList<Student*>();
+ /*   QList<Student*>* sortedStudents = new QList<Student*>();
 
     foreach(Student* ss, *students){
         if(sortedStudents->isEmpty()){
@@ -153,8 +153,6 @@ qDebug() << "Leaders assigned";
     //Have to reverse the list
     for(int i = 0; i < (teams->size()/2); i++) teams->swap(i,teams->size()-(1+i));
 
-
-
     //Now assign the best fit coder to each team
     foreach(Team* t, *teams){
         float bestmatch = 0.0;
@@ -173,14 +171,16 @@ qDebug() << "Leaders assigned";
         students->removeAt(bsIndex);
     }
 
-    qDebug() << "coders assigned";
+    qDebug() << "coders assigned";*/
 
 
 
 
-    ////////// Addign a writer
+    ////////// Assign a writer
 
-    //7.  Sort students on writer score
+    getWriters();
+
+/*    //7.  Sort students on writer score
 
    sortedStudents = new QList<Student*>();
 
@@ -240,7 +240,6 @@ qDebug() << "Leaders assigned";
         int bsIndex = 0;
 
         for(int i = 0; i < teams->size() && i < students->size(); ++i){ //not a mistake - we only want to assign the best writers right now
- qDebug()<<"Match : " << students->at(i)->getFirstName();
             float m = t->match(students->at(i), averages);
             if(m > bestmatch){
                 bestmatch = m;
@@ -252,7 +251,7 @@ qDebug() << "Leaders assigned";
         students->removeAt(bsIndex);
     }
 
-    qDebug() << "writers assigned";
+    qDebug() << "writers assigned";*/
 
 /////////////////////////////////everything above here works
 
@@ -379,6 +378,187 @@ qDebug() << "Leaders assigned";
 
     return;
 }
+
+void PPIDManager::getLeaders(){
+    ////////// Assign a leader
+
+    QList<Student*>* sortedStudents = new QList<Student*>();
+
+    foreach(Student* ss, *students){
+        if(sortedStudents->isEmpty()){
+            sortedStudents->push_front(ss);
+        } else if(!compStudentsOnLeader(ss, sortedStudents->at(sortedStudents->size()-1))){
+            sortedStudents->push_back(ss);
+        } else{
+            for(int i=0; i < sortedStudents->size(); ++i){
+                if(compStudentsOnLeader(ss, sortedStudents->at(i))){
+                    sortedStudents->insert(i, ss);
+                    break;
+                }
+            }
+        }
+    }
+
+    students->clear();
+    foreach(Student* s, *sortedStudents){
+        students->push_back(s);
+    }
+
+    //Have to reverse the list
+    for(int i = 0; i < (teams->size()/2); i++) teams->swap(i,teams->size()-(1+i));
+
+    //Now assign the best fit coder to each team
+    foreach(Team* t, *teams){
+        float bestmatch = 0.0;
+        Student* bestStudent = students->at(0);
+        int bsIndex = 0;
+
+        for(int i = 0; i < teams->size() && i < students->size(); ++i){ //not a mistake - we only want to assign the best coders right now
+            float m = t->match(students->at(i), averages);
+            if(m > bestmatch){
+                bestmatch = m;
+                bestStudent = students->at(i);
+                bsIndex = i;
+            }
+        }
+        t->addStudent(bestStudent);
+        students->removeAt(bsIndex);
+    }
+
+    qDebug() << "coders assigned";
+}
+
+void PPIDManager::getCoders(){
+    ////////// Assign a coder
+
+
+    QList<Student*>* sortedStudents = new QList<Student*>();
+
+    foreach(Student* ss, *students){
+        if(sortedStudents->isEmpty()){
+            sortedStudents->push_front(ss);
+        } else if(!compStudentsOnCoding(ss, sortedStudents->at(sortedStudents->size()-1))){
+            sortedStudents->push_back(ss);
+        } else{
+            for(int i=0; i < sortedStudents->size(); ++i){
+                if(compStudentsOnCoding(ss, sortedStudents->at(i))){
+                    sortedStudents->insert(i, ss);
+                    break;
+                }
+            }
+        }
+    }
+
+    students->clear();
+    foreach(Student* s, *sortedStudents){
+        students->push_back(s);
+    }
+
+    //Have to reverse the list
+    for(int i = 0; i < (teams->size()/2); i++) teams->swap(i,teams->size()-(1+i));
+
+    //Now assign the best fit coder to each team
+    foreach(Team* t, *teams){
+        float bestmatch = 0.0;
+        Student* bestStudent = students->at(0);
+        int bsIndex = 0;
+
+        for(int i = 0; i < teams->size() && i < students->size(); ++i){ //not a mistake - we only want to assign the best coders right now
+            float m = t->match(students->at(i), averages);
+            if(m > bestmatch){
+                bestmatch = m;
+                bestStudent = students->at(i);
+                bsIndex = i;
+            }
+        }
+        t->addStudent(bestStudent);
+        students->removeAt(bsIndex);
+    }
+
+    qDebug() << "coders assigned";
+}
+
+void PPIDManager::getWriters(){
+    ////////// Addign a writer
+
+    //7.  Sort students on writer score
+
+   QList<Student*>* sortedStudents = new QList<Student*>();
+
+    foreach(Student* ss, *students){
+        if(sortedStudents->isEmpty()){
+            sortedStudents->push_front(ss);
+        } else if(!compStudentsOnWriting(ss, sortedStudents->at(sortedStudents->size()-1))){
+            sortedStudents->push_back(ss);
+        } else{
+            for(int i=0; i < sortedStudents->size(); ++i){
+                if(compStudentsOnWriting(ss, sortedStudents->at(i))){
+                    sortedStudents->insert(i, ss);
+                    break;
+                }
+            }
+        }
+    }
+
+    students->clear();
+    foreach(Student* s, *sortedStudents){
+        students->push_back(s);
+    }
+
+    //sort the teams on variance
+    //6a. Sort the teams from highest to lowest variance
+    QList<Team*>* sortedTeams = new QList<Team*>();
+    foreach(Team* t, *teams){
+        if(sortedTeams->isEmpty()){
+            sortedTeams->push_front(t);
+        } else if(!compTeamsOnVariance(t, sortedTeams->at(sortedTeams->size()-1), averages)){
+            sortedTeams->push_back(t);
+        } else{
+            for(int i=0; i < sortedTeams->size(); ++i){
+                if(compTeamsOnVariance(t, sortedTeams->at(i), averages)){
+                    sortedTeams->insert(i, t);
+                    break;
+                }
+            }
+        }
+    }
+
+    teams->clear();
+    foreach(Team*t, *sortedTeams){
+        teams->push_back(t);
+    }
+
+    //Have to reverse the list
+    for(int i = 0; i < (teams->size()/2); i++) teams->swap(i,teams->size()-(1+i));
+
+
+
+    //Now assign the best fit writer to each team
+    foreach(Team* t, *teams){
+        float bestmatch = 0.0;
+        if(students->isEmpty()) break;
+        Student* bestStudent = students->at(0);
+        int bsIndex = 0;
+
+        for(int i = 0; i < teams->size() && i < students->size(); ++i){ //not a mistake - we only want to assign the best writers right now
+            float m = t->match(students->at(i), averages);
+            if(m > bestmatch){
+                bestmatch = m;
+                bestStudent = students->at(i);
+                bsIndex = i;
+            }
+        }
+        t->addStudent(bestStudent);
+        students->removeAt(bsIndex);
+    }
+
+    qDebug() << "writers assigned";
+}
+void PPIDManager::getAnyone(){
+
+}
+
+
 
 void PPIDManager::calculateAverages(){
     float att_2404 = 0;
@@ -723,4 +903,5 @@ float PPIDManager::match(Team* team, Student* stud){
     float ret = team->match(stud, averages);
     return ret;
 }
+
 
