@@ -533,6 +533,9 @@ QString PPIDManager::printDetailedReport(){
     foreach(t, teams){
         detString = detString + "..................................................................................\n";
         detString= detString + "Team: " + tCntr + "\n";
+        //detString= detString + "Qual Variance:\t" + t->getQualVariance() +"\n";
+        //detString= detString + "Looking For Variance:\t" + t->getLFVariance() +"\n";
+        //detString= detString + "Schedule Match:\t" + t->getScheduleMatch() +"\n";
 
         //Q1 = 3.1 Q1classAvg = 2.5 T1Q2 = 0.3 Q2CAvg = 1.6
         // = (3.1 - 2.5)^2 + (0.3-1.6)^2
