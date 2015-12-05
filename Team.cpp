@@ -49,6 +49,7 @@ float Team::getQualVariance(QHash<QString, float>& avgs){
     // add it to the temporary summing variable
     Student* s;
     foreach(s, students){
+
         temp_att_2404 += square((float)s->getAtt_2404() - (float)avgs["att_2404"]);
         temp_att_3005 += square((float)s->getAtt_3005() - (float)avgs["att_3005"]);
         temp_att_coding += square((float)s->getAtt_coding() - (float)avgs["att_coding"]);
@@ -69,6 +70,7 @@ float Team::getQualVariance(QHash<QString, float>& avgs){
         temp_att_creative += square((float)s->getAtt_creative() - (float)avgs["att_creative"]);
         temp_att_critic += square((float)s->getAtt_critic() - (float)avgs["att_critic"]);
     }
+
 
     //divide the summing variables by number of students:
     //this provides a view on how much the team so far deviates from
@@ -257,6 +259,8 @@ float Team::getScheduleMatch(){
 }
 
 float Team::match(Student* s, QHash<QString, float>& avgs){
+    qDebug() << s->getFirstName();
+    qDebug() << avgs["att_req"];
     students.push_back(s);
     qDebug() << "Match: push";
     float ret = 0.0;

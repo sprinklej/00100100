@@ -115,8 +115,10 @@ void PPIDManager::runAlgorithm(){
         }
     }
 
-    delete teams;
-    teams = sortedTeams;
+    teams->clear();
+    foreach(Team*t, *sortedTeams){
+        teams->push_back(t);
+    }
 
 qDebug() << "Leaders assigned";
     /////////////////////////////////everything above here works
@@ -143,9 +145,11 @@ qDebug() << "Leaders assigned";
         }
     }
 
-    delete students;
-    students = sortedStudents;
-    delete sortedStudents;
+    students->clear();
+    foreach(Student* s, *sortedStudents){
+        students->push_back(s);
+    }
+    //delete sortedStudents;
 
 
     //Have to reverse the list
@@ -158,7 +162,7 @@ qDebug() << "Leaders assigned";
         float bestmatch = 0.0;
         qDebug() << "float bestmatch = 0.0;";
         Student* bestStudent = students->at(0);
-        qDebug() << "Student* bestStudent = students->at(0);";
+        qDebug() << "Student* bestStudent = students->at(0);" << students->at(0)->getFirstName();
         int bsIndex = 0;
 
 
