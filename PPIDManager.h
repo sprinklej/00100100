@@ -14,14 +14,15 @@ public:
     ~PPIDManager();
     void printSummaryReport();
     void printDetailedReport();
+    void runAlgorithm();
 
 private:
-    void runAlgorithm();
+
 
     void calculateAverages();
     QList<Student*> students;
     Project* project;
-    QList<Team*> teams;
+    QList<Team*>* teams;
     int numTeams;
 
     QHash<QString, float> averages;

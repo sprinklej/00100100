@@ -122,6 +122,7 @@ void ManageAdminControl::runPPID(QString pt){
 
     // run PPID algorithm on project
     PPIDManager *ppid = new PPIDManager(PPIDProject->getStudentList(), PPIDProject);
+    ppid->runAlgorithm();
 
     // display PPID algorithm results
 }
