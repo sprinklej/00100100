@@ -20,7 +20,7 @@ public:
     void runPPID();
 
     // project window
-    void saveProject();
+    void saveProject(bool, ProjectWindow*, QString, QString, QString, int, QString);
 
     // setters
     void setAdmin(Admin*);
@@ -31,6 +31,7 @@ private:
     QList<Project*> allProjects;
     QList<Project*> ownedProjects;
     StorageFacade* facade;
+    Project* projectBeingEdited;
 };
 
 #endif // MANAGEADMINCONTROL_H

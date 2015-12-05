@@ -62,7 +62,7 @@ void ManageAdminControl::editProject(QString pt){
 
 
     // create a project object and put the project in it from the QList
-    Project* projectBeingEdited = 0;
+    projectBeingEdited = 0;
     foreach(Project* p, ownedProjects){
         if(p->getProjectTitle() == pt){
             projectBeingEdited = p;
@@ -108,51 +108,61 @@ void ManageAdminControl::runPPID(){
 
 
 /* --------------------------- project window ------------------------*/
-void ManageAdminControl::saveProject(){
+void ManageAdminControl::saveProject(bool newProj, ProjectWindow* source, QString pName, QString courseNum, QString courseName, int teamSize, QString pDesc){
     qDebug() << "save project";
-
+/*
     QString pName = ui->titleField->text();
     QString courseNum = ui->numField->text();
     QString courseName = ui->nameField->text();
     int teamSize = ui->teamSizeBox->value();
     QString pDesc = ui->descField->toPlainText();
+*/
 
-    Project* projectBeingEdited;
-    //go through OwnedProjects and find the pointer
+//    if(projectBeingEdited == 0 && !newProj){
+//qDebug() << "unknown error";
+//        return;//
+   // }
 
     if(pName == "" || courseNum == "" || courseName == "" || pDesc == "" ){
-        ui->status->setText("Please complete all fields");
+        //ui->status->setText("Please complete all fields");
     } else {
 
+ qDebug() << "going to make a project";
 
         //We are creating new projects with an ID of -1
         //This works because SQL autogenerates the ID
         //We will not be attempting to write the ID of the new project to SQL
         //When we save, SQL will make up the ID at that time.
         //If we update that is a totally different command
-        Project* project = new Project("-1", pName, owner->getIDNum(), courseName, courseNum, pDesc, teamSize);
-        /********
-         * TBD: check if the project title exists in the database
-         *******/
+        //Project* project = new Project("-1", pName, projectBeingEdited->getOwnerID(), courseName, courseNum, pDesc, teamSize);
+Project* project = new Project("-1", pName, user->getID(), courseName, courseNum, pDesc, teamSize);
 
-        if(edit){
+        qDebug() << "Just made a new projeect " << project->getProjectTitle();
+
+        if(!newProj){
 //          UPDATE
+            project->setProjectID(projectBeingEdited->getProjectID());
             facade->storeProject(project, "", user->getID(), false);
-//set PRojectBeingEdited to have the updated fields
-            //delete project; //don;t need it anymore, data is all written
-            }
+            //set PRojectBeingEdited to have the updated fields
 
+            projectBeingEdited->setPTitle(project->getProjectTitle());
+            projectBeingEdited->setCourseNum(project->getCourseNum());
+            projectBeingEdited->setCourseName(project->getCourseName());
+            projectBeingEdited->setPDescription(project->getPDescription());
 
-            //delete project;
-            parent->refresh();
-            this->~ProjectWindow();
+            delete project; //don;t need it anymore, data is all written
+
+            admWin->refresh();
+            source->~ProjectWindow();
         } else{
 //          INSERT
+            qDebug() << "manageadmincontrol about to call facade";
             facade->storeProject(project, "", user->getID(), true);
             //push proejcet to projectsOwned and master projects list
+            ownedProjects.push_back(project);
 
-            parent->refresh();
-            this->~ProjectWindow();
+            admWin->refresh();
+            source->~ProjectWindow();
         }
     }
 

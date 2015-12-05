@@ -49,7 +49,16 @@ void ProjectWindow::on_cancelButton_clicked()
 
 void ProjectWindow::on_saveButton_clicked()
 {
-    parent->saveProject();
+    QString pName = ui->titleField->text();
+    QString courseNum = ui->numField->text();
+    QString courseName = ui->nameField->text();
+    int teamSize = ui->teamSizeBox->value();
+    QString pDesc = ui->descField->toPlainText();
+    if(pName == "" || courseNum == "" || courseName == "" || pDesc == "" ){
+        ui->status->setText("Please complete all fields");
+    } else {
+        parent->saveProject(!edit, this, pName, courseNum, courseName, teamSize, pDesc);
+    }
 }
 
 
