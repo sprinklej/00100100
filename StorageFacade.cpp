@@ -91,7 +91,12 @@ void StorageFacade::handleShutdown(){
 }*/
 
 void StorageFacade::storeProject(Project* p, QString sID, QString aID, bool newProj){
+    if(newProj){
+        allProjects.push_back(p);
+    }
+    qDebug() << "Ftorage facade trying to store project " << p->getProjectTitle() << " new project: " << newProj;
     storeProjectControl->store(p, sID, aID, newProj);
+
 }
 
 void StorageFacade::writeUser(User* u){

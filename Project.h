@@ -30,10 +30,11 @@ public:
     ~Project();
 
     // setters
-    void setProjectID(QString p_ID);
-    void setCourseNum(QString course_Num);
-    void setPTitle(QString p_Title);
-    void setPDescription(QString p_Description);
+    void setProjectID(QString);
+    void setCourseNum(QString);
+    void setCourseName(QString);
+    void setPTitle(QString);
+    void setPDescription(QString);
     void addStudent(Student*);
 
     // getters

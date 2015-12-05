@@ -34,6 +34,8 @@ int Project::getTeamSize(){return teamSize;}
 QString Project::getOwnerID(){return ownerID;}
 
 //////Setters
-void Project::setProjectID(QString p_ID){
-    projectID = p_ID;
-}
+void Project::setPTitle(QString pt){projectTitle = pt;}
+void Project::setProjectID(QString p_ID){projectID = p_ID;}
+void Project::setCourseName(QString cN){courseName = cN;}
+void Project::setCourseNum(QString cN){courseNum = cN;}
+void Project::setPDescription(QString pd){pDescription = pd;}

@@ -12,20 +12,26 @@ StoreProjectControl::~StoreProjectControl(){
 
 }
 
-bool StoreProjectControl::store(Project* p, QString oID, QString sID, bool newProj){
-    if(oID == "" && sID == "") return false;
+bool StoreProjectControl::store(Project* p, QString sID, QString oID, bool newProj){
 
-    //This is an Admin creating a new project
-    //INSERT into projects
-    if(sID == ""){
-        return insertProject(p, oID);
-    }
+    qDebug() << "Storecontrol::store -" << p->getProjectTitle() << oID << sID << newProj;
+
+    if(oID == "" && sID == "") return false;
 
     //This is an Admin modifying an existing project
     // UPDATE projects
-    if(newProj){
+    if(!newProj){
+
         return updateProject(p, "");
     }
+
+    //This is an Admin creating a new project
+    //INSERT into projects
+    if(sID == "" && newProj){
+        return insertProject(p, oID);
+    }
+
+
 
     //This is a Student joining an existing Project
     //INSERT into projectsStudents
@@ -38,15 +44,17 @@ bool StoreProjectControl::insertProject(Project* pr, QString own){
 
     database.open();
     QSqlQuery query;
-    query.prepare("INSERT INTO projects(projectID, owner, courseName, courseNum, description, teamSize)"
-                  "VALUES (:ipr, :iow, :icn, :icnm, :ides, :its)");
-    query.bindValue(":ipr", pr->getProjectID());
+    query.prepare("INSERT INTO projects(projectDesc, owner, courseName, courseNum, description, teamSize)"
+                  "VALUES (:ipd, :iow, :icn, :icnm, :ides, :its)");
+    //query.bindValue(":ipr", pr->getProjectID());
+    query.bindValue(":ipd", pr->getProjectTitle());
     query.bindValue(":iow", own);//->getIDNum());
     query.bindValue(":icn", pr->getCourseName());
     query.bindValue(":icnm", pr->getCourseNum());
     query.bindValue(":ides", pr->getPDescription());
     query.bindValue(":ides", pr->getTeamSize());
     bool res = query.exec();
+    qDebug() << query.lastError();
     return res;
 
 }
@@ -57,17 +65,25 @@ bool StoreProjectControl::updateProject(Project* pr, QString studentID){
     database.open();
     if(studentID == ""){
 
+
+
         QSqlQuery query;
         query.prepare("UPDATE projects SET "
-                      "courseName = :icn, courseNum = :icnm, description = :ides, teamSize = :its "
+                      "projectDesc = :pd, courseName = :icn, courseNum = :icnm, description = :ides, teamSize = :its "
                       "WHERE projectID = :ipr");
-        //query.bindValue(":iow", own.getIDNum());
+        query.bindValue(":pd", pr->getProjectTitle());
         query.bindValue(":icn", pr->getCourseName());
         query.bindValue(":icnm", pr->getCourseNum());
         query.bindValue(":ides", pr->getPDescription());
-        query.bindValue(":ipr", pr->getProjectID());
         query.bindValue(":its", pr->getTeamSize());
+        query.bindValue(":ipr", pr->getProjectID());
+
+
+        qDebug() << query.lastQuery();
+                qDebug() << pr->getProjectID();
         bool res = query.exec();
+        qDebug() << "Update a project";
+
         qDebug() << query.lastError();
         return res;
     }
