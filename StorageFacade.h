@@ -5,6 +5,7 @@
 #include "manageadmincontrol.h"
 #include "managestudentcontrol.h"
 #include "manageRegistrationControl.h"
+#include "managequalificationcontrol.h"
 
 #include "StoreProjectControl.h"
 #include "GetProjectControl.h"
