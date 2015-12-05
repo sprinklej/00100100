@@ -30,7 +30,7 @@ private:
 
 
     void calculateAverages();
-    QList<Student*> students;
+    QList<Student*>* students;
     Project* project;
     QList<Team*>* teams;
     int numTeams;

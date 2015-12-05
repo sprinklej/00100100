@@ -15,34 +15,34 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
     manAdminCon = mac;
 
 //>>>>>>> 408f47fd6db524e447efe63abd3c2b0580d3732f
-    students = QList<Student*>(); // need a new one - PPID destroys the list
+    students = new QList<Student*>(); // need a new one - PPID destroys the list
     Student* s;
     teams = new QList<Team*>();
     //instead of sorting on leader, we will construct the list in leader sorted order.
     foreach(s,stIn){
         //push to the front if empty
-        if(students.isEmpty()){
-            students.push_front(s);
+        if(students->isEmpty()){
+            students->push_front(s);
         }else if(s->getAtt_leader()){ //the student wants to be a leader
-            for(int i = 0; i<students.size(); ++i){
+            for(int i = 0; i<students->size(); ++i){
                 //if the next student does not want to be a leader, insert
-                if(!students.at(i)->getAtt_leader()){
-                    students.insert(i, s);
+                if(!students->at(i)->getAtt_leader()){
+                    students->insert(i, s);
                     break;
-                } else if(compStudentsOnLeader(s, students.at(i))){
-                    if(i == 0) students.push_front(s);
-                    else students.insert(i, s);
+                } else if(compStudentsOnLeader(s, students->at(i))){
+                    if(i == 0) students->push_front(s);
+                    else students->insert(i, s);
                     break;
                 }
             }
         }else{ //student does not want to be a leader
-            for(int i = students.size()-1; i >= 0; --i){
+            for(int i = students->size()-1; i >= 0; --i){
                 //if the previous student wants to be a leader, insert behind
-                if(students.at(i)->getAtt_leader()){
-                    students.insert(i+1,s);
+                if(students->at(i)->getAtt_leader()){
+                    students->insert(i+1,s);
                     break;
-                } else if(!compStudentsOnLeader(s, students.at(i))){ //else if a better leader, inseert ahead
-                    students.insert(i+1, s);
+                } else if(!compStudentsOnLeader(s, students->at(i))){ //else if a better leader, inseert ahead
+                    students->insert(i+1, s);
                     break;
                 }
             }
@@ -55,7 +55,7 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
 
     //1. Calculate the number of teams numTeams
     //2. Make a QList<Team*> of Teams
-    numTeams = students.size() / p->getTeamSize();
+    numTeams = students->size() / p->getTeamSize();
 //<<<<<<< HEAD
 //=======
     qDebug() << "PPID is starting \n" << numTeams << " teams";
@@ -92,7 +92,7 @@ void PPIDManager::runAlgorithm(){
     //Note: students arrives pre-sorted on leader.
    for(int i = 0; i < numTeams; ++i){
         Team* t = new Team();
-        Student* s = students.takeFirst();
+        Student* s = students->takeFirst();
         t->addStudent(s);
         teams->push_back(t);
    }
@@ -117,10 +117,34 @@ void PPIDManager::runAlgorithm(){
     delete teams;
     teams = sortedTeams;
 
-    //std::sort(teams.begin(), teams.end(), compTeamsOnVariance);
+
+    /////////////////////////////////everything above here works
+
 
     //7.  Sort students on coderscore
     //std::sort(students.begin(), students.end(), compStudentsOnCoding);
+
+    QList<Student*>* sortedStudents = new QList<Student*>();
+
+    foreach(Student* ss, *students){
+        if(sortedStudents->isEmpty()){
+            sortedStudents->push_front(ss);
+        } else if(!compStudentsOnCoding(ss, sortedStudents->at(sortedStudents->size()-1))){
+            sortedStudents->push_back(ss);
+        } else{
+            for(int i=0; i < sortedStudents->size(); ++i){
+                if(compStudentsOnCoding(ss, sortedStudents->at(i))){
+                    sortedStudents->insert(i, ss);
+                    break;
+                }
+            }
+        }
+    }
+
+    delete students;
+    students = sortedStudents;
+    delete sortedStudents;
+
 
     //Now assign the best fit coder to each team
     /*8.  For each team in teams:
@@ -355,7 +379,7 @@ void PPIDManager::calculateAverages(){
     float req_critic  = 0;
 
     Student* s;
-    foreach(s, students){
+    foreach(s, *students){
         att_2404 += s->getAtt_2404();
         att_3005 += s->getAtt_3005();
         att_coding += s->getAtt_coding();
@@ -397,45 +421,45 @@ void PPIDManager::calculateAverages(){
         req_critic  += s->getReq_critic();
     }
 
-    att_2404 /= students.size();
-    att_3005 /= students.size();
-    att_coding /= students.size();
-    att_dbase /= students.size();
-    att_selfDir /= students.size();
-    att_writing /= students.size();
-    att_UI /= students.size();
-    att_algorithm /= students.size();
-    att_present /= students.size();
-    att_teamwork /= students.size();
-    att_experience /= students.size();
-    att_testing /= students.size();
-    att_UML /= students.size();
-    att_req /= students.size();
-    att_reliable /= students.size();
-    att_comm /= students.size();
-    att_respect /= students.size();
-    att_creative /= students.size();
-    att_critic /= students.size();
-    req_leader /= students.size();
-    req_2404 /= students.size();
-    req_3005 /= students.size();
-    req_coding /= students.size();
-    req_dbase /= students.size();
-    req_selfDir /= students.size();
-    req_writing /= students.size();
-    req_UI /= students.size();
-    req_algorithm /= students.size();
-    req_present /= students.size();
-    req_teamwork /= students.size();
-    req_experience /= students.size();
-    req_testing /= students.size();
-    req_UML /= students.size();
-    req_req /= students.size();
-    req_reliable /= students.size();
-    req_comm /= students.size();
-    req_respect /= students.size();
-    req_creative /= students.size();
-    req_critic  /= students.size();
+    att_2404 /= students->size();
+    att_3005 /= students->size();
+    att_coding /= students->size();
+    att_dbase /= students->size();
+    att_selfDir /= students->size();
+    att_writing /= students->size();
+    att_UI /= students->size();
+    att_algorithm /= students->size();
+    att_present /= students->size();
+    att_teamwork /= students->size();
+    att_experience /= students->size();
+    att_testing /= students->size();
+    att_UML /= students->size();
+    att_req /= students->size();
+    att_reliable /= students->size();
+    att_comm /= students->size();
+    att_respect /= students->size();
+    att_creative /= students->size();
+    att_critic /= students->size();
+    req_leader /= students->size();
+    req_2404 /= students->size();
+    req_3005 /= students->size();
+    req_coding /= students->size();
+    req_dbase /= students->size();
+    req_selfDir /= students->size();
+    req_writing /= students->size();
+    req_UI /= students->size();
+    req_algorithm /= students->size();
+    req_present /= students->size();
+    req_teamwork /= students->size();
+    req_experience /= students->size();
+    req_testing /= students->size();
+    req_UML /= students->size();
+    req_req /= students->size();
+    req_reliable /= students->size();
+    req_comm /= students->size();
+    req_respect /= students->size();
+    req_creative /= students->size();
+    req_critic  /= students->size();
 
     averages["att_2404"] = att_2404;
     averages["att_3005"] =  att_3005;
