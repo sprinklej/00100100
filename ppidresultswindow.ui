@@ -55,21 +55,8 @@
        <x>20</x>
        <y>20</y>
        <width>591</width>
-       <height>491</height>
+       <height>511</height>
       </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_Summary_Loc">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>520</y>
-       <width>471</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>File location:</string>
      </property>
     </widget>
    </widget>
@@ -83,37 +70,11 @@
        <x>20</x>
        <y>20</y>
        <width>591</width>
-       <height>491</height>
+       <height>511</height>
       </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_Detailed_Loc">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>520</y>
-       <width>471</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>File location:</string>
      </property>
     </widget>
    </widget>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>40</y>
-     <width>451</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>The reports have been saved to text files for future convenience.</string>
-   </property>
   </widget>
  </widget>
  <resources/>

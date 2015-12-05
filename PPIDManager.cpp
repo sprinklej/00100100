@@ -532,16 +532,18 @@ QString PPIDManager::printSummaryReport(){
     QString sumString = "";
     sumString = "PPID SUMMARY REPORT\n";
     sumString = sumString + "Project: " + project->getProjectTitle() + "\n";
-    sumString = sumString + "Class: " + project->getCourseNum() + " "+ project->getPDescription() + "\n";
+    sumString = sumString + "Class: " + project->getCourseNum() + " " + project->getPDescription() + "\n";
 
     int tCntr = 1;
     int sCntr;
     Team* t;
     Student* s;
+    QString temp;
     foreach(t, *teams){
         sCntr = 0;
+        temp = QString::number(tCntr);
         sumString = sumString + "..................................................................................\n";
-        sumString = sumString + "Team: " + tCntr + "\n";
+        sumString = sumString + "Team: " + temp + "\n";
         tCntr++;
 
         foreach(s, t->getStudents()){
@@ -555,8 +557,16 @@ QString PPIDManager::printSummaryReport(){
                 sumString = sumString + "  Member\t";
             }
 
+            // figure out how many tabs to use
+            temp = s->getFirstName() + " " + s->getLastName();
+            if (temp.length() < 11) {
+                temp = "\t\t";
+            } else {
+                temp = "\t";
+            }
+
             sumString = sumString + s->getFirstName() + " " + s->getLastName();
-            sumString = sumString + "\t\t" + s->getIDNum() + "\n";
+            sumString = sumString + temp + s->getIDNum() + "\n";
             sCntr++;
         }
     }
@@ -585,13 +595,18 @@ QString PPIDManager::printDetailedReport(){
     detString = detString + "Class: " + project->getCourseNum() + " "+ project->getPDescription() + "\n";
 
     int tCntr = 1;
+    QString num;
     Team* t;
+    QString temp;
     foreach(t, *teams){
+        num = QString::number(tCntr);
         detString = detString + "..................................................................................\n";
-        detString= detString + "Team: " + tCntr + "\n";
+        detString= detString + "Team: " + num + "\n";
         //detString= detString + "Qual Variance:\t" + t->getQualVariance() +"\n";
-        //detString= detString + "Looking For Variance:\t" + t->getLFVariance() +"\n";
-        //detString= detString + "Schedule Match:\t" + t->getScheduleMatch() +"\n";
+        temp = QString::number(t->getLFVariance());
+        detString= detString + "Looking For Variance:\t" + temp +"\n";
+        temp = QString::number(t->getScheduleMatch());
+        detString= detString + "Schedule Match:\t" + temp +"\n";
 
         //Q1 = 3.1 Q1classAvg = 2.5 T1Q2 = 0.3 Q2CAvg = 1.6
         // = (3.1 - 2.5)^2 + (0.3-1.6)^2
