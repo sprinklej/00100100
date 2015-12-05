@@ -2,8 +2,11 @@
 #define SIGNUPWINDOW_H
 
 #include <QDialog>
-#include "Storage.h"
+//#include "Storage.h"
 #include "User.h"
+
+class ManageRegistrationControl;
+
 
 namespace Ui {
 class SignupWindow;
@@ -16,6 +19,8 @@ class SignupWindow : public QDialog
 public:
     explicit SignupWindow(QWidget *parent = 0);
     ~SignupWindow();
+    // setter
+    void setParent(ManageRegistrationControl *);
 
 private slots:
     void on_radioButton_student_clicked();
@@ -30,6 +35,7 @@ private slots:
 
 private:
     Ui::SignupWindow *ui;
+    ManageRegistrationControl * parent;
 };
 
 #endif // SIGNUPWINDOW_H
