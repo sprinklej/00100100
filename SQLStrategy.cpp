@@ -191,7 +191,7 @@ UpdateAdminStrategy::UpdateAdminStrategy(QSqlDatabase& db){
         database = db;
 }
 
-bool UpdateAdminStrategy::createQuery(User* u){
+bool InsertAdminStrategy::createQuery(User* u){
     Admin* ad = dynamic_cast<Admin*>(u);
 
     database.open();
@@ -209,8 +209,9 @@ InsertAdminStrategy::InsertAdminStrategy(QSqlDatabase& db){
         database = db;
 }
 
-//not written yet
-bool InsertAdminStrategy::createQuery(User* u){
+//not implemented for this version of cuPID - there is no use case where
+//an Admin actor manages his or her profile
+bool UpdateAdminStrategy::createQuery(User* u){
     Admin* a = dynamic_cast<Admin*>(u);
 
     //qDebug() << "Insert admin";

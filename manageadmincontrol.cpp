@@ -110,18 +110,7 @@ void ManageAdminControl::runPPID(){
 /* --------------------------- project window ------------------------*/
 void ManageAdminControl::saveProject(bool newProj, ProjectWindow* source, QString pName, QString courseNum, QString courseName, int teamSize, QString pDesc){
     qDebug() << "save project";
-/*
-    QString pName = ui->titleField->text();
-    QString courseNum = ui->numField->text();
-    QString courseName = ui->nameField->text();
-    int teamSize = ui->teamSizeBox->value();
-    QString pDesc = ui->descField->toPlainText();
-*/
 
-//    if(projectBeingEdited == 0 && !newProj){
-//qDebug() << "unknown error";
-//        return;//
-   // }
 
     if(pName == "" || courseNum == "" || courseName == "" || pDesc == "" ){
         //ui->status->setText("Please complete all fields");
@@ -132,19 +121,17 @@ void ManageAdminControl::saveProject(bool newProj, ProjectWindow* source, QStrin
         //We are creating new projects with an ID of -1
         //This works because SQL autogenerates the ID
         //We will not be attempting to write the ID of the new project to SQL
-        //When we save, SQL will make up the ID at that time.
+        //When we save, SQL will autoincrement the ID at that time.
         //If we update that is a totally different command
-        //Project* project = new Project("-1", pName, projectBeingEdited->getOwnerID(), courseName, courseNum, pDesc, teamSize);
-Project* project = new Project("-1", pName, user->getID(), courseName, courseNum, pDesc, teamSize);
 
-        qDebug() << "Just made a new projeect " << project->getProjectTitle();
+Project* project = new Project("-1", pName, user->getID(), courseName, courseNum, pDesc, teamSize);
 
         if(!newProj){
 //          UPDATE
             project->setProjectID(projectBeingEdited->getProjectID());
             facade->storeProject(project, "", user->getID(), false);
-            //set PRojectBeingEdited to have the updated fields
 
+            //set PRojectBeingEdited to have the updated fields
             projectBeingEdited->setPTitle(project->getProjectTitle());
             projectBeingEdited->setCourseNum(project->getCourseNum());
             projectBeingEdited->setCourseName(project->getCourseName());
@@ -156,9 +143,11 @@ Project* project = new Project("-1", pName, user->getID(), courseName, courseNum
             source->~ProjectWindow();
         } else{
 //          INSERT
-            qDebug() << "manageadmincontrol about to call facade";
+            //////
+            ///TODO: add the project ot the admin gui drop down
+            ///
             facade->storeProject(project, "", user->getID(), true);
-            //push proejcet to projectsOwned and master projects list
+            //push project to projectsOwned and master projects list
             ownedProjects.push_back(project);
 
             admWin->refresh();

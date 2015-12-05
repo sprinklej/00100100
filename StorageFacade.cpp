@@ -94,15 +94,12 @@ void StorageFacade::storeProject(Project* p, QString sID, QString aID, bool newP
     if(newProj){
         allProjects.push_back(p);
     }
-    qDebug() << "Ftorage facade trying to store project " << p->getProjectTitle() << " new project: " << newProj;
     storeProjectControl->store(p, sID, aID, newProj);
 
 }
 
 void StorageFacade::writeUser(User* u){
-    qDebug() << "writing User" << u->getID();
     bool newUser = getUserControl->checkID(u->getID());
-    qDebug() << "Check ID " << (getUserControl->checkID(u->getID())?"true":"false");
     storeUserControl->store(newUser, u);
 }
 

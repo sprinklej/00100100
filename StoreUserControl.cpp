@@ -19,6 +19,7 @@ void StoreUserControl::store(bool exists, User* user){
 }
 
 QSqlQuery StoreUserControl::createQuery(bool exists, User* user){
+
     bool isStudent = user->getPolicy();
 
     if(context->strat) delete context->strat;
@@ -34,7 +35,7 @@ QSqlQuery StoreUserControl::createQuery(bool exists, User* user){
     }
 
     context->strat->createQuery(user);
-    //query.exec();
+
 }
 
 /*
