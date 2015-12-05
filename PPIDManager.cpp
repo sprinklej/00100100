@@ -1,11 +1,35 @@
 #include "PPIDManager.h";
-/*
+
 
 PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p){
     students = QList<Student*>(); // need a new one - PPID destroys the list
     Student* s;
+    //instead of sorting on leader, we will construc the list in leader sorted order.
     foreach(s,stIn){
-        students.push_back(s);
+        //push to the front if empty
+        if(students.isEmpty()){
+            students.push_front(s);
+        }else if(s->getAtt_leader){ //the student wants to be a leader
+            for(int i = 0; i<students.size(); ++i){
+                //if the next student does not want to be a leader, insert
+                if(!students.at(i)->getAtt_leader || compStudentsOnLeader(s, students.at(i))){
+                    students.insert(i, s);
+                    break;
+                }
+            }
+        }else{ //student does not want to be a leader
+            for(int i = students.size-1; i >= 0; --i){
+                //if the previous student wants to be a leader, insert behind
+                if(students.at(i)->getAtt_leader){
+                    students.insert(i+1,s);
+                    break;
+                } else if(compStudentsOnLeader(s, students.at(i))){ //else if a better leader, inseert ahead
+                    students.insert(i, s);
+                    break;
+                }
+            }
+        }
+
     }
     project = p;
     averages = QHash<QString, float>();
@@ -13,12 +37,14 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p){
     //1. Calculate the number of teams numTeams
     //2. Make a QList<Team*> of Teams
     numTeams = students.size() / p->getTeamSize();
+    qDebug() << "PPID is starting \n" << numTeams << " teams";
 
 
 }
 
+
 void PPIDManager::calculateAverages(){
-    float att_2404 = 0;
+/*    float att_2404 = 0;
     float att_3005 = 0;
     float att_coding = 0;
     float att_dbase = 0;
@@ -180,7 +206,7 @@ void PPIDManager::calculateAverages(){
     averages["req_respect"] = req_respect;
     averages["req_creative"] = req_creative;
     averages["req_critic"] =  req_critic;
-
+*/
 }
 
 
@@ -205,53 +231,23 @@ void PPIDManager::runAlgorithm(){
     //2. Make a QList<Student*> of Teams
     //3. Sort students on the basis of leaderScore()
     //TODO: implement a compLeader(Student*, Student*) function
-    std::sort(students.begin(), students.end(), compStudentsOnLeader);
+    sortStudentsOnLeader();
+    //std::sort(students.begin(), students.end(), compStudentsOnLeader);
 
-    /*4. For each student in students:
-    - if leader - true:
-        - create a new team
-        - push the team to teams
-        - remove s
-        - push s to teams
-        - if teams.size = numteams, break* /
-    Student* s;
-    int pos = 0;
-    foreach(s, students){
-        if(s->getReq_ldr()){
-            Team* t = new Team();
-            t->getStudents().push_back(s);
-            students.removeAt(pos--);
-            teams << t;
-        }
-        if(teams.size() <= numTeams) break;
-        pos++;
-    }
+    //create the teams
+    //Note: students arrives pre-sorted on leader.
+   for(int i = 0; i < numTeams; ++i){
+        Team* t = new Team();
+        Student* s = students.pop_front();
+        t->addStudent(s);
+   }
 
-
-    /*5.  If teams.size < numteams:
-    For each student in students:
-        - create a new team
-        - push the team to teams
-        - remove s
-        - push s to teams
-        - if teams.size = numteams, break* /
-
-    pos = 0;
-    while(teams.size() < numTeams){
-        foreach(s, students){
-            Team* t = new Team();
-            t->getStudents().push_back(s);
-            students.removeAt(pos--);
-            teams.push_back(t);
-        }
-        pos++;
-    }
 
     //- We now have all the teams and all the leaders
 
     /*Two ways to do this:
     6a. Sort the teams from highest to lowest variance
-    6b. Sort the teams from weakest to strongest* /
+    6b. Sort the teams from weakest to strongest*/
     //std::sort(teams.begin(), teams.end(), compTeamsOnVariance);
 
     //7.  Sort students on coderscore
@@ -268,10 +264,7 @@ void PPIDManager::runAlgorithm(){
                     beststudent = student(n)
 
                 Remove beststudent from students
-                push beststudent to team* /
-
-    bestMatchScore = 0;
-    bestStudent = students.at(0);
+                push beststudent to team*/
 
     //need to write the removeAt properly
     /*foreach(t, Teams){
@@ -284,7 +277,7 @@ void PPIDManager::runAlgorithm(){
         students.remove(bestStudent);
         t << bestStudent;
         }
-    }* /
+    }*/
 
     /*Two ways to do this:
     9a. Sort the teams from highest to lowest variance
@@ -302,9 +295,9 @@ void PPIDManager::runAlgorithm(){
                     beststudent = student(n)
 
                 Remove beststudent from students
-                push beststudent to team* /
+                push beststudent to team*/
 
-    bestMatchScore = 0;
+/*    bestMatchScore = 0;
     bestStudent = students.at(0);
 
     foreach(t, Teams){
@@ -314,8 +307,16 @@ void PPIDManager::runAlgorithm(){
                 bestMatchScore = m;
                 bestStudent = s;
             }
-        students.remove(bestStudent);
-        t << bestStudent;
+            //students.remove(bestStudent);
+            QList<Student*>::iterator it = students.begin();
+            while (it != students.end()) {
+              if ((*it)==bestStudent)
+                it = students.erase(it);
+              else
+                ++it;
+            }
+
+        t->addStudent(bestStudent);
         }
     }
 
@@ -334,8 +335,16 @@ void PPIDManager::runAlgorithm(){
                     bestMatchScore = m;
                     bestStudent = s;
                 }
-            students.remove(bestStudent);
-            t << bestStudent;
+            //students.remove(bestStudent);
+                QList<Student*>::iterator it = students.begin();
+                while (it != students.end()) {
+                  if ((*it)==bestStudent)
+                    it = students.erase(it);
+                  else
+                    ++it;
+                }
+
+            t->addStudent(bestStudent);
             }
         }
     //add more coders
@@ -352,8 +361,16 @@ void PPIDManager::runAlgorithm(){
                     bestMatchScore = m;
                     bestStudent = s;
                 }
-            students.remove(bestStudent);
-            t << bestStudent;
+            //students.remove(bestStudent);
+                QList<Student*>::iterator it = students.begin();
+                while (it != students.end()) {
+                  if ((*it)==bestStudent)
+                    it = students.erase(it);
+                  else
+                    ++it;
+                }
+
+            t->addStudent(bestStudent);
             }
         }
     //add more writers
@@ -370,8 +387,16 @@ void PPIDManager::runAlgorithm(){
                     bestMatchScore = m;
                     bestStudent = s;
                 }
-            students.remove(bestStudent);
-            t << bestStudent;
+            //students.remove(bestStudent);
+                QList<Student*>::iterator it = students.begin();
+                while (it != students.end()) {
+                  if ((*it)==bestStudent)
+                    it = students.erase(it);
+                  else
+                    ++it;
+                }
+
+            t->addStudent(bestStudent);
             }
         }
 
@@ -390,11 +415,31 @@ void PPIDManager::runAlgorithm(){
                     bestMatchScore = m;
                     bestStudent = s;
                 }
-            students.remove(bestStudent);
-            t << bestStudent;
+            //students.remove(bestStudent);
+                QList<Student*>::iterator it = students.begin();
+                while (it != students.end()) {
+                  if ((*it)==bestStudent)
+                    it = students.erase(it);
+                  else
+                    ++it;
+                }
+
+            t->addStudent(bestStudent);
             }
         }
-    }
+    }*/
+
+   qDebug() << "** PPID DEBUG ********";
+   Student* ds;
+   Team* dt;
+   foreach(dt, teams){
+    qDebug() << "--Team --";
+    QList<Student*>* studs = dt->getStudents();
+        foreach(ds, studs){
+            qDebug() << ds->getFName() << " Wants to be leader:" << ds->getAtt_leader() << "  Leader score: " << ds->getLeaderScore();
+        }
+   }
+
 
     return;
 }
@@ -431,7 +476,7 @@ Team n:
         }
 
     }
-
+*/
 }
 
 //TODO
@@ -476,4 +521,11 @@ bool PPIDManager::compStudentsOverall(Student* s1, Student* s2){
     return(s1->getOverallScore() <= s2->getOverallScore());
 }
 
-*/
+
+
+void PPIDManager::sortStudentsOnLeader(){}
+void PPIDManager::sortStudentsOnCoder(){}
+void PPIDManager::sortStudentsOnWriter(){}
+void PPIDManager::sortStudentsOverall(){}
+void PPIDManager::sortTeamsOnVariance(){}
+

@@ -10,6 +10,10 @@ Team::Team()
 ;
 }
 
+void Team::addStudent(Student* s){
+   students.push_back(s);
+}
+
 float Team::square(float base){
     return(pow(base,2.0));
 }

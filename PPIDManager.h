@@ -32,6 +32,11 @@ private:
     bool compStudentsOnWriting(Student*, Student*);
     bool compStudentsOverall(Student*, Student*);
 
+    void sortStudentsOnLeader();
+    void sortStudentsOnCoder();
+    void sortStudentsOnWriter();
+    void sortStudentsOverall();
+    void PPIDManager::sortTeamsOnVariance();
 
     float bestMatchScore;
     Student* bestStudent;

@@ -27,6 +27,7 @@ public:
     // setters
     void setProjectID(int project_ID);
     void setTeamID(int teamID);
+    void addStudent(Student*);
 
     // getters
     int getProjectID();

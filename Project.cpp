@@ -13,9 +13,9 @@ Project::Project(QString project_ID, QString ptitle, QString own, QString course
 }
 
 Project::~Project(){
-    foreach(Student* s, students){
+/*    foreach(Student* s, students){
         delete s;
-    }
+    }*/
 }
 
 void Project::addStudent(Student* stdnt){
