@@ -82,7 +82,8 @@ void ManageRegistrationControl::signup()
 
 /* ------------ create new user ------------*/
 // bool radio: student = true, admin = false
-void ManageRegistrationControl::createNewUser(QString fName, QString lName, QString ID, bool radio)
+void ManageRegistrationControl::createNewUser(QString fName, QString lName,
+                                              QString ID, bool radio)
 {
     if (radio) { // create student
         Student * st = new Student(fName, lName, ID, 1);
@@ -93,7 +94,7 @@ void ManageRegistrationControl::createNewUser(QString fName, QString lName, QStr
 
     // save user info!!!
 
-    // destroy signup
+    // destroy signup window
     signupWin->~SignupWindow();
     setSignupWin(NULL);
 }

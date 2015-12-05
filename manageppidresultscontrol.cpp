@@ -11,10 +11,18 @@ ManagePPIDResultsControl::~ManagePPIDResultsControl()
 {
 }
 
+// create PPIDResults GUI
+void ManagePPIDResultsControl::createGUI()
+{
+    PPIDResultsWindow *ppidResWin = new PPIDResultsWindow();
+    setResWin(ppidResWin);
+    ppidResWin->show();
+}
+
 
 
 // setter
-void ManagePPIDResultsControl::setTeamWin(PPIDResultsWindow* prw)
+void ManagePPIDResultsControl::setResWin(PPIDResultsWindow* prw)
 {
     ppidResWin = prw;
 }

@@ -17,9 +17,10 @@ class ManagePPIDResultsControl
 public:
     ManagePPIDResultsControl();
     ~ManagePPIDResultsControl();
-    void setTeamWin(PPIDResultsWindow*);
+    void setResWin(PPIDResultsWindow*);
     void saveToFile();
     void showReport(QString fileName, int flag);
+    void createGUI();
 
 private:
     PPIDResultsWindow *ppidResWin;
