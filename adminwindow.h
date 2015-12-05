@@ -38,7 +38,7 @@ private slots:
 
     void on_pushButton_logout1_clicked();
 
-    void on_pushButton_logout2_clicked();
+    //void on_pushButton_logout2_clicked();
 
     void on_pushButton_PPID_clicked();
 

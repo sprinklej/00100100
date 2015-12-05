@@ -17,7 +17,7 @@ public:
     void editProject(QString);
     void newProject();
     void logout();
-    void runPPID();
+    void runPPID(QString);
 
     // project window
     void saveProject(bool, ProjectWindow*, QString, QString, QString, int, QString);
@@ -32,6 +32,7 @@ private:
     QList<Project*> ownedProjects;
     StorageFacade* facade;
     Project* projectBeingEdited;
+    Project* PPIDProject;
 };
 
 #endif // MANAGEADMINCONTROL_H

@@ -85,7 +85,11 @@ void AdminWindow::on_pushButton_NProj_clicked() // new project clicked
 /* --------------------------- PPID Tab ------------------------*/
 void AdminWindow::on_pushButton_PPID_clicked()
 {
-    manAddControl->runPPID();
+    if(ui->projectsBox->currentText() == ""){
+       setTitle("No project selected");
+    } else {
+        manAddControl->runPPID(ui->projectsBox->currentText());
+    }
 }
 
 
@@ -95,11 +99,5 @@ void AdminWindow::on_pushButton_logout1_clicked()
 {
     manAddControl->logout();
 }
-
-void AdminWindow::on_pushButton_logout2_clicked()
-{
-    manAddControl->logout();
-}
-
 
 

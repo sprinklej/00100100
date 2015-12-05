@@ -1,6 +1,7 @@
 #include "manageadmincontrol.h"
 #include "managestudentcontrol.h"
 #include "StorageFacade.h"
+#include "PPIDManager.h"
 
 ManageAdminControl::ManageAdminControl(StorageFacade* f)
 {
@@ -101,8 +102,28 @@ void ManageAdminControl::newProject(){
 
 
 /* --------------------------- PPID Tab ------------------------*/
-void ManageAdminControl::runPPID(){
+void ManageAdminControl::runPPID(QString pt){
     qDebug() << "runPPID";
+
+    // get project
+    PPIDProject = 0;
+    foreach(Project* p, ownedProjects){
+        if(p->getProjectTitle() == pt){
+            PPIDProject = p;
+            break;
+        }
+    }
+
+    // no project found (probaly error then)
+    if(PPIDProject == 0){
+        qDebug() <<    "Unable to find project";
+        return;
+    }
+
+    // run PPID algorithm on project
+    PPIDManager *ppid = new PPIDManager(PPIDProject->getStudentList(), PPIDProject);
+
+    // display PPID algorithm results
 }
 
 
