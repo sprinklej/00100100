@@ -1,4 +1,5 @@
 #include "Team.h"
+#include "QDebug"
 
 Team::Team(int project_ID, int team_ID)
 {
@@ -190,25 +191,25 @@ float Team::getLFVariance(){
 
     //now we find the variance between looking for and average
     foreach(s, students){
-        temp_req_2404 += square((float)s->getReq_2404() - temp_att_2404);
-        temp_req_3005 += square((float)s->getReq_3005() - temp_att_3005);
-        temp_req_coding += square((float)s->getReq_coding() - temp_att_coding);
-        temp_req_dbase += square((float)s->getReq_dbase() - temp_att_dbase);
-        temp_req_selfDir += square((float)s->getReq_selfDir() - temp_att_selfDir );
-        temp_req_writing += square((float)s->getReq_writing() - temp_att_writing);
-        temp_req_UI += square((float)s->getReq_UI() - temp_att_UI);
-        temp_req_algorithm += square((float)s->getReq_algorithm() - temp_att_algorithm);
-        temp_req_present += square((float)s->getReq_present() - temp_att_present);
-        temp_req_teamwork += square((float)s->getReq_teamwork() - temp_att_teamwork);
-        temp_req_experience += square((float)s->getReq_experience() - temp_att_experience);
-        temp_req_testing += square((float)s->getReq_testing() - temp_att_testing);
-        temp_req_UML += square((float)s->getReq_UML() - temp_att_UML);
-        temp_req_req += square((float)s->getReq_req() - temp_att_req);
-        temp_req_reliable += square((float)s->getReq_reliable() - temp_att_reliable);
-        temp_req_comm += square((float)s->getReq_comm() - temp_att_comm);
-        temp_req_respect += square((float)s->getReq_respect() - temp_att_respect);
-        temp_req_creative += square((float)s->getReq_creative() - temp_att_creative);
-        temp_req_critic += square((float)s->getReq_critic() - temp_att_critic);
+        temp_req_2404 += square((float)s->getReq_2404() - (float)temp_att_2404);
+        temp_req_3005 += square((float)s->getReq_3005() - (float)temp_att_3005);
+        temp_req_coding += square((float)s->getReq_coding() - (float)temp_att_coding);
+        temp_req_dbase += square((float)s->getReq_dbase() - (float)temp_att_dbase);
+        temp_req_selfDir += square((float)s->getReq_selfDir() - (float)temp_att_selfDir );
+        temp_req_writing += square((float)s->getReq_writing() - (float)temp_att_writing);
+        temp_req_UI += square((float)s->getReq_UI() - (float)temp_att_UI);
+        temp_req_algorithm += square((float)s->getReq_algorithm() - (float)temp_att_algorithm);
+        temp_req_present += square((float)s->getReq_present() - (float)temp_att_present);
+        temp_req_teamwork += square((float)s->getReq_teamwork() - (float)temp_att_teamwork);
+        temp_req_experience += square((float)s->getReq_experience() - (float)temp_att_experience);
+        temp_req_testing += square((float)s->getReq_testing() - (float)temp_att_testing);
+        temp_req_UML += square((float)s->getReq_UML() - (float)temp_att_UML);
+        temp_req_req += square((float)s->getReq_req() - (float)temp_att_req);
+        temp_req_reliable += square((float)s->getReq_reliable() - (float)temp_att_reliable);
+        temp_req_comm += square((float)s->getReq_comm() - (float)temp_att_comm);
+        temp_req_respect += square((float)s->getReq_respect() - (float)temp_att_respect);
+        temp_req_creative += square((float)s->getReq_creative() - (float)temp_att_creative);
+        temp_req_critic += square((float)s->getReq_critic() - (float)temp_att_critic);
     }
 
     //now we find the average over the team
@@ -242,10 +243,10 @@ float Team::getLFVariance(){
 //We will return the number of time slots where all team members are available, divided by 21
 float Team::getScheduleMatch(){
     float tot = 21.0;
-    Student* s;
-        //count from 0 to 20
+    //count from 0 to 20
     for(int i = 0; i < 21; ++i){
-        foreach(s, students){
+        foreach(Student* s, students){
+            qDebug() << s->getAtt_avail();
             if(s->getAtt_avail().at(i) == 'F'){
                 tot -= 1.0;
                 break;
@@ -257,10 +258,20 @@ float Team::getScheduleMatch(){
 
 float Team::match(Student* s, QHash<QString, float>& avgs){
     students.push_back(s);
+    qDebug() << "Match: push";
     float ret = 0.0;
     //note: these still need scaling factors
-    ret += getQualVariance(avgs) + getLFVariance() + getScheduleMatch();
+    float i1 = getQualVariance(avgs);
+    qDebug() << "Match: qalvar";
+    float i2 = getLFVariance();
+    qDebug() << "Match: lfvar";
+    float i3 = getScheduleMatch();
+    qDebug() << "Match: sched";
+    //ret += 1/getQualVariance(avgs) + 1/getLFVariance() + getScheduleMatch();
+    ret = i1 + i2 + i3;
+    qDebug() << "Match: values";
     students.pop_back();
+    qDebug() << "Match: pop";
     return ret;
 }
 

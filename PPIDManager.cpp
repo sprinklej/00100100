@@ -12,9 +12,9 @@
 //PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p){
 //=======
 PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* mac){
+
     manAdminCon = mac;
 
-//>>>>>>> 408f47fd6db524e447efe63abd3c2b0580d3732f
     students = new QList<Student*>(); // need a new one - PPID destroys the list
     Student* s;
     teams = new QList<Team*>();
@@ -56,13 +56,12 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
     //1. Calculate the number of teams numTeams
     //2. Make a QList<Team*> of Teams
     numTeams = students->size() / p->getTeamSize();
-//<<<<<<< HEAD
-//=======
+
     qDebug() << "PPID is starting \n" << numTeams << " teams";
 
-    // can send messages to the admin window now
-    manAdminCon->setStatus("PPID is starting!");
-//>>>>>>> 408f47fd6db524e447efe63abd3c2b0580d3732f
+
+    //manAdminCon->setStatus("PPID is starting!");
+
 
 }
 
@@ -72,6 +71,8 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
 //TODO:
 //Need an exception for when there are too few Students given team size
 void PPIDManager::runAlgorithm(){
+
+    qDebug() << "Running algorithm";
 
     /*if(numTeams > students.size() *2){
         //give an error dialog
@@ -117,9 +118,10 @@ void PPIDManager::runAlgorithm(){
     delete teams;
     teams = sortedTeams;
 
-
+qDebug() << "Leaders assigned";
     /////////////////////////////////everything above here works
 
+    ////////// Addign a coder
 
     //7.  Sort students on coderscore
     //std::sort(students.begin(), students.end(), compStudentsOnCoding);
@@ -146,31 +148,35 @@ void PPIDManager::runAlgorithm(){
     delete sortedStudents;
 
 
+    //Have to reverse the list
+    for(int i = 0; i < (teams->size()/2); i++) teams->swap(i,teams->size()-(1+i));
+
+  qDebug() << "list reversed";
+
     //Now assign the best fit coder to each team
-    /*8.  For each team in teams:
-            let bestmatch = match(team, student(0))
-            let beststudent = student(0)
+    foreach(Team* t, *teams){
+        float bestmatch = 0.0;
+        qDebug() << "float bestmatch = 0.0;";
+        Student* bestStudent = students->at(0);
+        qDebug() << "Student* bestStudent = students->at(0);";
+        int bsIndex = 0;
 
-                For student from 0 to numteams
-                    if int m = match(team, student(n)) < bestmatch
-                    bestmatch = m
-                    beststudent = student(n)
 
-                Remove beststudent from students
-                push beststudent to team*/
-
-    //need to write the removeAt properly
-    /*foreach(t, Teams){
-        foreach(s, students){
-            int m = match(s, t);
-            if(m > bestMatchScore){
-                bestMatchScore = m;
-                bestStudent = s;
+        for(int i = 0; i < teams->size(); ++i){ //not a mistake - we only want to assign the best coders right now
+            float m = t->match(students->at(i), averages);
+            if(m > bestmatch){
+                bestmatch = m;
+                bestStudent = students->at(i);
+                bsIndex = i;
             }
-        students.remove(bestStudent);
-        t << bestStudent;
         }
-    }*/
+        t->addStudent(bestStudent);
+        students->removeAt(bsIndex);
+qDebug() << "Best match: " << bestStudent->getFirstName() << "  match score: " << bestmatch;
+    }
+
+    qDebug() << "coders assigned";
+
 
     /*Two ways to do this:
     9a. Sort the teams from highest to lowest variance
@@ -327,10 +333,10 @@ void PPIDManager::runAlgorithm(){
    Team* dt;
    foreach(dt, *teams){
     qDebug() << "--Team --   Variance: " << dt->getQualVariance(averages);
-    /*QList<Student*> studs = dt->getStudents();
+    QList<Student*> studs = dt->getStudents();
         foreach(ds, studs){
-            qDebug() << ds->getFirstName() << " Wants to be leader:" << ds->getAtt_leader() << "  Leader score: " << ds->getLeaderScore();
-        }*/
+            qDebug() << ds->getFirstName() << "  Leader score: " << ds->getLeaderScore() << " Coder score: " << ds->getCoderScore();
+        }
    }
 
 
@@ -652,5 +658,10 @@ void PPIDManager::sortTeamsOnVariance(){
     }
     delete teams;
     teams = sortedTeams;
+}
+
+float PPIDManager::match(Team* team, Student* stud){
+    float ret = team->match(stud, averages);
+    return ret;
 }
 
