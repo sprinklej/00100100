@@ -127,13 +127,13 @@ void ManageAdminControl::runPPID(QString pt){
     }
 
     // run PPID algorithm on project
-<<<<<<< HEAD
-    PPIDManager *ppid = new PPIDManager(PPIDProject->getStudentList(), PPIDProject);
-    ppid->runAlgorithm();
-=======
-    PPIDManager *ppid = new PPIDManager(PPIDProject->getStudentList(), PPIDProject, this);
->>>>>>> 408f47fd6db524e447efe63abd3c2b0580d3732f
+//<<<<<<< HEAD
+//   PPIDManager *ppid = new PPIDManager(PPIDProject->getStudentList(), PPIDProject);
 
+//=======
+    PPIDManager *ppid = new PPIDManager(PPIDProject->getStudentList(), PPIDProject, this);
+//>>>>>>> 408f47fd6db524e447efe63abd3c2b0580d3732f
+    ppid->runAlgorithm();
     // display PPID algorithm results
     ppid->displayReports();
 }

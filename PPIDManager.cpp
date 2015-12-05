@@ -2,19 +2,19 @@
 #include "manageadmincontrol.h"
 #include "QDebug"
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 /******
  * Note: All sorts are implemented as insertion sort
  * It's straightforward to implement, and quadratic time is not
  * a realstic concern given size of collections
  ******/
 
-PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p){
-=======
+//PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p){
+//=======
 PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* mac){
     manAdminCon = mac;
 
->>>>>>> 408f47fd6db524e447efe63abd3c2b0580d3732f
+//>>>>>>> 408f47fd6db524e447efe63abd3c2b0580d3732f
     students = QList<Student*>(); // need a new one - PPID destroys the list
     Student* s;
     teams = new QList<Team*>();
@@ -56,13 +56,13 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
     //1. Calculate the number of teams numTeams
     //2. Make a QList<Team*> of Teams
     numTeams = students.size() / p->getTeamSize();
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
     qDebug() << "PPID is starting \n" << numTeams << " teams";
 
     // can send messages to the admin window now
     manAdminCon->setStatus("PPID is starting!");
->>>>>>> 408f47fd6db524e447efe63abd3c2b0580d3732f
+//>>>>>>> 408f47fd6db524e447efe63abd3c2b0580d3732f
 
 }
 
@@ -514,7 +514,7 @@ QString PPIDManager::printSummaryReport(){
     int sCntr;
     Team* t;
     Student* s;
-    foreach(t, teams){
+    foreach(t, *teams){
         sCntr = 0;
         sumString = sumString + "..................................................................................\n";
         sumString = sumString + "Team: " + tCntr + "\n";
@@ -562,7 +562,7 @@ QString PPIDManager::printDetailedReport(){
 
     int tCntr = 1;
     Team* t;
-    foreach(t, teams){
+    foreach(t, *teams){
         detString = detString + "..................................................................................\n";
         detString= detString + "Team: " + tCntr + "\n";
         //detString= detString + "Qual Variance:\t" + t->getQualVariance() +"\n";
