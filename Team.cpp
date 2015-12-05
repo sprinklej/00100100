@@ -248,8 +248,7 @@ float Team::getScheduleMatch(){
     //count from 0 to 20
     for(int i = 0; i < 21; ++i){
         foreach(Student* s, students){
-            qDebug() << s->getAtt_avail();
-            if(s->getAtt_avail().at(i) == 'F'){
+            if(s->getAtt_avail().size() < i || s->getAtt_avail().at(i) == 'F'){
                 tot -= 1.0;
                 break;
             }
@@ -259,23 +258,14 @@ float Team::getScheduleMatch(){
 }
 
 float Team::match(Student* s, QHash<QString, float>& avgs){
-    qDebug() << s->getFirstName();
-    qDebug() << avgs["att_req"];
     students.push_back(s);
-    qDebug() << "Match: push";
     float ret = 0.0;
-    //note: these still need scaling factors
-    float i1 = getQualVariance(avgs);
-    qDebug() << "Match: qalvar";
-    float i2 = getLFVariance();
-    qDebug() << "Match: lfvar";
+///////TODO: these still need scaling factors
+    float i1 = 1/getQualVariance(avgs);
+    float i2 = 1/getLFVariance();
     float i3 = getScheduleMatch();
-    qDebug() << "Match: sched";
-    //ret += 1/getQualVariance(avgs) + 1/getLFVariance() + getScheduleMatch();
     ret = i1 + i2 + i3;
-    qDebug() << "Match: values";
     students.pop_back();
-    qDebug() << "Match: pop";
     return ret;
 }
 
