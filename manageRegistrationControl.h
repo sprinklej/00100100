@@ -4,7 +4,11 @@
 //#include "User.h"
 #include <QDialog>
 #include "loginwindow.h"
+#include "managequalificationcontrol.h"
 class StorageFacade;
+//class ManageStudentControl;
+//class ManageRegistrationControl;
+
 
 using namespace std;
 
@@ -19,11 +23,13 @@ public:
     void loginSuccess();
     void loginFailure(QString);
     void setLogWind(LoginWindow*);
+    void setStatus(QString);
 
     //signup
     void signup();
     void createNewUser(QString, QString, QString, bool);
     void setSignupWin(SignupWindow*);
+    void getQualifictaions(Student *);
 
 private:
 //Ui::SignupWindow *ui;

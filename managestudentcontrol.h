@@ -1,8 +1,8 @@
 #ifndef MANAGESTUDENTCONTROL_H
 #define MANAGESTUDENTCONTROL_H
 
-#include "qualificationwindow.h"
 #include "studentwindow.h"
+#include "managequalificationcontrol.h"
 class StorageFacade;
 
 using namespace std;
@@ -14,9 +14,10 @@ public:
     void setStudWind(StudentWindow*);
     void refresh();
     void joinProject(QString currentProj);
-    void manageQualifications();
+    void manageQuals();
     void logout();
     void createGUI();
+    void updateUserInfo();
 
     // setters
     void setStudent(Student*);

@@ -1,9 +1,10 @@
 #include "qualificationwindow.h"
 #include "ui_qualificationwindow.h"
-#include "Storage.h"
+#include "managequalificationcontrol.h"
+#include "StorageFacade.h"
 #include <QDebug>
 
-#include "studentwindow.h"
+
 
 QualificationWindow::QualificationWindow(QWidget *parent) :
     QDialog(parent),
@@ -11,12 +12,13 @@ QualificationWindow::QualificationWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     update = false;
+    facade = NULL;
 
-    setTotalSliderVal(0);
+    //slider
     SV2404 = SVcplusplus = SV3005 = SVDBDesign = SVSelfDir = SVTechWrite = SVUIDeign = SVAlgDesign = 0;
     SVPresSkill = SVTeamwork = SVExper = SVSWTest = SVUML = SVReqAn = SVReliable = SVComm = 0;
     SVRespect = SVCreative = SVCrit = 0;
-    studWin = NULL;
+
 }
 
 QualificationWindow::~QualificationWindow()
@@ -24,37 +26,44 @@ QualificationWindow::~QualificationWindow()
     delete ui;
 }
 
-//setters/getters
-void QualificationWindow::setStudent(Student* st){
+/* --------------------------- setters/getters ------------------------*/
+void QualificationWindow::setStudent(Student* st)
+{
     student = st;
 }
 
-void QualificationWindow::setupdate(bool u){
+void QualificationWindow::setupdate(bool u)
+{
     update = u;
 }
 
-void QualificationWindow::setStudWind(StudentWindow* stWin)
+void QualificationWindow::setManQualCon(ManageQualificationControl *mqc)
 {
-    studWin = stWin;
+    manQaulCon = mqc;
 }
 
-void QualificationWindow::setTotalSliderVal(int val)
+void QualificationWindow::setStorageFacade(StorageFacade *sf)
 {
-    totalSliderVal = val;
-}
-
-int QualificationWindow::getTotalSliderVal()
-{
-    return totalSliderVal;
+    facade = sf;
 }
 
 
+void QualificationWindow::setSlider(QSlider *slider, int val)
+{
+    slider->setSliderPosition(val);
+}
 
-// OK BUTTON
+/* --------------------------- cancel button ------------------------*/
+void QualificationWindow::on_pushButton_cancel_clicked()
+{
+    manQaulCon->cancelClicked();
+    this->~QualificationWindow();
+}
+
+/* --------------------------- OK button ------------------------*/
 void QualificationWindow::on_pushButton_ok_clicked()
 {
     // get info
-
     //want to be a leader?
     bool att_lead = (ui->checkBox->isChecked());
 
@@ -187,12 +196,6 @@ void QualificationWindow::on_pushButton_ok_clicked()
     else if(ui->rbuml_3->isChecked()) att_uml= 3;
     else if(ui->rbuml_4->isChecked()) att_uml = 4;
 
-    //int att_wg = 0; // writing and grammar
-    //if(ui->rbwg_1->isChecked()) att_wg = 1;
-    //else if(ui->rbwg_2->isChecked()) att_wg = 2;
-    //else if(ui->rbrg_3->isChecked()) att_wg = 3;
-    //else if(ui->rbwg_4->isChecked()) att_wg = 4;
-
     int att_writing = 0; // tech writing
     if(ui->rbwriting_1->isChecked()) att_writing = 1;
     else if(ui->rbwriting_2->isChecked()) att_writing = 2;
@@ -283,48 +286,20 @@ void QualificationWindow::on_pushButton_ok_clicked()
                                                 1,1,1,1,1,1,1,
                                                 1,1,1,1,1,1,
                                                 1,1);
-    //Storage::getDB().addUser(testStudent);
+
+
+    if(update){
+        facade->writeUser(student);
+        manQaulCon->updateStudWin();
+qDebug() << "update user";
+    } else {
+        facade->handleRegister(student);
+    }
 
     //close window
-    //delete student;  -dont delete student, we are still using this pointer
-    if (studWin != NULL)
-    {
-        studWin->showUserInfo();
-    }
     this->~QualificationWindow();
 }
 
-//CANCEL BUTTON
-void QualificationWindow::on_pushButton_cancel_clicked()
-{
-    //delete student;  -dont delete student, we are still using this pointer
-    this->~QualificationWindow();
-}
-
-
-
-//--------------------------------- Track Sliders ----------------------------
-void QualificationWindow::trackSlidersTotalVal(int incomingVal, QSlider * curSlider)
-{
-    QSlider * slider = curSlider;
-    int totalAllowedVal = 40;
-    int totalVal = getTotalSliderVal();
-
-    totalVal += incomingVal;
-//qDebug() << "incomingval = " << incomingVal;
-//qDebug() << "totalval = " << totalVal;
-
-    if (totalVal > totalAllowedVal) {
-        int dif = totalVal - totalAllowedVal;
-//qDebug() << (dif);
-        slider->setSliderPosition(slider->sliderPosition() - dif);
-        totalVal -= dif;
-
-
-    }
-
-    setTotalSliderVal(totalVal);
-}
 
 
 
@@ -333,7 +308,7 @@ void QualificationWindow::on_sli2404_valueChanged(int value)
 {
     int dif = value - SV2404;
     SV2404 = value;
-    trackSlidersTotalVal(dif, ui->sli2404);
+    manQaulCon->trackSlidersTotalVal(dif, ui->sli2404);
 }
 
 
@@ -341,125 +316,125 @@ void QualificationWindow::on_slicpp_valueChanged(int value)
 {
     int dif = value - SVcplusplus;
     SVcplusplus = value;
-    trackSlidersTotalVal(dif, ui->slicpp);
+    manQaulCon->trackSlidersTotalVal(dif, ui->slicpp);
 }
 
 void QualificationWindow::on_sli3005_valueChanged(int value)
 {
     int dif = value - SV3005;
     SV3005 = value;
-    trackSlidersTotalVal(dif, ui->sli3005);
+    manQaulCon->trackSlidersTotalVal(dif, ui->sli3005);
 }
 
 void QualificationWindow::on_slidb_valueChanged(int value)
 {
     int dif = value - SVDBDesign;
     SVDBDesign = value;
-    trackSlidersTotalVal(dif, ui->slidb);
+    manQaulCon->trackSlidersTotalVal(dif, ui->slidb);
 }
 
 void QualificationWindow::on_slisd_valueChanged(int value)
 {
     int dif = value - SVSelfDir;
     SVSelfDir = value;
-    trackSlidersTotalVal(dif, ui->slisd);
+    manQaulCon->trackSlidersTotalVal(dif, ui->slisd);
 }
 
 void QualificationWindow::on_slitw_valueChanged(int value)
 {
     int dif = value - SVTechWrite;
     SVTechWrite = value;
-    trackSlidersTotalVal(dif, ui->slitw);
+    manQaulCon->trackSlidersTotalVal(dif, ui->slitw);
 }
 
 void QualificationWindow::on_sliui_valueChanged(int value)
 {
     int dif = value - SVUIDeign;
     SVUIDeign = value;
-    trackSlidersTotalVal(dif, ui->sliui);
+    manQaulCon->trackSlidersTotalVal(dif, ui->sliui);
 }
 
 void QualificationWindow::on_slialg_valueChanged(int value)
 {
     int dif = value - SVAlgDesign;
     SVAlgDesign = value;
-    trackSlidersTotalVal(dif, ui->slialg);
+    manQaulCon->trackSlidersTotalVal(dif, ui->slialg);
 }
 
 void QualificationWindow::on_slipres_valueChanged(int value)
 {
     int dif = value - SVPresSkill;
     SVPresSkill = value;
-    trackSlidersTotalVal(dif, ui->slipres);
+    manQaulCon->trackSlidersTotalVal(dif, ui->slipres);
 }
 
 void QualificationWindow::on_slitw_2_valueChanged(int value)
 {
     int dif = value - SVTeamwork;
     SVTeamwork = value;
-    trackSlidersTotalVal(dif, ui->slitw_2);
+    manQaulCon->trackSlidersTotalVal(dif, ui->slitw_2);
 }
 
 void QualificationWindow::on_slixp_valueChanged(int value)
 {
     int dif = value - SVExper;
     SVExper = value;
-    trackSlidersTotalVal(dif, ui->slixp);
+    manQaulCon->trackSlidersTotalVal(dif, ui->slixp);
 }
 
 void QualificationWindow::on_slitest_valueChanged(int value)
 {
     int dif = value - SVSWTest;
     SVSWTest = value;
-    trackSlidersTotalVal(dif, ui->slitest);
+    manQaulCon->trackSlidersTotalVal(dif, ui->slitest);
 }
 
 void QualificationWindow::on_sliuml_valueChanged(int value)
 {
     int dif = value - SVUML;
     SVUML = value;
-    trackSlidersTotalVal(dif, ui->sliuml);
+    manQaulCon->trackSlidersTotalVal(dif, ui->sliuml);
 }
 
 void QualificationWindow::on_slireq_valueChanged(int value)
 {
     int dif = value - SVReqAn;
     SVReqAn = value;
-    trackSlidersTotalVal(dif, ui->slireq);
+    manQaulCon->trackSlidersTotalVal(dif, ui->slireq);
 }
 
 void QualificationWindow::on_slirel_valueChanged(int value)
 {
     int dif = value - SVReliable;
     SVReliable = value;
-    trackSlidersTotalVal(dif, ui->slirel);
+    manQaulCon->trackSlidersTotalVal(dif, ui->slirel);
 }
 
 void QualificationWindow::on_slicomm_valueChanged(int value)
 {
     int dif = value - SVComm;
     SVComm = value;
-    trackSlidersTotalVal(dif, ui->slicomm);
+    manQaulCon->trackSlidersTotalVal(dif, ui->slicomm);
 }
 
 void QualificationWindow::on_sliresp_valueChanged(int value)
 {
     int dif = value - SVRespect;
     SVRespect = value;
-    trackSlidersTotalVal(dif, ui->sliresp);
+    manQaulCon->trackSlidersTotalVal(dif, ui->sliresp);
 }
 
 void QualificationWindow::on_slicre_valueChanged(int value)
 {
     int dif = value - SVCreative;
     SVCreative = value;
-    trackSlidersTotalVal(dif, ui->slicre);
+    manQaulCon->trackSlidersTotalVal(dif, ui->slicre);
 }
 
 void QualificationWindow::on_slicri_valueChanged(int value)
 {
     int dif = value - SVCrit;
     SVCrit = value;
-    trackSlidersTotalVal(dif, ui->slicri);
+    manQaulCon->trackSlidersTotalVal(dif, ui->slicri);
 }
 

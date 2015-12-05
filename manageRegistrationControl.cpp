@@ -49,6 +49,10 @@ void ManageRegistrationControl::setSignupWin(SignupWindow* suw)
     signupWin = suw;
 }
 
+void ManageRegistrationControl::setStatus(QString string)
+{
+    logWin->setStatus(string);
+}
 
 /* --------------------------- login ------------------------*/
 void ManageRegistrationControl::login(QString uID) {
@@ -87,26 +91,21 @@ void ManageRegistrationControl::createNewUser(QString fName, QString lName,
 {
     if (radio) { // create student
         Student * st = new Student(fName, lName, ID, 1);
-        //getQualifications(st);
+        this->getQualifictaions(st);
     } else { // create admin
-        Admin* ad = new Admin(fName, lName, ID, 1);
+        Admin * ad = new Admin(fName, lName, ID, 1);
+        facade->handleRegister(ad);
     }
-
-    // save user info!!!
 
     // destroy signup window
     signupWin->~SignupWindow();
     setSignupWin(NULL);
 }
 
-
-
-/*
 void ManageRegistrationControl::getQualifictaions(Student *st)
 {
-    this->hide();
-    QualificationWindow* qualWin = new QualificationWindow();
-    qualWin->setStudent(st);
-    qualWin->show();
+    ManageQualificationControl* qualMan = new ManageQualificationControl(facade, st, false);
+    qualMan->setManRegCon(this);
+    qualMan->createGUI();
+
 }
-*/

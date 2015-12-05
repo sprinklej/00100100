@@ -138,22 +138,20 @@ qDebug() << "push student " << user->getFirstName() << " to project " << p->getP
 
 
 
-/* --------------------------- Profile Tab ------------------------* /
+/* --------------------------- Profile Tab ------------------------*/
 // edit a students qualifications
-void ManageStudentControl::manageQualifications()
+void ManageStudentControl::manageQuals()
 {
-    // create qual window
-    QualificationWindow* qualWin = new QualificationWindow();
-    qualWin->setStudent(user);
-    qualWin->setupdate(true);
-    qualWin->setStudWind(studWin);
-    // opens new window and disables current window
-    qualWin->setModal(true);
-    qualWin->exec();
+    ManageQualificationControl* qualMan = new ManageQualificationControl(facade, user, true);
+    qualMan->setManStudCon(this);
+    qualMan->createGUI();
 }
 
+void ManageStudentControl::updateUserInfo()
+{
+    studWin->showUserInfo();
+}
 
-*/
 /* --------------------------- logout ------------------------*/
 void ManageStudentControl::logout()
 {

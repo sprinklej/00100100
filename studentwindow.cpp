@@ -210,8 +210,7 @@ void StudentWindow::on_pushButton_joinProject_clicked()
 //manage qualifications clicked
 void StudentWindow::on_pushButton_manQual_clicked()
 {
-
-    //manStudControl->manageQualifications();
+    manStudControl->manageQuals();
 }
 
 

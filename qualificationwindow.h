@@ -3,8 +3,10 @@
 
 #include <QDialog>
 #include "User.h"
-#include "studentwindow.h"
 #include <QSlider>
+
+class ManageQualificationControl;
+class StorageFacade;
 
 namespace Ui {
 class QualificationWindow;
@@ -17,14 +19,18 @@ class QualificationWindow : public QDialog
 public:
     explicit QualificationWindow(QWidget *parent = 0);
     ~QualificationWindow();
-    void trackSlidersTotalVal(int incomingVal, QSlider *);
-
-    //setters/getters
-    int getTotalSliderVal();
-    void setTotalSliderVal(int val);
-    void setStudent(Student*);
     void setupdate(bool);
-    void setStudWind(StudentWindow*);
+    void setManQualCon(ManageQualificationControl *);
+    void setSlider(QSlider*, int);
+    void setStudent(Student*);
+    void setStorageFacade(StorageFacade *);
+
+
+    //void trackSlidersTotalVal(int incomingVal, QSlider *);
+    //setters/getters
+    //int getTotalSliderVal();
+    //void setTotalSliderVal(int val);
+    //void setStudWind(StudentWindow*);
 
 private slots:
     //void on_buttonBox_clicked(QAbstractButton *button);
@@ -75,9 +81,12 @@ private:
     Ui::QualificationWindow *ui;
     Student* student;
     bool update;
-    StudentWindow* studWin;
-    int totalSliderVal;
+    //StudentWindow* studWin;
+    ManageQualificationControl* manQaulCon;
+    StorageFacade *facade;
 
+    // slider stuff
+    //int totalSliderVal;
     int SV2404, SVcplusplus, SV3005, SVDBDesign, SVSelfDir, SVTechWrite, SVUIDeign, SVAlgDesign;
     int SVPresSkill, SVTeamwork, SVExper, SVSWTest, SVUML, SVReqAn, SVReliable, SVComm;
     int SVRespect, SVCreative, SVCrit;

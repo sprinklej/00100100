@@ -144,14 +144,15 @@ void StorageFacade::handleRegister(User* newUser){
     User* u;
     foreach(u, allUsers){
         if(u->getID() == newUser->getID()){
-            delete newUser;
-            //give the user an error dialog
+            //delete newUser;
+            regMgr->setStatus("User NOT created, user already exists");
             return;
         }
     }
 
     allUsers.push_back(newUser);
-    loggedInUser = u;
+    writeUser(newUser);
+    regMgr->setStatus("New user created");
 }
 
 void StorageFacade::setLoggedInUser(User*u){loggedInUser = u;}
