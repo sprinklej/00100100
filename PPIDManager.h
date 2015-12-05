@@ -1,9 +1,9 @@
 #ifndef PPIDMANAGER_H
 #define PPIDMANAGER_H
 
-#include "Project.h";
-#include "User.h";
-#include "Team.h";
+#include "Project.h"
+#include "User.h"
+#include "Team.h"
 #include <algorithm>
 #include "math.h"
 #include "QHash"
@@ -36,7 +36,7 @@ private:
     void sortStudentsOnCoder();
     void sortStudentsOnWriter();
     void sortStudentsOverall();
-    void PPIDManager::sortTeamsOnVariance();
+    void sortTeamsOnVariance();
 
     float bestMatchScore;
     Student* bestStudent;

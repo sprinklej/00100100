@@ -1,5 +1,5 @@
-#include "PPIDManager.h";
-
+#include "PPIDManager.h"
+#include "QDebug"
 
 PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p){
     students = QList<Student*>(); // need a new one - PPID destroys the list
@@ -9,18 +9,18 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p){
         //push to the front if empty
         if(students.isEmpty()){
             students.push_front(s);
-        }else if(s->getAtt_leader){ //the student wants to be a leader
+        }else if(s->getAtt_leader()){ //the student wants to be a leader
             for(int i = 0; i<students.size(); ++i){
                 //if the next student does not want to be a leader, insert
-                if(!students.at(i)->getAtt_leader || compStudentsOnLeader(s, students.at(i))){
+                if(!students.at(i)->getAtt_leader() || compStudentsOnLeader(s, students.at(i))){
                     students.insert(i, s);
                     break;
                 }
             }
         }else{ //student does not want to be a leader
-            for(int i = students.size-1; i >= 0; --i){
+            for(int i = students.size()-1; i >= 0; --i){
                 //if the previous student wants to be a leader, insert behind
-                if(students.at(i)->getAtt_leader){
+                if(students.at(i)->getAtt_leader()){
                     students.insert(i+1,s);
                     break;
                 } else if(compStudentsOnLeader(s, students.at(i))){ //else if a better leader, inseert ahead
@@ -238,7 +238,7 @@ void PPIDManager::runAlgorithm(){
     //Note: students arrives pre-sorted on leader.
    for(int i = 0; i < numTeams; ++i){
         Team* t = new Team();
-        Student* s = students.pop_front();
+        Student* s = students.takeFirst();
         t->addStudent(s);
    }
 
@@ -434,9 +434,9 @@ void PPIDManager::runAlgorithm(){
    Team* dt;
    foreach(dt, teams){
     qDebug() << "--Team --";
-    QList<Student*>* studs = dt->getStudents();
+    QList<Student*> studs = dt->getStudents();
         foreach(ds, studs){
-            qDebug() << ds->getFName() << " Wants to be leader:" << ds->getAtt_leader() << "  Leader score: " << ds->getLeaderScore();
+            qDebug() << ds->getFirstName() << " Wants to be leader:" << ds->getAtt_leader() << "  Leader score: " << ds->getLeaderScore();
         }
    }
 
@@ -500,7 +500,7 @@ bool PPIDManager::compTeamsOnVariance(Team* t1, Team* t2, QHash<QString, float>&
 
 
 bool PPIDManager::compTeamsOnLookingForVariance(Team* t1, Team* t2){
-    return(t1->getLFQualVariance() <= t2->getLFQualVariance());
+    //return(t1->getLFQualVariance() <= t2->getLFQualVariance());
 }
 
 
