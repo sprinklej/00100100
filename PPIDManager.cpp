@@ -555,7 +555,11 @@ void PPIDManager::displayReports(){
     QString detReport = printDetailedReport();
     PPIDResultsWindow* ppidResWin = new PPIDResultsWindow();
     ppidResWin->setResults(sumReport, detReport);
-    ppidResWin->show();
+
+    // opens new window and disables current window
+    ppidResWin->setModal(true);
+    ppidResWin->exec();
+    //ppidResWin->show();
 }
 
 
@@ -602,7 +606,7 @@ QString PPIDManager::printSummaryReport(){
 
             // figure out how many tabs to use
             temp = s->getFirstName() + " " + s->getLastName();
-            if (temp.length() < 11) {
+            if (temp.length() < 12) {
                 temp = "\t\t";
             } else {
                 temp = "\t";
