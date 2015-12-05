@@ -3038,28 +3038,167 @@
   <zorder>label_51</zorder>
   <zorder>label_52</zorder>
  </widget>
+ <tabstops>
+  <tabstop>checkBox</tabstop>
+  <tabstop>checkBox_2</tabstop>
+  <tabstop>checkBox_9</tabstop>
+  <tabstop>checkBox_16</tabstop>
+  <tabstop>checkBox_8</tabstop>
+  <tabstop>checkBox_10</tabstop>
+  <tabstop>checkBox_22</tabstop>
+  <tabstop>checkBox_7</tabstop>
+  <tabstop>checkBox_11</tabstop>
+  <tabstop>checkBox_21</tabstop>
+  <tabstop>checkBox_6</tabstop>
+  <tabstop>checkBox_12</tabstop>
+  <tabstop>checkBox_17</tabstop>
+  <tabstop>checkBox_5</tabstop>
+  <tabstop>checkBox_13</tabstop>
+  <tabstop>checkBox_18</tabstop>
+  <tabstop>checkBox_4</tabstop>
+  <tabstop>checkBox_14</tabstop>
+  <tabstop>checkBox_19</tabstop>
+  <tabstop>checkBox_3</tabstop>
+  <tabstop>checkBox_15</tabstop>
+  <tabstop>checkBox_20</tabstop>
+  <tabstop>rb2404_0</tabstop>
+  <tabstop>rb2404_1</tabstop>
+  <tabstop>rb2404_2</tabstop>
+  <tabstop>rb2404_3</tabstop>
+  <tabstop>rb2404_4</tabstop>
+  <tabstop>rbcoding_0</tabstop>
+  <tabstop>rbcoding_1</tabstop>
+  <tabstop>rbcoding_2</tabstop>
+  <tabstop>rbcoding_3</tabstop>
+  <tabstop>rbcoding_4</tabstop>
+  <tabstop>rb3005_0</tabstop>
+  <tabstop>rb3005_1</tabstop>
+  <tabstop>rb3005_2</tabstop>
+  <tabstop>rb3005_3</tabstop>
+  <tabstop>rb3005_4</tabstop>
+  <tabstop>rbdbase_0</tabstop>
+  <tabstop>rbdbase_1</tabstop>
+  <tabstop>rbdbase_2</tabstop>
+  <tabstop>rbdbase_3</tabstop>
+  <tabstop>rbdbase_4</tabstop>
+  <tabstop>rbwriting_0</tabstop>
+  <tabstop>rbwriting_1</tabstop>
+  <tabstop>rbwriting_2</tabstop>
+  <tabstop>rbwriting_3</tabstop>
+  <tabstop>rbwriting_4</tabstop>
+  <tabstop>rbsd_0</tabstop>
+  <tabstop>rbsd_1</tabstop>
+  <tabstop>rbsd_2</tabstop>
+  <tabstop>rbsd_3</tabstop>
+  <tabstop>rbsd_4</tabstop>
+  <tabstop>rbui_0</tabstop>
+  <tabstop>rbui_1</tabstop>
+  <tabstop>rbui_2</tabstop>
+  <tabstop>rbui_3</tabstop>
+  <tabstop>rbui_4</tabstop>
+  <tabstop>rbalg_0</tabstop>
+  <tabstop>rbalg_1</tabstop>
+  <tabstop>rbalg_2</tabstop>
+  <tabstop>rbalg_3</tabstop>
+  <tabstop>rbalg_4</tabstop>
+  <tabstop>rbpres_0</tabstop>
+  <tabstop>rbpres_1</tabstop>
+  <tabstop>rbpres_2</tabstop>
+  <tabstop>rbpres_3</tabstop>
+  <tabstop>rbpres_4</tabstop>
+  <tabstop>rbteam_0</tabstop>
+  <tabstop>rbteam_1</tabstop>
+  <tabstop>rbteam_2</tabstop>
+  <tabstop>rbteam_3</tabstop>
+  <tabstop>rbteam_4</tabstop>
+  <tabstop>rbxp_0</tabstop>
+  <tabstop>rbxp_1</tabstop>
+  <tabstop>rbxp_2</tabstop>
+  <tabstop>rbxp_3</tabstop>
+  <tabstop>rbxp_4</tabstop>
+  <tabstop>rbtest_0</tabstop>
+  <tabstop>rbtest_1</tabstop>
+  <tabstop>rbtest_2</tabstop>
+  <tabstop>rbtest_3</tabstop>
+  <tabstop>rbtest_4</tabstop>
+  <tabstop>rbuml_0</tabstop>
+  <tabstop>rbuml_1</tabstop>
+  <tabstop>rbuml_2</tabstop>
+  <tabstop>rbuml_3</tabstop>
+  <tabstop>rbuml_4</tabstop>
+  <tabstop>rbreq_0</tabstop>
+  <tabstop>rbreq_1</tabstop>
+  <tabstop>rbreq_2</tabstop>
+  <tabstop>rbreq_3</tabstop>
+  <tabstop>rbreq_4</tabstop>
+  <tabstop>rbrel_0</tabstop>
+  <tabstop>rbrel_1</tabstop>
+  <tabstop>rbrel_2</tabstop>
+  <tabstop>rbrel_3</tabstop>
+  <tabstop>rbrel_4</tabstop>
+  <tabstop>rbcomm_0</tabstop>
+  <tabstop>rbcomm_1</tabstop>
+  <tabstop>rbcomm_2</tabstop>
+  <tabstop>rbcomm_3</tabstop>
+  <tabstop>rbcomm_4</tabstop>
+  <tabstop>rbres_0</tabstop>
+  <tabstop>rbres_1</tabstop>
+  <tabstop>rbres_2</tabstop>
+  <tabstop>rbres_3</tabstop>
+  <tabstop>rbres_4</tabstop>
+  <tabstop>rbcre_0</tabstop>
+  <tabstop>rbcre_1</tabstop>
+  <tabstop>rbcre_2</tabstop>
+  <tabstop>rbcre_3</tabstop>
+  <tabstop>rbcre_4</tabstop>
+  <tabstop>rbcri_0</tabstop>
+  <tabstop>rbcri_1</tabstop>
+  <tabstop>rbcri_2</tabstop>
+  <tabstop>rbcri_3</tabstop>
+  <tabstop>rbcri_4</tabstop>
+  <tabstop>sli2404</tabstop>
+  <tabstop>slicpp</tabstop>
+  <tabstop>sli3005</tabstop>
+  <tabstop>slidb</tabstop>
+  <tabstop>slisd</tabstop>
+  <tabstop>slitw</tabstop>
+  <tabstop>sliui</tabstop>
+  <tabstop>slialg</tabstop>
+  <tabstop>slipres</tabstop>
+  <tabstop>slitw_2</tabstop>
+  <tabstop>slixp</tabstop>
+  <tabstop>slitest</tabstop>
+  <tabstop>sliuml</tabstop>
+  <tabstop>slireq</tabstop>
+  <tabstop>slirel</tabstop>
+  <tabstop>slicomm</tabstop>
+  <tabstop>sliresp</tabstop>
+  <tabstop>slicre</tabstop>
+  <tabstop>slicri</tabstop>
+  <tabstop>pushButton_ok</tabstop>
+  <tabstop>pushButton_cancel</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
  <buttongroups>
   <buttongroup name="buttonGroup_20"/>
-  <buttongroup name="buttonGroup"/>
-  <buttongroup name="buttonGroup_10"/>
-  <buttongroup name="buttonGroup_11"/>
-  <buttongroup name="buttonGroup_12"/>
-  <buttongroup name="buttonGroup_13"/>
-  <buttongroup name="buttonGroup_14"/>
-  <buttongroup name="buttonGroup_15"/>
-  <buttongroup name="buttonGroup_16"/>
-  <buttongroup name="buttonGroup_17"/>
-  <buttongroup name="buttonGroup_18"/>
-  <buttongroup name="buttonGroup_19"/>
   <buttongroup name="buttonGroup_2"/>
   <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="buttonGroup_10"/>
   <buttongroup name="buttonGroup_4"/>
+  <buttongroup name="buttonGroup_11"/>
+  <buttongroup name="buttonGroup_12"/>
   <buttongroup name="buttonGroup_5"/>
+  <buttongroup name="buttonGroup_13"/>
   <buttongroup name="buttonGroup_6"/>
+  <buttongroup name="buttonGroup_14"/>
   <buttongroup name="buttonGroup_7"/>
+  <buttongroup name="buttonGroup_15"/>
+  <buttongroup name="buttonGroup"/>
   <buttongroup name="buttonGroup_8"/>
+  <buttongroup name="buttonGroup_16"/>
   <buttongroup name="buttonGroup_9"/>
+  <buttongroup name="buttonGroup_17"/>
+  <buttongroup name="buttonGroup_18"/>
  </buttongroups>
 </ui>

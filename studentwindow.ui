@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Tab_Profile">
      <attribute name="title">
@@ -563,6 +563,16 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>pushButton_manQual</tabstop>
+  <tabstop>pushButton_Logout1</tabstop>
+  <tabstop>allProjlistWidget</tabstop>
+  <tabstop>pushButton_joinProject</tabstop>
+  <tabstop>pushButton_Logout2</tabstop>
+  <tabstop>joinedProjlistWidget</tabstop>
+  <tabstop>scrollArea</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

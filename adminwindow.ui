@@ -97,6 +97,13 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <tabstops>
+  <tabstop>projectsBox</tabstop>
+  <tabstop>pushButton_EProj</tabstop>
+  <tabstop>pushButton_NProj</tabstop>
+  <tabstop>pushButton_PPID</tabstop>
+  <tabstop>pushButton_logout1</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
