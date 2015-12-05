@@ -34,7 +34,9 @@ SOURCES += main.cpp\
     GetUserControl.cpp \
     GetProjectControl.cpp \
     PPIDManager.cpp \
-    manageRegistrationControl.cpp
+    manageRegistrationControl.cpp \
+    ppidresultswindow.cpp \
+    manageppidresultscontrol.cpp
 
 HEADERS  += \
     Storage.h \
@@ -57,7 +59,9 @@ HEADERS  += \
     GetUserControl.h \
     GetProjectControl.h \
     PPIDManager.h \
-    manageRegistrationControl.h
+    manageRegistrationControl.h \
+    ppidresultswindow.h \
+    manageppidresultscontrol.h
 
 FORMS    += \
     loginwindow.ui \
@@ -65,4 +69,5 @@ FORMS    += \
     adminwindow.ui \
     signupwindow.ui \
     qualificationwindow.ui \
-    projectwindow.ui
+    projectwindow.ui \
+    ppidresultswindow.ui
