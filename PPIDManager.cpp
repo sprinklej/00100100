@@ -451,8 +451,15 @@ void PPIDManager::runAlgorithm(){
 
 
 
-//TODO
-void PPIDManager::printSummaryReport(){
+void PPIDManager::displayReports(){
+    QString sumReport = printSummaryReport();
+    QString detReport = printDetailedReport();
+    PPIDResultsWindow* ppidResWin = new PPIDResultsWindow();
+    ppidResWin->setResults(sumReport, detReport);
+    ppidResWin->show();
+}
+
+
 /*
 PPID SUMMARY REPORT
 Project:
@@ -464,30 +471,47 @@ Team n:
   Writer - Student Name ......... 100345234
    Other - Student Name ......... 100345233
 ..................................................................................
-* /
-    //printf("PPID SUMMARY REPORT\n");
-    //printf("Project: %s\n", project->getTitle());
-    //printf("Class: %s %s\n", project->getCourseNumber(), project->getCourseDescription());
-    //printf("..................................................................................\n");
-    int n = 0;
+*/
+QString PPIDManager::printSummaryReport(){
+    QString sumString = "";
+    sumString = "PPID SUMMARY REPORT\n";
+    sumString = sumString + "Project: " + project->getProjectTitle() + "\n";
+    sumString = sumString + "Class: " + project->getCourseNum() + " "+ project->getPDescription() + "\n";
+
+    int tCntr = 0;
+    int sCntr;
     Team* t;
     Student* s;
     foreach(t, teams){
-        n++;
-        //printf("Team %d: \n", n);
-        foreach(s, t->getStudents()){
-           // if()
+        sCntr = 0;
+        sumString = sumString + "..................................................................................\n";
+        sumString = sumString + "Team: " + tCntr + "\n";
+        tCntr++;
 
+        foreach(s, t->getStudents()){
+            if(sCntr == 0) {
+                sumString = sumString + "  Leader\t";
+            } else if (sCntr == 1){
+                sumString = sumString + "  Coder\t";
+            } else if (sCntr == 2){
+                sumString = sumString + "  Writer\t";
+            } else if (sCntr >= 3){
+                sumString = sumString + "  Member\t";
+            }
+
+            sumString = sumString + s->getFirstName() + " " + s->getLastName();
+            sumString = sumString + "\t\t" + s->getIDNum() + "\n";
+            sCntr++;
         }
 
     }
-*/
+
+    sumString = sumString + "..................................................................................\n";
+    return sumString;
 }
 
 //TODO
-void PPIDManager::printDetailedReport(){
-}
-
+QString PPIDManager::printDetailedReport(){
 //The purpose of this function is to determine the variance of two teams'
 //qualifications vs. the average of the population, then funding the sum
 //over all qualifications.
@@ -499,6 +523,8 @@ void PPIDManager::printDetailedReport(){
 //  - It provides an absolute value
 //  - It prioritizes large differences
 //For this last reason, it is preferred to a stright up absolute value
+    return "this is the results";
+}
 bool PPIDManager::compTeamsOnVariance(Team* t1, Team* t2, QHash<QString, float>& avgs){
     return(t1->getQualVariance(avgs) <= t2->getQualVariance(avgs));
 }

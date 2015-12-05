@@ -8,14 +8,17 @@
 #include "math.h"
 #include "QHash"
 
+#include "ppidresultswindow.h"
+
 class ManageAdminControl;
 
 class PPIDManager{
 public:
     PPIDManager(QList<Student*>&, Project*, ManageAdminControl*);
     ~PPIDManager();
-    void printSummaryReport();
-    void printDetailedReport();
+    QString printSummaryReport();
+    QString printDetailedReport();
+    void displayReports();
 
 private:
     void runAlgorithm();

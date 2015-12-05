@@ -19,6 +19,8 @@ public:
     void showSummaryText(QTextStream *stream, QString FN);
     void showDetailedText(QTextStream *stream, QString FN);
 
+    void setResults(QString, QString);
+
 private:
     Ui::PPIDResultsWindow *ui;
 };
