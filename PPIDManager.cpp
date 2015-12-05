@@ -478,7 +478,7 @@ QString PPIDManager::printSummaryReport(){
     sumString = sumString + "Project: " + project->getProjectTitle() + "\n";
     sumString = sumString + "Class: " + project->getCourseNum() + " "+ project->getPDescription() + "\n";
 
-    int tCntr = 0;
+    int tCntr = 1;
     int sCntr;
     Team* t;
     Student* s;
@@ -503,15 +503,14 @@ QString PPIDManager::printSummaryReport(){
             sumString = sumString + "\t\t" + s->getIDNum() + "\n";
             sCntr++;
         }
-
     }
 
     sumString = sumString + "..................................................................................\n";
     return sumString;
 }
 
-//TODO
-QString PPIDManager::printDetailedReport(){
+
+
 //The purpose of this function is to determine the variance of two teams'
 //qualifications vs. the average of the population, then funding the sum
 //over all qualifications.
@@ -523,7 +522,26 @@ QString PPIDManager::printDetailedReport(){
 //  - It provides an absolute value
 //  - It prioritizes large differences
 //For this last reason, it is preferred to a stright up absolute value
-    return "this is the results";
+QString PPIDManager::printDetailedReport(){
+    QString detString = "";
+    detString = "PPID DETAILED REPORT\n";
+    detString = detString + "Project: " + project->getProjectTitle() + "\n";
+    detString = detString + "Class: " + project->getCourseNum() + " "+ project->getPDescription() + "\n";
+
+    int tCntr = 1;
+    Team* t;
+    foreach(t, teams){
+        detString = detString + "..................................................................................\n";
+        detString= detString + "Team: " + tCntr + "\n";
+
+        //Q1 = 3.1 Q1classAvg = 2.5 T1Q2 = 0.3 Q2CAvg = 1.6
+        // = (3.1 - 2.5)^2 + (0.3-1.6)^2
+
+        tCntr++;
+    }
+
+    detString = detString + "..................................................................................\n";
+    return detString;
 }
 bool PPIDManager::compTeamsOnVariance(Team* t1, Team* t2, QHash<QString, float>& avgs){
     return(t1->getQualVariance(avgs) <= t2->getQualVariance(avgs));
