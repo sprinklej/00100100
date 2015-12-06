@@ -80,6 +80,7 @@ void StorageFacade::run(){
         stMgr->createGUI();
     } else {                                // else must be an admin user
         qDebug() << "Admin logged in ...";
+        getProjectControl->intitializeProjects();
         adMgr = new ManageAdminControl(this);
         adMgr->createGUI();
     }

@@ -36,6 +36,7 @@ public:
     void setPTitle(QString);
     void setPDescription(QString);
     void addStudent(Student*);
+    void setTeamSize(int);
 
     // getters
     QString getProjectID();

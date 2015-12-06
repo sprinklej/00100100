@@ -39,3 +39,4 @@ void Project::setProjectID(QString p_ID){projectID = p_ID;}
 void Project::setCourseName(QString cN){courseName = cN;}
 void Project::setCourseNum(QString cN){courseNum = cN;}
 void Project::setPDescription(QString pd){pDescription = pd;}
+void Project::setTeamSize(int ts){teamSize = ts;}

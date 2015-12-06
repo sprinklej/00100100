@@ -52,7 +52,7 @@ bool StoreProjectControl::insertProject(Project* pr, QString own){
     query.bindValue(":icn", pr->getCourseName());
     query.bindValue(":icnm", pr->getCourseNum());
     query.bindValue(":ides", pr->getPDescription());
-    query.bindValue(":ides", pr->getTeamSize());
+    query.bindValue(":its", pr->getTeamSize());
     bool res = query.exec();
     qDebug() << query.lastError();
     return res;

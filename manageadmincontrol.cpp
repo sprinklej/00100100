@@ -172,6 +172,7 @@ Project* project = new Project("-1", pName, user->getID(), courseName, courseNum
             projectBeingEdited->setCourseNum(project->getCourseNum());
             projectBeingEdited->setCourseName(project->getCourseName());
             projectBeingEdited->setPDescription(project->getPDescription());
+            projectBeingEdited->setTeamSize(project->getTeamSize());
 
             delete project; //don;t need it anymore, data is all written
 
@@ -179,13 +180,12 @@ Project* project = new Project("-1", pName, user->getID(), courseName, courseNum
             source->~ProjectWindow();
         } else{
 //          INSERT
-            //////
-            ///TODO: add the project ot the admin gui drop down
-            ///
+            admWin->addToProjectsBox(project->getProjectTitle());  //NEW
             facade->storeProject(project, "", user->getID(), true);
             //push project to projectsOwned and master projects list
             ownedProjects.push_back(project);
-
+            allProjects.push_back(project);
+            facade->setAllProjects(allProjects);
             admWin->refresh();
             source->~ProjectWindow();
         }
