@@ -2,15 +2,11 @@
 #include "manageadmincontrol.h"
 #include "QDebug"
 
-//<<<<<<< HEAD
 /******
  * Note: All sorts are implemented as insertion sort
  * It's straightforward to implement, and quadratic time is not
  * a realstic concern given size of collections
  ******/
-
-//PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p){
-//=======
 PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* mac){
 
     manAdminCon = mac;
@@ -18,7 +14,8 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
     students = new QList<Student*>(); // need a new one - PPID destroys the list
     Student* s;
     teams = new QList<Team*>();
-    //instead of sorting on leader, we will construct the list in leader sorted order.
+
+    //instead of sorting on leader, we will save time by constructing the list in leader sorted order.
     foreach(s,stIn){
         //push to the front if empty
         if(students->isEmpty()){
@@ -53,44 +50,33 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
     averages = QHash<QString, float>();
     calculateAverages();
 
-    //1. Calculate the number of teams numTeams
-    //2. Make a QList<Team*> of Teams
     numTeams = students->size() / p->getTeamSize();
 
     qDebug() << "PPID is starting \n" << numTeams << " teams";
 
-
-    //manAdminCon->setStatus("PPID is starting!");
-
+    manAdminCon->setStatus("PPID is starting!");
 
 }
 
 
-//TODO:
-//Need to handle cases where number of students < num teams * 3
-//TODO:
-//Need an exception for when there are too few Students given team size
 void PPIDManager::runAlgorithm(){
 
     qDebug() << "Running algorithm";
 
-    /*if(numTeams > students.size() *2){
+    ////// TODO - not enough teams
+    /*if(numTeams < 4){
         //give an error dialog
         return;
-    }
+    }*/
 
-    if(numTeams > students.size() *3){
+    ////// TODO - teams of 2
+    /*if(teamsize == 2){
         //run alternative PPID
         return;
     }*/
 
-    // IN CTOR:
-    //1. Calculate the number of teams numTeams
-    //2. Make a QList<Student*> of Teams
-    //3. Sort students on the basis of leaderScore()
-
     //create the teams
-    //Note: students arrives pre-sorted on leader.
+    //Note: students arrives pre-sorted on leader
    for(int i = 0; i < numTeams; ++i){
         Team* t = new Team();
         Student* s = students->takeFirst();
@@ -98,7 +84,7 @@ void PPIDManager::runAlgorithm(){
         teams->push_back(t);
    }
 
-    //6a. Sort the teams from highest to lowest variance
+    //Sort the teams from highest to lowest variance
     QList<Team*>* sortedTeams = new QList<Team*>();
     foreach(Team* t, *teams){
         if(sortedTeams->isEmpty()){
@@ -120,249 +106,23 @@ void PPIDManager::runAlgorithm(){
         teams->push_back(t);
     }
 
-qDebug() << "Leaders assigned";
-
-
-    ////////// Assign a coder
-
+    // Assign coders
     getCoders();
-    //7.  Sort students on coderscore
 
- /*   QList<Student*>* sortedStudents = new QList<Student*>();
-
-    foreach(Student* ss, *students){
-        if(sortedStudents->isEmpty()){
-            sortedStudents->push_front(ss);
-        } else if(!compStudentsOnCoding(ss, sortedStudents->at(sortedStudents->size()-1))){
-            sortedStudents->push_back(ss);
-        } else{
-            for(int i=0; i < sortedStudents->size(); ++i){
-                if(compStudentsOnCoding(ss, sortedStudents->at(i))){
-                    sortedStudents->insert(i, ss);
-                    break;
-                }
-            }
-        }
-    }
-
-    students->clear();
-    foreach(Student* s, *sortedStudents){
-        students->push_back(s);
-    }
-
-    //Have to reverse the list
-    for(int i = 0; i < (teams->size()/2); i++) teams->swap(i,teams->size()-(1+i));
-
-    //Now assign the best fit coder to each team
-    foreach(Team* t, *teams){
-        float bestmatch = 0.0;
-        Student* bestStudent = students->at(0);
-        int bsIndex = 0;
-
-        for(int i = 0; i < teams->size(); ++i){ //not a mistake - we only want to assign the best coders right now
-            float m = t->match(students->at(i), averages);
-            if(m > bestmatch){
-                bestmatch = m;
-                bestStudent = students->at(i);
-                bsIndex = i;
-            }
-        }
-        t->addStudent(bestStudent);
-        students->removeAt(bsIndex);
-    }
-
-    qDebug() << "coders assigned";*/
-
-
-
-
-    ////////// Assign a writer
-
+    // Assign writers
     getWriters();
 
-/*    //7.  Sort students on writer score
-
-   sortedStudents = new QList<Student*>();
-
-    foreach(Student* ss, *students){
-        if(sortedStudents->isEmpty()){
-            sortedStudents->push_front(ss);
-        } else if(!compStudentsOnWriting(ss, sortedStudents->at(sortedStudents->size()-1))){
-            sortedStudents->push_back(ss);
-        } else{
-            for(int i=0; i < sortedStudents->size(); ++i){
-                if(compStudentsOnWriting(ss, sortedStudents->at(i))){
-                    sortedStudents->insert(i, ss);
-                    break;
-                }
-            }
-        }
+    while(students->size() >= (teams->size())*3){
+        getLeaders();
+        getCoders();
+        getWriters();
     }
 
-    students->clear();
-    foreach(Student* s, *sortedStudents){
-        students->push_back(s);
+    while(students->size() >= teams->size()){
+        getAnyone();
     }
 
-    //sort the teams on variance
-    //6a. Sort the teams from highest to lowest variance
-    sortedTeams = new QList<Team*>();
-    foreach(Team* t, *teams){
-        if(sortedTeams->isEmpty()){
-            sortedTeams->push_front(t);
-        } else if(!compTeamsOnVariance(t, sortedTeams->at(sortedTeams->size()-1), averages)){
-            sortedTeams->push_back(t);
-        } else{
-            for(int i=0; i < sortedTeams->size(); ++i){
-                if(compTeamsOnVariance(t, sortedTeams->at(i), averages)){
-                    sortedTeams->insert(i, t);
-                    break;
-                }
-            }
-        }
-    }
-
-    teams->clear();
-    foreach(Team*t, *sortedTeams){
-        teams->push_back(t);
-    }
-
-    //Have to reverse the list
-    for(int i = 0; i < (teams->size()/2); i++) teams->swap(i,teams->size()-(1+i));
-
-
-
-    //Now assign the best fit writer to each team
-    foreach(Team* t, *teams){
-        float bestmatch = 0.0;
-        if(students->isEmpty()) break;
-        Student* bestStudent = students->at(0);
-        int bsIndex = 0;
-
-        for(int i = 0; i < teams->size() && i < students->size(); ++i){ //not a mistake - we only want to assign the best writers right now
-            float m = t->match(students->at(i), averages);
-            if(m > bestmatch){
-                bestmatch = m;
-                bestStudent = students->at(i);
-                bsIndex = i;
-            }
-        }
-        t->addStudent(bestStudent);
-        students->removeAt(bsIndex);
-    }
-
-    qDebug() << "writers assigned";*/
-
-/////////////////////////////////everything above here works
-
-   /* while(teams->size >= students->size){
-    //add more leaders
-        std::sort(teams.begin(), teams.end(), compTeamsOnVariance);
-        std::sort(students.begin(), students.end(), compStudentsOnLeader);
-
-        bestMatchScore = 0;
-        bestStudent = students.at(0);
-
-        foreach(t, Teams){
-            foreach(s, students){
-                int m = match(s, t);
-                if(m > bestMatchScore){
-                    bestMatchScore = m;
-                    bestStudent = s;
-                }
-            //students.remove(bestStudent);
-                QList<Student*>::iterator it = students.begin();
-                while (it != students.end()) {
-                  if ((*it)==bestStudent)
-                    it = students.erase(it);
-                  else
-                    ++it;
-                }
-
-            t->addStudent(bestStudent);
-            }
-        }
-    //add more coders
-        std::sort(teams.begin(), teams.end(), compTeamsOnVariance);
-        std::sort(students.begin(), students.end(), compStudentsOnCoder);
-
-        bestMatchScore = 0;
-        bestStudent = students.at(0);
-
-        foreach(t, Teams){
-            foreach(s, students){
-                int m = match(s, t);
-                if(m > bestMatchScore){
-                    bestMatchScore = m;
-                    bestStudent = s;
-                }
-            //students.remove(bestStudent);
-                QList<Student*>::iterator it = students.begin();
-                while (it != students.end()) {
-                  if ((*it)==bestStudent)
-                    it = students.erase(it);
-                  else
-                    ++it;
-                }
-
-            t->addStudent(bestStudent);
-            }
-        }
-    //add more writers
-        std::sort(teams.begin(), teams.end(), compTeamsOnVariance);
-        std::sort(students.begin(), students.end(), compStudentsOnWriter);
-
-        bestMatchScore = 0;
-        bestStudent = students.at(0);
-
-        foreach(t, Teams){
-            foreach(s, students){
-                int m = match(s, t);
-                if(m > bestMatchScore){
-                    bestMatchScore = m;
-                    bestStudent = s;
-                }
-            //students.remove(bestStudent);
-                QList<Student*>::iterator it = students.begin();
-                while (it != students.end()) {
-                  if ((*it)==bestStudent)
-                    it = students.erase(it);
-                  else
-                    ++it;
-                }
-
-            t->addStudent(bestStudent);
-            }
-        }
-
-    }
-
-    //assign any leftover students
-
-    while(students.size() > 0){
-        std::sort(teams.begin(), teams.end(), compTeamsOnVariance);
-            foreach(t, Teams){
-            if(students.size() == 0) {return;}
-            foreach(s, students){
-                if(students->size() == 0) {return;}
-                int m = match(s, t);
-                if(m > bestMatchScore){
-                    bestMatchScore = m;
-                    bestStudent = s;
-                }
-            //students.remove(bestStudent);
-                QList<Student*>::iterator it = students.begin();
-                while (it != students.end()) {
-                  if ((*it)==bestStudent)
-                    it = students.erase(it);
-                  else
-                    ++it;
-                }
-
-            t->addStudent(bestStudent);
-            }
-        }
-    }*/
+    getAnyone();
 
    qDebug() << "** PPID DEBUG ********";
    Student* ds;
@@ -371,12 +131,12 @@ qDebug() << "Leaders assigned";
     qDebug() << "--Team --   Variance: " << dt->getQualVariance(averages);
     QList<Student*> studs = dt->getStudents();
         foreach(ds, studs){
-            qDebug() << ds->getFirstName() << "  Leader score: " << ds->getLeaderScore() << " Coder score: " << ds->getCoderScore();
+            qDebug() << ds->getFirstName() << "  Leader score: " << ds->getLeaderScore() << " Coder score: " << ds->getCoderScore() << " Writer score: " << ds->getWriterScore();
         }
    }
 
 
-    return;
+   return;
 }
 
 void PPIDManager::getLeaders(){
@@ -555,6 +315,78 @@ void PPIDManager::getWriters(){
     qDebug() << "writers assigned";
 }
 void PPIDManager::getAnyone(){
+    ////////// Addign a writer
+
+    //7.  Sort students on total score
+
+   QList<Student*>* sortedStudents = new QList<Student*>();
+
+    foreach(Student* ss, *students){
+        if(sortedStudents->isEmpty()){
+            sortedStudents->push_front(ss);
+        } else if(!compStudentsOverall(ss, sortedStudents->at(sortedStudents->size()-1))){
+            sortedStudents->push_back(ss);
+        } else{
+            for(int i=0; i < sortedStudents->size(); ++i){
+                if(compStudentsOverall(ss, sortedStudents->at(i))){
+                    sortedStudents->insert(i, ss);
+                    break;
+                }
+            }
+        }
+    }
+
+    students->clear();
+    foreach(Student* s, *sortedStudents){
+        students->push_back(s);
+    }
+
+    //sort the teams on variance
+    //6a. Sort the teams from highest to lowest variance
+    QList<Team*>* sortedTeams = new QList<Team*>();
+    foreach(Team* t, *teams){
+        if(sortedTeams->isEmpty()){
+            sortedTeams->push_front(t);
+        } else if(!compTeamsOnVariance(t, sortedTeams->at(sortedTeams->size()-1), averages)){
+            sortedTeams->push_back(t);
+        } else{
+            for(int i=0; i < sortedTeams->size(); ++i){
+                if(compTeamsOnVariance(t, sortedTeams->at(i), averages)){
+                    sortedTeams->insert(i, t);
+                    break;
+                }
+            }
+        }
+    }
+
+    teams->clear();
+    foreach(Team*t, *sortedTeams){
+        teams->push_back(t);
+    }
+
+    //Have to reverse the list
+    for(int i = 0; i < (teams->size()/2); i++) teams->swap(i,teams->size()-(1+i));
+
+    //Now assign the best fit to each team
+    foreach(Team* t, *teams){
+        float bestmatch = 0.0;
+        if(students->isEmpty()) break;
+        Student* bestStudent = students->at(0);
+        int bsIndex = 0;
+
+        for(int i = 0; i < students->size(); ++i){
+            float m = t->match(students->at(i), averages);
+            if(m > bestmatch){
+                bestmatch = m;
+                bestStudent = students->at(i);
+                bsIndex = i;
+            }
+        }
+        t->addStudent(bestStudent);
+        students->removeAt(bsIndex);
+    }
+
+    qDebug() << "leftovers assigned";
 
 }
 
@@ -726,10 +558,6 @@ void PPIDManager::calculateAverages(){
 
 }
 
-
-
-
-
 void PPIDManager::displayReports(){
     QString sumReport = printSummaryReport();
     QString detReport = printDetailedReport();
@@ -829,7 +657,8 @@ QString PPIDManager::printDetailedReport(){
         num = QString::number(tCntr);
         detString = detString + "..................................................................................\n";
         detString= detString + "Team: " + num + "\n";
-        //detString= detString + "Qual Variance:\t" + t->getQualVariance() +"\n";
+        temp = QString::number(t->getQualVariance(averages));
+        detString= detString + "Qual Variance:\t" + temp +"\n";
         temp = QString::number(t->getLFVariance());
         detString= detString + "Looking For Variance:\t" + temp +"\n";
         temp = QString::number(t->getScheduleMatch());
