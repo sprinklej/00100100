@@ -699,7 +699,7 @@ QString PPIDManager::printSummaryReport(){
 
 
 
-
+/*
 QString PPIDManager::printDetailedReport(){
     QString detString = "";
     detString = "PPID DETAILED REPORT\n";
@@ -716,7 +716,7 @@ QString PPIDManager::printDetailedReport(){
         detString = detString +"....................................................\n";
         detString= detString + "Team: " + num + "\n";
         temp = QString::number(t->getQualVariance(averages));
-        detString= detString + "Qual Variance:\t" + temp +"\n";
+        detString= detString + "Qualification Variance:\t" + temp +"\n";
         temp = QString::number(t->getLFVariance());
         detString= detString + "Looking For Variance:\t" + temp +"\n";
         temp = QString::number(t->getScheduleMatch());
@@ -731,7 +731,7 @@ QString PPIDManager::printDetailedReport(){
     detString = detString + "...................................................";
     detString = detString +"....................................................\n";
     return detString;
-}
+}*/
 
 bool PPIDManager::compTeamsOnVariance(Team* t1, Team* t2, QHash<QString, float>& avgs){
     return(t1->getQualVariance(avgs) <= t2->getQualVariance(avgs));
@@ -787,3 +787,120 @@ float PPIDManager::match(Team* team, Student* stud){
 }
 
 
+QString PPIDManager::printDetailedReport(){
+    QString detString = "";
+    detString = "PPID DETAILED REPORT\n";
+    detString = detString + "Project: " + project->getProjectTitle() + "\n";
+    detString = detString + "Class: " + project->getCourseNum() + " "+ project->getPDescription() + "\n";
+
+    int tCntr = 1;
+    QString num;
+    Team* t;
+    QString temp;
+    float t1 = 0.0;
+    float t2 = 0.0;
+    float t3 = 0.0;
+
+    foreach(t, *teams){
+        num = QString::number(tCntr);
+        detString = detString + "...................................................";
+        detString = detString +"....................................................\n";
+        detString= detString + "Team: " + num + "\n";
+        //qualifications
+        detString += "...........\n";
+        detString += "..Qualifications:\n";
+        foreach(Student* s, t->getStudents()){
+            detString += s->getFirstName() + " " + s->getLastName() + "\t";
+            detString += QString::number(s->getAtt_2404()) + "..";
+            detString += QString::number(s->getAtt_3005()) + "..";
+            detString += QString::number(s->getAtt_coding()) + "..";
+            detString += QString::number(s->getAtt_dbase()) + "..";
+            detString += QString::number(s->getAtt_selfDir()) + "..";
+            detString += QString::number(s->getAtt_writing()) + "..";
+            detString += QString::number(s->getAtt_UI()) + "..";
+            detString += QString::number(s->getAtt_algorithm()) + "..";
+            detString += QString::number(s->getAtt_present()) + "..";
+            detString += QString::number(s->getAtt_teamwork()) + "..";
+            detString += QString::number(s->getAtt_experience()) + "..";
+            detString += QString::number(s->getAtt_testing()) + "..";
+            detString += QString::number(s->getAtt_UML()) + "..";
+            detString += QString::number(s->getAtt_req()) + "..";
+            detString += QString::number(s->getAtt_reliable()) + "..";
+            detString += QString::number(s->getAtt_comm()) + "..";
+            detString += QString::number(s->getAtt_respect()) + "..";
+            detString += QString::number(s->getAtt_creative()) + "..";
+            detString += QString::number(s->getAtt_critic()) + "\n";
+
+
+        }
+
+        t1 = t->getQualVariance(averages);
+        temp = QString::number(t1);
+        detString= detString + "Sum of Variance (qual x - class average x):\t" + temp +"\n";
+
+        //looking for
+        detString += "...........\n";
+        detString += "..Looking for qualifications:\n";
+        foreach(Student* s, t->getStudents()){
+            detString += s->getFirstName() + " " + s->getLastName() + "\t";
+            detString += QString::number(s->getReq_2404()) + "..";
+            detString += QString::number(s->getReq_3005()) + "..";
+            detString += QString::number(s->getReq_coding()) + "..";
+            detString += QString::number(s->getReq_dbase()) + "..";
+            detString += QString::number(s->getReq_selfDir()) + "..";
+            detString += QString::number(s->getReq_writing()) + "..";
+            detString += QString::number(s->getReq_UI()) + "..";
+            detString += QString::number(s->getReq_algorithm()) + "..";
+            detString += QString::number(s->getReq_present()) + "..";
+            detString += QString::number(s->getReq_teamwork()) + "..";
+            detString += QString::number(s->getReq_experience()) + "..";
+            detString += QString::number(s->getReq_testing()) + "..";
+            detString += QString::number(s->getReq_UML()) + "..";
+            detString += QString::number(s->getReq_req()) + "..";
+            detString += QString::number(s->getReq_reliable()) + "..";
+            detString += QString::number(s->getReq_comm()) + "..";
+            detString += QString::number(s->getReq_respect()) + "..";
+            detString += QString::number(s->getReq_creative()) + "..";
+            detString += QString::number(s->getReq_critic()) + "\n";
+
+
+        }
+
+        t2 = t->getLFVariance();
+        temp = QString::number(t2);
+        detString= detString + "Sum of Variance (looking forqual x - team average x):\t" + temp +"\n";
+
+        //schedule
+        detString += "...........\n";
+        detString += "..Schedule compatibility:\n";
+        detString += "\t\t |Mon |Tue |Wed |Thu |Fri |Sat |Sun |\n";
+
+        foreach(Student* s, t->getStudents()){
+            detString += s->getFirstName() + " " + s->getLastName() + "\t";
+
+            QString temp = s->getAtt_avail();
+            for(int i = 0; i < 21; ++i){
+                detString += (temp.at(i) == 'T'?'+':'-');
+                detString += "...";
+            }
+
+            detString += "\n";
+
+
+        }
+
+        t3 = t->getScheduleMatch();
+        temp = QString::number(t3);
+        detString= detString + "Schedule Match:\t" + temp +"\n";
+
+
+        detString += "...........\n";
+        detString += "Total team match strength: " + QString::number(1/t1 + 1/t2 + t3) + "\n";
+
+        tCntr++;
+    }
+
+    detString = detString + "...................................................";
+    detString = detString +"....................................................\n";
+    return detString;
+}
