@@ -2,17 +2,17 @@
 #include "StorageFacade.h"
 
 #include "QDebug"
-
+//constructor, connects to storage facade
 GetProjectControl::GetProjectControl(StorageFacade* f, QList<Project*>& pList, QList<User*>& uList, QSqlDatabase& db){
     facade = f;
     allProjects = pList;
     //allUsers = uList;
     database = db;
 }
-
+//destructor
 GetProjectControl::~GetProjectControl(){
 }
-
+//updates list of users, users not yet sorted into project teams
 void GetProjectControl::setUsers(QList<User*>& uList){
      allUsers = uList;
 }
@@ -96,7 +96,7 @@ void GetProjectControl::intitializeProjects(){
         }
 
     }
-
+    //stores project list
     facade->setAllProjects(allProjects);
 
 }
