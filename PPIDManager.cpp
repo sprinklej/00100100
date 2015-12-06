@@ -897,7 +897,11 @@ QString PPIDManager::printDetailedReport(){
         //schedule
         detString += "......................\n";
         detString += "..Schedule compatibility:\n";
-        detString += "\t\t | Mon | Tue | Wed | Thu | Fri | Sat | Sun |\n";
+
+        temp = "| Mon | Tue | Wed | Thu | Fri | Sat | Sun |\n";
+        temp = temp.rightJustified(65, ' ');
+        detString += temp;
+
 
         foreach(Student* s, t->getStudents()){
             temp = s->getFirstName() + " " + s->getLastName();
@@ -906,13 +910,13 @@ QString PPIDManager::printDetailedReport(){
             //detString += s->getFirstName() + " " + s->getLastName() + "\t";
 
             QString temp = s->getAtt_avail();
-            detString += "|";
+            detString += "| ";
             int n = 1;
             for(int i = 0; i < 21; ++i){
                 detString += (temp.at(i) == 'T'?'+':'-');
                 //detString += "...";
                 if (n % 3 == 0) {
-                    detString += " |";
+                    detString += " | ";
                 }
                 n++;
             }
