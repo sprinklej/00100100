@@ -2,7 +2,10 @@
 #include "manageadmincontrol.h"
 #include "QDebug"
 
-#include <QWidget>
+//Include for file I/0
+#include <QFile>
+#include <QTextStream>
+#include <QDir>
 
 /******
  * Note: All sorts are implemented as insertion sort
@@ -11,12 +14,33 @@
  ******/
 PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* mac){
 
-
     manAdminCon = mac;
 
     students = new QList<Student*>(); // need a new one - PPID destroys the list
     Student* s;
     teams = new QList<Team*>();
+
+    /////////////////////////////////
+    // FOR FILE I/O
+    // set file save location and open file
+    QDir current = QDir::current();
+    current.cdUp();
+    QString filePath = current.path() + "/" + p->getProjectTitle() + "-Detailed Report.txt";
+    QFile newFile(filePath);
+    QString debugText = "";
+    /////////////////////////////////
+
+    /////////////////////////////////
+    // FOR FILE I/O
+    // send text to file and close the file
+    debugText += "here is some text";
+    newFile.open(QIODevice::WriteOnly | QIODevice::Text); // create/open file - overwrites files of the same name
+    if (newFile.isOpen()) { // should always check if file is open before trying to do operations on it
+        QTextStream stream(&newFile);
+        stream << debugText;
+    }
+    newFile.close(); // close file
+    //////////////////////////////////////////
 
     //instead of sorting on leader, we will save time by constructing the list in leader sorted order.
     foreach(s,stIn){
@@ -77,7 +101,6 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
     if(numTeams < 4){
        manAdminCon->setStatus("Too few students");
     }
-
 }
 
 PPIDManager::~PPIDManager(){
@@ -687,7 +710,7 @@ QString PPIDManager::printSummaryReport(){
                 sumString = sumString + "  Member\t";
             }
 
-            // figure out how many tabs to use
+            // figure out how much to pad
             temp = s->getFirstName() + " " + s->getLastName();
             temp = temp.leftJustified(35, '.');
 
@@ -807,12 +830,11 @@ QString PPIDManager::printDetailedReport(){
 
     foreach(t, *teams){
         num = QString::number(tCntr);
-        detString = detString + "...................................................";
-        detString = detString +"....................................................\n";
+        detString = detString + "........................................................................\n";
         detString= detString + "Team: " + num + "\n";
         //qualifications
-        detString += "...........\n";
-        detString += "..Qualifications:\n";
+        detString += "......................\n";
+        detString += "Qualifications:\n";
         foreach(Student* s, t->getStudents()){
             detString += s->getFirstName() + " " + s->getLastName() + "\t";
             detString += QString::number(s->getAtt_2404()) + "..";
@@ -834,8 +856,6 @@ QString PPIDManager::printDetailedReport(){
             detString += QString::number(s->getAtt_respect()) + "..";
             detString += QString::number(s->getAtt_creative()) + "..";
             detString += QString::number(s->getAtt_critic()) + "\n";
-
-
         }
 
         t1 = t->getQualVariance(averages);
@@ -843,8 +863,8 @@ QString PPIDManager::printDetailedReport(){
         detString= detString + "Sum of Variance (qual x - class average x):\t" + temp +"\n";
 
         //looking for
-        detString += "...........\n";
-        detString += "..Looking for qualifications:\n";
+        detString += "......................\n";
+        detString += "Looking for qualifications:\n";
         foreach(Student* s, t->getStudents()){
             detString += s->getFirstName() + " " + s->getLastName() + "\t";
             detString += QString::number(s->getReq_2404()) + "..";
@@ -875,17 +895,26 @@ QString PPIDManager::printDetailedReport(){
         detString= detString + "Sum of Variance (looking forqual x - team average x):\t" + temp +"\n";
 
         //schedule
-        detString += "...........\n";
+        detString += "......................\n";
         detString += "..Schedule compatibility:\n";
         detString += "\t\t |Mon |Tue |Wed |Thu |Fri |Sat |Sun |\n";
 
         foreach(Student* s, t->getStudents()){
-            detString += s->getFirstName() + " " + s->getLastName() + "\t";
+            temp = s->getFirstName() + " " + s->getLastName();
+            temp = temp.leftJustified(21, ' ');
+            detString += temp;
+            //detString += s->getFirstName() + " " + s->getLastName() + "\t";
 
             QString temp = s->getAtt_avail();
+            detString += "|";
+            int n = 1;
             for(int i = 0; i < 21; ++i){
                 detString += (temp.at(i) == 'T'?'+':'-');
-                detString += "...";
+                //detString += "...";
+                if (n % 3 == 0) {
+                    detString += " |";
+                }
+                n++;
             }
 
             detString += "\n";
@@ -898,13 +927,12 @@ QString PPIDManager::printDetailedReport(){
         detString= detString + "Schedule Match:\t" + temp +"\n";
 
 
-        detString += "...........\n";
+        detString += "......................\n";
         detString += "Total team match strength: " + QString::number(1/t1 + 1/t2 + t3) + "\n";
 
         tCntr++;
     }
 
-    detString = detString + "...................................................";
-    detString = detString +"....................................................\n";
+    detString = detString + "........................................................................\n";
     return detString;
 }

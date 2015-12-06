@@ -33,6 +33,10 @@ void ManagePPIDResultsControl::setResWin(PPIDResultsWindow* prw)
 void ManagePPIDResultsControl::saveToFile()
 {
     /*
+Included to read/display files and errors
+#include <QFile>
+#include <QTextStream>
+
     // set file save location
     QDir current = QDir::current();
     current.cdUp();
