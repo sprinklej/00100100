@@ -83,6 +83,18 @@ PPIDManager::~PPIDManager(){
 
 int PPIDManager::getNumteams(){return numTeams;}
 
+///////////PPIDManager::runAlgorithm()
+////The purpose of this function is to determine the variance of two teams'
+////qualifications vs. the average of the population, then funding the sum
+////over all qualifications.
+////It will identify either a large negative difference or a large positive difference as being undesirable
+////This is done by squaring the difference.
+////For example, Team1Q1 = 3.1 Q1classAvg = 2.5 T1Q2 = 0.3 Q2CAvg = 1.6
+//// = (3.1 - 2.5)^2 + (0.3-1.6)^2
+////This accomplishes two things:
+//// - It provides an absolute value
+//// - It prioritizes large differences
+////For this last reason, it is preferred to a stright up absolute value
 void PPIDManager::runAlgorithm(){
 
     //qDebug() << "Running algorithm with " << students->size() << " students";
@@ -252,7 +264,6 @@ void PPIDManager::getLeaders(){
 void PPIDManager::getCoders(){
     ////////// Assign a coder
 
-
     QList<Student*>* sortedStudents = new QList<Student*>();
 
     foreach(Student* ss, *students){
@@ -300,7 +311,7 @@ void PPIDManager::getCoders(){
 }
 
 void PPIDManager::getWriters(){
-    ////////// Addign a writer
+    ////////// Assign a writer
 
     //7.  Sort students on writer score
 
@@ -352,8 +363,6 @@ void PPIDManager::getWriters(){
     //Have to reverse the list
     for(int i = 0; i < (teams->size()/2); i++) teams->swap(i,teams->size()-(1+i));
 
-
-
     //Now assign the best fit writer to each team
     foreach(Team* t, *teams){
         float bestmatch = 0.0;
@@ -376,7 +385,7 @@ void PPIDManager::getWriters(){
     qDebug() << "writers assigned";
 }
 void PPIDManager::getAnyone(){
-    ////////// Addign a writer
+    ////////// Get the next best match with no specific preference
 
     //7.  Sort students on total score
 
@@ -451,8 +460,7 @@ void PPIDManager::getAnyone(){
 
 }
 
-
-
+//Used to determine statistical parameters
 void PPIDManager::calculateAverages(){
     float att_2404 = 0;
     float att_3005 = 0;
@@ -664,13 +672,13 @@ QString PPIDManager::printSummaryReport(){
         tCntr++;
 
         foreach(s, t->getStudents()){
-            if(sCntr == 0) {
+            if(sCntr % 3 == 0 && project->getTeamSize() - sCntr > project->getTeamSize()% 3) {
                 sumString = sumString + "  Leader\t";
-            } else if (sCntr == 1){
+            } else if (sCntr % 3 == 1 && project->getTeamSize() - sCntr > project->getTeamSize()% 3){
                 sumString = sumString + "  Coder\t";
-            } else if (sCntr == 2){
+            } else if (sCntr % 3 == 2 && project->getTeamSize() - sCntr > project->getTeamSize()% 3){
                 sumString = sumString + "  Writer\t";
-            } else if (sCntr >= 3){
+            } else /*if (sCntr >= 3)*/{
                 sumString = sumString + "  Member\t";
             }
 
@@ -691,17 +699,7 @@ QString PPIDManager::printSummaryReport(){
 
 
 
-//The purpose of this function is to determine the variance of two teams'
-//qualifications vs. the average of the population, then funding the sum
-//over all qualifications.
-//It will identify either a large negative difference or a large positive difference as being undesirable
-//This is done by squaring the difference.
-//For example, Team1Q1 = 3.1 Q1classAvg = 2.5 T1Q2 = 0.3 Q2CAvg = 1.6
-// = (3.1 - 2.5)^2 + (0.3-1.6)^2
-//This accomplishes two things:
-//  - It provides an absolute value
-//  - It prioritizes large differences
-//For this last reason, it is preferred to a stright up absolute value
+
 QString PPIDManager::printDetailedReport(){
     QString detString = "";
     detString = "PPID DETAILED REPORT\n";
@@ -734,6 +732,7 @@ QString PPIDManager::printDetailedReport(){
     detString = detString +"....................................................\n";
     return detString;
 }
+
 bool PPIDManager::compTeamsOnVariance(Team* t1, Team* t2, QHash<QString, float>& avgs){
     return(t1->getQualVariance(avgs) <= t2->getQualVariance(avgs));
 }
@@ -760,13 +759,6 @@ bool PPIDManager::compStudentsOnWriting(Student* s1, Student* s2){
 bool PPIDManager::compStudentsOverall(Student* s1, Student* s2){
     return(s1->getOverallScore() >= s2->getOverallScore());
 }
-
-
-
-void PPIDManager::sortStudentsOnLeader(){}
-void PPIDManager::sortStudentsOnCoder(){}
-void PPIDManager::sortStudentsOnWriter(){}
-void PPIDManager::sortStudentsOverall(){}
 
 void PPIDManager::sortTeamsOnVariance(){
     //6a. Sort the teams from highest to lowest variance

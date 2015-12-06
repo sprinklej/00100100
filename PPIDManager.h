@@ -40,10 +40,6 @@ private:
     bool compStudentsOnWriting(Student*, Student*);
     bool compStudentsOverall(Student*, Student*);
 
-    void sortStudentsOnLeader();
-    void sortStudentsOnCoder();
-    void sortStudentsOnWriter();
-    void sortStudentsOverall();
     void sortTeamsOnVariance();
 
     float bestMatchScore;
