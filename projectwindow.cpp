@@ -49,6 +49,20 @@ void ProjectWindow::on_cancelButton_clicked()
 
 void ProjectWindow::on_saveButton_clicked()
 {
+    // highlight text fields not filled in
+    if (ui->titleField->text() == "") {
+        ui->label_PT->setStyleSheet("QLabel {color:red}");
+    }
+    if (ui->numField->text() == "") {
+        ui->label_CNUM ->setStyleSheet("QLabel {color:red}");
+    }
+    if (ui->nameField->text() == "") {
+        ui->label_CNAM->setStyleSheet("QLabel {color:red}");
+    }
+    if (ui->descField->toPlainText() == "") {
+        ui->label_PD->setStyleSheet("QLabel {color:red}");
+    }
+
     QString pName = ui->titleField->text();
     QString courseNum = ui->numField->text();
     QString courseName = ui->nameField->text();
