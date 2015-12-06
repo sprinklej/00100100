@@ -897,7 +897,7 @@ QString PPIDManager::printDetailedReport(){
         //schedule
         detString += "......................\n";
         detString += "..Schedule compatibility:\n";
-        detString += "\t\t |Mon |Tue |Wed |Thu |Fri |Sat |Sun |\n";
+        detString += "\t\t | Mon | Tue | Wed | Thu | Fri | Sat | Sun |\n";
 
         foreach(Student* s, t->getStudents()){
             temp = s->getFirstName() + " " + s->getLastName();
