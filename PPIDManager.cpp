@@ -9,6 +9,7 @@
  ******/
 PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* mac){
 
+
     manAdminCon = mac;
 
     students = new QList<Student*>(); // need a new one - PPID destroys the list
@@ -18,17 +19,21 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
     //instead of sorting on leader, we will save time by constructing the list in leader sorted order.
     foreach(s,stIn){
         //push to the front if empty
+           // qDebug() << "Assigning " << s->getFirstName();
         if(students->isEmpty()){
             students->push_front(s);
+          //  qDebug() << "Assigning to front";
         }else if(s->getAtt_leader()){ //the student wants to be a leader
             for(int i = 0; i<students->size(); ++i){
                 //if the next student does not want to be a leader, insert
                 if(!students->at(i)->getAtt_leader()){
                     students->insert(i, s);
+                    //qDebug() << "Assigning at " << i;
                     break;
                 } else if(compStudentsOnLeader(s, students->at(i))){
                     if(i == 0) students->push_front(s);
                     else students->insert(i, s);
+                    //qDebug() << "Assigning at " << i;
                     break;
                 }
             }
@@ -37,9 +42,15 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
                 //if the previous student wants to be a leader, insert behind
                 if(students->at(i)->getAtt_leader()){
                     students->insert(i+1,s);
+                   // qDebug() << "Assigning at " << i+1;
                     break;
                 } else if(!compStudentsOnLeader(s, students->at(i))){ //else if a better leader, inseert ahead
                     students->insert(i+1, s);
+                    //qDebug() << "Assigning at " << i+1;
+                    break;
+                } else if(i == 0){
+                    students->push_front(s);
+                    //qDebug() << "Assigning at head";
                     break;
                 }
             }
@@ -61,7 +72,7 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
 
 void PPIDManager::runAlgorithm(){
 
-    qDebug() << "Running algorithm";
+    //qDebug() << "Running algorithm with " << students->size() << " students";
 
     ////// TODO - not enough teams
     /*if(numTeams < 4){
