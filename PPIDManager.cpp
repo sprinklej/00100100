@@ -2,6 +2,8 @@
 #include "manageadmincontrol.h"
 #include "QDebug"
 
+#include <QWidget>
+
 /******
  * Note: All sorts are implemented as insertion sort
  * It's straightforward to implement, and quadratic time is not
@@ -653,6 +655,10 @@ Team n:
 ..................................................................................
 */
 QString PPIDManager::printSummaryReport(){
+    //QFont font();
+    //font.setFamily("courier");
+
+
     QString sumString = "";
     sumString = "PPID SUMMARY REPORT\n";
     sumString = sumString + "Project: " + project->getProjectTitle() + "\n";
@@ -666,8 +672,7 @@ QString PPIDManager::printSummaryReport(){
     foreach(t, *teams){
         sCntr = 0;
         temp = QString::number(tCntr);
-        sumString = sumString + "...................................................";
-        sumString = sumString +"....................................................\n";
+        sumString = sumString + "........................................................................\n";
         sumString = sumString + "Team: " + temp + "\n";
         tCntr++;
 
@@ -692,8 +697,7 @@ QString PPIDManager::printSummaryReport(){
         }
     }
 
-    sumString = sumString + "...................................................";
-    sumString = sumString +"....................................................\n";
+    sumString = sumString + "........................................................................\n";
     return sumString;
 }
 

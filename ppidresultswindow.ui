@@ -58,6 +58,12 @@
        <height>511</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Courier 10 Pitch</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
     </widget>
    </widget>
    <widget class="QWidget" name="Detailed">
@@ -72,6 +78,12 @@
        <width>591</width>
        <height>511</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Courier 10 Pitch</family>
+       <pointsize>10</pointsize>
+      </font>
      </property>
     </widget>
    </widget>
