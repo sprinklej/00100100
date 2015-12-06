@@ -61,14 +61,27 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
     averages = QHash<QString, float>();
     calculateAverages();
 
-    numTeams = students->size() / p->getTeamSize();
+    if(p->getTeamSize() < 2 || p->getTeamSize() > 12){
+        numTeams = students->size() / 3;
+        qDebug() << "PPID is starting \n" << numTeams << " teams";
+        manAdminCon->setStatus("Invalid team size: using 3 instead");
+    }
+    else{
+        numTeams = students->size() / p->getTeamSize();
+        qDebug() << "PPID is starting \n" << numTeams << " teams";
+        manAdminCon->setStatus("PPID is starting!");
+    }
 
-    qDebug() << "PPID is starting \n" << numTeams << " teams";
-
-    manAdminCon->setStatus("PPID is starting!");
+    if(numTeams < 4){
+       manAdminCon->setStatus("Too few students");
+    }
 
 }
 
+PPIDManager::~PPIDManager(){
+}
+
+int PPIDManager::getNumteams(){return numTeams;}
 
 void PPIDManager::runAlgorithm(){
 
@@ -80,14 +93,52 @@ void PPIDManager::runAlgorithm(){
         return;
     }*/
 
-    ////// TODO - teams of 2
-    /*if(teamsize == 2){
-        //run alternative PPID
-        return;
-    }*/
+    ////// Teams of 2: Alternative PPID
+    ////// (Teams will just be a simple best match.  Teams are too small for our roles.)
+    if(students->size() < (numTeams*3)){
+        //Sort students on total score.  The leaders are just the strongest overall students
 
-    //create the teams
-    //Note: students arrives pre-sorted on leader
+       QList<Student*>* sortedStudents = new QList<Student*>();
+
+        foreach(Student* ss, *students){
+            if(sortedStudents->isEmpty()){
+                sortedStudents->push_front(ss);
+            } else if(!compStudentsOverall(ss, sortedStudents->at(sortedStudents->size()-1))){
+                sortedStudents->push_back(ss);
+            } else{
+                for(int i=0; i < sortedStudents->size(); ++i){
+                    if(compStudentsOverall(ss, sortedStudents->at(i))){
+                        sortedStudents->insert(i, ss);
+                        break;
+                    }
+                }
+            }
+        }
+
+        students->clear();
+        foreach(Student* s, *sortedStudents){
+            students->push_back(s);
+        }
+
+        //Create the teams
+        for(int i = 0; i < numTeams; ++i){
+             Team* t = new Team();
+             Student* s = students->takeFirst();
+             t->addStudent(s);
+             teams->push_back(t);
+        }
+
+        //Assign the second student to each team
+        getAnyone();
+        //Assign any leftovers: there could be an odd number of Students
+        getAnyone();
+
+        return; //easier to read than a stupidly long else block
+    }
+
+   /////REGULAR PPID
+   //create the teams
+   //Note: students arrives pre-sorted on leader
    for(int i = 0; i < numTeams; ++i){
         Team* t = new Team();
         Student* s = students->takeFirst();
@@ -145,7 +196,6 @@ void PPIDManager::runAlgorithm(){
             qDebug() << ds->getFirstName() << "  Leader score: " << ds->getLeaderScore() << " Coder score: " << ds->getCoderScore() << " Writer score: " << ds->getWriterScore();
         }
    }
-
 
    return;
 }

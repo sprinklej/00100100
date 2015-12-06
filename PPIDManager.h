@@ -16,18 +16,15 @@ class PPIDManager{
 public:
     PPIDManager(QList<Student*>&, Project*, ManageAdminControl*);
     ~PPIDManager();
-//<<<<<<< HEAD
-//    void printSummaryReport();
-//    void printDetailedReport();
+
     void runAlgorithm();
-//=======
+
     QString printSummaryReport();
     QString printDetailedReport();
     void displayReports();
-//>>>>>>> 408f47fd6db524e447efe63abd3c2b0580d3732f
+    int getNumteams();
 
 private:
-
 
     void calculateAverages();
     QList<Student*>* students;
