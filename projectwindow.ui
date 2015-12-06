@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>355</height>
+    <width>401</width>
+    <height>378</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="label_5">
+  <widget class="QLabel" name="label_PD">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -39,9 +39,9 @@
   <widget class="QLabel" name="status">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>320</y>
-     <width>171</width>
+     <x>180</x>
+     <y>310</y>
+     <width>191</width>
      <height>17</height>
     </rect>
    </property>
@@ -474,7 +474,7 @@
    <property name="geometry">
     <rect>
      <x>280</x>
-     <y>320</y>
+     <y>340</y>
      <width>99</width>
      <height>27</height>
     </rect>
@@ -487,7 +487,7 @@
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>320</y>
+     <y>340</y>
      <width>99</width>
      <height>27</height>
     </rect>
@@ -536,7 +536,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="label_PT">
       <property name="text">
        <string>Project Title</string>
       </property>
@@ -558,7 +558,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="label_CNUM">
       <property name="text">
        <string>Course Number</string>
       </property>
@@ -580,7 +580,7 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="label_CNAM">
       <property name="text">
        <string>Course Name</string>
       </property>

@@ -597,7 +597,8 @@ QString PPIDManager::printSummaryReport(){
     foreach(t, *teams){
         sCntr = 0;
         temp = QString::number(tCntr);
-        sumString = sumString + "..................................................................................\n";
+        sumString = sumString + "...................................................";
+        sumString = sumString +"....................................................\n";
         sumString = sumString + "Team: " + temp + "\n";
         tCntr++;
 
@@ -614,19 +615,16 @@ QString PPIDManager::printSummaryReport(){
 
             // figure out how many tabs to use
             temp = s->getFirstName() + " " + s->getLastName();
-            if (temp.length() < 12) {
-                temp = "\t\t";
-            } else {
-                temp = "\t";
-            }
+            temp = temp.leftJustified(35, '.');
 
-            sumString = sumString + s->getFirstName() + " " + s->getLastName();
-            sumString = sumString + temp + s->getIDNum() + "\n";
+            sumString = sumString + temp;//+ s->getFirstName() + " " + s->getLastName();
+            sumString = sumString + s->getIDNum() + "\n";
             sCntr++;
         }
     }
 
-    sumString = sumString + "..................................................................................\n";
+    sumString = sumString + "...................................................";
+    sumString = sumString +"....................................................\n";
     return sumString;
 }
 
@@ -655,7 +653,8 @@ QString PPIDManager::printDetailedReport(){
     QString temp;
     foreach(t, *teams){
         num = QString::number(tCntr);
-        detString = detString + "..................................................................................\n";
+        detString = detString + "...................................................";
+        detString = detString +"....................................................\n";
         detString= detString + "Team: " + num + "\n";
         temp = QString::number(t->getQualVariance(averages));
         detString= detString + "Qual Variance:\t" + temp +"\n";
@@ -670,7 +669,8 @@ QString PPIDManager::printDetailedReport(){
         tCntr++;
     }
 
-    detString = detString + "..................................................................................\n";
+    detString = detString + "...................................................";
+    detString = detString +"....................................................\n";
     return detString;
 }
 bool PPIDManager::compTeamsOnVariance(Team* t1, Team* t2, QHash<QString, float>& avgs){
