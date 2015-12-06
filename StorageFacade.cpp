@@ -48,16 +48,17 @@ StorageFacade::~StorageFacade(){
 
 }
 
-// setter
+// setter for users
 void StorageFacade::setAllUsers(QList<User*> usrs) {
     allUsers = usrs;
 }
 
+// setter for projects
 void StorageFacade::setAllProjects(QList<Project*> prjcts) {
     allProjects = prjcts;
 }
 
-// getter
+// getter for current user
 User* StorageFacade::getLoggedInUser() {
     return loggedInUser;
 }
@@ -91,6 +92,7 @@ void StorageFacade::handleShutdown(){
     executing = false;
 }*/
 
+// add project to storage
 void StorageFacade::storeProject(Project* p, QString sID, QString aID, bool newProj){
     if(newProj){
         allProjects.push_back(p);
@@ -99,8 +101,9 @@ void StorageFacade::storeProject(Project* p, QString sID, QString aID, bool newP
 
 }
 
+//writes user to the database
 void StorageFacade::writeUser(User* u){
-    bool newUser = getUserControl->checkID(u->getID());
+    bool newUser = getUserControl->checkID(u->getID());     //checks if already present to allow for write or update
     storeUserControl->store(newUser, u);
 }
 
@@ -117,6 +120,7 @@ void StorageFacade::getUserIDs(QList<QString>& u){
 
 }
 
+// logs in a user
 void StorageFacade::handleLogin(ManageRegistrationControl *manRegCon, QString uID){
     // make sure no one is logged in
     loggedInUser = NULL;
@@ -137,6 +141,7 @@ void StorageFacade::handleLogin(ManageRegistrationControl *manRegCon, QString uI
     }
 }
 
+// registers a new user
 void StorageFacade::handleRegister(User* newUser){
 
     User* u;
