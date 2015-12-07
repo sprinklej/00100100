@@ -6,6 +6,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDir>
+#include <fstream>
 
 /******
  * Note: All sorts are implemented as insertion sort
@@ -19,6 +20,25 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
     students = new QList<Student*>(); // need a new one - PPID destroys the list
     Student* s;
     teams = new QList<Team*>();
+
+    /////////////////////////////////
+    // FOR FILE I/O
+    // set file save location and open file
+    QDir current = QDir::current();
+    current.cdUp();
+    QString filePath = current.path() + "/" + p->getProjectTitle() + "-LOG.txt";
+    setFPath(filePath);
+
+    QFile file(filePath);
+    file.open(QIODevice::WriteOnly | QIODevice::Text); // create/open file - overwrites files of the same name
+    QTextStream strm(&file);
+    strm << "PPID LOG FILE:\n";
+    strm << "-Project: " + p->getProjectTitle()  + "\n";
+    strm << "-Class: " + p->getCourseNum() + "\n";
+    strm << "-Description: " + p->getPDescription() + "\n";
+    strm << "-This file shows how each individual student was picked.\n";
+    strm << "--------------------------------------------------------------\n";
+
 
      //instead of sorting on leader, we will save time by constructing the list in leader sorted order.
     foreach(s,stIn){
@@ -79,12 +99,15 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
     if(numTeams < 4){
        manAdminCon->setStatus("Too few students");
     }
+
+    file.close(); // close file
 }
 
 PPIDManager::~PPIDManager(){
 }
 
 void PPIDManager::setFPath(QString string){filePath = string;}
+//QString PPIDManager::getFPath(){return filePath;}
 
 int PPIDManager::getNumteams(){return numTeams;}
 
@@ -104,20 +127,9 @@ void PPIDManager::runAlgorithm(){
 
     /////////////////////////////////
     // FOR FILE I/O
-    // set file save location and open file
-    QDir current = QDir::current();
-    current.cdUp();
-    QString filePath = current.path() + "/" + project->getProjectTitle() + "-LOG.txt";
-    setFPath(filePath);
     QFile newFile(filePath);
-    newFile.open(QIODevice::WriteOnly | QIODevice::Text); // create/open file - overwrites files of the same name
+    newFile.open(QIODevice::Append | QIODevice::Text); // open file - append
     QTextStream stream(&newFile);
-    stream << "PPID LOG FILE:\n";
-    stream << "-Project: " + project->getProjectTitle()  + "\n";
-    stream << "-Class: " + project->getCourseNum() + "\n";
-    stream << "-Description: " + project->getPDescription() + "\n";
-    stream << "-This file shows how each individual student was picked.\n";
-    stream << "--------------------------------------------------------------\n";
 
     //qDebug() << "Running algorithm with " << students->size() << " students";
 
