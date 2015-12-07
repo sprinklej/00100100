@@ -38,7 +38,9 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
     strm << "-Description: " + p->getPDescription() + "\n";
     strm << "-This file shows how each individual student was picked.\n";
     strm << "--------------------------------------------------------------\n";
-
+    strm << "--------------------------------------------------------------\n";
+    strm << "----Assigning leaders to teams----\n";
+    strm << "--Sorting Students--\n";
 
      //instead of sorting on leader, we will save time by constructing the list in leader sorted order.
     foreach(s,stIn){
