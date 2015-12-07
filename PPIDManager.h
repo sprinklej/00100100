@@ -24,6 +24,7 @@ public:
     QString printDetailedReport();
     void displayReports();
     int getNumteams();
+    void setFPath(QString);
 
 private:
 
@@ -54,6 +55,8 @@ private:
 
     //admin managers
     ManageAdminControl* manAdminCon;
+
+    QString filePath;
 };
 
 #endif // PPIDMANAGER_H

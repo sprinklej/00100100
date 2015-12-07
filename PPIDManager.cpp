@@ -84,6 +84,8 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
 PPIDManager::~PPIDManager(){
 }
 
+void PPIDManager::setFPath(QString string){filePath = string;}
+
 int PPIDManager::getNumteams(){return numTeams;}
 
 ///////////PPIDManager::runAlgorithm()
@@ -105,19 +107,17 @@ void PPIDManager::runAlgorithm(){
     // set file save location and open file
     QDir current = QDir::current();
     current.cdUp();
-    QString filePath = current.path() + "/" + project->getProjectTitle() + "-Detailed Report.txt";
+    QString filePath = current.path() + "/" + project->getProjectTitle() + "-LOG.txt";
+    setFPath(filePath);
     QFile newFile(filePath);
-    /////////////////////////////////
-
-    /////////////////////////////////
-    // FOR FILE I/O
-    // send text to file and close the file
-    //debugText += "here is some text";
     newFile.open(QIODevice::WriteOnly | QIODevice::Text); // create/open file - overwrites files of the same name
-    //if (newFile.isOpen()) { // should always check if file is open before trying to do operations on it
-        QTextStream stream(&newFile);
-        //stream << debugText;
-    //}
+    QTextStream stream(&newFile);
+    stream << "PPID LOG FILE:\n";
+    stream << "-Project: " + project->getProjectTitle()  + "\n";
+    stream << "-Class: " + project->getCourseNum() + "\n";
+    stream << "-Description: " + project->getPDescription() + "\n";
+    stream << "-This file shows how each individual student was picked.\n";
+    stream << "--------------------------------------------------------------\n";
 
     //qDebug() << "Running algorithm with " << students->size() << " students";
 
@@ -169,7 +169,6 @@ void PPIDManager::runAlgorithm(){
 
 
         newFile.close(); // close file
-        //////////////////////////////////////////
 
         return; //easier to read than a stupidly long else block
     }
@@ -244,7 +243,8 @@ void PPIDManager::getLeaders(QTextStream& out){
     ////////// Assign a leader
 
     QList<Student*>* sortedStudents = new QList<Student*>();
-    out << "Assigning leaders to teams:\n";
+    out << "--------------------------------------------------------------\n";
+    out << "----Assigning leaders to teams----\n";
 
     foreach(Student* ss, *students){
         if(sortedStudents->isEmpty()){
@@ -262,8 +262,9 @@ void PPIDManager::getLeaders(QTextStream& out){
     }
 
     students->clear();
+    out << "--Sorting Students--\n";
     foreach(Student* s, *sortedStudents){
-        out << "Sorted: " << s->getFirstName();
+        out << "Sorted: " + s->getFirstName() + "\n";
         students->push_back(s);
     }
 
@@ -272,7 +273,7 @@ void PPIDManager::getLeaders(QTextStream& out){
 
     //Now assign the best fit leader to each team
     foreach(Team* t, *teams){
-        out << "Assign leader to team\n";
+        out << "\n--Assign leader to team--\n";
         float bestmatch = 0.0;
         Student* bestStudent = students->at(0);
         int bsIndex = 0;
@@ -286,19 +287,20 @@ void PPIDManager::getLeaders(QTextStream& out){
                 bsIndex = i;
             }
         }
-        out << "PPID found: " << bestStudent->getFirstName() << "  Score: " << bestmatch << "\n";
+        out << "*PPID found: " << bestStudent->getFirstName() << "as the best macth - Score: " << bestmatch << "*\n";
         t->addStudent(bestStudent);
         students->removeAt(bsIndex);
     }
 
-    out << "Leaders assigned! \n";
+    out << "\n**Leaders assigned!**\n\n\n";
 }
 
 void PPIDManager::getCoders(QTextStream&  out){
     ////////// Assign a coder
 
     QList<Student*>* sortedStudents = new QList<Student*>();
-    out << "Assigning coders to teams:\n";
+    out << "--------------------------------------------------------------\n";
+    out << "----Assigning coders to teams----\n";
 
     foreach(Student* ss, *students){
         if(sortedStudents->isEmpty()){
@@ -316,6 +318,7 @@ void PPIDManager::getCoders(QTextStream&  out){
     }
 
     students->clear();
+    out << "--Sorting Students--\n";
     foreach(Student* s, *sortedStudents){
         out << "Sorted: " << s->getFirstName() << "\n";
         students->push_back(s);
@@ -326,7 +329,7 @@ void PPIDManager::getCoders(QTextStream&  out){
 
     //Now assign the best fit coder to each team
     foreach(Team* t, *teams){
-        out << "Assign coder to team\n";
+        out << "\n--Assign coder to team--\n";
         float bestmatch = 0.0;
         Student* bestStudent = students->at(0);
         int bsIndex = 0;
@@ -340,12 +343,12 @@ void PPIDManager::getCoders(QTextStream&  out){
                 bsIndex = i;
             }
         }
-        out << "PPID found: " << bestStudent->getFirstName() << "  Score: " << bestmatch << "\n";
+        out << "*PPID found: " << bestStudent->getFirstName() << "as the best macth - Score: " << bestmatch << "*\n";
         t->addStudent(bestStudent);
         students->removeAt(bsIndex);
     }
 
-    qDebug() << "coders assigned";
+    out << "\n**Coders Assigned!**\n\n\n";
 }
 
 void PPIDManager::getWriters(QTextStream&  out){
@@ -353,8 +356,9 @@ void PPIDManager::getWriters(QTextStream&  out){
 
     //7.  Sort students on writer score
 
-   QList<Student*>* sortedStudents = new QList<Student*>();
-    out << "Assigning writers to teams: \n";
+    QList<Student*>* sortedStudents = new QList<Student*>();
+    out << "--------------------------------------------------------------\n";
+    out << "----Assigning writers to teams----\n";
 
     foreach(Student* ss, *students){
         if(sortedStudents->isEmpty()){
@@ -372,6 +376,7 @@ void PPIDManager::getWriters(QTextStream&  out){
     }
 
     students->clear();
+    out << "--Sorting Students--\n";
     foreach(Student* s, *sortedStudents){
         out << "Sorted: " << s->getFirstName() << "\n";
         students->push_back(s);
@@ -406,7 +411,7 @@ void PPIDManager::getWriters(QTextStream&  out){
 
     //Now assign the best fit writer to each team
     foreach(Team* t, *teams){
-         out << "Assign writer to team";
+         out << "\n--Assign writer to team--\n";
         float bestmatch = 0.0;
         if(students->isEmpty()) break;
         Student* bestStudent = students->at(0);
@@ -421,18 +426,19 @@ void PPIDManager::getWriters(QTextStream&  out){
                 bsIndex = i;
             }
         }
-        out << "PPID found: " << bestStudent->getFirstName() << "  Score: " << bestmatch << "\n";
+        out << "*PPID found: " << bestStudent->getFirstName() << " as the best match - Score: " << bestmatch << "*\n";
         t->addStudent(bestStudent);
         students->removeAt(bsIndex);
     }
 
-    qDebug() << "writers assigned \n";
+    out << "\n**Writers Assigned!**\n\n\n";
 }
 void PPIDManager::getAnyone(QTextStream& out){
     ////////// Get the next best match with no specific preference
 
     //7.  Sort students on total score
-    out << "Assigning other members to teams:";
+    out << "--------------------------------------------------------------\n";
+    out << "----Assigning other members to teams----\n";
    QList<Student*>* sortedStudents = new QList<Student*>();
 
     foreach(Student* ss, *students){
@@ -451,6 +457,7 @@ void PPIDManager::getAnyone(QTextStream& out){
     }
 
     students->clear();
+    out << "--Sorting Students--\n";
     foreach(Student* s, *sortedStudents){
         out << "Sorted: " << s->getFirstName() << "\n";
         students->push_back(s);
@@ -485,7 +492,7 @@ void PPIDManager::getAnyone(QTextStream& out){
 
     //Now assign the best fit to each team
     foreach(Team* t, *teams){
-         out << "Assign member to team \n";
+         out << "\n--Assign member to team--\n";
         float bestmatch = 0.0;
         if(students->isEmpty()) break;
         Student* bestStudent = students->at(0);
@@ -500,12 +507,12 @@ void PPIDManager::getAnyone(QTextStream& out){
                 bsIndex = i;
             }
         }
-        out << "PPID found: " << bestStudent->getFirstName() << "  Score: " << bestmatch << "\n";
+        out << "*PPID found: " << bestStudent->getFirstName() << " as the best match - Score: " << bestmatch << "*\n";
         t->addStudent(bestStudent);
         students->removeAt(bsIndex);
     }
 
-    out << "Members assigned\n";
+    out << "\n**Members assigned**\n\n\n";
 
 }
 
@@ -680,8 +687,10 @@ void PPIDManager::displayReports(){
     QString sumReport = printSummaryReport();
     QString detReport = printDetailedReport();
     PPIDResultsWindow* ppidResWin = new PPIDResultsWindow();
-    ppidResWin->setResults(sumReport, detReport);
+    ppidResWin->setResults(sumReport, detReport, filePath);
+    //ppidResWin->setFPath(filePath);
 
+    //qDebug() << filePath;
     // opens new window and disables current window
     ppidResWin->setModal(true);
     ppidResWin->exec();
@@ -709,7 +718,7 @@ QString PPIDManager::printSummaryReport(){
     QString sumString = "";
     sumString = "PPID SUMMARY REPORT\n";
     sumString = sumString + "Project: " + project->getProjectTitle() + "\n";
-    sumString = sumString + "Class: " + project->getCourseNum() + " " + project->getPDescription() + "\n";
+    sumString = sumString + "Class: " + project->getCourseNum() + " - " + project->getPDescription() + "\n";
 
     int tCntr = 1;
     int sCntr;
@@ -842,7 +851,7 @@ QString PPIDManager::printDetailedReport(){
     QString detString = "";
     detString = "PPID DETAILED REPORT\n";
     detString = detString + "Project: " + project->getProjectTitle() + "\n";
-    detString = detString + "Class: " + project->getCourseNum() + " "+ project->getPDescription() + "\n";
+    detString = detString + "Class: " + project->getCourseNum() + " - "+ project->getPDescription() + "\n";
 
     int tCntr = 1;
     QString num;
@@ -860,55 +869,61 @@ QString PPIDManager::printDetailedReport(){
         detString += "......................\n";
         detString += "Qualifications:\n";
         foreach(Student* s, t->getStudents()){
-            detString += s->getFirstName() + " " + s->getLastName() + "\t";
-            detString += QString::number(s->getAtt_2404()) + "..";
-            detString += QString::number(s->getAtt_3005()) + "..";
-            detString += QString::number(s->getAtt_coding()) + "..";
-            detString += QString::number(s->getAtt_dbase()) + "..";
-            detString += QString::number(s->getAtt_selfDir()) + "..";
-            detString += QString::number(s->getAtt_writing()) + "..";
-            detString += QString::number(s->getAtt_UI()) + "..";
-            detString += QString::number(s->getAtt_algorithm()) + "..";
-            detString += QString::number(s->getAtt_present()) + "..";
-            detString += QString::number(s->getAtt_teamwork()) + "..";
-            detString += QString::number(s->getAtt_experience()) + "..";
-            detString += QString::number(s->getAtt_testing()) + "..";
-            detString += QString::number(s->getAtt_UML()) + "..";
-            detString += QString::number(s->getAtt_req()) + "..";
-            detString += QString::number(s->getAtt_reliable()) + "..";
-            detString += QString::number(s->getAtt_comm()) + "..";
-            detString += QString::number(s->getAtt_respect()) + "..";
-            detString += QString::number(s->getAtt_creative()) + "..";
+            temp = s->getFirstName() + " " + s->getLastName();
+            temp = temp.leftJustified(25, ' ');
+            detString += temp;
+            //detString += s->getFirstName() + " " + s->getLastName() + "\t";
+            detString += QString::number(s->getAtt_2404()) + ".";
+            detString += QString::number(s->getAtt_3005()) + ".";
+            detString += QString::number(s->getAtt_coding()) + ".";
+            detString += QString::number(s->getAtt_dbase()) + ".";
+            detString += QString::number(s->getAtt_selfDir()) + ".";
+            detString += QString::number(s->getAtt_writing()) + ".";
+            detString += QString::number(s->getAtt_UI()) + ".";
+            detString += QString::number(s->getAtt_algorithm()) + ".";
+            detString += QString::number(s->getAtt_present()) + ".";
+            detString += QString::number(s->getAtt_teamwork()) + ".";
+            detString += QString::number(s->getAtt_experience()) + ".";
+            detString += QString::number(s->getAtt_testing()) + ".";
+            detString += QString::number(s->getAtt_UML()) + ".";
+            detString += QString::number(s->getAtt_req()) + ".";
+            detString += QString::number(s->getAtt_reliable()) + ".";
+            detString += QString::number(s->getAtt_comm()) + ".";
+            detString += QString::number(s->getAtt_respect()) + ".";
+            detString += QString::number(s->getAtt_creative()) + ".";
             detString += QString::number(s->getAtt_critic()) + "\n";
         }
 
         t1 = t->getQualVariance(averages);
         temp = QString::number(t1);
-        detString= detString + "Sum of Variance (qual x - class average x):\t" + temp +"\n";
+        detString= detString + "Sum of Variance (qual x - class average x):\t\t" + temp +"\n";
 
         //looking for
         detString += "......................\n";
         detString += "Looking for qualifications:\n";
         foreach(Student* s, t->getStudents()){
-            detString += s->getFirstName() + " " + s->getLastName() + "\t";
-            detString += QString::number(s->getReq_2404()) + "..";
-            detString += QString::number(s->getReq_3005()) + "..";
-            detString += QString::number(s->getReq_coding()) + "..";
-            detString += QString::number(s->getReq_dbase()) + "..";
-            detString += QString::number(s->getReq_selfDir()) + "..";
-            detString += QString::number(s->getReq_writing()) + "..";
-            detString += QString::number(s->getReq_UI()) + "..";
-            detString += QString::number(s->getReq_algorithm()) + "..";
-            detString += QString::number(s->getReq_present()) + "..";
-            detString += QString::number(s->getReq_teamwork()) + "..";
-            detString += QString::number(s->getReq_experience()) + "..";
-            detString += QString::number(s->getReq_testing()) + "..";
-            detString += QString::number(s->getReq_UML()) + "..";
-            detString += QString::number(s->getReq_req()) + "..";
-            detString += QString::number(s->getReq_reliable()) + "..";
-            detString += QString::number(s->getReq_comm()) + "..";
-            detString += QString::number(s->getReq_respect()) + "..";
-            detString += QString::number(s->getReq_creative()) + "..";
+            temp = s->getFirstName() + " " + s->getLastName();
+            temp = temp.leftJustified(25, ' ');
+            detString += temp;
+            //detString += s->getFirstName() + " " + s->getLastName() + "\t";
+            detString += QString::number(s->getReq_2404()) + ".";
+            detString += QString::number(s->getReq_3005()) + ".";
+            detString += QString::number(s->getReq_coding()) + ".";
+            detString += QString::number(s->getReq_dbase()) + ".";
+            detString += QString::number(s->getReq_selfDir()) + ".";
+            detString += QString::number(s->getReq_writing()) + ".";
+            detString += QString::number(s->getReq_UI()) + ".";
+            detString += QString::number(s->getReq_algorithm()) + ".";
+            detString += QString::number(s->getReq_present()) + ".";
+            detString += QString::number(s->getReq_teamwork()) + ".";
+            detString += QString::number(s->getReq_experience()) + ".";
+            detString += QString::number(s->getReq_testing()) + ".";
+            detString += QString::number(s->getReq_UML()) + ".";
+            detString += QString::number(s->getReq_req()) + ".";
+            detString += QString::number(s->getReq_reliable()) + ".";
+            detString += QString::number(s->getReq_comm()) + ".";
+            detString += QString::number(s->getReq_respect()) + ".";
+            detString += QString::number(s->getReq_creative()) + ".";
             detString += QString::number(s->getReq_critic()) + "\n";
 
 
@@ -920,7 +935,7 @@ QString PPIDManager::printDetailedReport(){
 
         //schedule
         detString += "......................\n";
-        detString += "..Schedule compatibility:\n";
+        detString += "Schedule compatibility:\n";
 
         temp = "| Mon | Tue | Wed | Thu | Fri | Sat | Sun |\n";
         temp = temp.rightJustified(65, ' ');
@@ -951,7 +966,7 @@ QString PPIDManager::printDetailedReport(){
 
         t3 = t->getScheduleMatch();
         temp = QString::number(t3);
-        detString= detString + "Schedule Match:\t" + temp +"\n";
+        detString= detString + "Schedule Match:\t\t\t\t\t" + temp +"\n";
 
 
         detString += "......................\n";

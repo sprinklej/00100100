@@ -76,7 +76,7 @@
        <x>20</x>
        <y>20</y>
        <width>591</width>
-       <height>511</height>
+       <height>481</height>
       </rect>
      </property>
      <property name="font">
@@ -84,6 +84,32 @@
        <family>Courier 10 Pitch</family>
        <pointsize>10</pointsize>
       </font>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_fPath">
+     <property name="geometry">
+      <rect>
+       <x>21</x>
+       <y>524</y>
+       <width>611</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>510</y>
+       <width>113</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Log file location:</string>
      </property>
     </widget>
    </widget>

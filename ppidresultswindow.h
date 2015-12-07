@@ -19,10 +19,12 @@ public:
     void showSummaryText(QTextStream *stream, QString FN);
     void showDetailedText(QTextStream *stream, QString FN);
 
-    void setResults(QString, QString);
+    void setResults(QString, QString, QString);
+    //void setFPath(QString);
 
 private:
     Ui::PPIDResultsWindow *ui;
+    QString filePath;
 };
 
 #endif // PPIDRESULTSWINDOW_H

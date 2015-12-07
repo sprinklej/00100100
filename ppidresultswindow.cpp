@@ -1,5 +1,6 @@
 #include "ppidresultswindow.h"
 #include "ui_ppidresultswindow.h"
+#include <QDebug>
 
 PPIDResultsWindow::PPIDResultsWindow(QWidget *parent) :
     QDialog(parent),
@@ -14,10 +15,11 @@ PPIDResultsWindow::~PPIDResultsWindow()
 }
 
 
-void PPIDResultsWindow::setResults(QString sumResults, QString detResults)
+void PPIDResultsWindow::setResults(QString sumResults, QString detResults, QString filePath)
 {
     ui->textBrowser_Summary->setText(sumResults);
     ui->textBrowser_Detailed->setText(detResults);
+    ui->label_fPath->setText(filePath);
 }
 
 
