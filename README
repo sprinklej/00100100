@@ -38,16 +38,21 @@ Compile Instructions:
 Usage Instructions:
 STUDENT
 -Login as a student using, the students ID Number	e.g. 10054806
-	-students can view and manage there profiles
-	-as well as join projects
+	-The profile tab lets students view and manage there profiles
+	-The project tab lets students view what projects they have
+	 joined as well as join new projects
 ADMIN
 -Login as a admin using the admins email address	e.g. claurend
-	-admins can create/edit projects
-	-as well as generate teams for projects 
-		RUN THE PPID ALGORITHM
-		-Login with soma, then the project 
-		 "Hack the linux kernel" has enough 
-		 students to run the project.
+	-The main window lets admins
+		-create projects
+		-edit projects
+		-run the PPID algorithm
+TESTING THE ALGORITHM		
+-Login with soma
+-then select the project "Hack the linux kernel"
+	(has enough joined members) 
+-view results in new window
+-NOTE: a detailed log file is generated as well
 
 
 Prefilled Students:
