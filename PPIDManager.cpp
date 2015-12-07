@@ -926,7 +926,6 @@ QString PPIDManager::printDetailedReport(){
         temp = temp.rightJustified(65, ' ');
         detString += temp;
 
-
         foreach(Student* s, t->getStudents()){
             temp = s->getFirstName() + " " + s->getLastName();
             temp = temp.leftJustified(21, ' ');

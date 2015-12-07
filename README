@@ -1,6 +1,10 @@
 ##########################################################################
 cuPID - Carleton University Project Partner IDentifier
 
+Description:
+	A system to match students into teams based on qualifications that
+	the students fill out.
+
 Created By:
 	Darcy Bottomley
 	Ian Smith
@@ -15,29 +19,35 @@ Tested with:
 
 Compile Instructions:
 -Open with Qt and build the project
-
--NOTE: There are a lot of warnings - all of these are for unused 
-	parameters/variables. We are setting these up for future use
 	
--NOTE2: Since we are submitting source code and not a compiled project where
-	we would have more control over where support files are store on the 
+-NOTE:  Since we are submitting source code and not a compiled project where
+	we would have more control over where support files are stored on the 
 	machine	we have tried our best to create relative file paths back to
 	files in our projects source folder.
 	If these relative paths give you issues try setting them to static
 	paths.
+
 	File paths can be found in:
-	loginwindow.cpp - lines 14-16
-	storage.cpp - lines 14-16
+	manageRegistrationControl.cpp - lines 22-24
+	storage.cpp - lines 16-18
+
+	NOTE: For D2, we realized that our realtive file paths failed due to 
+		how the project was compressed into the *.tar file.
 
 
 Usage Instructions:
+STUDENT
 -Login as a student using, the students ID Number	e.g. 10054806
 	-students can view and manage there profiles
 	-as well as join projects
+ADMIN
 -Login as a admin using the admins email address	e.g. claurend
 	-admins can create/edit projects
-	-FUTURE USE: generate teams for projects
-
+	-as well as generate teams for projects 
+		RUN THE PPID ALGORITHM
+		-Login with soma, then the project 
+		 "Hack the linux kernel" has enough 
+		 students to run the project.
 
 
 Prefilled Students:
