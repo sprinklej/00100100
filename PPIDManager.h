@@ -7,6 +7,7 @@
 #include <algorithm>
 #include "math.h"
 #include "QHash"
+#include "QTextStream"
 
 #include "ppidresultswindow.h"
 
@@ -46,10 +47,10 @@ private:
     Student* bestStudent;
     float match(Team*, Student*);
 
-    void getLeaders();
-    void getCoders();
-    void getWriters();
-    void getAnyone();
+    void getLeaders(QTextStream& );
+    void getCoders(QTextStream& );
+    void getWriters(QTextStream& );
+    void getAnyone(QTextStream& );
 
     //admin managers
     ManageAdminControl* manAdminCon;

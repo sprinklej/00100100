@@ -20,29 +20,7 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
     Student* s;
     teams = new QList<Team*>();
 
-    /////////////////////////////////
-    // FOR FILE I/O
-    // set file save location and open file
-    QDir current = QDir::current();
-    current.cdUp();
-    QString filePath = current.path() + "/" + p->getProjectTitle() + "-Detailed Report.txt";
-    QFile newFile(filePath);
-    QString debugText = "";
-    /////////////////////////////////
-
-    /////////////////////////////////
-    // FOR FILE I/O
-    // send text to file and close the file
-    debugText += "here is some text";
-    newFile.open(QIODevice::WriteOnly | QIODevice::Text); // create/open file - overwrites files of the same name
-    if (newFile.isOpen()) { // should always check if file is open before trying to do operations on it
-        QTextStream stream(&newFile);
-        stream << debugText;
-    }
-    newFile.close(); // close file
-    //////////////////////////////////////////
-
-    //instead of sorting on leader, we will save time by constructing the list in leader sorted order.
+     //instead of sorting on leader, we will save time by constructing the list in leader sorted order.
     foreach(s,stIn){
         //push to the front if empty
            // qDebug() << "Assigning " << s->getFirstName();
@@ -122,6 +100,25 @@ int PPIDManager::getNumteams(){return numTeams;}
 ////For this last reason, it is preferred to a stright up absolute value
 void PPIDManager::runAlgorithm(){
 
+    /////////////////////////////////
+    // FOR FILE I/O
+    // set file save location and open file
+    QDir current = QDir::current();
+    current.cdUp();
+    QString filePath = current.path() + "/" + project->getProjectTitle() + "-Detailed Report.txt";
+    QFile newFile(filePath);
+    /////////////////////////////////
+
+    /////////////////////////////////
+    // FOR FILE I/O
+    // send text to file and close the file
+    //debugText += "here is some text";
+    newFile.open(QIODevice::WriteOnly | QIODevice::Text); // create/open file - overwrites files of the same name
+    //if (newFile.isOpen()) { // should always check if file is open before trying to do operations on it
+        QTextStream stream(&newFile);
+        //stream << debugText;
+    //}
+
     //qDebug() << "Running algorithm with " << students->size() << " students";
 
     ////// TODO - not enough teams
@@ -166,9 +163,13 @@ void PPIDManager::runAlgorithm(){
         }
 
         //Assign the second student to each team
-        getAnyone();
+        getAnyone(stream);
         //Assign any leftovers: there could be an odd number of Students
-        getAnyone();
+        getAnyone(stream);
+
+
+        newFile.close(); // close file
+        //////////////////////////////////////////
 
         return; //easier to read than a stupidly long else block
     }
@@ -206,22 +207,22 @@ void PPIDManager::runAlgorithm(){
     }
 
     // Assign coders
-    getCoders();
+    getCoders(stream);
 
     // Assign writers
-    getWriters();
+    getWriters(stream);
 
     while(students->size() >= (teams->size())*3){
-        getLeaders();
-        getCoders();
-        getWriters();
+        getLeaders(stream);
+        getCoders(stream);
+        getWriters(stream);
     }
 
     while(students->size() >= teams->size()){
-        getAnyone();
+        getAnyone(stream);
     }
 
-    getAnyone();
+    getAnyone(stream);
 
    qDebug() << "** PPID DEBUG ********";
    Student* ds;
@@ -234,13 +235,16 @@ void PPIDManager::runAlgorithm(){
         }
    }
 
+   newFile.close(); // close file
+   //////////////////////////////////////////
    return;
 }
 
-void PPIDManager::getLeaders(){
+void PPIDManager::getLeaders(QTextStream& out){
     ////////// Assign a leader
 
     QList<Student*>* sortedStudents = new QList<Student*>();
+    out << "Assigning leaders to teams:\n";
 
     foreach(Student* ss, *students){
         if(sortedStudents->isEmpty()){
@@ -259,37 +263,42 @@ void PPIDManager::getLeaders(){
 
     students->clear();
     foreach(Student* s, *sortedStudents){
+        out << "Sorted: " << s->getFirstName();
         students->push_back(s);
     }
 
     //Have to reverse the list
     for(int i = 0; i < (teams->size()/2); i++) teams->swap(i,teams->size()-(1+i));
 
-    //Now assign the best fit coder to each team
+    //Now assign the best fit leader to each team
     foreach(Team* t, *teams){
+        out << "Assign leader to team\n";
         float bestmatch = 0.0;
         Student* bestStudent = students->at(0);
         int bsIndex = 0;
 
         for(int i = 0; i < teams->size() && i < students->size(); ++i){ //not a mistake - we only want to assign the best coders right now
             float m = t->match(students->at(i), averages);
+            out << "Checking: " << students->at(i)->getFirstName() << "  Score: " << m << "\n";
             if(m > bestmatch){
                 bestmatch = m;
                 bestStudent = students->at(i);
                 bsIndex = i;
             }
         }
+        out << "PPID found: " << bestStudent->getFirstName() << "  Score: " << bestmatch << "\n";
         t->addStudent(bestStudent);
         students->removeAt(bsIndex);
     }
 
-    qDebug() << "coders assigned";
+    out << "Leaders assigned! \n";
 }
 
-void PPIDManager::getCoders(){
+void PPIDManager::getCoders(QTextStream&  out){
     ////////// Assign a coder
 
     QList<Student*>* sortedStudents = new QList<Student*>();
+    out << "Assigning coders to teams:\n";
 
     foreach(Student* ss, *students){
         if(sortedStudents->isEmpty()){
@@ -308,6 +317,7 @@ void PPIDManager::getCoders(){
 
     students->clear();
     foreach(Student* s, *sortedStudents){
+        out << "Sorted: " << s->getFirstName() << "\n";
         students->push_back(s);
     }
 
@@ -316,18 +326,21 @@ void PPIDManager::getCoders(){
 
     //Now assign the best fit coder to each team
     foreach(Team* t, *teams){
+        out << "Assign coder to team\n";
         float bestmatch = 0.0;
         Student* bestStudent = students->at(0);
         int bsIndex = 0;
 
         for(int i = 0; i < teams->size() && i < students->size(); ++i){ //not a mistake - we only want to assign the best coders right now
             float m = t->match(students->at(i), averages);
+            out << "Checking: " << students->at(i)->getFirstName() << "  Score: " << m << "\n";
             if(m > bestmatch){
                 bestmatch = m;
                 bestStudent = students->at(i);
                 bsIndex = i;
             }
         }
+        out << "PPID found: " << bestStudent->getFirstName() << "  Score: " << bestmatch << "\n";
         t->addStudent(bestStudent);
         students->removeAt(bsIndex);
     }
@@ -335,12 +348,13 @@ void PPIDManager::getCoders(){
     qDebug() << "coders assigned";
 }
 
-void PPIDManager::getWriters(){
+void PPIDManager::getWriters(QTextStream&  out){
     ////////// Assign a writer
 
     //7.  Sort students on writer score
 
    QList<Student*>* sortedStudents = new QList<Student*>();
+    out << "Assigning writers to teams: \n";
 
     foreach(Student* ss, *students){
         if(sortedStudents->isEmpty()){
@@ -359,6 +373,7 @@ void PPIDManager::getWriters(){
 
     students->clear();
     foreach(Student* s, *sortedStudents){
+        out << "Sorted: " << s->getFirstName() << "\n";
         students->push_back(s);
     }
 
@@ -366,6 +381,7 @@ void PPIDManager::getWriters(){
     //6a. Sort the teams from highest to lowest variance
     QList<Team*>* sortedTeams = new QList<Team*>();
     foreach(Team* t, *teams){
+
         if(sortedTeams->isEmpty()){
             sortedTeams->push_front(t);
         } else if(!compTeamsOnVariance(t, sortedTeams->at(sortedTeams->size()-1), averages)){
@@ -390,6 +406,7 @@ void PPIDManager::getWriters(){
 
     //Now assign the best fit writer to each team
     foreach(Team* t, *teams){
+         out << "Assign writer to team";
         float bestmatch = 0.0;
         if(students->isEmpty()) break;
         Student* bestStudent = students->at(0);
@@ -397,23 +414,25 @@ void PPIDManager::getWriters(){
 
         for(int i = 0; i < teams->size() && i < students->size(); ++i){ //not a mistake - we only want to assign the best writers right now
             float m = t->match(students->at(i), averages);
+            out << "Checking: " << students->at(i)->getFirstName() << "  Score: " << m << "\n";
             if(m > bestmatch){
                 bestmatch = m;
                 bestStudent = students->at(i);
                 bsIndex = i;
             }
         }
+        out << "PPID found: " << bestStudent->getFirstName() << "  Score: " << bestmatch << "\n";
         t->addStudent(bestStudent);
         students->removeAt(bsIndex);
     }
 
-    qDebug() << "writers assigned";
+    qDebug() << "writers assigned \n";
 }
-void PPIDManager::getAnyone(){
+void PPIDManager::getAnyone(QTextStream& out){
     ////////// Get the next best match with no specific preference
 
     //7.  Sort students on total score
-
+    out << "Assigning other members to teams:";
    QList<Student*>* sortedStudents = new QList<Student*>();
 
     foreach(Student* ss, *students){
@@ -433,6 +452,7 @@ void PPIDManager::getAnyone(){
 
     students->clear();
     foreach(Student* s, *sortedStudents){
+        out << "Sorted: " << s->getFirstName() << "\n";
         students->push_back(s);
     }
 
@@ -440,6 +460,7 @@ void PPIDManager::getAnyone(){
     //6a. Sort the teams from highest to lowest variance
     QList<Team*>* sortedTeams = new QList<Team*>();
     foreach(Team* t, *teams){
+
         if(sortedTeams->isEmpty()){
             sortedTeams->push_front(t);
         } else if(!compTeamsOnVariance(t, sortedTeams->at(sortedTeams->size()-1), averages)){
@@ -464,6 +485,7 @@ void PPIDManager::getAnyone(){
 
     //Now assign the best fit to each team
     foreach(Team* t, *teams){
+         out << "Assign member to team \n";
         float bestmatch = 0.0;
         if(students->isEmpty()) break;
         Student* bestStudent = students->at(0);
@@ -471,17 +493,19 @@ void PPIDManager::getAnyone(){
 
         for(int i = 0; i < students->size(); ++i){
             float m = t->match(students->at(i), averages);
+            out << "Checking: " << students->at(i)->getFirstName() << "  Score: " << m << "\n";
             if(m > bestmatch){
                 bestmatch = m;
                 bestStudent = students->at(i);
                 bsIndex = i;
             }
         }
+        out << "PPID found: " << bestStudent->getFirstName() << "  Score: " << bestmatch << "\n";
         t->addStudent(bestStudent);
         students->removeAt(bsIndex);
     }
 
-    qDebug() << "leftovers assigned";
+    out << "Members assigned\n";
 
 }
 
