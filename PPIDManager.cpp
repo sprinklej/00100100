@@ -40,17 +40,17 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
     strm << "--------------------------------------------------------------\n";
     strm << "--------------------------------------------------------------\n";
     strm << "----Assigning leaders to teams----\n";
-    strm << "--Sorting Students--\n";
+    strm << "----Sorting Student ----\n";
 
      //instead of sorting on leader, we will save time by constructing the list in leader sorted order.
     foreach(s,stIn){
         //push to the front if empty
-           strm << "Sorting " << s->getFirstName();
+           strm << "Sorting: " << s->getFirstName();
         if(students->isEmpty()){
             students->push_front(s);
             strm << " -- Assigning to empty list\n";
         }else if(s->getAtt_leader()){ //the student wants to be a leader
-            strm << " -- Volunteered as leader\n ";
+            strm << " -- Volunteered as leader\n";
             for(int i = 0; i<students->size(); ++i){
                 //if the next student does not want to be a leader, insert
                 if(!students->at(i)->getAtt_leader()){
@@ -65,7 +65,7 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
                 }
             }
         }else{ //student does not want to be a leader
-            strm << " -- Did not volunteer as leader\n ";
+            strm << " -- Did not volunteer as leader\n";
             for(int i = students->size()-1; i >= 0; --i){
                 //if the previous student wants to be a leader, insert behind
                 if(students->at(i)->getAtt_leader()){
@@ -104,6 +104,7 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
        manAdminCon->setStatus("Too few students");
     }
 
+    strm << "\n**Leaders Assigned!**\n\n\n";
     file.close(); // close file
 }
 
