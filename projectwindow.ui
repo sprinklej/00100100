@@ -509,7 +509,7 @@
     <item>
      <widget class="QLabel" name="label_4">
       <property name="text">
-       <string>Max team size</string>
+       <string>Min team size</string>
       </property>
      </widget>
     </item>
