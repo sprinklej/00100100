@@ -45,11 +45,12 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
      //instead of sorting on leader, we will save time by constructing the list in leader sorted order.
     foreach(s,stIn){
         //push to the front if empty
-           // qDebug() << "Assigning " << s->getFirstName();
+           strm << "Sorting " << s->getFirstName();
         if(students->isEmpty()){
             students->push_front(s);
-          //  qDebug() << "Assigning to front";
+            strm << " -- Assigning to empty list\n";
         }else if(s->getAtt_leader()){ //the student wants to be a leader
+            strm << " -- Volunteered as leader\n ";
             for(int i = 0; i<students->size(); ++i){
                 //if the next student does not want to be a leader, insert
                 if(!students->at(i)->getAtt_leader()){
@@ -64,6 +65,7 @@ PPIDManager::PPIDManager(QList<Student*>& stIn, Project* p, ManageAdminControl* 
                 }
             }
         }else{ //student does not want to be a leader
+            strm << " -- Did not volunteer as leader\n ";
             for(int i = students->size()-1; i >= 0; --i){
                 //if the previous student wants to be a leader, insert behind
                 if(students->at(i)->getAtt_leader()){
@@ -164,15 +166,17 @@ void PPIDManager::runAlgorithm(){
         }
 
         students->clear();
-        foreach(Student* s, *sortedStudents){
+        foreach(Student* s, *sortedStudents){            
             students->push_back(s);
         }
 
         //Create the teams
         for(int i = 0; i < numTeams; ++i){
+             stream << "Create team " << i;
              Team* t = new Team();
              Student* s = students->takeFirst();
              t->addStudent(s);
+             stream << "with " << s->getFirstName() << " as leader \n";
              teams->push_back(t);
         }
 
@@ -301,7 +305,7 @@ void PPIDManager::getLeaders(QTextStream& out){
                 bsIndex = i;
             }
         }
-        out << "*PPID found: " << bestStudent->getFirstName() << "as the best macth - Score: " << bestmatch << "*\n";
+        out << "*PPID found: " << bestStudent->getFirstName() << " as the best match - Score: " << bestmatch << "*\n";
         t->addStudent(bestStudent);
         students->removeAt(bsIndex);
     }
@@ -357,7 +361,7 @@ void PPIDManager::getCoders(QTextStream&  out){
                 bsIndex = i;
             }
         }
-        out << "*PPID found: " << bestStudent->getFirstName() << "as the best macth - Score: " << bestmatch << "*\n";
+        out << "*PPID found: " << bestStudent->getFirstName() << " as the best match - Score: " << bestmatch << "*\n";
         t->addStudent(bestStudent);
         students->removeAt(bsIndex);
     }

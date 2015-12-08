@@ -260,9 +260,11 @@ float Team::getScheduleMatch(){
 float Team::match(Student* s, QHash<QString, float>& avgs){
     students.push_back(s);
     float ret = 0.0;
-///////TODO: these still need scaling factors
-    float i1 = 1/getQualVariance(avgs);
-    float i2 = 1/getLFVariance();
+
+    float i1 = 0.0;
+            if(getQualVariance(avgs) == 0) i1 = 100; else i1 == 10/getQualVariance(avgs);
+    float i2 = 0.0;
+            if(getLFVariance() == 0) i2 = 100; else i2 = 10/getLFVariance();
     float i3 = getScheduleMatch();
     ret = i1 + i2 + i3;
     students.pop_back();
